@@ -1,0 +1,51 @@
+
+allprojects {
+    group 'com.songdm.pms'
+    version '1.0.0'
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    repositories {
+        maven { url 'http://maven.oschina.net/content/groups/public' }
+        maven { url 'http://mirrors.ibiblio.org/pub/mirrors/maven2' }
+        maven { url 'http://jcenter.bintray.com/' }
+        mavenCentral()
+    }
+
+    dependencies {
+        compile ('com.jfinal:jfinal:2.0')
+    }
+}
+
+subprojects {
+    ext {
+        springVersion = '4.2.4.RELEASE'
+        guavaVersion = '19.0'
+        testngVersion = '6.9.9'
+    }
+
+    repositories {
+        maven { url 'http://jcenter.bintray.com/' }
+        maven { url 'http://maven.oschina.net/content/groups/public' }
+        maven { url 'http://mirrors.ibiblio.org/pub/mirrors/maven2' }
+        mavenCentral()
+    }
+
+    dependencies {
+        compile ('org.springframework:spring-core:${springVersion}')
+        compile ('org.springframework:spring-context:${springVersion}')
+        compile ('org.springframework:spring-mvc:${springVersion}')
+
+        compile ('com.google.guava:guava:${guavaVersion}')
+
+        testCompile ('org.testng:testng:${testngVersion}')
+    }
+}
+
+configure (subprojects.findAll {it.name.contains('web')}) {
+    apply plugin: 'war'
+}
