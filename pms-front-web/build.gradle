@@ -1,0 +1,8 @@
+group 'com.songdm.pms'
+version '1.0.0'
+
+repositories {
+}
+
+dependencies {
+}

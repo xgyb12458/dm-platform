@@ -1,0 +1,6 @@
+rootProject.name = 'pms-front'
+include 'pms-front-intf'
+include 'pms-front-dal'
+include 'pms-front-service'
+include 'pms-front-web'
+
