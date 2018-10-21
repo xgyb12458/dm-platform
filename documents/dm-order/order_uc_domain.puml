@@ -1,0 +1,22 @@
+@startuml
+
+left to right direction
+
+(注册与鉴权) as Authentic
+(数据统计) as Statistic
+(财务管理) as Finance
+(日志系统) as LogSystem
+(媒体联盟) as MediaCore
+
+
+(应用) as app
+(资源位) as slot
+
+note right of Authentic: 支撑子域
+note right of Statistic: 支撑子域
+note right of Finance: 支撑子域
+note right of LogSystem: 通用子域
+note right of MediaCore: 核心域
+
+
+@enduml

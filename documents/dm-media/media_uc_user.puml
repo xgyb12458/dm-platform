@@ -1,0 +1,36 @@
+@startuml
+
+left to right direction
+
+(注册账号) as Register
+(登录系统) as Login
+(管理应用) as AppMgr
+(管理资源位) as SlotMgr
+(管理报表) as Report
+(管理财务) as billing
+(查看仪表盘) as Dashboard
+
+User --> Register
+User --> Login
+User --> AppMgr
+User --> SlotMgr
+User --> Report
+User --> billing
+User --> Dashboard
+
+Login <-- (查看注册信息)
+Login <-- (修改账号信息)
+Login <-- (退出登录)
+
+AppMgr <-- (查看应用)
+AppMgr <-- (新建应用)
+AppMgr <-- (编辑应用)
+
+SlotMgr <-- (查看资源位)
+SlotMgr <-- (新建资源位)
+SlotMgr <-- (编辑资源位)
+
+Report <-- (查询数据)
+Report <-- (导出数据)
+
+@enduml

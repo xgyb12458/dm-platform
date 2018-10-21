@@ -1,0 +1,61 @@
+@startuml
+
+interface ValueObject {
+}
+class AppAggregate {
+}
+class SlotAggregate {
+}
+interface Specification {
+}
+abstract SlotSpecification {
+    -width
+    -height
+}
+class SplashSpecification {
+}
+class BulletSpecification {
+}
+class BannerSpecification {
+}
+class FeedSpecification {
+}
+enum AppType {
+    +APP
+    +WEB
+    +WAP
+    +POS
+}
+enum SlotType {
+    +SPLASH
+    +BULLET
+    +BANNER
+    +FEEDS
+}
+AppAggregate <--o SlotAggregate
+Specification --|> ValueObject
+SlotSpecification ..|> Specification
+FeedSpecification --|> SlotSpecification
+SplashSpecification --|> SlotSpecification
+BulletSpecification --|> SlotSpecification
+BannerSpecification --|> SlotSpecification
+
+SlotAggregate <-- SlotSpecification
+
+interface FeedLayout {
+    +getFeedStyle(): Style
+}
+class ImageTextStyle {
+}
+class FullImageStyle {
+}
+class TripleImageStyle {
+}
+FeedLayout ..|> Specification
+FullImageStyle --|> FeedLayout
+TripleImageStyle -|> FeedLayout
+ImageTextStyle --|> FeedLayout
+
+FeedSpecification <-- FeedLayout
+
+@enduml

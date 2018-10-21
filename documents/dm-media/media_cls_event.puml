@@ -1,0 +1,57 @@
+@startuml
+
+left to right direction
+
+package "Slot Event" {
+    class SlotCreatedEvent {
+    }
+    class SlotUpdatedEvent {
+    }
+    abstract class SlotStateChangedEvent {
+        -appIds:SlotId
+        -state:STATE
+        -updatedBy:Long
+        -updatedAt:Instant
+    }
+    class SlotActivatedEvent {
+    }
+    class SlotDeactivatedEvent {
+    }
+    class SlotPassedEvent {
+    }
+    class SlotRejectedEvent {
+    }
+    SlotStateChangedEvent <|-- SlotActivatedEvent
+    SlotStateChangedEvent <|-- SlotDeactivatedEvent
+    SlotStateChangedEvent <|-- SlotRejectedEvent
+    SlotStateChangedEvent <|-- SlotPassedEvent
+}
+
+package "App Event" {
+    class AppCreatedEvent {
+    }
+    class AppUpdatedEvent {
+    }
+    abstract class AppStateChangedEvent {
+        -appIds:AppId
+        -state:STATE
+        -updatedBy:Long
+        -updatedAt:Instant
+    }
+    class AppActivatedEvent {
+    }
+    class AppDeactivatedEvent {
+    }
+    class AppPassedEvent {
+    }
+    class AppRejectedEvent {
+    }
+    AppStateChangedEvent <|-- AppActivatedEvent
+    AppStateChangedEvent <|-- AppDeactivatedEvent
+    AppStateChangedEvent <|-- AppRejectedEvent
+    AppStateChangedEvent <|-- AppPassedEvent
+}
+
+
+
+@enduml

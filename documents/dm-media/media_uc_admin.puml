@@ -1,0 +1,38 @@
+@startuml
+
+left to right direction
+
+Actor :Admin:
+(管理账户) as ManageAccount
+(管理应用) as ManageApp
+(管理资源位) as ManageSlot
+
+Admin -->> ManageAccount
+Admin -->> ManageApp
+Admin -->> ManageSlot
+
+ManageAccount <<-- (查询账户)
+ManageAccount <<-- (审核账户)
+ManageAccount <<-- (停启账户)
+ManageAccount <<-- (账户详情)
+
+ManageApp <<-- (查询应用)
+ManageApp <<-- (审核应用)
+ManageApp <<-- (停启应用)
+ManageApp <<-- (应用详情)
+
+ManageSlot <<-- (查询资源位)
+ManageSlot <<-- (审核资源位)
+ManageSlot <<-- (停启资源位)
+ManageSlot <<-- (资源位详情)
+
+(资源位规格) as ManageSpec
+ManageSpec <<-- (查询规格)
+ManageSpec <<-- (新建规格)
+ManageSpec <<-- (停启规格)
+
+ManageSlot <<-- ManageSpec
+
+note left of ManageSpec: 含信息流规格
+
+@enduml

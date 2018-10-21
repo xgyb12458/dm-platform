@@ -1,0 +1,55 @@
+@startuml
+
+left to right direction
+
+package "App Command" {
+    class CreateAppCommand {
+    }
+    class UpdateAppCommand {
+    }
+    abstract class ChangeAppStateCommand {
+        -appIds:AppId
+        -updatedBy:Long
+        -updatedAt:Instant
+        +getState():STATE
+    }
+    class ActivateAppCommand {
+    }
+    class DeactivateAppCommand {
+    }
+    class PassAppCommand {
+    }
+    class RejectAppCommand {
+    }
+    ChangeAppStateCommand <|-- ActivateAppCommand
+    ChangeAppStateCommand <|-- DeactivateAppCommand
+    ChangeAppStateCommand <|-- RejectAppCommand
+    ChangeAppStateCommand <|-- PassAppCommand
+}
+
+package "Slot Command" {
+    class CreateSlotCommand {
+    }
+    class UpdateSlotCommand {
+    }
+    abstract class ChangeSlotStateCommand {
+        -appIds:AppId
+        -updatedBy:Long
+        -updatedAt:Instant
+        +getState():STATE
+    }
+    class ActivateSlotCommand {
+    }
+    class DeactivateSlotCommand {
+    }
+    class PassSlotCommand {
+    }
+    class RejectSlotCommand {
+    }
+    ChangeSlotStateCommand <|-- ActivateSlotCommand
+    ChangeSlotStateCommand <|-- DeactivateSlotCommand
+    ChangeSlotStateCommand <|-- RejectSlotCommand
+    ChangeSlotStateCommand <|-- PassSlotCommand
+}
+
+@enduml

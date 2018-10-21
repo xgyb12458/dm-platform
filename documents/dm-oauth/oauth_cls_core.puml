@@ -1,0 +1,115 @@
+@startuml 组织与权限
+
+class Tenant {
+    - tenantId: TenantId
+    - code: String
+    - name: String
+    - state: SwitchState
+'    - createdAt: Long
+'    - updatedAt: Long
+'    - createdBy: UserId
+'    - updatedBy: UserId
+}
+class Organization {
+     - orgId: Long
+     - code: String
+     - name: String
+     - type: OrgType
+     - parentId: Long
+     - contact: String
+     - state: SwitchState
+     - ext: Text
+     - tenantId: TenantId
+ '    - createdAt: Long
+ '    - updatedAt: Long
+ '    - createdBy: UserId
+ '    - updatedBy: UserId
+ }
+class Authentication {
+    + register(User u): Boolean
+    + authenticate(Principal p): User
+}
+class Authorization {
+    + grant(RoleId rid, PermissionId pId): Boolean
+    + grant(RoleId rid, Collection<PermissionId> pIds): Boolean
+    + grant(UserId uid, RoleId rId): Boolean
+    + grant(UserId uid, Collection<RoleId> rIds): Boolean
+    + revoke(RoleId rid, PermissionId pId): Boolean
+    + revoke(UserId uid, RoleId rId): Boolean
+    + revokeAll(RoleId rId): Boolean
+    + revokeAll(UserId uId): Boolean
+}
+class UserAggregate {
+    - userId: UserId
+    - name: String
+    - passwd: String
+    - state: SwitchState
+    - tenantId: TenantId
+    - rolesJson: Text
+'    - createdAt: Long
+'    - updatedAt: Long
+'    - createdBy: UserId
+'    - updatedBy: UserId
+    + inRole(RoleId id): Boolean
+    + hasPermission(PermissionId id): Boolean
+    + getRoles(): List
+    + getPermissions(): List
+}
+class RoleAggregate {
+    - roleId: RoleId
+    - code: String
+    - name: String
+    - state: SwitchState
+    - tenantId: TenantId
+    - permsJson: Text
+'    - createdAt: Long
+'    - updatedAt: Long
+'    - createdBy: UserId
+'    - updatedBy: UserId
+    + getUsers(): List
+    + hasPermission(PermissionId id): Boolean
+    + getPermissions(): List
+}
+class Permission {
+    - permissionId: PermissionId
+    - resourceId: ResourceId
+    - operationId: OperationId
+    - state: SwitchState
+    - tenantId: TenantId
+'    - createdAt: Long
+'    - updatedAt: Long
+'    - createdBy: UserId
+'    - updatedBy: UserId
+}
+class Resource {
+    - resourceId: ResourceId
+    - code: String
+    - name: String
+    - state: SwitchState
+    - parentId: ResourceId
+    - tenantId: TenantId
+'    - createdAt: Long
+'    - updatedAt: Long
+'    - createdBy: UserId
+'    - updatedBy: UserId
+}
+class Operation {
+    - operationId: OperationId
+    - code: String
+    - name: String
+    - state: SwitchState
+    - tenantId: TenantId
+'    - createdAt: Long
+'    - updatedAt: Long
+'    - createdBy: UserId
+'    - updatedBy: UserId
+}
+
+Organization --> Organization
+UserAggregate "1"-->"*" Organization
+UserAggregate "1"-->"*" RoleAggregate
+RoleAggregate "1"-->"*" Permission
+Permission *-->"1" Resource
+Permission *-->"1" Operation
+
+@enduml

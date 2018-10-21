@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>dm-media</name>
+    <groupId>com.damon.media</groupId>
+    <artifactId>dm-media</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <url>http://maven.apache.org</url>
+
+    <parent>
+        <groupId>com.damon</groupId>
+        <artifactId>dm-platform</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>dm-media-shared</module>
+        <module>dm-media-api</module>
+        <module>dm-media-domain</module>
+        <module>dm-media-core</module>
+        <module>dm-media-starter</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.damon.media</groupId>
+                <artifactId>dm-media-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.media</groupId>
+                <artifactId>dm-media-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.media</groupId>
+                <artifactId>dm-media-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.media</groupId>
+                <artifactId>dm-media-shared</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.shared</groupId>
+                <artifactId>dm-shared</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
