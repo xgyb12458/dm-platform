@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @Getter
 public class FeedSpecification
-        extends SlotSpecification<FeedSpecification> {
+        extends BaseSlotSpecification<FeedSpecification> {
     private final LayoutId layoutId;
 
 

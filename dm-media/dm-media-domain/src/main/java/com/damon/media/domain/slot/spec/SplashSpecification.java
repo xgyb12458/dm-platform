@@ -9,7 +9,7 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-public class SplashSpecification extends SlotSpecification<SplashSpecification> {
+public class SplashSpecification extends BaseSlotSpecification<SplashSpecification> {
     private final String lookAndFeel;
 
 

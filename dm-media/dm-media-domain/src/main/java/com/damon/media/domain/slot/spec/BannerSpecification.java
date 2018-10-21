@@ -9,7 +9,7 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-public class BannerSpecification extends SlotSpecification<BannerSpecification> {
+public class BannerSpecification extends BaseSlotSpecification<BannerSpecification> {
     private final Integer frameCount;
 
     public BannerSpecification(Long slotId,

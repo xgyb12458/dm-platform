@@ -9,7 +9,7 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-public class BulletSpecification extends SlotSpecification<BulletSpecification> {
+public class BulletSpecification extends BaseSlotSpecification<BulletSpecification> {
     private final String lookAndFeel;
 
 

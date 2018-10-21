@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
  */
 @Getter
 @AllArgsConstructor
-public abstract class SlotSpecification<T extends SlotSpecification<T>>
+public abstract class BaseSlotSpecification<T extends BaseSlotSpecification<T>>
         implements Specification<T> {
     @NonNull
     private final Long specId;
