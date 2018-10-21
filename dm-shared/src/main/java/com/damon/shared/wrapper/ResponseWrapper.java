@@ -15,7 +15,7 @@ public class ResponseWrapper<T> {
     @ApiModelProperty(value = "返回码", dataType = "Integer")
     private final Integer code;
 
-    @ApiModelProperty(value = "信息", dataType = "string")
+    @ApiModelProperty(value = "信息", dataType = "String")
     private final String message;
 
     @ApiModelProperty(value = "数据")

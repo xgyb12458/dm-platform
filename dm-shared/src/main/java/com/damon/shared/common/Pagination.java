@@ -21,9 +21,9 @@ public final class Pagination<T> {
     private List<T> data;
 
     public Pagination(Integer pageIndex, Integer pageSize,
-                      Integer totalSize, List<T> data) {
+                      Integer totalRows, List<T> data) {
         this.data = data;
-        this.pageInfo = new PageInfo(pageIndex, pageSize, totalSize);
+        this.pageInfo = new PageInfo(pageIndex, pageSize, totalRows);
     }
 
     @Getter
@@ -35,15 +35,15 @@ public final class Pagination<T> {
         private final Integer pageSize;
 
         /***数据总数*/
-        private final Integer totalSize;
+        private final Integer totalRows;
 
         /***总页数*/
         public Integer getTotalPages() {
-            return Double.valueOf(Math.ceil(totalSize / (pageSize * 1.0d))).intValue();
+            return Double.valueOf(Math.ceil(totalRows / (pageSize * 1.0d))).intValue();
         }
 
-        private PageInfo(Integer pageIndex, Integer pageSize, Integer totalSize) {
-            this.totalSize = Optional.ofNullable(totalSize).orElse(Constants.INT_ZERO);
+        private PageInfo(Integer pageIndex, Integer pageSize, Integer totalRows) {
+            this.totalRows = Optional.ofNullable(totalRows).orElse(Constants.INT_ZERO);
             this.pageSize = Optional.ofNullable(pageSize).orElse(Constants.DEFAULT_PAGE_SIZE);
             Integer totalPages = getTotalPages();
             this.pageIndex = pageIndex > totalPages ? totalPages : pageIndex;

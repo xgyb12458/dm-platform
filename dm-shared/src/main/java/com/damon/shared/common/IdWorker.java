@@ -60,9 +60,10 @@ class IdWorker {
 
         // 如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过，这个时候应当抛出异常
         if (timestamp < this.lastTimestamp) {
-            throw new RuntimeException(String
-                    .format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
-                            (this.lastTimestamp - timestamp)));
+            throw new RuntimeException(
+                    String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
+                            (this.lastTimestamp - timestamp))
+            );
         }
 
         // 如果是同一时间生成的，则进行毫秒内序列
@@ -73,8 +74,7 @@ class IdWorker {
                 // 阻塞到下一个毫秒,获得新的时间戳
                 timestamp = tilNextMillis(this.lastTimestamp);
             }
-        }
-        else {
+        } else {
             // 时间戳改变，毫秒内序列重置
             this.sequence = 0L;
         }

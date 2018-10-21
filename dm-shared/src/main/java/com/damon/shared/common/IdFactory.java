@@ -19,21 +19,27 @@ public final class IdFactory {
     private Set<Integer> workerIds = new HashSet<>();
     private Map<String, IdWorker> workers = new ConcurrentHashMap<>();
 
-    private static IdFactory idFactory = new IdFactory();
+    private static final IdFactory FACTORY = new IdFactory();
 
     private final static Logger LOGGER =
             LoggerFactory.getLogger(IdFactory.class);
 
     public static IdFactory instance() {
-        return idFactory;
-    }
-
-    public String nextUID() {
-        return UUID.randomUUID().toString().replace("-", "");
+        return FACTORY;
     }
 
     /***
-     * 获取ID
+     * 获取UUID值
+     */
+    public String nextUID() {
+        return UUID.randomUUID().toString().replace(
+                Constants.UUID_DELEMETER,
+                Constants.EMPTY
+        );
+    }
+
+    /***
+     * 获取以Long为值的ID
      */
     public Long nextId(Class clazz) {
         if (DEFAULT_WORKER_ID == findWorkerId(clazz)) {

@@ -10,4 +10,7 @@ public final class Constants {
     public static final Integer START_PAGE_INDEX = 1;
     public static final Integer DEFAULT_PAGE_SIZE = 10;
     public static final Integer INT_ZERO = 0;
+
+    
+    static final String UUID_DELEMETER = "-";
 }
