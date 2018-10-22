@@ -11,37 +11,52 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum OrderState {
     /**
-     * 生成订单，待付款
+     * 已生成订单，待支付
      */
-    CREATED,
+    SUBMITTED,
 
     /**
-     * 已付款，待发货
+     * 订单已取消，交易关闭
+     */
+    CANCELLED,
+
+    /**
+     * 已支付，待发货
      */
     PAID,
 
     /**
-     * 已支付无库存
+     * 已支付，无库存
      */
     PAIDNOSTOCK,
 
     /**
      * 已发货，待收货
      */
-    DELIVERY,
+    DELIVERED,
 
     /**
-     * 已收货
+     * 交易成功，待评价
      */
-    SHIPPED,
+    FINISHED,
 
     /**
-     * 订单取消
+     * 已评价
      */
-    CANCELLED,
+    COMMENTED,
 
     /**
-     * 订单完成
+     * 退款中
      */
-    FINISHED;
+    REFUNDING,
+
+    /**
+     * 已退款
+     */
+    REFUNDED,
+
+    /**
+     * 已删除
+     */
+    REMOVED;
 }

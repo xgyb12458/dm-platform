@@ -1,47 +1,8 @@
-@startuml 组织与权限
+@startuml 订单管理
 
-class Tenant {
-    - tenantId: TenantId
-    - code: String
-    - name: String
-    - state: SwitchState
-'    - createdAt: Long
-'    - updatedAt: Long
-'    - createdBy: UserId
-'    - updatedBy: UserId
-}
-class Organization {
-     - orgId: Long
-     - code: String
-     - name: String
-     - type: OrgType
-     - parentId: Long
-     - contact: String
-     - state: SwitchState
-     - ext: Text
-     - tenantId: TenantId
- '    - createdAt: Long
- '    - updatedAt: Long
- '    - createdBy: UserId
- '    - updatedBy: UserId
- }
-class Authentication {
-    + register(User u): Boolean
-    + authenticate(Principal p): User
-}
-class Authorization {
-    + grant(RoleId rid, PermissionId pId): Boolean
-    + grant(RoleId rid, Collection<PermissionId> pIds): Boolean
-    + grant(UserId uid, RoleId rId): Boolean
-    + grant(UserId uid, Collection<RoleId> rIds): Boolean
-    + revoke(RoleId rid, PermissionId pId): Boolean
-    + revoke(UserId uid, RoleId rId): Boolean
-    + revokeAll(RoleId rId): Boolean
-    + revokeAll(UserId uId): Boolean
-}
-class UserAggregate {
-    - userId: UserId
-    - name: String
+class TradeAggregate {
+    - tradeId: TradeId
+    - address: DeliveryAddress
     - passwd: String
     - state: SwitchState
     - tenantId: TenantId
@@ -55,8 +16,8 @@ class UserAggregate {
     + getRoles(): List
     + getPermissions(): List
 }
-class RoleAggregate {
-    - roleId: RoleId
+class OrderAggregate {
+    - orderId: OrderId
     - code: String
     - name: String
     - state: SwitchState
@@ -70,8 +31,8 @@ class RoleAggregate {
     + hasPermission(PermissionId id): Boolean
     + getPermissions(): List
 }
-class Permission {
-    - permissionId: PermissionId
+class OrderItemAggregate {
+    - orderItemId: OrderItemId
     - resourceId: ResourceId
     - operationId: OperationId
     - state: SwitchState

@@ -46,8 +46,8 @@ public class TradeAggregate {
     private TradeOrder          tradeOrder;
     /***交易商品信息*/
     private TradeProduct        product;
-    /***收货信息*/
-    private ReceiptAddress      address;
+    /***投递信息*/
+    private DeliveryAddress     address;
     /***支付信息*/
     private TradePayment        payment;
     /***优惠折扣信息*/
@@ -71,7 +71,7 @@ public class TradeAggregate {
                 .createdBy(event.getCreatedBy())
                 .build()
         );
-        setAddress(ReceiptAddress.builder()
+        setAddress(DeliveryAddress.builder()
                 .consignee("")
                 .address(event.getPassword())
                 .phoneNumber("")
