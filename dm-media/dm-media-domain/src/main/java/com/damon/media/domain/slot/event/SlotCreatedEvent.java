@@ -8,7 +8,7 @@ import com.damon.shared.enums.OSCategory;
 import com.damon.shared.enums.SwitchState;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.model.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateIdentifier;
 
 import java.sql.Timestamp;
 import java.util.List;

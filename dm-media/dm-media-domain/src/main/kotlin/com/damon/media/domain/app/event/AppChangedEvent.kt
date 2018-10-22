@@ -3,7 +3,7 @@ package com.damon.media.domain.app.event
 import com.damon.media.domain.app.aggregate.AppId
 import com.damon.shared.enums.AuditStatus
 import com.damon.shared.enums.SwitchState
-import org.axonframework.commandhandling.TargetAggregateIdentifier
+import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.time.LocalDateTime
 
 

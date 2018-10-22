@@ -1,7 +1,7 @@
 package com.damon.order.domain.trade.aggregate;
 
 import com.damon.order.domain.trade.*;
-import com.damon.order.domain.trade.command.CreateTradeCommand;
+import com.damon.order.domain.trade.command.SubmitOrderCommand;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
 import lombok.*;
 import org.axonframework.commandhandling.CommandHandler;
@@ -55,7 +55,7 @@ public class TradeAggregate {
 
 
     @CommandHandler
-    public TradeAggregate(CreateTradeCommand command) {
+    public TradeAggregate(SubmitOrderCommand command) {
         apply(TradeCreatedEvent.builder()
                 .createdBy(command.getCreatedBy())
                 .createdAt(command.getCreatedAt())

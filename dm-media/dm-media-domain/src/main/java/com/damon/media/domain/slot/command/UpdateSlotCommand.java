@@ -4,7 +4,7 @@ import com.damon.media.domain.slot.aggregate.SlotId;
 import com.damon.shared.enums.OSCategory;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.sql.Timestamp;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.damon.media.domain.slot.layout.command
 
 import com.damon.media.domain.slot.layout.aggregate.LayoutId
 import com.damon.shared.enums.SwitchState
-import org.axonframework.commandhandling.TargetAggregateIdentifier
+import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.sql.Timestamp
 import java.time.Instant
 

@@ -4,7 +4,7 @@ import com.damon.media.domain.app.aggregate.AppId;
 import com.damon.shared.enums.AuditStatus;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package com.damon.order.api.facade;
 
-import com.damon.order.api.dto.req.operation.CreateOrderReqDTO;
+import com.damon.order.api.dto.req.operation.SubmitOrderReqDTO;
 import com.damon.order.api.dto.req.permission.CreatePermissionReqDTO;
 import com.damon.order.api.dto.req.resource.CreateResourceReqDTO;
 import com.damon.order.api.dto.req.tenant.CreateTenantReqDTO;
@@ -19,7 +19,7 @@ public interface PermissionFacade {
 
     @PostMapping("/operations")
     ResponseWrapper<Long> createOperation(
-            @RequestBody @Validated CreateOrderReqDTO createOperationReqDTO,
+            @RequestBody @Validated SubmitOrderReqDTO createOperationReqDTO,
             @RequestHeader("tenantId") Long tenantId
     );
 

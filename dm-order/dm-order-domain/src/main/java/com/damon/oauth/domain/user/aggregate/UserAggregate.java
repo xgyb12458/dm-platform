@@ -1,6 +1,6 @@
 package com.damon.oauth.domain.user.aggregate;
 
-import com.damon.order.domain.trade.command.CreateTradeCommand;
+import com.damon.order.domain.trade.command.SubmitOrderCommand;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
 import com.damon.order.shared.enums.OrderState;
 import com.damon.order.shared.enums.OrderType;
@@ -47,7 +47,7 @@ public class UserAggregate implements TenantAware<TenantId> {
 
 
     @CommandHandler
-    public UserAggregate(CreateTradeCommand command) {
+    public UserAggregate(SubmitOrderCommand command) {
         // TODO: 检查name+type是否重复，重复则抛出异常
         apply(TradeCreatedEvent.builder()
 //                .tradeId(command.getTenantId())

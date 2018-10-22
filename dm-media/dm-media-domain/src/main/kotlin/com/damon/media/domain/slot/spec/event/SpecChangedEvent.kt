@@ -2,7 +2,7 @@ package com.damon.media.domain.slot.spec.event
 
 import com.damon.media.domain.slot.spec.aggregate.SpecId
 import com.damon.shared.enums.SwitchState
-import org.axonframework.commandhandling.TargetAggregateIdentifier
+import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.sql.Timestamp
 
 abstract class SpecStateChangedEvent (

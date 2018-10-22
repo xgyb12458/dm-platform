@@ -4,7 +4,7 @@ import com.damon.media.domain.app.aggregate.AppAggregate;
 import com.damon.media.domain.slot.aggregate.SlotAggregate;
 import com.damon.media.domain.slot.layout.aggregate.LayoutAggregate;
 import com.damon.media.domain.slot.spec.aggregate.SpecAggregate;
-import org.axonframework.commandhandling.model.Repository;
+import org.axonframework.modelling.command.Repository;
 import org.axonframework.eventsourcing.AggregateFactory;
 import org.axonframework.eventsourcing.EventSourcingRepository;
 import org.axonframework.eventsourcing.eventstore.EventStore;

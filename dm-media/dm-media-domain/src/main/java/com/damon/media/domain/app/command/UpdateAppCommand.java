@@ -3,7 +3,7 @@ package com.damon.media.domain.app.command;
 import com.damon.media.domain.app.aggregate.AppId;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * 应用更新命令

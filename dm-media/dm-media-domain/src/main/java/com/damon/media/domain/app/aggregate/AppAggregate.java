@@ -14,10 +14,10 @@ import com.damon.media.domain.app.command.CreateAppCommand;
 import com.damon.media.domain.app.command.UpdateAppCommand;
 import lombok.*;
 import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.commandhandling.model.AggregateIdentifier;
-import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.common.Assert;
 import org.axonframework.eventsourcing.EventSourcingHandler;
+import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.Repository;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
 
-import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
+import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 
 /**

@@ -16,9 +16,9 @@ import com.damon.shared.enums.YesNoEnum;
 import com.damon.shared.exception.BusinessException;
 import lombok.*;
 import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.commandhandling.model.Aggregate;
-import org.axonframework.commandhandling.model.AggregateIdentifier;
-import org.axonframework.commandhandling.model.Repository;
+import org.axonframework.modelling.command.Aggregate;
+import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.Repository;
 import org.axonframework.common.Assert;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
+import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 /**
  * 资源位规格

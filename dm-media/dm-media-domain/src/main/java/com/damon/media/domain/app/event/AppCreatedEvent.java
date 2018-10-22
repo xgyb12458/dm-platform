@@ -9,7 +9,7 @@ import com.damon.shared.enums.OSCategory;
 import com.damon.shared.enums.SwitchState;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.time.LocalDateTime;
 

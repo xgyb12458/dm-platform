@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * 确认订单命令
+ * 提交订单命令
  * @author Damon S.
  */
 @Getter
 @ToString
-@ApiModel(value = "确认订单命令")
-public class ConfirmOrderCommand {
+@ApiModel(value = "提交订单命令")
+public class SubmitOrderCommand {
 }

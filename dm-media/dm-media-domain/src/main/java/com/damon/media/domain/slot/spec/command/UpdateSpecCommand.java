@@ -3,7 +3,7 @@ package com.damon.media.domain.slot.spec.command;
 import com.damon.media.domain.slot.spec.aggregate.SpecId;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.sql.Timestamp;
 import java.util.List;

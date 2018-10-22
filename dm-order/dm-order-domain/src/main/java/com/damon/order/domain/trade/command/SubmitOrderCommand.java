@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Builder
-public class CreateTradeCommand {
+public class SubmitOrderCommand {
     private final UserId userId;
     private final String userName;
     private final String password;

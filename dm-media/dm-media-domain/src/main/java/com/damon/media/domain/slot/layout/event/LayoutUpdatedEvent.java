@@ -4,7 +4,7 @@ package com.damon.media.domain.slot.layout.event;
 import com.damon.media.domain.slot.layout.aggregate.LayoutId;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.sql.Timestamp;
 

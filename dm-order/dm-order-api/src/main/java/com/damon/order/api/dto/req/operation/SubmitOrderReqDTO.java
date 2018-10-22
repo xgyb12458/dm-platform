@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @ToString
 @ApiModel(value = "创建订单所需参数")
-public class CreateOrderReqDTO implements Serializable {
+public class SubmitOrderReqDTO implements Serializable {
 
     private static final Long serialVersionUID = 1L;
 
