@@ -1,5 +1,6 @@
 package com.damon.order.domain.test;
 
+import com.damon.order.shared.common.OrderIdFactory;
 import com.damon.order.starter.OrderApplication;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +25,7 @@ public class MaterialFacadeTest {
     @Before
     public void setup() throws Exception {
 //        mvc = MockMvcBuilders.standaloneSetup(new MaterialFacadeImpl()).build();
+        OrderIdFactory.nextId();
     }
 
     @Test

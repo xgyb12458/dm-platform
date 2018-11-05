@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EntityScan(basePackages = {"com.damon.order",
         "org.axonframework.eventsourcing.eventstore.jpa",
-        "org.axonframework.eventhandling.saga.repository.jpa",
+        "org.axonframework.modelling.saga.repository.jpa",
         "org.axonframework.eventhandling.tokenstore.jpa"})
 @EnableJpaRepositories(basePackages = {"com.damon.order"})
 @SpringBootApplication(scanBasePackages = {"com.damon.order", "com.damon.shared"})

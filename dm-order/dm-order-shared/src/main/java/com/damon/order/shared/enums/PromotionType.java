@@ -4,29 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 支付渠道
+ * 活动类型
  * @author Damon S.
  */
 @Getter
 @AllArgsConstructor
-public enum PayPlatform {
+public enum PromotionType {
     /**
-     * 支付宝
+     * 无活动
      */
-    ALIPAY,
+    NORMAL,
 
     /**
-     * 微信支付
+     * 拼团
      */
-    WECHAT,
+    PIECE,
 
     /**
-     * 银联支付
+     * 大会活动
      */
-    UNIONPAY,
-
-    /**
-     * 信用卡支付
-     */
-    CREDIT
+    MEETING;
 }

@@ -49,51 +49,51 @@ public class MyMediaRepoConfigure {
         return new LayoutAggregate();
     }
 
-    @Bean
-    public AggregateFactory<AppAggregate> appAggregateFactory() {
-        SpringPrototypeAggregateFactory<AppAggregate> factory = new SpringPrototypeAggregateFactory<>();
-        factory.setPrototypeBeanName("appAggregate");
-        return factory;
-    }
-
-    @Bean
-    public AggregateFactory<SlotAggregate> slotAggregateFactory() {
-        SpringPrototypeAggregateFactory<SlotAggregate> factory = new SpringPrototypeAggregateFactory<>();
-        factory.setPrototypeBeanName("slotAggregate");
-        return factory;
-    }
-
-    @Bean
-    public AggregateFactory<SpecAggregate> specAggregateFactory() {
-        SpringPrototypeAggregateFactory<SpecAggregate> factory = new SpringPrototypeAggregateFactory<>();
-        factory.setPrototypeBeanName("specAggregate");
-        return factory;
-    }
-
-    @Bean
-    public AggregateFactory<LayoutAggregate> layoutAggregateFactory() {
-        SpringPrototypeAggregateFactory<LayoutAggregate> factory = new SpringPrototypeAggregateFactory<>();
-        factory.setPrototypeBeanName("layoutAggregate");
-        return factory;
-    }
-
-    @Bean
-    public Repository<AppAggregate> appRepository() {
-        return new EventSourcingRepository<>(appAggregateFactory(), eventStore);
-    }
-
-    @Bean
-    public Repository<SlotAggregate> slotRepository() {
-        return new EventSourcingRepository<>(slotAggregateFactory(), eventStore);
-    }
-
-    @Bean
-    public Repository<SpecAggregate> specRepository() {
-        return new EventSourcingRepository<>(specAggregateFactory(), eventStore);
-    }
-
-    @Bean
-    public Repository<LayoutAggregate> layoutRepository() {
-        return new EventSourcingRepository<>(layoutAggregateFactory(), eventStore);
-    }
+//    @Bean
+//    public AggregateFactory<AppAggregate> appAggregateFactory() {
+//        SpringPrototypeAggregateFactory<AppAggregate> factory = new SpringPrototypeAggregateFactory<>();
+//        factory.setPrototypeBeanName("appAggregate");
+//        return factory;
+//    }
+//
+//    @Bean
+//    public AggregateFactory<SlotAggregate> slotAggregateFactory() {
+//        SpringPrototypeAggregateFactory<SlotAggregate> factory = new SpringPrototypeAggregateFactory<>();
+//        factory.setPrototypeBeanName("slotAggregate");
+//        return factory;
+//    }
+//
+//    @Bean
+//    public AggregateFactory<SpecAggregate> specAggregateFactory() {
+//        SpringPrototypeAggregateFactory<SpecAggregate> factory = new SpringPrototypeAggregateFactory<>();
+//        factory.setPrototypeBeanName("specAggregate");
+//        return factory;
+//    }
+//
+//    @Bean
+//    public AggregateFactory<LayoutAggregate> layoutAggregateFactory() {
+//        SpringPrototypeAggregateFactory<LayoutAggregate> factory = new SpringPrototypeAggregateFactory<>();
+//        factory.setPrototypeBeanName("layoutAggregate");
+//        return factory;
+//    }
+//
+//    @Bean
+//    public Repository<AppAggregate> appRepository() {
+//        return new EventSourcingRepository<>(appAggregateFactory(), eventStore);
+//    }
+//
+//    @Bean
+//    public Repository<SlotAggregate> slotRepository() {
+//        return new EventSourcingRepository<>(slotAggregateFactory(), eventStore);
+//    }
+//
+//    @Bean
+//    public Repository<SpecAggregate> specRepository() {
+//        return new EventSourcingRepository<>(specAggregateFactory(), eventStore);
+//    }
+//
+//    @Bean
+//    public Repository<LayoutAggregate> layoutRepository() {
+//        return new EventSourcingRepository<>(layoutAggregateFactory(), eventStore);
+//    }
 }

@@ -1,6 +1,6 @@
 package com.damon.order.core.impl;
 
-import com.damon.order.api.facade.AuthorityFacade;
+import com.damon.order.api.web.facade.AuthorityFacade;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -7,7 +7,7 @@ import com.damon.order.api.dto.req.user.QueryUserReqDTO;
 import com.damon.order.api.dto.req.user.UserLoginReqDTO;
 import com.damon.order.api.dto.resp.user.UserInfoRespDTO;
 import com.damon.order.api.dto.resp.user.UserLoginRespDTO;
-import com.damon.order.api.facade.UserFacade;
+import com.damon.order.api.web.facade.UserFacade;
 import com.damon.oauth.domain.user.aggregate.UserId;
 import com.damon.order.domain.trade.command.CreateTradeCommand;
 import com.damon.shared.common.Pagination;
