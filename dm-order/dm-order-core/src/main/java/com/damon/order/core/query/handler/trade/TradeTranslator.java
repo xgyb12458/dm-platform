@@ -16,7 +16,7 @@ import java.util.List;
 public final class TradeTranslator {
 
     public ConfirmOrderRespDTO translateToRespDTO(TradeEntry appEntry) {
-        ConfirmOrderRespDTO confirmOrderRespDTO = new ConfirmOrderRespDTO();
+        ConfirmOrderRespDTO confirmOrderRespDTO = ConfirmOrderRespDTO.builder().build();
         BeanUtils.copyProperties(appEntry, confirmOrderRespDTO);
         return confirmOrderRespDTO;
     }

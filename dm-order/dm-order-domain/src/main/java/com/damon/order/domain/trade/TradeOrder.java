@@ -1,5 +1,6 @@
 package com.damon.order.domain.trade;
 
+import com.damon.oauth.domain.user.aggregate.UserId;
 import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.shared.enums.OrderState;
 import com.damon.order.shared.enums.OrderType;
