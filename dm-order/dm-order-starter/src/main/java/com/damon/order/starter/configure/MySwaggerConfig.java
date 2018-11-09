@@ -1,5 +1,6 @@
 package com.damon.order.starter.configure;
 
+import com.damon.order.shared.constant.ApiConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * SWAGGER接口页面配置
  * @author Damon S.
  */
 @Configuration
@@ -50,9 +52,9 @@ public class MySwaggerConfig {
         return new ApiInfoBuilder()
                 .title("数据功能接口")
                 .description("REST-API，所有接口以JSON格式返回")
-                .version("v1")
+                .version(ApiConstants.apiVersion())
                 .termsOfServiceUrl("NO Terms of Service")
-                .contact(new Contact("Damon S.", "http://www.damon.com", "songdeming@damon.cn"))
+                .contact(new Contact("Damon S.", "http://www.damon.com", "songdeming@damon.com"))
                 .build();
     }
 }

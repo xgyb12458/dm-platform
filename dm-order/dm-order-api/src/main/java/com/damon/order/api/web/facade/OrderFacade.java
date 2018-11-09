@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 /**
  * 订单管理接口
  * @author Damon S.
@@ -26,6 +24,7 @@ public interface OrderFacade {
     ResponseWrapper<ConfirmOrderRespDTO> confirm(
             @RequestBody @Validated ConfirmOrderReqDTO confirmOrderReqDTO
     );
+
 
     @PostMapping("/orders/submit")
     ResponseWrapper<SubmitOrderRespDTO> submit(

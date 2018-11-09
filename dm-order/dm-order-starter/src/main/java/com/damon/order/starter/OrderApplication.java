@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 权限管理系统
+ * 订单管理系统
  * @author Damon S.
  */
 @EnableAspectJAutoProxy(proxyTargetClass = true)
