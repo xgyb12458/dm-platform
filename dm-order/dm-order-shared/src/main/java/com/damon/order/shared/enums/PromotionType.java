@@ -21,7 +21,7 @@ public enum PromotionType {
     PIECE,
 
     /**
-     * 大会活动
+     * 大会
      */
-    MEETING;
+    MEETING
 }

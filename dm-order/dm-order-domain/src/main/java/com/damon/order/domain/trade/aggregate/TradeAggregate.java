@@ -66,7 +66,7 @@ public class TradeAggregate {
                 .message(command.getMessage())
                 .payChannel(command.getPayChannel())
                 .point(command.getPoint())
-                .skus(null)
+                .skus(command.getSkus())
                 .createdBy(command.getCreatedBy())
                 .build()
         );
