@@ -1,14 +1,14 @@
 package com.damon.order.domain.trade.event;
 
+import com.damon.oauth.domain.user.aggregate.*;
 import com.damon.order.domain.trade.aggregate.TradeId;
-import com.damon.order.shared.enums.OrderState;
-import com.damon.order.shared.enums.OrderType;
-import com.damon.shared.tenant.TenantId;
+import com.damon.order.shared.enums.PayChannel;
+import com.damon.shared.enums.InvoiceType;
 import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 
 /***
@@ -20,13 +20,14 @@ import java.time.LocalDateTime;
 public class TradeCreatedEvent {
     @TargetAggregateIdentifier
     private final TradeId tradeId;
-    private final String userName;
-    private final String password;
-    private final String salt;
-    private final OrderType type;
-    private final OrderState state;
-    private final TenantId tenantId;
-    private final Long createdBy;
-    private final LocalDateTime createdAt;
-
+    private final AddressId addressId;
+    private final List<OrderSku> skus;
+    private final String message;
+    private final InvoiceType invoiceType;
+    private final InvoiceId invoiceId;
+    private final Long point;
+    private final Long commission;
+    private final List<CouponId> couponIds;
+    private final PayChannel payChannel;
+    private final UserId createdBy;
 }

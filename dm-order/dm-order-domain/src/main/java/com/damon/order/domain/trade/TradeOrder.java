@@ -23,8 +23,8 @@ public class TradeOrder {
     private PayState payState;
     private OrderType orderType;
 
-    private Long createdBy;
-    private Long updatedBy;
+    private UserId createdBy;
+    private UserId updatedBy;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

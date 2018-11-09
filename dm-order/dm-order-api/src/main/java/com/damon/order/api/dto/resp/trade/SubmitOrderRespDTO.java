@@ -4,6 +4,7 @@ import com.damon.order.shared.enums.OrderState;
 import com.damon.order.shared.enums.OrderType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @ToString
+@Builder
 @ApiModel(value = "提交订单返回数据")
 public class SubmitOrderRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;

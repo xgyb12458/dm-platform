@@ -1,8 +1,8 @@
 package com.damon.order.api.dto.req.trade;
 
+import com.damon.order.shared.enums.PayChannel;
 import com.damon.shared.dto.SecurityReqDTO;
 import com.damon.shared.enums.InvoiceType;
-import com.damon.order.shared.enums.PayChannel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
 
     @NotNull(message = "配送地址不能为空")
     @ApiModelProperty(name = "addressId", value = "配送地址", required = true)
-    private String addressId;
+    private Long addressId;
 
     @NotNull(message = "订单商品SKU不能为空")
     @ApiModelProperty(name = "skus", value = "订单商品SKU", required = true)
@@ -40,13 +40,13 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
     private InvoiceType invoiceType;
 
     @ApiModelProperty(name = "invoiceId", value = "发票信息")
-    private String invoiceId;
+    private Long invoiceId;
 
     @ApiModelProperty(name = "point", value = "德分抵扣")
-    private Integer point;
+    private Long point;
 
     @ApiModelProperty(name = "commission", value = "收益抵扣")
-    private Integer commission;
+    private Long commission;
 
     @ApiModelProperty(name = "couponIds", value = "使用优惠券")
     private List<String> couponIds;

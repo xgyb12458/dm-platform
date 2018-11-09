@@ -1,5 +1,6 @@
 package com.damon.order.domain.trade.aggregate;
 
+import com.damon.oauth.domain.user.aggregate.Invoice;
 import com.damon.order.domain.trade.*;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
@@ -57,8 +58,16 @@ public class TradeAggregate {
     @CommandHandler
     public TradeAggregate(SubmitOrderCommand command) {
         apply(TradeCreatedEvent.builder()
+                .tradeId(command.getTradeId())
+                .addressId(command.getAddressId())
+                .commission(command.getCommission())
+                .couponIds(command.getCouponIds())
+                .invoiceId(command.getInvoiceId())
+                .message(command.getMessage())
+                .payChannel(command.getPayChannel())
+                .point(command.getPoint())
+                .skus(null)
                 .createdBy(command.getCreatedBy())
-                .createdAt(command.getCreatedAt())
                 .build()
         );
     }
@@ -67,13 +76,11 @@ public class TradeAggregate {
     public void on(TradeCreatedEvent event) {
         setTradeId(event.getTradeId());
         setTradeOrder(TradeOrder.builder()
-                .createdAt(event.getCreatedAt())
-                .createdBy(event.getCreatedBy())
+//                .createdBy(event.getCreatedBy())
                 .build()
         );
         setAddress(DeliveryAddress.builder()
                 .consignee("")
-                .address(event.getPassword())
                 .phoneNumber("")
                 .build()
         );
