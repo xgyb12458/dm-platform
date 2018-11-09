@@ -28,7 +28,7 @@ public enum OrderState {
     /**
      * 已支付，无库存
      */
-    PAIDNOSTOCK,
+    HOLD,
 
     /**
      * 已发货，待收货
@@ -58,5 +58,5 @@ public enum OrderState {
     /**
      * 已删除
      */
-    REMOVED;
+    REMOVED
 }

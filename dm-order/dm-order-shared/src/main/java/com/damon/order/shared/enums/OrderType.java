@@ -1,6 +1,5 @@
 package com.damon.order.shared.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -8,9 +7,7 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-@AllArgsConstructor
 public enum OrderType {
-
     /**
      * 普通订单
      */
@@ -29,5 +26,5 @@ public enum OrderType {
     /**
      * 拼团
      */
-    PIECE;
+    PIECE
 }

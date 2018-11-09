@@ -8,12 +8,12 @@ import org.springframework.util.ObjectUtils;
  * @author Damon S.
  * @param <T> 值基础类型
  */
-public abstract class AbstractIdentifier<T extends AbstractIdentifier<T, V>, V> implements ValueObject<T> {
+public abstract class AbstractId<T extends AbstractId<T, V>, V> implements ValueObject<T> {
 
     private final V identifier;
     private final int hashCode;
 
-    protected AbstractIdentifier(V identifier) {
+    protected AbstractId(V identifier) {
         Assert.notNull(identifier, "Identifier must not be null");
         this.identifier = identifier;
         this.hashCode = identifier.hashCode();
@@ -35,6 +35,7 @@ public abstract class AbstractIdentifier<T extends AbstractIdentifier<T, V>, V> 
     public boolean equals(Object o) {
         return sameAs((T)o);
     }
+
 
     @Override
     public int hashCode() {

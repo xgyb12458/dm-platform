@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
+ * 订单商品信息
  * @author Damon S.
  */
 @Getter

@@ -16,9 +16,9 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
  * 一次交易(主订单)
  * @author Damon S.
  */
-@ToString
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
+@ToString
 @Aggregate
 @NoArgsConstructor
 public class TradeAggregate {
