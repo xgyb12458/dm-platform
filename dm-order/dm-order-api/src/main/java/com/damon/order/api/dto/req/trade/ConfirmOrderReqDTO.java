@@ -21,8 +21,8 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "确认订单参数")
-public final class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
-    private static final Long serialVersionUID = 1L;
+public class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
+    private static final Long serialVersionUID = 12L;
 
     @NotNull(message = "skus不能为空")
     @ApiModelProperty(name = "skus", value = "确认订单商品SKU", required = true)

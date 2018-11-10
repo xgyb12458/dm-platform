@@ -21,7 +21,7 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+//@EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "提交订单参数")
 public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
