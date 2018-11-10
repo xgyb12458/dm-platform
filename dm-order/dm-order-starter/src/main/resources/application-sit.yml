@@ -57,8 +57,8 @@ swagger:
     request-timeout: 5000
     submit-methods: get,delete
 
-mybatis:
-  type-aliases-package: com.damon.oauth.domain
+#mybatis:
+#  type-aliases-package: com.damon.oauth.domain
 
 #pagehelper:
 #  helperDialect: mysql

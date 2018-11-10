@@ -25,9 +25,8 @@ import java.util.stream.Collectors;
 @RestController
 public class OrderFacadeImpl implements OrderFacade {
 
-    @ArgsValid
-    @ApiOperation(value = "确认订单", notes = "确认订单信息")
-    @Override
+    @ArgsValid @Override
+    @ApiOperation(value = "确认订单", notes = "确认订单参数")
     public ResponseWrapper<ConfirmOrderRespDTO> confirm(
             ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
@@ -38,9 +37,8 @@ public class OrderFacadeImpl implements OrderFacade {
         return new ResponseWrapper<>(confirmOrderRespDTO);
     }
 
-    @ArgsValid
+    @ArgsValid @Override
     @ApiOperation(value = "提交订单", notes = "提交商品购买订单")
-    @Override
     public ResponseWrapper<SubmitOrderRespDTO> submit(
             SubmitOrderReqDTO submitOrderReqDTO) {
         Long currentUserId = 0L;
