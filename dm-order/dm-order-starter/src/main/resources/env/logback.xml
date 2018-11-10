@@ -14,10 +14,9 @@
 
     <!-- 按照每天生成日志文件 -->
     <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- File>${LOG_HOME}/${APP_NAME:-advertiser}_info.log</File-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${LOG_HOME}/${APP_NAME:-oauth}_info_%d{yyyy-MM-dd}_%i.log.gz
+            <FileNamePattern>${LOG_HOME}/${APP_NAME:-order}_info_%d{yyyy-MM-dd}_%i.log.gz
             </FileNamePattern>
             <MaxHistory>90</MaxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
@@ -34,10 +33,9 @@
 
     <!-- 按照每天生成日志文件:http request|response log -->
     <appender name="FILE_HTTP_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--File>${LOG_HOME}/${APP_NAME:-advertiser}_http_info.log</File-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${LOG_HOME}/${APP_NAME:-oauth}_http_info_%d{yyyy-MM-dd}_%i.log.gz
+            <FileNamePattern>${LOG_HOME}/${APP_NAME:-order}_http_info_%d{yyyy-MM-dd}_%i.log.gz
             </FileNamePattern>
             <MaxHistory>90</MaxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
@@ -52,20 +50,18 @@
     </appender>
 
     <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--file>${LOG_HOME}/${APP_NAME:-advertiser}_error.log</file-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${LOG_HOME}/${APP_NAME:-oauth}_error.log.%d{yyyyMMdd}.%i</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/${APP_NAME:-order}_error.log.%d{yyyyMMdd}.%i</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <!-- or whenever the file size reaches 100MB -->
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
-            <!--<charset>UTF-8</charset>-->
+            <charset>UTF-8</charset>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>

@@ -9,7 +9,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -22,27 +21,28 @@ import java.util.List;
  * SWAGGER接口页面配置
  * @author Damon S.
  */
-@Configuration
-@EnableSwagger2
+//@Configuration
+//@EnableSwagger2
 public class MySwaggerConfig {
+    private final static String BASE_PACKAGE = "com.damon.order";
 
     @Bean
     public Docket createAppApi() {
         List<Parameter> parameters = new ArrayList<>();
 
         parameters.add(new ParameterBuilder()
-                .name("token")
+                .name("accessToken")
                 .description("令牌")
+                .required(false)
                 .modelRef(new ModelRef("String"))
                 .parameterType("header")
-                .required(false)
                 .build());
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(buildApiInfo())
                 .forCodeGeneration(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.damon.oauth"))
+                .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(parameters);
@@ -53,8 +53,6 @@ public class MySwaggerConfig {
                 .title("数据功能接口")
                 .description("REST-API，所有接口以JSON格式返回")
                 .version(ApiConstants.apiVersion())
-                .termsOfServiceUrl("NO Terms of Service")
-                .contact(new Contact("Damon S.", "http://www.damon.com", "songdeming@damon.com"))
                 .build();
     }
 }

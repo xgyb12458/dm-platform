@@ -42,7 +42,7 @@
         <hikaricp.version>3.2.0</hikaricp.version>
         <junit.version>4.12</junit.version>
         <validation.version>2.0.1.Final</validation.version>
-        <swagger.version>2.9.2</swagger.version>
+        <swagger-boot.version>1.8.0.RELEASE</swagger-boot.version>
         <servlet.version>3.0.1</servlet.version>
         <lombok.version>1.18.2</lombok.version>
         <jackson.version>2.9.7</jackson.version>
@@ -292,14 +292,9 @@
 
             <!--SWAGGER-->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
+                <groupId>com.spring4all</groupId>
+                <artifactId>swagger-spring-boot-starter</artifactId>
+                <version>${swagger-boot.version}</version>
             </dependency>
 
             <!--KOTLIN-->

@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 public class SecurityReqDTO {
 
     @NotNull(message = "验签不能为空")
-    @ApiModelProperty(name = "code", value = "请求验签")
-    private String code;
+    @ApiModelProperty(name = "sign", value = "请求验签")
+    private String sign;
 
     @NotNull(message = "nonce不能为空")
-    @ApiModelProperty(name = "nonce", value = "时间参数(毫秒数)")
+    @ApiModelProperty(name = "nonce", value = "时间参数(毫秒)")
     private Long nonce;
 }

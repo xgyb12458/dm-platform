@@ -29,6 +29,34 @@ server:
   tomcat:
     uri-encoding: UTF-8
 
+swagger:
+  enabled: true
+  title: 数据功能接口
+  description: REST-API，所有接口以JSON格式返回
+  base-package: com.damon.order
+  base-path: /**
+  exclude-path: /error, /ops/**
+  #  ignored-parameter-types[0]: com.damon.order.User
+  global-operation-parameters[0]:
+    name: access_token
+    description: user access token
+    modelRef: string
+    parameterType: header
+    required: true
+  apply-default-response-messages: true
+  global-response-message.get[0]:
+    code: 401
+    message: 401get
+  global-response-message.get[1]:
+    code: 500
+    message: 500get
+    modelRef: ERROR
+  ui-config:
+    json-editor: false
+    show-request-headers: true
+    request-timeout: 5000
+    submit-methods: get,delete
+
 mybatis:
   type-aliases-package: com.damon.oauth.domain
 
@@ -38,7 +66,7 @@ mybatis:
 #  supportMethodsArguments: true
 #  params: count=countSql
 
-#logging:
-#  config: classpath:/logback.xml
-#  level:
-#    root: DEBUG
+logging:
+  config: classpath:/env/logback.xml
+  level:
+    root: INFO

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "确认订单参数")
-public class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
+public final class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @NotNull(message = "skus不能为空")
@@ -44,6 +45,7 @@ public class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
 
         @Pattern(regexp = "^[1-9]\\d*$", message = "数量必须大于零")
         @ApiModelProperty(name = "quantity", value = "购买数量", required = true)
+        @Min(1)
         private Integer qty;
 
         @ApiModelProperty(name = "promotionId", value = "活动编号")

@@ -5,8 +5,8 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: sa
-    schema: classpath:db/schema.sql
-    data: classpath:db/data.sql
+#    schema: classpath:db/schema.sql
+#    data: classpath:db/data.sql
   jpa:
     show-sql: true
     hibernate:
@@ -28,14 +28,36 @@ server:
   tomcat:
     uri-encoding: UTF-8
 
-mybatis:
-  type-aliases-package: com.damon.oauth.domain
+swagger:
+  enabled: true
+  title: 数据功能接口
+  description: REST-API，所有接口以JSON格式返回
+  base-package: com.damon.order
+  base-path: /**
+  exclude-path: /error, /ops/**
+#  ignored-parameter-types[0]: com.damon.order.User
+  global-operation-parameters[0]:
+    name: access_token
+    description: user access token
+    modelRef: string
+    parameterType: header
+    required: false
+  apply-default-response-messages: true
+  global-response-message.get[0]:
+    code: 401
+    message: 401get
+  global-response-message.get[1]:
+    code: 500
+    message: 500get
+    modelRef: ERROR
+  ui-config:
+    json-editor: false
+    show-request-headers: true
+    request-timeout: 5000
+    submit-methods: get,delete
 
-#pagehelper:
-#  helperDialect: mysql
-#  reasonable: true
-#  supportMethodsArguments: true
-#  params: count=countSql
+#mybatis:
+#  type-aliases-package: com.damon.order.domain
 
 #logging:
 #  config: classpath:/logback.xml

@@ -1,6 +1,7 @@
 package com.damon.order.api.dto.req.trade;
 
 import com.damon.order.shared.enums.PayChannel;
+import com.damon.shared.common.Constants;
 import com.damon.shared.dto.SecurityReqDTO;
 import com.damon.shared.enums.InvoiceType;
 import io.swagger.annotations.ApiModel;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -19,7 +21,6 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-@ToString
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "提交订单参数")
 public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
@@ -27,6 +28,7 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
 
     @NotNull(message = "配送地址不能为空")
     @ApiModelProperty(name = "addressId", value = "配送地址", required = true)
+    @Min(0L)
     private Long addressId;
 
     @NotNull(message = "订单商品SKU不能为空")
@@ -40,12 +42,15 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
     private InvoiceType invoiceType;
 
     @ApiModelProperty(name = "invoiceId", value = "发票信息")
+    @Min(0L)
     private Long invoiceId;
 
     @ApiModelProperty(name = "point", value = "德分抵扣")
+    @Min(0L)
     private Long point;
 
     @ApiModelProperty(name = "commission", value = "收益抵扣")
+    @Min(0L)
     private Long commission;
 
     @ApiModelProperty(name = "couponIds", value = "使用优惠券")
@@ -79,6 +84,20 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
 
         @ApiModelProperty(name = "detailId", value = "活动详情编号")
         private String dId;
+    }
+
+    @Override
+    public String toString() {
+        String signBody = Constants.EMPTY;
+        return signBody.concat("addressId=" + getAddressId())
+                .concat("&skus=" + getSkus())
+                .concat("&message=" + getMessage())
+                .concat("&invoiceType=" + getInvoiceType())
+                .concat("&invoiceId=" + getInvoiceId())
+                .concat("&point=" + getPoint())
+                .concat("&commission=" + getCommission())
+                .concat("&couponIds=" + getCouponIds())
+                .concat("&payChannel=" + getPayChannel());
     }
 }
 

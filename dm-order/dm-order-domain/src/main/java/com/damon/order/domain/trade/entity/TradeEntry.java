@@ -1,10 +1,16 @@
 package com.damon.order.domain.trade.entity;
 
 import com.damon.shared.common.WorkerId;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 /**
@@ -15,7 +21,6 @@ import java.sql.Timestamp;
 @Data
 @Builder
 @WorkerId(9)
-//@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "dm_order_trade")
@@ -44,15 +49,17 @@ public class TradeEntry {
      *
      */
 
-    private Long tradeId;
-    private String orderState;
-    private String orderType;
-    private String payChannel;
-    private String payState;
+    @Id
+    @NotNull
+    @Column private Long tradeId;
+    @Column private String orderState;
+    @Column private String orderType;
+    @Column private String payChannel;
+    @Column private String payState;
 
-    private Long createdBy;
-    private Long updatedBy;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    @Column private Long createdBy;
+    @Column private Long updatedBy;
+    @Column private Timestamp createdAt;
+    @Column private Timestamp updatedAt;
 
 }
