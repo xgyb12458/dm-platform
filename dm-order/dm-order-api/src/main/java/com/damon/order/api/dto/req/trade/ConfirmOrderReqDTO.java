@@ -4,7 +4,6 @@ import com.damon.shared.dto.SecurityReqDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.validation.constraints.Min;
@@ -19,7 +18,6 @@ import java.util.List;
  */
 @Data
 @ToString
-@EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "确认订单参数")
 public class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;
@@ -37,21 +35,21 @@ public class ConfirmOrderReqDTO extends SecurityReqDTO implements Serializable {
     @ToString
     @ApiModel(value = "确认订单商品SKU")
     public static class ConfirmSkuReqDTO implements Serializable {
-        private static final Long serialVersionUID = 1L;
+        private static final Long serialVersionUID = 14L;
 
         @NotNull(message = "sku不能为空")
-        @ApiModelProperty(name = "skuId", value = "skuId", required = true)
+        @ApiModelProperty(name = "sku", value = "sku", required = true)
         private String sku;
 
-        @Pattern(regexp = "^[1-9]\\d*$", message = "数量必须大于零")
+        @Pattern(regexp = "^[1-9]\\d*$", message = "数量不能小于1")
         @ApiModelProperty(name = "quantity", value = "购买数量", required = true)
         @Min(1)
         private Integer qty;
 
         @ApiModelProperty(name = "promotionId", value = "活动编号")
-        private String pId;
+        private String pid;
 
         @ApiModelProperty(name = "detailId", value = "活动详情编号")
-        private String dId;
+        private String did;
     }
 }

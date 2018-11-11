@@ -1,13 +1,11 @@
 package com.damon.order.api.dto.req.trade;
 
 import com.damon.order.shared.enums.PayChannel;
-import com.damon.shared.common.Constants;
 import com.damon.shared.dto.SecurityReqDTO;
 import com.damon.shared.enums.InvoiceType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.validation.constraints.Min;
@@ -21,7 +19,7 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-//@EqualsAndHashCode(callSuper = false)
+@ToString
 @ApiModel(value = "提交订单参数")
 public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
@@ -66,13 +64,12 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
      * @author Damon S.
      */
     @Data
-    @ToString
     @ApiModel(value = "提交订单商品SKU")
     public static class SubmitSkuReqDTO implements Serializable {
         private static final Long serialVersionUID = 1L;
 
         @NotNull(message = "sku不能为空")
-        @ApiModelProperty(name = "skuId", value = "skuId", required = true)
+        @ApiModelProperty(name = "sku", value = "sku", required = true)
         private String sku;
 
         @Pattern(regexp = "^[1-9]\\d*$", message = "数量必须大于零")
@@ -80,24 +77,24 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
         private Integer qty;
 
         @ApiModelProperty(name = "promotionId", value = "活动编号")
-        private String pId;
+        private String pid;
 
         @ApiModelProperty(name = "detailId", value = "活动详情编号")
-        private String dId;
+        private String did;
     }
 
-    @Override
-    public String toString() {
-        String signBody = Constants.EMPTY;
-        return signBody.concat("addressId=" + getAddressId())
-                .concat("&skus=" + getSkus())
-                .concat("&message=" + getMessage())
-                .concat("&invoiceType=" + getInvoiceType())
-                .concat("&invoiceId=" + getInvoiceId())
-                .concat("&point=" + getPoint())
-                .concat("&commission=" + getCommission())
-                .concat("&couponIds=" + getCouponIds())
-                .concat("&payChannel=" + getPayChannel());
-    }
+//    @Override
+//    public String toString() {
+//        String signBody = Constants.EMPTY;
+//        return signBody.concat("addressId=" + getAddressId())
+//                .concat("&skus=" + getSkus())
+//                .concat("&message=" + getMessage())
+//                .concat("&invoiceType=" + getInvoiceType())
+//                .concat("&invoiceId=" + getInvoiceId())
+//                .concat("&point=" + getPoint())
+//                .concat("&commission=" + getCommission())
+//                .concat("&couponIds=" + getCouponIds())
+//                .concat("&payChannel=" + getPayChannel());
+//    }
 }
 

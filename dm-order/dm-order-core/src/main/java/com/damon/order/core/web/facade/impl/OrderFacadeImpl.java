@@ -13,6 +13,7 @@ import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.stream.Collectors;
@@ -29,7 +30,8 @@ public class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "确认订单", notes = "确认订单参数")
     public ResponseWrapper<ConfirmOrderRespDTO> confirm(
-            ConfirmOrderReqDTO confirmOrderReqDTO) {
+            @ApiParam(name = "orderConfirm", value = "订单确认项", required = true)
+                    ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
                 .build();
 
@@ -41,7 +43,8 @@ public class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "提交订单", notes = "提交商品购买订单")
     public ResponseWrapper<SubmitOrderRespDTO> submit(
-            SubmitOrderReqDTO submitOrderReqDTO) {
+            @ApiParam(name = "orderSubmit", value = "订单提交项", required = true)
+                    SubmitOrderReqDTO submitOrderReqDTO) {
         Long currentUserId = 0L;
         SubmitOrderCommand command = SubmitOrderCommand.builder()
                 .tradeId(new TradeId())
