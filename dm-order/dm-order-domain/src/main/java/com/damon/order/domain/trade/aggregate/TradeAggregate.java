@@ -76,7 +76,7 @@ public class TradeAggregate {
     public void on(TradeCreatedEvent event) {
         setTradeId(event.getTradeId());
         setTradeOrder(TradeOrder.builder()
-//                .createdBy(event.getCreatedBy())
+                .createdBy(event.getCreatedBy())
                 .build()
         );
         setAddress(DeliveryAddress.builder()
@@ -88,6 +88,8 @@ public class TradeAggregate {
                 .paymentId("")
                 .build()
         );
-        setDiscount(TradeDiscount.builder().build());
+        setDiscount(TradeDiscount.builder()
+                .build()
+        );
     }
 }

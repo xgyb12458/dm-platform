@@ -9,6 +9,7 @@ import com.damon.shared.enums.SwitchState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ import java.io.Serializable;
  */
 @ToString
 @Data
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "查询媒体应用请求参数")
 public final class QueryAppReqDTO extends PageableReqDTO implements Serializable {
     private static final long serialVersionUID = 62477146660833254L;

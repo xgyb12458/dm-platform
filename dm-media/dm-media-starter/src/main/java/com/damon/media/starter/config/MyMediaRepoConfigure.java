@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Scope;
 /***
  * @author Damon S.
  */
-@Configuration
+//@Configuration
 public class MyMediaRepoConfigure {
     private final EventStore eventStore;
 

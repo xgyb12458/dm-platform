@@ -37,7 +37,7 @@ swagger:
   exclude-path: /error, /ops/**
 #  ignored-parameter-types[0]: com.damon.order.User
   global-operation-parameters[0]:
-    name: access_token
+    name: token
     description: user access token
     modelRef: string
     parameterType: header

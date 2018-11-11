@@ -21,8 +21,8 @@ import java.util.List;
 public final class ConfirmOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;
 
-    @ApiModelProperty(name = "cartItemIds", value = "购物车下单")
-    private List<Long> cartItemIds;
+    @ApiModelProperty(name = "cartItems", value = "购物车下单")
+    private List<String> cartItems;
 
 
     @NotNull(message = "sku不能为空")
