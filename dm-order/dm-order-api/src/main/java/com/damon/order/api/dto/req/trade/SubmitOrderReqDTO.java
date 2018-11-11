@@ -1,7 +1,6 @@
 package com.damon.order.api.dto.req.trade;
 
 import com.damon.order.shared.enums.PayChannel;
-import com.damon.shared.dto.SecurityReqDTO;
 import com.damon.shared.enums.InvoiceType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,7 +20,7 @@ import java.util.List;
 @Data
 @ToString
 @ApiModel(value = "提交订单参数")
-public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
+public final class SubmitOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @NotNull(message = "配送地址不能为空")
@@ -36,7 +35,7 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
     @ApiModelProperty(name = "message", value = "买家留言")
     private String message;
 
-    @ApiModelProperty(name = "invoiceType", value = "发票类型")
+    @ApiModelProperty(name = "invoiceType", value = "发票类型", required = true)
     private InvoiceType invoiceType;
 
     @ApiModelProperty(name = "invoiceId", value = "发票信息")
@@ -52,7 +51,7 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
     private Long commission;
 
     @ApiModelProperty(name = "couponIds", value = "使用优惠券")
-    private List<String> couponIds;
+    private List<Long> couponIds;
 
     @NotNull(message = "支付渠道不能为空")
     @ApiModelProperty(name = "payChannel", value = "支付渠道", required = true)
@@ -64,12 +63,13 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
      * @author Damon S.
      */
     @Data
+    @ToString
     @ApiModel(value = "提交订单商品SKU")
     public static class SubmitSkuReqDTO implements Serializable {
         private static final Long serialVersionUID = 1L;
 
         @NotNull(message = "sku不能为空")
-        @ApiModelProperty(name = "sku", value = "sku", required = true)
+        @ApiModelProperty(name = "sku", value = "商品SKU", required = true)
         private String sku;
 
         @Pattern(regexp = "^[1-9]\\d*$", message = "数量必须大于零")
@@ -82,19 +82,5 @@ public class SubmitOrderReqDTO extends SecurityReqDTO implements Serializable {
         @ApiModelProperty(name = "detailId", value = "活动详情编号")
         private String did;
     }
-
-//    @Override
-//    public String toString() {
-//        String signBody = Constants.EMPTY;
-//        return signBody.concat("addressId=" + getAddressId())
-//                .concat("&skus=" + getSkus())
-//                .concat("&message=" + getMessage())
-//                .concat("&invoiceType=" + getInvoiceType())
-//                .concat("&invoiceId=" + getInvoiceId())
-//                .concat("&point=" + getPoint())
-//                .concat("&commission=" + getCommission())
-//                .concat("&couponIds=" + getCouponIds())
-//                .concat("&payChannel=" + getPayChannel());
-//    }
 }
 

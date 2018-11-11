@@ -40,6 +40,7 @@ public class OrderFacadeImpl implements OrderFacade {
         return new ResponseWrapper<>(confirmOrderRespDTO);
     }
 
+
     @ArgsValid @Override
     @ApiOperation(value = "提交订单", notes = "提交商品购买订单")
     public ResponseWrapper<SubmitOrderRespDTO> submit(
@@ -52,7 +53,7 @@ public class OrderFacadeImpl implements OrderFacade {
                 .message(submitOrderReqDTO.getMessage())
                 .couponIds(
                         submitOrderReqDTO.getCouponIds().stream()
-                                .map(cid -> new CouponId(Long.valueOf(cid)))
+                                .map(cid -> new CouponId(cid))
                                 .collect(Collectors.toList())
                 )
                 .invoiceType(submitOrderReqDTO.getInvoiceType())

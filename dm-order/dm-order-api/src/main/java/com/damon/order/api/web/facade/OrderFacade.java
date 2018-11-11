@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 订单管理接口
  * @author Damon S.
  */
-@RequestMapping(value = "/trade/" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/trade/" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_VALUE)
 public interface OrderFacade {
 
 
