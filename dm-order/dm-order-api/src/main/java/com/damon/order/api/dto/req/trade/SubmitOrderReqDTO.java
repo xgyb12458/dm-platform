@@ -1,7 +1,6 @@
 package com.damon.order.api.dto.req.trade;
 
 import com.damon.order.shared.enums.PayChannel;
-import com.damon.shared.enums.InvoiceType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.ToString;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,7 +23,6 @@ public final class SubmitOrderReqDTO implements Serializable {
 
     @NotNull(message = "配送地址不能为空")
     @ApiModelProperty(name = "addressId", value = "配送地址", required = true)
-    @Min(0L)
     private Long addressId;
 
     @NotNull(message = "订单商品SKU不能为空")
@@ -35,16 +32,12 @@ public final class SubmitOrderReqDTO implements Serializable {
     @ApiModelProperty(name = "message", value = "买家留言")
     private String message;
 
-    @ApiModelProperty(name = "invoiceType", value = "发票类型", required = true)
-    private InvoiceType invoiceType;
-
     @ApiModelProperty(name = "invoiceId", value = "发票信息")
-    @Min(0L)
     private Long invoiceId;
 
-    @ApiModelProperty(name = "point", value = "德分抵扣")
+    @ApiModelProperty(name = "integration", value = "德分抵扣")
     @Min(0L)
-    private Long point;
+    private Long integration;
 
     @ApiModelProperty(name = "commission", value = "收益抵扣")
     @Min(0L)
@@ -66,21 +59,22 @@ public final class SubmitOrderReqDTO implements Serializable {
     @ToString
     @ApiModel(value = "提交订单商品SKU")
     public static class SubmitSkuReqDTO implements Serializable {
-        private static final Long serialVersionUID = 1L;
+        private static final Long serialVersionUID = 134L;
 
-        @NotNull(message = "sku不能为空")
-        @ApiModelProperty(name = "sku", value = "商品SKU", required = true)
-        private String sku;
+        @ApiModelProperty(name = "cartItemId", value = "购物车项Id")
+        private Long cartItemId;
 
-        @Pattern(regexp = "^[1-9]\\d*$", message = "数量必须大于零")
-        @ApiModelProperty(name = "quantity", value = "购买数量", required = true)
+        @ApiModelProperty(name = "skuId", value = "商品SkuId")
+        private Long skuId;
+
+        @ApiModelProperty(name = "quantity", value = "购买数量")
         private Integer qty;
 
         @ApiModelProperty(name = "promotionId", value = "活动编号")
-        private String pid;
+        private Long pid;
 
         @ApiModelProperty(name = "detailId", value = "活动详情编号")
-        private String did;
+        private Long did;
     }
 }
 

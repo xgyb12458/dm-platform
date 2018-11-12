@@ -1,5 +1,6 @@
 package com.damon.order.domain.trade.command;
 
+import com.damon.oauth.domain.user.aggregate.CartItemId;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -12,9 +13,9 @@ import java.util.List;
 @Getter
 @Builder
 public class ConfirmOrderCommand {
-    private final List<String> cartItems;
-    private final String sku;
-    private final Integer qty;
-    private final String pid;
-    private final String did;
+    private final List<CartItemId> cartItemIds;
+    private final Long skuId;
+    private final Integer quantity;
+    private final Long promotionId;
+    private final Long detailId;
 }

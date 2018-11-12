@@ -5,9 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,22 +18,18 @@ import java.util.List;
 public final class ConfirmOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;
 
-    @ApiModelProperty(name = "cartItems", value = "购物车下单")
-    private List<String> cartItems;
+    @ApiModelProperty(name = "cartItemIds", value = "购物车下单")
+    private List<Long> cartItemIds;
 
+    @ApiModelProperty(name = "skuId", value = "商品SkuId")
+    private Long skuId;
 
-    @NotNull(message = "sku不能为空")
-    @ApiModelProperty(name = "sku", value = "sku", required = true)
-    private String sku;
-
-    @Pattern(regexp = "^[1-9]\\d*$", message = "数量不能小于1")
-    @ApiModelProperty(name = "quantity", value = "购买数量", required = true)
-    @Min(1)
+    @ApiModelProperty(name = "quantity", value = "购买数量")
     private Integer qty;
 
     @ApiModelProperty(name = "promotionId", value = "活动编号")
-    private String pid;
+    private Long pid;
 
     @ApiModelProperty(name = "detailId", value = "活动详情编号")
-    private String did;
+    private Long did;
 }

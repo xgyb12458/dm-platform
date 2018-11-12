@@ -18,9 +18,9 @@
     </parent>
 
     <modules>
-        <module>dm-media</module>
+        <!--<module>dm-media</module>-->
         <module>dm-order</module>
-        <module>dm-oauth</module>
+        <!--<module>dm-oauth</module>-->
         <module>dm-shared</module>
     </modules>
 
@@ -44,7 +44,7 @@
         <validation.version>2.0.1.Final</validation.version>
         <swagger-boot.version>1.8.0.RELEASE</swagger-boot.version>
         <servlet.version>3.0.1</servlet.version>
-        <lombok.version>1.18.2</lombok.version>
+        <lombok.version>1.18.4</lombok.version>
         <jackson.version>2.9.7</jackson.version>
         <persistence.version>1.0.2.Final</persistence.version>
         <axonspring.version>4.0</axonspring.version>

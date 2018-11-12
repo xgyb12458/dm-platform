@@ -1,6 +1,5 @@
 package com.damon.order.domain.trade.aggregate;
 
-import com.damon.oauth.domain.user.aggregate.Invoice;
 import com.damon.order.domain.trade.*;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
@@ -60,13 +59,13 @@ public class TradeAggregate {
         apply(TradeCreatedEvent.builder()
                 .tradeId(command.getTradeId())
                 .addressId(command.getAddressId())
+//                .skus(command.getCartItemIds())
                 .commission(command.getCommission())
                 .couponIds(command.getCouponIds())
                 .invoiceId(command.getInvoiceId())
                 .message(command.getMessage())
+                .integration(command.getIntegration())
                 .payChannel(command.getPayChannel())
-                .point(command.getPoint())
-                .skus(command.getSkus())
                 .createdBy(command.getCreatedBy())
                 .build()
         );

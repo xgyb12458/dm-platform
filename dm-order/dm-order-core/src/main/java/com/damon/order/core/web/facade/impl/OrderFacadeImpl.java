@@ -33,12 +33,15 @@ public class OrderFacadeImpl implements OrderFacade {
             @ApiParam(name = "orderConfirm", value = "订单确认项", required = true)
                     ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
-                .sku(confirmOrderReqDTO.getSku())
-                .qty(confirmOrderReqDTO.getQty())
-                .pid(confirmOrderReqDTO.getPid())
-                .did(confirmOrderReqDTO.getDid())
-                .cartItems(confirmOrderReqDTO.getCartItems())
-                .build();
+                .skuId(confirmOrderReqDTO.getSkuId())
+                .quantity(confirmOrderReqDTO.getQty())
+                .promotionId(confirmOrderReqDTO.getPid())
+                .detailId(confirmOrderReqDTO.getDid())
+                .cartItemIds(
+                        confirmOrderReqDTO.getCartItemIds().stream()
+                                .map(CartItemId::new)
+                                .collect(Collectors.toList())
+                ).build();
 
         ConfirmOrderRespDTO confirmOrderRespDTO = ConfirmOrderRespDTO.builder()
                 .build();
@@ -58,18 +61,18 @@ public class OrderFacadeImpl implements OrderFacade {
                 .message(submitOrderReqDTO.getMessage())
                 .couponIds(
                         submitOrderReqDTO.getCouponIds().stream()
-                                .map(cid -> new CouponId(cid))
+                                .map(CouponId::new)
                                 .collect(Collectors.toList())
                 )
-                .invoiceType(submitOrderReqDTO.getInvoiceType())
+//                .invoiceType(InvoiceType.NA)
                 .invoiceId(new InvoiceId(submitOrderReqDTO.getInvoiceId()))
-                .point(submitOrderReqDTO.getPoint())
+                .integration(submitOrderReqDTO.getIntegration())
                 .commission(submitOrderReqDTO.getCommission())
-                .skus(
-                        submitOrderReqDTO.getSkus().stream()
-                                .map(sku -> OrderSku.builder().build())
-                                .collect(Collectors.toList())
-                )
+//                .cartItemIds(
+//                        submitOrderReqDTO.getSkus().stream()
+//                                .map(CartItemId::new)
+//                                .collect(Collectors.toList())
+//                )
                 .payChannel(submitOrderReqDTO.getPayChannel())
                 .createdBy(new UserId(currentUserId))
                 .build();

@@ -25,7 +25,7 @@ public class TradeCreatedEvent {
     private final String message;
     private final InvoiceType invoiceType;
     private final InvoiceId invoiceId;
-    private final Long point;
+    private final Long integration;
     private final Long commission;
     private final List<CouponId> couponIds;
     private final PayChannel payChannel;
