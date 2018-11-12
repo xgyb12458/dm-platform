@@ -3,7 +3,6 @@ package com.damon.order.domain.trade.command;
 import com.damon.oauth.domain.user.aggregate.*;
 import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.shared.enums.PayChannel;
-import com.damon.shared.enums.InvoiceType;
 import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -20,9 +19,8 @@ public class SubmitOrderCommand {
     @AggregateIdentifier
     private final TradeId tradeId;
     private final AddressId addressId;
-    private final List<ProductSku> cartItemIds;
+    private final List<ProductSku> skus;
     private final String message;
-    private final InvoiceType invoiceType;
     private final InvoiceId invoiceId;
     private final Long integration;
     private final Long commission;

@@ -18,8 +18,8 @@ import java.time.Instant;
  * @author Twitter
  */
 class IdWorker {
-    /** 开始时间截 (2018-05-01 00:00:00) */
-    private static final long TWEPOCH = 1525104000000L;
+    /** 开始时间截 (2018-11-12 00:00:00) */
+    private static final long TWEPOCH = 1541952000000L;
 
     /** 机器id所占的位数 */
     private static final long WORKER_ID_BITS = 10L;

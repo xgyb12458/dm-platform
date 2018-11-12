@@ -9,6 +9,7 @@ import com.damon.order.api.web.facade.OrderFacade;
 import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.domain.trade.command.ConfirmOrderCommand;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
+import com.damon.shared.common.Constants;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
@@ -33,7 +34,7 @@ public class OrderFacadeImpl implements OrderFacade {
             @ApiParam(name = "orderConfirm", value = "订单确认项", required = true)
                     ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
-                .skuId(confirmOrderReqDTO.getSkuid())
+                .skuId(new SkuId(confirmOrderReqDTO.getSkuid()))
                 .quantity(confirmOrderReqDTO.getQty())
                 .promotionId(confirmOrderReqDTO.getPid())
                 .detailId(confirmOrderReqDTO.getDid())
@@ -64,18 +65,28 @@ public class OrderFacadeImpl implements OrderFacade {
                                 .map(CouponId::new)
                                 .collect(Collectors.toList())
                 )
-//                .invoiceType(InvoiceType.NA)
                 .invoiceId(new InvoiceId(submitOrderReqDTO.getInvoiceId()))
                 .integration(submitOrderReqDTO.getIntegration())
                 .commission(submitOrderReqDTO.getCommission())
-//                .cartItemIds(
-//                        submitOrderReqDTO.getSkus().stream()
-//                                .map(CartItemId::new)
-//                                .collect(Collectors.toList())
-//                )
+                .skus(
+                        submitOrderReqDTO.getSkus().stream()
+                                .map(sku -> {
+                                    ProductSku.ProductSkuBuilder builder = ProductSku.builder();
+                                    if (sku.getCid() > Constants.MAGIC_NUM_0L) {
+                                        builder.cartItemId(new CartItemId(sku.getCid()));
+                                    }
+                                    builder.skuId(new SkuId(sku.getSkuid()))
+                                            .quantity(sku.getQty())
+                                            .promotionId(sku.getPid())
+                                            .detailId(sku.getDid());
+                                    return builder.build();
+                                })
+                                .collect(Collectors.toList())
+                )
                 .payChannel(submitOrderReqDTO.getPayChannel())
                 .createdBy(new UserId(currentUserId))
                 .build();
+
 
         SubmitOrderRespDTO submitOrderRespDTO = SubmitOrderRespDTO.builder()
                 .build();

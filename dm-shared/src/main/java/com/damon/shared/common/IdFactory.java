@@ -33,7 +33,7 @@ public final class IdFactory {
      */
     public String nextUID() {
         return UUID.randomUUID().toString().replace(
-                Constants.UUID_DELEMETER,
+                Constants.UUID_DELIMITER,
                 Constants.EMPTY
         );
     }
