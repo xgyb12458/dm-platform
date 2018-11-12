@@ -62,10 +62,10 @@ public final class SubmitOrderReqDTO implements Serializable {
         private static final Long serialVersionUID = 134L;
 
         @ApiModelProperty(name = "cartItemId", value = "购物车项Id")
-        private Long cartItemId;
+        private Long cid;
 
         @ApiModelProperty(name = "skuId", value = "商品SkuId")
-        private Long skuId;
+        private Long skuid;
 
         @ApiModelProperty(name = "quantity", value = "购买数量")
         private Integer qty;

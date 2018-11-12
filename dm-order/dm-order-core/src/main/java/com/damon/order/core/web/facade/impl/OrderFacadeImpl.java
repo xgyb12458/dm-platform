@@ -33,12 +33,12 @@ public class OrderFacadeImpl implements OrderFacade {
             @ApiParam(name = "orderConfirm", value = "订单确认项", required = true)
                     ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
-                .skuId(confirmOrderReqDTO.getSkuId())
+                .skuId(confirmOrderReqDTO.getSkuid())
                 .quantity(confirmOrderReqDTO.getQty())
                 .promotionId(confirmOrderReqDTO.getPid())
                 .detailId(confirmOrderReqDTO.getDid())
                 .cartItemIds(
-                        confirmOrderReqDTO.getCartItemIds().stream()
+                        confirmOrderReqDTO.getCids().stream()
                                 .map(CartItemId::new)
                                 .collect(Collectors.toList())
                 ).build();

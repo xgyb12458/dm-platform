@@ -19,10 +19,10 @@ public final class ConfirmOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;
 
     @ApiModelProperty(name = "cartItemIds", value = "购物车下单")
-    private List<Long> cartItemIds;
+    private List<Long> cids;
 
     @ApiModelProperty(name = "skuId", value = "商品SkuId")
-    private Long skuId;
+    private Long skuid;
 
     @ApiModelProperty(name = "quantity", value = "购买数量")
     private Integer qty;
