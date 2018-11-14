@@ -38,10 +38,9 @@ public class OrderFacadeImpl implements OrderFacade {
                 .quantity(confirmOrderReqDTO.getQty())
                 .promotionId(confirmOrderReqDTO.getPid())
                 .detailId(confirmOrderReqDTO.getDid())
-                .cartItemIds(
-                        confirmOrderReqDTO.getCids().stream()
-                                .map(CartItemId::new)
-                                .collect(Collectors.toList())
+                .cartItemIds(confirmOrderReqDTO.getCids().stream()
+                        .map(CartItemId::new)
+                        .collect(Collectors.toList())
                 ).build();
 
         ConfirmOrderRespDTO confirmOrderRespDTO = ConfirmOrderRespDTO.builder()
@@ -60,28 +59,25 @@ public class OrderFacadeImpl implements OrderFacade {
                 .tradeId(new TradeId())
                 .addressId(new AddressId(submitOrderReqDTO.getAddressId()))
                 .message(submitOrderReqDTO.getMessage())
-                .couponIds(
-                        submitOrderReqDTO.getCouponIds().stream()
-                                .map(CouponId::new)
-                                .collect(Collectors.toList())
+                .couponIds(submitOrderReqDTO.getCouponIds().stream()
+                        .map(CouponId::new)
+                        .collect(Collectors.toList())
                 )
                 .invoiceId(new InvoiceId(submitOrderReqDTO.getInvoiceId()))
                 .integration(submitOrderReqDTO.getIntegration())
                 .commission(submitOrderReqDTO.getCommission())
-                .skus(
-                        submitOrderReqDTO.getSkus().stream()
-                                .map(sku -> {
-                                    ProductSku.ProductSkuBuilder builder = ProductSku.builder();
-                                    if (sku.getCid() > Constants.MAGIC_NUM_0L) {
-                                        builder.cartItemId(new CartItemId(sku.getCid()));
-                                    }
-                                    builder.skuId(new SkuId(sku.getSkuid()))
-                                            .quantity(sku.getQty())
-                                            .promotionId(sku.getPid())
-                                            .detailId(sku.getDid());
-                                    return builder.build();
-                                })
-                                .collect(Collectors.toList())
+                .skus(submitOrderReqDTO.getSkus().stream()
+                        .map(sku -> {
+                            ProductSku.ProductSkuBuilder builder = ProductSku.builder();
+                            if (sku.getCid() > Constants.MAGIC_NUM_0L) {
+                                builder.cartItemId(new CartItemId(sku.getCid()));
+                            }
+                            builder.skuId(new SkuId(sku.getSkuid()))
+                                    .quantity(sku.getQty())
+                                    .promotionId(sku.getPid())
+                                    .detailId(sku.getDid());
+                            return builder.build();
+                        }).collect(Collectors.toList())
                 )
                 .payChannel(submitOrderReqDTO.getPayChannel())
                 .createdBy(new UserId(currentUserId))

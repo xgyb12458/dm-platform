@@ -59,7 +59,7 @@ public class TradeAggregate {
         apply(TradeCreatedEvent.builder()
                 .tradeId(command.getTradeId())
                 .addressId(command.getAddressId())
-//                .skus(command.getCartItemIds())
+                .skus(command.getSkus())
                 .commission(command.getCommission())
                 .couponIds(command.getCouponIds())
                 .invoiceId(command.getInvoiceId())

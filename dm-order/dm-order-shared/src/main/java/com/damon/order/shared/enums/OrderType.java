@@ -26,5 +26,10 @@ public enum OrderType {
     /**
      * 拼团
      */
-    PIECE
+    PIECE,
+
+    /**
+     * 大会
+     */
+    MEETING
 }

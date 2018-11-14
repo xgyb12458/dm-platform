@@ -10,18 +10,18 @@ import lombok.ToString;
  * 收货信息
  * @author Damon S.
  */
+@ToString
 @Getter
 @Builder
-@ToString
 public class DeliveryAddress implements ValueObject<DeliveryAddress> {
 
-    private TradeId tradeId;
+    private final TradeId tradeId;
     /***收货人*/
-    private String consignee;
+    private final String consignee;
     /***地址*/
-    private String address;
+    private final String address;
     /***电话*/
-    private String phoneNumber;
+    private final String phoneNumber;
 
     @Override
     public boolean sameAs(DeliveryAddress o) {

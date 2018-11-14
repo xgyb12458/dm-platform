@@ -3,7 +3,6 @@ package com.damon.order.domain.trade.event;
 import com.damon.oauth.domain.user.aggregate.*;
 import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.shared.enums.PayChannel;
-import com.damon.shared.enums.InvoiceType;
 import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
@@ -21,9 +20,8 @@ public class TradeCreatedEvent {
     @TargetAggregateIdentifier
     private final TradeId tradeId;
     private final AddressId addressId;
-    private final List<OrderSku> skus;
+    private final List<ProductSku> skus;
     private final String message;
-    private final InvoiceType invoiceType;
     private final InvoiceId invoiceId;
     private final Long integration;
     private final Long commission;

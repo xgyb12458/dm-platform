@@ -13,11 +13,13 @@ import java.time.LocalDateTime;
 
 /**
  * 交易订单信息
+ *
+ * 基础信息：包含订单号，订单时间，订单状态等信息；
  * @author Damon S.
  */
+@ToString
 @Getter
 @Builder
-@ToString
 public class TradeOrder {
     private TradeId tradeId;
     private OrderState orderState;

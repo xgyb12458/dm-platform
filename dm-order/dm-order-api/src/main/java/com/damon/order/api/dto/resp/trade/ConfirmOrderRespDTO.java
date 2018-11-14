@@ -17,10 +17,10 @@ import java.io.Serializable;
 @Builder
 @ApiModel(value = "确认订单返回数据")
 public final class ConfirmOrderRespDTO implements Serializable {
-    private static final Long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 21L;
 
-    @ApiModelProperty(name = "userId", value = "用户ID")
-    private String userId;
+    @ApiModelProperty(name = "address", value = "投递地址")
+    private AddressRespDTO address;
 
 
     private String ddd;
