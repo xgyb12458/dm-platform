@@ -3,8 +3,8 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://10.209.44.12:10043/dm_trade
-    username: dis_admin
-    password: dis_admin
+    username: root
+    password: 1qaz-2wsx
   jpa:
     show-sql: true
     properties:
