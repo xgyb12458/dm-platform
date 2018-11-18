@@ -7,14 +7,14 @@
     <name>dm-shared</name>
     <groupId>com.damon.shared</groupId>
     <artifactId>dm-shared</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <url>http://maven.apache.org</url>
 
     <parent>
         <groupId>com.damon</groupId>
         <artifactId>dm-platform</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>

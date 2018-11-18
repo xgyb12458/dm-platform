@@ -7,7 +7,7 @@
     <name>dm-media</name>
     <groupId>com.damon.media</groupId>
     <artifactId>dm-media</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <url>http://maven.apache.org</url>
@@ -15,7 +15,7 @@
     <parent>
         <groupId>com.damon</groupId>
         <artifactId>dm-platform</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <modules>

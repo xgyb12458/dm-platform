@@ -3,8 +3,8 @@
 class TradeAggregate {
     - tradeId: TradeId
     - address: DeliveryAddress
-    - buyerId: UserId
-    - sellerId: MerchantId
+    - customerId: UserId
+    - merchantId: MerchantId
     - orders: Collection
 }
 class OrderAggregate {
@@ -12,14 +12,15 @@ class OrderAggregate {
     - tradeId: TradeId
     - orderItems: Collection
     - state: SwitchState
-    - tenantId: TenantId
 }
 class OrderItemAggregate {
     - orderItemId: OrderItemId
     - orderId: OrderId
     - tradeId: TradeId
     - state: SwitchState
-    - tenantId: TenantId
+}
+
+class OrderAddress {
 }
 
 TradeAggregate "1"--*"*" OrderAggregate

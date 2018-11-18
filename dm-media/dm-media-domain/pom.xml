@@ -6,14 +6,14 @@
 
     <name>dm-media-domain</name>
     <artifactId>dm-media-domain</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <url>http://maven.apache.org</url>
 
     <parent>
         <groupId>com.damon.media</groupId>
         <artifactId>dm-media</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
