@@ -81,7 +81,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <spring.profiles.active>dev</spring.profiles.active>
+                <env>dev</env>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -90,25 +90,25 @@
         <profile>
             <id>sit</id>
             <properties>
-                <spring.profiles.active>sit</spring.profiles.active>
+                <env>sit</env>
             </properties>
         </profile>
         <profile>
             <id>uat</id>
             <properties>
-                <spring.profiles.active>uat</spring.profiles.active>
+                <env>uat</env>
             </properties>
         </profile>
         <profile>
             <id>stage</id>
             <properties>
-                <spring.profiles.active>stage</spring.profiles.active>
+                <env>stage</env>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <spring.profiles.active>prod</spring.profiles.active>
+                <env>prod</env>
             </properties>
         </profile>
     </profiles>
@@ -150,12 +150,12 @@
                                 <resource>
                                     <directory>src/main/resources</directory>
                                     <filtering>true</filtering>
-                                    <includes>
-                                        <include>logback.xml</include>
-                                    </includes>
+                                    <!--<includes>-->
+                                        <!--<include>logback.xml</include>-->
+                                    <!--</includes>-->
                                 </resource>
                                 <resource>
-                                    <directory>src/main/resources.${spring.profiles.active}</directory>
+                                    <directory>src/main/resources.${env}</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
