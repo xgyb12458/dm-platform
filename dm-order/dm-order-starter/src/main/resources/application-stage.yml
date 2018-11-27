@@ -68,5 +68,3 @@ swagger:
 
 logging:
   config: classpath:logger/logback-#env#.xml
-  level:
-    root: ERROR

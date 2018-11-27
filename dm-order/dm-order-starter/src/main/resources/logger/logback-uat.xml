@@ -19,6 +19,7 @@
        STDOUT将日志信息输出到控制上，为方便开发测试使用
     -->
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 需要更改为linux的路径 -->
+    <property name="LOG_LEVEL" value="INFO"/>
     <property name="LOG_HOME" value="~/app/dm-platform/dm-order"/>
     <property name="APP_NAME" value="DM-ORDER"/>
     <property name="LOG_FILE_EXPIRE_DAYS" value="180"/>
@@ -158,7 +159,7 @@
         第一种把<root level="info">改成<root level="DEBUG">这样就会打印sql，不过这样日志那边会出现很多其他消息
         第二种就是单独给dao下目录配置debug模式，代码如下，这样配置sql语句会打印，其他还是正常info级别：
      -->
-    <logger name="com.damon.order.core" level="DEBUG">
+    <logger name="com.damon.order.core" level="${LOG_LEVEL}">
         <appender-ref ref="FILE_DEBUG"/>
         <appender-ref ref="FILE_INFO"/>
         <appender-ref ref="FILE_ERROR"/>
@@ -170,7 +171,7 @@
         不能设置为INHERITED或者同义词NULL。默认是DEBUG
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
-    <root level="INFO">
+    <root level="${LOG_LEVEL}">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE_DEBUG_ASYNC_LOG"/>
         <appender-ref ref="FILE_INFO_ASYNC_LOG"/>
