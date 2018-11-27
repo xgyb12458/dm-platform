@@ -60,6 +60,6 @@ swagger:
 #  type-aliases-package: com.damon.order.domain
 
 #logging:
-#  config: classpath:/logback.xml
+#  config: classpath:logger/logback.xml
 #  level:
 #    root: DEBUG
