@@ -59,7 +59,7 @@ swagger:
 #mybatis:
 #  type-aliases-package: com.damon.order.domain
 
-#logging:
-#  config: classpath:logger/logback.xml
-#  level:
-#    root: DEBUG
+logging:
+  config: classpath:logger/logback-#env#.xml
+  level:
+    root: DEBUG

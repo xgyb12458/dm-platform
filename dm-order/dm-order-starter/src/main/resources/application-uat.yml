@@ -67,6 +67,6 @@ swagger:
 #  params: count=countSql
 
 logging:
-  config: classpath:logger/logback.xml
+  config: classpath:logger/logback-#env#.xml
   level:
     root: INFO
