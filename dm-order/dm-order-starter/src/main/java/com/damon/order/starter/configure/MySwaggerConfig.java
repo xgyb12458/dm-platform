@@ -50,7 +50,7 @@ public class MySwaggerConfig {
 
     private ApiInfo buildApiInfo() {
         return new ApiInfoBuilder()
-                .title("数据功能接口")
+                .title("订单管理接口")
                 .description("REST-API，所有接口以JSON格式返回")
                 .version(ApiConstants.apiVersion())
                 .build();
