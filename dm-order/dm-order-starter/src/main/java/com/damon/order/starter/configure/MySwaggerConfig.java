@@ -17,12 +17,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Configuration
+//@EnableSwagger2
 /**
  * SWAGGER接口页面配置
  * @author Damon S.
  */
-//@Configuration
-//@EnableSwagger2
 public class MySwaggerConfig {
     private final static String BASE_PACKAGE = "com.damon.order";
 
