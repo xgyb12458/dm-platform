@@ -43,9 +43,9 @@
 
     <!-- 彩色日志依赖的渲染类 -->
     <conversionRule conversionWord="clr"
-                    converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+                    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
     <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
     <!-- 彩色日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"
               value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }) [%t]{magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"/>
@@ -55,8 +55,8 @@
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
             <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
             <charset>utf8</charset>
         </encoder>
@@ -82,8 +82,8 @@
             <maxFileSize>20MB</maxFileSize>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
             <pattern>${FILE_LOG_PATTERN}</pattern>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
             <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
         </encoder>
         <!-- 过滤器，只记录DEBUG级别的日志 -->
@@ -151,7 +151,7 @@
     <!-- 异步输出 -->
     <appender name ="FILE_DEBUG_ASYNC_LOG" class= "ch.qos.logback.classic.AsyncAppender">
         <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
-        <discardingThreshold >0</discardingThreshold>
+        <discardingThreshold>0</discardingThreshold>
         <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
         <queueSize>5000</queueSize>
         <!-- 添加附加的appender,最多只能添加一个 -->
@@ -159,13 +159,13 @@
     </appender>
 
     <appender name ="FILE_INFO_ASYNC_LOG" class= "ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold >0</discardingThreshold>
+        <discardingThreshold>0</discardingThreshold>
         <queueSize>5000</queueSize>
         <appender-ref ref ="FILE_INFO"/>
     </appender>
 
     <appender name ="FILE_WARN_ASYNC_LOG" class= "ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold >0</discardingThreshold>
+        <discardingThreshold>0</discardingThreshold>
         <queueSize>5000</queueSize>
         <appender-ref ref ="FILE_WARN"/>
     </appender>
