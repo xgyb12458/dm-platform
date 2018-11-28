@@ -26,7 +26,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SecurityTest {
 
     @Test
-    public void testShiroLogin() throws Exception {
+    public void testShiroLogin() {
         DefaultSecurityManager securityManager = new DefaultSecurityManager();
 
         ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
@@ -51,6 +51,7 @@ public class SecurityTest {
         Assert.assertTrue(subject.isAuthenticated());
     }
 
+    @Test
     public void testCrypt() {
         DefaultHashService hashService = new DefaultHashService();
         hashService.setHashAlgorithmName("SHA-512");
@@ -64,7 +65,7 @@ public class SecurityTest {
                 .setSalt(ByteSource.Util.bytes("123"))
                 .setIterations(2).build();
         String hex = hashService.computeHash(request).toHex();
-
+        Assert.assertEquals("", hex);
 
     }
 }
