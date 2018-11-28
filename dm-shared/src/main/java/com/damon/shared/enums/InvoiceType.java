@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 支付渠道
+ * 发票类型
  * @author Damon S.
  */
 @Getter

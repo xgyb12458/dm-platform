@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author Damon S.
  */
 @ControllerAdvice
-public class HdsExceptionHandler {
+public class DmExceptionHandler {
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(BusinessException.class)
     public ExceptionResult notExpected(BusinessException e) {
