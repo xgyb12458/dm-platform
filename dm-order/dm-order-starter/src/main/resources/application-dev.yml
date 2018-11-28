@@ -35,7 +35,7 @@ jasypt:
 
 swagger:
   enabled: true
-  title: 数据功能接口
+  title: 订单管理功能接口
   description: REST-API，所有接口以JSON格式返回
   base-package: com.damon.order
   base-path: /**
