@@ -151,7 +151,7 @@
                                     <directory>src/main/resources</directory>
                                     <filtering>true</filtering>
                                     <!--<includes>-->
-                                        <!--<include>logback.xml</include>-->
+                                        <!--<include>logger/logback-spring.xml</include>-->
                                     <!--</includes>-->
                                 </resource>
                                 <resource>
