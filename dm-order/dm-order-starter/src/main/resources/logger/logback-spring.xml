@@ -19,7 +19,7 @@
        STDOUT将日志信息输出到控制上，为方便开发测试使用
     -->
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 需要更改为linux的路径 -->
-    <property name="LOG_HOME" value="~/app/log/"/>
+    <property name="LOG_HOME" value="app-log/"/>
     <property name="APP_NAME" value="dm-order"/>
     <property name="LOG_FILE_EXPIRE_DAYS" value="180"/>
 
