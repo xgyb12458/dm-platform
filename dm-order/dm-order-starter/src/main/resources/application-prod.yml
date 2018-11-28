@@ -67,4 +67,4 @@ swagger:
 #  params: count=countSql
 
 logging:
-  config: classpath:logger/logback-#env#.xml
+  config: classpath:logger/logback-spring.xml
