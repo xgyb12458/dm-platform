@@ -29,6 +29,11 @@ server:
   tomcat:
     uri-encoding: UTF-8
 
+#加密
+jasypt:
+  encryptor:
+    password: 6u*3@)b%N8as
+
 swagger:
   enabled: false
   title: 数据功能接口

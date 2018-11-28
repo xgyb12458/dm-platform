@@ -3,8 +3,8 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://10.209.44.12:10043/dm_trade
-    username: root
-    password: 1qaz-2wsx
+    username: ENC(WhJFS1SLHoIOMj+lycPXiA==)
+    password: ENC(AgXoqUx8hGksygWKpGxNm+l5gH1iMVg7)
   jpa:
     show-sql: true
     properties:
@@ -28,6 +28,11 @@ server:
       timeout: 60
   tomcat:
     uri-encoding: UTF-8
+
+#加密
+jasypt:
+  encryptor:
+    password: 992hG4%#Plm
 
 swagger:
   enabled: true

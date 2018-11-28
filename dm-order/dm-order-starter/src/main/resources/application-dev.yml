@@ -3,8 +3,8 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://47.104.101.37:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root
-    password: 1qaz-2wsx
+    username: ENC(TkqJeS/vmnn2ZYjVloMk+Q==)
+    password: ENC(ztQG+uJNo0CzapI2zT+FNVHNBvJXcZrz)
 #    schema: classpath:db/schema.sql
 #    data: classpath:db/data.sql
   jpa:
@@ -27,6 +27,11 @@ server:
       timeout: 60
   tomcat:
     uri-encoding: UTF-8
+
+#加密
+jasypt:
+  encryptor:
+    password: dm-platform
 
 swagger:
   enabled: true

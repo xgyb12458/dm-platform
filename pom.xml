@@ -46,6 +46,7 @@
         <servlet.version>3.0.1</servlet.version>
         <lombok.version>1.18.4</lombok.version>
         <jackson.version>2.9.7</jackson.version>
+        <jasypt.version>2.1.0</jasypt.version>
         <persistence.version>1.0.2.Final</persistence.version>
         <axonspring.version>4.0</axonspring.version>
         <grpcboot.version>2.3.2</grpcboot.version>
@@ -194,6 +195,12 @@
                 <groupId>com.google.crypto.tink</groupId>
                 <artifactId>tink</artifactId>
                 <version>${tink.version}</version>
+            </dependency>
+            <!--配置文件明文加解密-->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
             </dependency>
 
             <!--DATABASE-->
