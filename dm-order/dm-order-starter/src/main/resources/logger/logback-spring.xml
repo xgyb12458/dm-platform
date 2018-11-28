@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="6000">
+<configuration scan="true" scanPeriod="60000">
     <!--
     说明：
     1、日志级别及文件
@@ -35,7 +35,7 @@
         <property name="LOG_LEVEL" value="INFO"/>
     </springProfile>
     <springProfile name="stage">
-        <property name="LOG_LEVEL" value="WARN"/>
+        <property name="LOG_LEVEL" value="ERROR"/>
     </springProfile>
     <springProfile name="prod">
         <property name="LOG_LEVEL" value="INFO"/>
@@ -75,7 +75,7 @@
             <!-- 归档的日志文件的路径，例如今天是2018-12-21日，当前写的日志文件路径为file节点指定，
                  可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
                  而2018-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <FileNamePattern>${LOG_HOME}/LOG-%d{yyyy-MM-dd}/${APP_NAME:-order}_debug_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_debug_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>${LOG_FILE_EXPIRE_DAYS}</MaxHistory>
             <!-- 日志文件不能超过指定大小，若超过则日志文件会以索引0开始命名日志文件，例如log_debug_2018-12-21.0.log -->
@@ -97,7 +97,7 @@
     <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/${APP_NAME:-order}_info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/LOG_%d{yyyy-MM-dd}/${APP_NAME:-order}_info_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_info_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
             <MaxHistory>${LOG_FILE_EXPIRE_DAYS}</MaxHistory>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
@@ -115,7 +115,7 @@
     <appender name="FILE_WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/${APP_NAME:-order}_warn.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/LOG_%d{yyyy-MM-dd}/${APP_NAME:-order}_warn_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_warn_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
             <MaxHistory>${LOG_FILE_EXPIRE_DAYS}</MaxHistory>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
@@ -133,7 +133,7 @@
     <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/${APP_NAME:-order}_error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/LOG_%d{yyyy-MM-dd}/${APP_NAME:-order}_error_%d{yyyyMMdd}_%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_error_%d{yyyyMMdd}_%i.log</fileNamePattern>
             <maxFileSize>20MB</maxFileSize>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
