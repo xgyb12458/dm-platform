@@ -61,7 +61,7 @@ public class TradeAggregate {
     @CommandHandler
     public TradeAggregate(SubmitOrderCommand command) {
         if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Order submit command ");
+            LOGGER.info("Order submit command: ");
         }
 
         apply(TradeCreatedEvent.builder()

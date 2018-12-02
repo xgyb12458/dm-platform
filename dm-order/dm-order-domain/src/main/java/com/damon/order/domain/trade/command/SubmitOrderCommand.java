@@ -19,7 +19,7 @@ public class SubmitOrderCommand {
     @AggregateIdentifier
     private final TradeId tradeId;
     private final AddressId addressId;
-    private final List<ProductSku> skus;
+    private final List<OrderSku> skus;
     private final String message;
     private final InvoiceId invoiceId;
     private final Long integration;

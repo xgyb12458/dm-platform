@@ -10,8 +10,9 @@ import lombok.Getter;
 @Getter
 @Builder
 public class OrderSku {
-    private final ProductSku sku;
+    private final CartItemId cartItemId;
+    private final SkuId skuId;
     private final Integer quantity;
-    private final String promotionId;
-    private final String detailId;
+    private final Long promotionId;
+    private final Long detailId;
 }

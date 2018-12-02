@@ -84,7 +84,7 @@ public class OrderFacadeImpl implements OrderFacade {
                 .commission(submitOrderReqDTO.getCommission())
                 .skus(submitOrderReqDTO.getSkus().stream()
                         .map(sku -> {
-                            ProductSku.ProductSkuBuilder builder = ProductSku.builder();
+                            OrderSku.OrderSkuBuilder builder = OrderSku.builder();
                             if (sku.getCid() > Constants.MAGIC_NUM_0L) {
                                 builder.cartItemId(new CartItemId(sku.getCid()));
                             }
