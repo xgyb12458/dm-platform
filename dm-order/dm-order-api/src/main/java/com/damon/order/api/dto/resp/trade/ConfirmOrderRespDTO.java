@@ -20,7 +20,7 @@ public final class ConfirmOrderRespDTO implements Serializable {
     private static final Long serialVersionUID = 21L;
 
     @ApiModelProperty(name = "address", value = "投递地址")
-    private AddressRespDTO address;
+    private AddressInfoRespDTO address;
 
 
     private String ddd;

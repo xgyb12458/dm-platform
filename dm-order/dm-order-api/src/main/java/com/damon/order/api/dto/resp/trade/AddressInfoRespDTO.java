@@ -16,7 +16,7 @@ import java.io.Serializable;
 @ToString
 @Builder
 @ApiModel(value = "投递地址信息")
-public class AddressRespDTO implements Serializable {
+public class AddressInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 221L;
     /**地址编号*/
     private final Long addressId;
