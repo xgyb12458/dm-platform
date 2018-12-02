@@ -18,18 +18,18 @@ import java.util.List;
 public class ConfirmOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;
 
-    @ApiModelProperty(name = "cartItemIds", value = "购物车下单")
+    @ApiModelProperty(name = "cids", value = "购物车项编号")
     private List<Long> cids;
 
-    @ApiModelProperty(name = "skuId", value = "商品SkuId")
+    @ApiModelProperty(name = "skuid", value = "商品SkuId")
     private Long skuid;
 
-    @ApiModelProperty(name = "quantity", value = "购买数量")
+    @ApiModelProperty(name = "qty", value = "购买数量")
     private Integer qty;
 
-    @ApiModelProperty(name = "promotionId", value = "活动编号")
+    @ApiModelProperty(name = "pid", value = "活动编号")
     private Long pid;
 
-    @ApiModelProperty(name = "detailId", value = "活动详情编号")
+    @ApiModelProperty(name = "did", value = "活动详情编号")
     private Long did;
 }

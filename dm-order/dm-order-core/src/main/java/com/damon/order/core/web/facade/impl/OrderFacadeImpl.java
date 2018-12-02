@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  */
 @Api(tags = "订单管理接口")
 @RestController
-public final class OrderFacadeImpl implements OrderFacade {
+public class OrderFacadeImpl implements OrderFacade {
 
     private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
@@ -46,7 +46,6 @@ public final class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "确认订单", notes = "确认订单参数")
     public ResponseWrapper<ConfirmOrderRespDTO> confirm(
-            @ApiParam(name = "orderConfirm", value = "订单确认项", required = true)
                     ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
                 .skuId(new SkuId(confirmOrderReqDTO.getSkuid()))

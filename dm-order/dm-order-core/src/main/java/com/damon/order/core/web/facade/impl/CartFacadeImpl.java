@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "购物车管理接口")
 @RestController
-public final class CartFacadeImpl implements CartFacade {
+public class CartFacadeImpl implements CartFacade {
 
 
     @Override @ArgsValid

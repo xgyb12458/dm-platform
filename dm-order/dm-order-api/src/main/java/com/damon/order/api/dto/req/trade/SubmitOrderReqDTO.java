@@ -61,19 +61,19 @@ public class SubmitOrderReqDTO implements Serializable {
     public static class SubmitSkuReqDTO implements Serializable {
         private static final Long serialVersionUID = 134L;
 
-        @ApiModelProperty(name = "cartItemId", value = "购物车项Id")
+        @ApiModelProperty(name = "cid", value = "购物车项Id")
         private Long cid;
 
-        @ApiModelProperty(name = "skuId", value = "商品SkuId")
+        @ApiModelProperty(name = "skuid", value = "商品SkuId")
         private Long skuid;
 
-        @ApiModelProperty(name = "quantity", value = "购买数量")
+        @ApiModelProperty(name = "qty", value = "购买数量")
         private Integer qty;
 
-        @ApiModelProperty(name = "promotionId", value = "活动编号")
+        @ApiModelProperty(name = "pid", value = "活动编号")
         private Long pid;
 
-        @ApiModelProperty(name = "detailId", value = "活动详情编号")
+        @ApiModelProperty(name = "did", value = "活动详情编号")
         private Long did;
     }
 }
