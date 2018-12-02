@@ -4,7 +4,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 购物车项
+ * 购物车项唯一标识
  * @author Damon S.
  */
 public final class CartItemId extends AbstractId<CartItemId, Long> {

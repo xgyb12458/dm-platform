@@ -1,5 +1,6 @@
 package com.damon.order.api.dto.req.cart;
 
+import com.damon.shared.dto.SecurityReqDTO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.ToString;
@@ -13,5 +14,5 @@ import java.io.Serializable;
 @Data
 @ToString
 @ApiModel(value = "添加购物车参数")
-public class AddItemToCartReqDTO implements Serializable {
+public class AddItemToCartReqDTO extends SecurityReqDTO implements Serializable {
 }

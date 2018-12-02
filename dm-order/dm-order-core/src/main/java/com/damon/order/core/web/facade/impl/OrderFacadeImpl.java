@@ -15,6 +15,8 @@ import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.stream.Collectors;
@@ -26,6 +28,19 @@ import java.util.stream.Collectors;
 @Api(tags = "订单管理接口")
 @RestController
 public final class OrderFacadeImpl implements OrderFacade {
+
+    private final CommandGateway commandGateway;
+    private final QueryGateway queryGateway;
+
+
+    /**
+     * 构造函数注入
+     */
+    public OrderFacadeImpl(CommandGateway commandGateway,
+                           QueryGateway queryGateway) {
+        this.queryGateway = queryGateway;
+        this.commandGateway = commandGateway;
+    }
 
 
     @ArgsValid @Override
@@ -43,8 +58,10 @@ public final class OrderFacadeImpl implements OrderFacade {
                         .collect(Collectors.toList())
                 ).build();
 
-        ConfirmOrderRespDTO confirmOrderRespDTO = ConfirmOrderRespDTO.builder()
-                .build();
+        queryGateway.query(command, ConfirmOrderRespDTO.class);
+
+        ConfirmOrderRespDTO confirmOrderRespDTO = ConfirmOrderRespDTO.builder().build();
+
         return new ResponseWrapper<>(confirmOrderRespDTO);
     }
 
@@ -72,20 +89,20 @@ public final class OrderFacadeImpl implements OrderFacade {
                             if (sku.getCid() > Constants.MAGIC_NUM_0L) {
                                 builder.cartItemId(new CartItemId(sku.getCid()));
                             }
-                            builder.skuId(new SkuId(sku.getSkuid()))
+                            return builder.skuId(new SkuId(sku.getSkuid()))
                                     .quantity(sku.getQty())
                                     .promotionId(sku.getPid())
-                                    .detailId(sku.getDid());
-                            return builder.build();
+                                    .detailId(sku.getDid())
+                                    .build();
                         }).collect(Collectors.toList())
                 )
                 .payChannel(submitOrderReqDTO.getPayChannel())
                 .createdBy(new UserId(currentUserId))
                 .build();
 
+        commandGateway.sendAndWait(command);
 
-        SubmitOrderRespDTO submitOrderRespDTO = SubmitOrderRespDTO.builder()
-                .build();
+        SubmitOrderRespDTO submitOrderRespDTO = SubmitOrderRespDTO.builder().build();
 
         return new ResponseWrapper<>(submitOrderRespDTO);
     }

@@ -4,7 +4,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 资源位规格ID
+ * 地址唯一标识
  * @author Damon S.
  */
 public final class AddressId extends AbstractId<AddressId, Long> {

@@ -4,7 +4,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 资源位规格ID
+ * 发票唯一标识
  * @author Damon S.
  */
 public final class InvoiceId extends AbstractId<InvoiceId, Long> {

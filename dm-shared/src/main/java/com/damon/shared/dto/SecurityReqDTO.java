@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.validation.constraints.Min;
+
 /**
  * 请求验签
  * @author Damon S.
@@ -18,5 +20,6 @@ public class SecurityReqDTO {
     private String sign;
 
     @ApiModelProperty(name = "nonce", value = "请求发起时间(毫秒)")
+    @Min(0)
     private Long nonce;
 }

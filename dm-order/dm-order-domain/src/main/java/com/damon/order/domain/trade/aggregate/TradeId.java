@@ -6,7 +6,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 资源位规格ID
+ * 交易唯一标识
  * @author Damon S.
  */
 public final class TradeId extends AbstractId<TradeId, Long> {

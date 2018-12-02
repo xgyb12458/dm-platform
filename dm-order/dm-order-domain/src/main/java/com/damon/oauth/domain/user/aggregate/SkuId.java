@@ -4,7 +4,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 资源位规格ID
+ * 商品单品唯一编号
  * @author Damon S.
  */
 public final class SkuId extends AbstractId<SkuId, Long> {
