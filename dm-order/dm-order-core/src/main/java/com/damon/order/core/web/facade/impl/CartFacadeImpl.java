@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  */
 @Api(tags = "购物车管理接口")
 @RestController
-public class CartFacadeImpl implements CartFacade {
+public final class CartFacadeImpl implements CartFacade {
 
 
     @ArgsValid

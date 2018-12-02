@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @ToString
 @ApiModel(value = "确认订单参数")
-public final class ConfirmOrderReqDTO implements Serializable {
+public class ConfirmOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;
 
     @ApiModelProperty(name = "cartItemIds", value = "购物车下单")

@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @ToString
 @ApiModel(value = "提交订单参数")
-public final class SubmitOrderReqDTO implements Serializable {
+public class SubmitOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @NotNull(message = "配送地址不能为空")

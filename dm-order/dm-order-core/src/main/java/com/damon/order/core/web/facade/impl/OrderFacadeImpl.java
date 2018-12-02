@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  */
 @Api(tags = "订单管理接口")
 @RestController
-public class OrderFacadeImpl implements OrderFacade {
+public final class OrderFacadeImpl implements OrderFacade {
 
 
     @ArgsValid @Override

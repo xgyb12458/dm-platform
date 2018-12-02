@@ -13,5 +13,5 @@ import java.io.Serializable;
 @Data
 @ToString
 @ApiModel(value = "添加购物车参数")
-public final class AddItemToCartReqDTO implements Serializable {
+public class AddItemToCartReqDTO implements Serializable {
 }

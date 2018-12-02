@@ -16,7 +16,7 @@ import java.io.Serializable;
 @ToString
 @Builder
 @ApiModel(value = "确认订单返回数据")
-public final class ConfirmOrderRespDTO implements Serializable {
+public class ConfirmOrderRespDTO implements Serializable {
     private static final Long serialVersionUID = 21L;
 
     @ApiModelProperty(name = "address", value = "投递地址")
