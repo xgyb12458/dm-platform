@@ -15,4 +15,5 @@ import java.io.Serializable;
 @ToString
 @ApiModel(value = "购物车商品查询参数")
 public class QueryCartItemsReqDTO extends PageableReqDTO implements Serializable {
+    private static final Long serialVersionUID = 1L;
 }

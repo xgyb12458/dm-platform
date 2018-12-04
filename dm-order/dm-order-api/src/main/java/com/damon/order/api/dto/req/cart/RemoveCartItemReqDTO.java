@@ -14,4 +14,5 @@ import java.io.Serializable;
 @ToString
 @ApiModel(value = "产出购物车项参数")
 public class RemoveCartItemReqDTO implements Serializable {
+    private static final Long serialVersionUID = 1L;
 }
