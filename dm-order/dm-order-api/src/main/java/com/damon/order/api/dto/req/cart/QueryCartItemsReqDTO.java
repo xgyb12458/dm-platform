@@ -8,7 +8,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * 向购物车中添加商品请求
+ * 查询购物车中商品参数
  * @author Damon S.
  */
 @Data

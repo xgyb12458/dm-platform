@@ -42,7 +42,7 @@ public class TradeAggregate {
      * 生成订单后，还要进行订单拆分，包含优惠拆分和订单拆分，紧接着进入wms系统，最后走财务开票了流程。
      */
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TradeAggregate.class);
+    static final Logger LOGGER = LoggerFactory.getLogger(TradeAggregate.class);
 
     @AggregateIdentifier
     private TradeId             tradeId;

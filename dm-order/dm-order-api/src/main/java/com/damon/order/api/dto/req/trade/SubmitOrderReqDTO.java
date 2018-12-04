@@ -59,7 +59,7 @@ public class SubmitOrderReqDTO implements Serializable {
     @ToString
     @ApiModel(value = "提交订单商品SKU")
     public static class SubmitSkuReqDTO implements Serializable {
-        private static final Long serialVersionUID = 134L;
+        private static final Long serialVersionUID = 1L;
 
         @ApiModelProperty(name = "cid", value = "购物车项Id")
         private Long cid;

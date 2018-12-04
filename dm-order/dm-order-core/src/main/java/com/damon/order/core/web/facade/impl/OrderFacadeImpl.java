@@ -87,12 +87,13 @@ public class OrderFacadeImpl implements OrderFacade {
                             OrderSku.OrderSkuBuilder builder = OrderSku.builder();
                             if (sku.getCid() > Constants.MAGIC_NUM_0L) {
                                 builder.cartItemId(new CartItemId(sku.getCid()));
+                            } else {
+                                builder.skuId(new SkuId(sku.getSkuid()))
+                                        .quantity(sku.getQty())
+                                        .promotionId(sku.getPid())
+                                        .detailId(sku.getDid());
                             }
-                            return builder.skuId(new SkuId(sku.getSkuid()))
-                                    .quantity(sku.getQty())
-                                    .promotionId(sku.getPid())
-                                    .detailId(sku.getDid())
-                                    .build();
+                            return builder.build();
                         }).collect(Collectors.toList())
                 )
                 .payChannel(submitOrderReqDTO.getPayChannel())
