@@ -1,7 +1,7 @@
 package com.damon.order.domain.test;
 
-import com.damon.order.shared.common.OrderIdFactory;
-import com.damon.order.starter.OrderApplication;
+import com.damon.product.shared.common.OrderIdFactory;
+import com.damon.product.starter.OrderApplication;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
