@@ -19,7 +19,8 @@
 
     <modules>
         <!--<module>dm-media</module>-->
-        <module>dm-order</module>
+        <!--<module>dm-order</module>-->
+        <module>dm-product</module>
         <!--<module>dm-oauth</module>-->
         <module>dm-shared</module>
     </modules>

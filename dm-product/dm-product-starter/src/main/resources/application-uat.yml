@@ -1,0 +1,75 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://10.209.44.12:10043/dis_admin
+    username: dis_admin
+    password: dis_admin
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+      naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  redis:
+    host: 10.209.32.38
+    port: 10545
+    timeout: 60
+
+server:
+  port: 80
+  servlet:
+    context-path: /
+    session:
+      timeout: 60
+  tomcat:
+    uri-encoding: UTF-8
+
+#加密
+jasypt:
+  encryptor:
+    password: yuy&42n##9
+
+swagger:
+  enabled: true
+  title: 订单管理接口
+  description: REST-API，所有接口以JSON格式返回
+  base-package: com.damon.order
+  base-path: /**
+  exclude-path: /error, /ops/**
+  #  ignored-parameter-types[0]: com.damon.order.User
+  global-operation-parameters[0]:
+    name: access_token
+    description: user access token
+    modelRef: string
+    parameterType: header
+    required: false
+  apply-default-response-messages: true
+  global-response-message.get[0]:
+    code: 401
+    message: 401get
+  global-response-message.get[1]:
+    code: 500
+    message: 500get
+    modelRef: ERROR
+  ui-config:
+    json-editor: false
+    show-request-headers: true
+    request-timeout: 5000
+    submit-methods: get,delete
+
+#mybatis:
+#  type-aliases-package: com.damon.oauth.domain
+
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+
+logging:
+  config: classpath:logger/logback-spring.xml
