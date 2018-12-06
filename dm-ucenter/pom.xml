@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>dm-ucenter</name>
+    <groupId>com.damon.ucenter</groupId>
+    <artifactId>dm-ucenter</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <url>http://maven.apache.org</url>
+
+    <parent>
+        <groupId>com.damon</groupId>
+        <artifactId>dm-platform</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>dm-ucenter-starter</module>
+        <module>dm-ucenter-api</module>
+        <module>dm-ucenter-domain</module>
+        <module>dm-ucenter-core</module>
+        <module>dm-ucenter-shared</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.damon.ucenter</groupId>
+                <artifactId>dm-ucenter-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.ucenter</groupId>
+                <artifactId>dm-ucenter-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.ucenter</groupId>
+                <artifactId>dm-ucenter-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.ucenter</groupId>
+                <artifactId>dm-ucenter-shared</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.damon.shared</groupId>
+                <artifactId>dm-shared</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

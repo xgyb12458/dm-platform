@@ -1,6 +1,5 @@
 package com.damon.product.domain.trade.aggregate;
 
-import com.damon.order.domain.trade.*;
 import com.damon.product.domain.trade.*;
 import com.damon.product.domain.trade.command.SubmitOrderCommand;
 import com.damon.product.domain.trade.event.TradeCreatedEvent;

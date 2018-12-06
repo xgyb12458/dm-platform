@@ -2,7 +2,6 @@ package com.damon.shared.common;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.Optional;
  */
 @Getter
 @NoArgsConstructor
-@RequiredArgsConstructor
 public final class Pagination<T> {
     /***分页信息*/
     private PageInfo pageInfo;

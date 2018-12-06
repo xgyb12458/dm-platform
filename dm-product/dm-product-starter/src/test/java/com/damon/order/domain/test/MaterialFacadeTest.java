@@ -1,7 +1,7 @@
 package com.damon.order.domain.test;
 
 import com.damon.product.shared.common.OrderIdFactory;
-import com.damon.product.starter.OrderApplication;
+import com.damon.product.starter.ProductApplication;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = OrderApplication.class)
+@SpringBootTest(classes = ProductApplication.class)
 public class MaterialFacadeTest {
 
     private MockMvc mvc;

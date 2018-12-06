@@ -2,9 +2,9 @@
 
 left to right direction
 
-(注册与鉴权) as Authentic
-(数据统计) as Statistic
-(财务管理) as Finance
+(交易) as trade
+(订单) as order
+(订单项) as orderItem
 (日志系统) as LogSystem
 (媒体联盟) as MediaCore
 
@@ -12,9 +12,9 @@ left to right direction
 (应用) as app
 (资源位) as slot
 
-note right of Authentic: 支撑子域
-note right of Statistic: 支撑子域
-note right of Finance: 支撑子域
+note right of trade: 支撑子域
+note right of order: 支撑子域
+note right of orderItem: 支撑子域
 note right of LogSystem: 通用子域
 note right of MediaCore: 核心域
 
