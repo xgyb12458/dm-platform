@@ -1,6 +1,6 @@
 package com.damon.order.domain.test;
 
-import com.damon.oauth.starter.OrderApplication;
+import com.damon.order.starter.OrderApplication;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;

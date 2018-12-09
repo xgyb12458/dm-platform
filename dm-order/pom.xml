@@ -48,6 +48,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.damon.ucenter</groupId>
+                <artifactId>dm-ucenter-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.damon.shared</groupId>
                 <artifactId>dm-shared</artifactId>
                 <version>${project.version}</version>
