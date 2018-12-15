@@ -15,7 +15,7 @@ import java.time.Instant;
  *
  * @author Twitter
  */
-class IdWorker {
+final class IdWorker {
     /** 开始时间截 (2018-11-12 00:00:00) */
     private static final long TWEPOCH = 1541952000000L;
 
