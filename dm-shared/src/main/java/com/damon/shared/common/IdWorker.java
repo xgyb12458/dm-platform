@@ -1,7 +1,5 @@
 package com.damon.shared.common;
 
-import lombok.Getter;
-
 import java.time.Instant;
 
 /**
@@ -25,17 +23,16 @@ class IdWorker {
     private static final long WORKER_ID_BITS = 10L;
 
     /** 序列在id中占的位数 */
-    private final long sequenceBits = 12L;
+    private static final long SEQUENCE_BITS = 12L;
 
     /** 时间截向左移22位(10+12) */
-    private final long timestampLeftShift = WORKER_ID_BITS + sequenceBits;
+    private final static long TIMESTAMP_LEFT_SHIFT = WORKER_ID_BITS + SEQUENCE_BITS;
 
     /** 生成序列的掩码，这里为4095 (0b111111111111=0xfff=4095) */
-    private final long sequenceMask = -1L ^ (-1L << sequenceBits);
+    private static final long SEQUENCE_MASK = -1L ^ (-1L << SEQUENCE_BITS);
 
     /** 支持的最大机器id，结果是1023 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数) */
-    @Getter
-    private final long maxWorkerId = -1L ^ (-1L << WORKER_ID_BITS);
+    private final static long MAX_WORKER_ID = -1L ^ (-1L << WORKER_ID_BITS);
 
     /** 工作机器ID(0~31) */
     private long workerId;
@@ -48,9 +45,9 @@ class IdWorker {
 
 
     IdWorker(long workerId) {
-        if (workerId > maxWorkerId || workerId < 0) {
+        if (workerId > MAX_WORKER_ID || workerId < 0) {
             throw new IllegalArgumentException(String.format("workerId can't be greater than %d or less than 0",
-                    maxWorkerId));
+                    MAX_WORKER_ID));
         }
         this.workerId = workerId;
     }
@@ -68,7 +65,7 @@ class IdWorker {
 
         // 如果是同一时间生成的，则进行毫秒内序列
         if (this.lastTimestamp == timestamp) {
-            this.sequence = (this.sequence + 1) & sequenceMask;
+            this.sequence = (this.sequence + 1) & SEQUENCE_MASK;
             // 毫秒内序列溢出
             if (this.sequence == 0) {
                 // 阻塞到下一个毫秒,获得新的时间戳
@@ -83,8 +80,8 @@ class IdWorker {
 
         // 机器ID向左移12位
         // 移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - TWEPOCH) << timestampLeftShift)
-                | (workerId << sequenceBits)
+        return ((timestamp - TWEPOCH) << TIMESTAMP_LEFT_SHIFT)
+                | (workerId << SEQUENCE_BITS)
                 | sequence;
     }
 
