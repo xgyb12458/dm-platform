@@ -8,7 +8,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 import java.sql.Timestamp;
 
 /**
- * 应用更新事件
+ * 交易更新事件
  * @author Damon S.
  */
 @Getter

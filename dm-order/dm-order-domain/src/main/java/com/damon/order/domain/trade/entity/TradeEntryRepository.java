@@ -4,6 +4,7 @@ import com.damon.shared.model.EntryRepository;
 import org.springframework.stereotype.Repository;
 
 /**
+ * 交易数据库仓库
  * @author Damon S.
  */
 @Repository

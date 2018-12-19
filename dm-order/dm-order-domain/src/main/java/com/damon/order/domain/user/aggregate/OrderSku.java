@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.user.aggregate;
+package com.damon.order.domain.user.aggregate;
 
 import lombok.Builder;
 import lombok.Getter;

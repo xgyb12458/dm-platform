@@ -25,7 +25,7 @@ public class IdFactoryTester {
                 () -> System.out.println(Thread.currentThread().getName() + ": " +
                     IdFactory.instance().nextId(IdFactoryTester.class));
 
-        int loop = 100;
+        int loop = 10;
         while (loop-- > 0) {
             new Thread(test).start();
         }

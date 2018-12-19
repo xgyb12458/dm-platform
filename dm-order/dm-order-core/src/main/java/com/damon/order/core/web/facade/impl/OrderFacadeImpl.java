@@ -1,6 +1,5 @@
 package com.damon.order.core.web.facade.impl;
 
-import com.damon.oauth.domain.user.aggregate.*;
 import com.damon.order.api.dto.req.trade.ConfirmOrderReqDTO;
 import com.damon.order.api.dto.req.trade.SubmitOrderReqDTO;
 import com.damon.order.api.dto.resp.trade.ConfirmOrderRespDTO;
@@ -9,12 +8,14 @@ import com.damon.order.api.web.facade.OrderFacade;
 import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.domain.trade.command.ConfirmOrderCommand;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
+import com.damon.order.domain.user.aggregate.*;
 import com.damon.shared.common.Constants;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,21 +27,12 @@ import java.util.stream.Collectors;
  * @author Damon S.
  */
 @Api(tags = "订单管理接口")
+@RequiredArgsConstructor
 @RestController
 public class OrderFacadeImpl implements OrderFacade {
 
-    private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
-
-
-    /**
-     * 构造函数注入
-     */
-    public OrderFacadeImpl(CommandGateway commandGateway,
-                           QueryGateway queryGateway) {
-        this.queryGateway = queryGateway;
-        this.commandGateway = commandGateway;
-    }
+    private final CommandGateway commandGateway;
 
 
     @ArgsValid @Override

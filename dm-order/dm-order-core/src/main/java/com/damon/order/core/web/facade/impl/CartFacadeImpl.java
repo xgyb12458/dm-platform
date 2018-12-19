@@ -6,11 +6,14 @@ import com.damon.order.api.dto.req.cart.UpdateCartItemReqDTO;
 import com.damon.order.api.dto.resp.cart.AddItemToCartRespDTO;
 import com.damon.order.api.dto.resp.cart.CartItemInfoRespDTO;
 import com.damon.order.api.web.facade.CartFacade;
+import com.damon.order.domain.cart.command.AddItemToCartCommand;
+import com.damon.order.domain.cart.command.QueryCartItemCommand;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,28 +26,21 @@ import java.util.List;
  * @author Damon S.
  */
 @Api(tags = "购物车管理接口")
+@RequiredArgsConstructor
 @RestController
 public class CartFacadeImpl implements CartFacade {
 
-    private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
-
-
-    /**
-     * 构造函数注入
-     */
-    public CartFacadeImpl(CommandGateway commandGateway,
-                           QueryGateway queryGateway) {
-        this.queryGateway = queryGateway;
-        this.commandGateway = commandGateway;
-    }
+    private final CommandGateway commandGateway;
 
 
     @Override @ArgsValid
     @ApiOperation(value = "查询购物车", notes = "查询购物车商品")
     public ResponseWrapper<Pagination<CartItemInfoRespDTO>> list(
             QueryCartItemsReqDTO queryCartItemsReqDTO) {
+        QueryCartItemCommand command = QueryCartItemCommand.builder().build();
 
+        queryGateway.query(command, CartItemInfoRespDTO.class);
         List<CartItemInfoRespDTO> cartItems = new ArrayList<>();
         return new ResponseWrapper<>(
                 new Pagination<>(
@@ -60,6 +56,9 @@ public class CartFacadeImpl implements CartFacade {
     @ApiOperation(value = "添加购物车", notes = "将商品添加到购物车")
     public ResponseWrapper<AddItemToCartRespDTO> add(
             AddItemToCartReqDTO addItemToCartReqDTO) {
+        AddItemToCartCommand command = AddItemToCartCommand.builder().build();
+
+        commandGateway.send(command);
         return null;
     }
 

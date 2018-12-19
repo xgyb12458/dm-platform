@@ -2,6 +2,7 @@ package com.damon.order.domain.trade.command;
 
 import com.damon.oauth.domain.user.aggregate.*;
 import com.damon.order.domain.trade.aggregate.TradeId;
+import com.damon.order.domain.user.aggregate.*;
 import com.damon.order.shared.enums.PayChannel;
 import lombok.Builder;
 import lombok.Getter;

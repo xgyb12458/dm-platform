@@ -7,6 +7,10 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
+/**
+ * 购物车项添加成功返回结果信息
+ * @author Damon S.
+ */
 @Data
 @ToString
 @Builder

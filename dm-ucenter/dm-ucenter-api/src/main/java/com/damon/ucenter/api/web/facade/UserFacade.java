@@ -13,10 +13,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 购物车管理接口
+ * 用户中心管理接口
  * @author Damon S.
  */
-@RequestMapping(value = "/trade/" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/ucenter/" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_VALUE)
 public interface UserFacade {
 
 
