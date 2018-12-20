@@ -22,6 +22,8 @@ public class AddressInfoRespDTO implements Serializable {
     private final Long addressId;
     /**收货人*/
     private final String consignee;
+    /**电话*/
+    private final String phoneNumber;
     /**省*/
     private final String province;
     /**市*/
@@ -30,6 +32,4 @@ public class AddressInfoRespDTO implements Serializable {
     private final String county;
     /**地址*/
     private final String address;
-    /**电话*/
-    private final String phoneNumber;
 }

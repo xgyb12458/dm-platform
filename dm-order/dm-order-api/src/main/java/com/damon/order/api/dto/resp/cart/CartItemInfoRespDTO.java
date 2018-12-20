@@ -30,6 +30,6 @@ public class CartItemInfoRespDTO implements Serializable {
     @ApiModelProperty(name = "pid", value = "活动编号")
     private Long pid;
 
-    @ApiModelProperty(name = "did", value = "活动详情编号")
-    private Long did;
+    @ApiModelProperty(name = "invalid", value = "是否已失效")
+    private Boolean invalid;
 }

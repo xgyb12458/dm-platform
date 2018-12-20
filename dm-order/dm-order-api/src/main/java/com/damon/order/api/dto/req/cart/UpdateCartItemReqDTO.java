@@ -16,4 +16,7 @@ import java.io.Serializable;
 @ApiModel(value = "更新购物车商品参数")
 public class UpdateCartItemReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
+
+    private Long cartItemId;
+    private Integer amount;
 }
