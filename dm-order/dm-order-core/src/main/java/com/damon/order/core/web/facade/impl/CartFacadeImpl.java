@@ -26,8 +26,8 @@ import java.util.List;
  * @author Damon S.
  */
 @Api(tags = "购物车管理接口")
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 public class CartFacadeImpl implements CartFacade {
 
     private final QueryGateway queryGateway;

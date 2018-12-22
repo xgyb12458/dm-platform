@@ -4,12 +4,11 @@ import com.damon.order.domain.trade.*;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
@@ -17,6 +16,7 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
  * 一次交易(主订单)
  * @author Damon S.
  */
+@Slf4j
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
 @ToString
@@ -42,8 +42,6 @@ public class TradeAggregate {
      * 生成订单后，还要进行订单拆分，包含优惠拆分和订单拆分，紧接着进入wms系统，最后走财务开票了流程。
      */
 
-    static final Logger LOGGER = LoggerFactory.getLogger(TradeAggregate.class);
-
     @AggregateIdentifier
     private TradeId             tradeId;
     /***交易主订单信息*/
@@ -60,8 +58,8 @@ public class TradeAggregate {
 
     @CommandHandler
     public TradeAggregate(SubmitOrderCommand command) {
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Order submit command: ");
+        if (log.isInfoEnabled()) {
+            log.info("Order submit command: ");
         }
 
         apply(TradeCreatedEvent.builder()

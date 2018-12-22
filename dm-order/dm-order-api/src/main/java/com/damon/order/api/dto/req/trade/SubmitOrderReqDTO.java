@@ -16,7 +16,6 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-@ToString
 @ApiModel(value = "提交订单参数")
 public class SubmitOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;

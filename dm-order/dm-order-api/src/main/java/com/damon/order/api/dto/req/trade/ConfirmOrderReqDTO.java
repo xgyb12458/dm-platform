@@ -3,7 +3,6 @@ package com.damon.order.api.dto.req.trade;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-@ToString
 @ApiModel(value = "确认订单参数")
 public class ConfirmOrderReqDTO implements Serializable {
     private static final Long serialVersionUID = 12L;

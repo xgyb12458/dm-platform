@@ -15,7 +15,6 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-@ToString
 @Builder
 @ApiModel(value = "确认订单返回数据")
 public class ConfirmOrderRespDTO implements Serializable {

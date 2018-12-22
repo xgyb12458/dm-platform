@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -12,7 +11,6 @@ import java.io.Serializable;
  * @author Damon S.
  */
 @Data
-@ToString
 @Builder
 @ApiModel(value = "购物车项信息")
 public class CartItemInfoRespDTO implements Serializable {
