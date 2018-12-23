@@ -1,4 +1,4 @@
-package com.damon.media.core.facade.impl;
+package com.damon.media.core.web.facade.impl;
 
 import com.damon.media.api.dto.req.slot.CreateSlotReqDTO;
 import com.damon.media.api.dto.req.slot.QuerySlotReqDTO;
