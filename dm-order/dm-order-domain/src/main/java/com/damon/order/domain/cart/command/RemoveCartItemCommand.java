@@ -1,13 +1,13 @@
 package com.damon.order.domain.cart.command;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 /**
- * 添加商品至购物车命令
+ * 删除购物车中的商品请求
  * @author Damon S.
  */
-@Getter
+@Value
 @Builder
-public class AddItemToCartCommand {
+public class RemoveCartItemCommand {
 }

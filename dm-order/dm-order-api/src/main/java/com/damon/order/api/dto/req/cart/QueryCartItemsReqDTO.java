@@ -15,5 +15,4 @@ import java.io.Serializable;
 public class QueryCartItemsReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    private Long userId;
 }

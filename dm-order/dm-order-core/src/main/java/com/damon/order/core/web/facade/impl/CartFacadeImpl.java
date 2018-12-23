@@ -1,12 +1,12 @@
 package com.damon.order.core.web.facade.impl;
 
-import com.damon.order.api.dto.req.cart.AddItemToCartReqDTO;
+import com.damon.order.api.dto.req.cart.AddSkuToCartReqDTO;
 import com.damon.order.api.dto.req.cart.QueryCartItemsReqDTO;
 import com.damon.order.api.dto.req.cart.UpdateCartItemReqDTO;
-import com.damon.order.api.dto.resp.cart.AddItemToCartRespDTO;
+import com.damon.order.api.dto.resp.cart.AddSkuToCartRespDTO;
 import com.damon.order.api.dto.resp.cart.CartItemInfoRespDTO;
 import com.damon.order.api.web.facade.CartFacade;
-import com.damon.order.domain.cart.command.AddItemToCartCommand;
+import com.damon.order.domain.cart.command.AddSkuToCartCommand;
 import com.damon.order.domain.cart.command.QueryCartItemCommand;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.validation.ArgsValid;
@@ -54,9 +54,9 @@ public class CartFacadeImpl implements CartFacade {
 
     @Override @ArgsValid
     @ApiOperation(value = "添加购物车", notes = "将商品添加到购物车")
-    public ResponseWrapper<AddItemToCartRespDTO> add(
-            AddItemToCartReqDTO addItemToCartReqDTO) {
-        AddItemToCartCommand command = AddItemToCartCommand.builder().build();
+    public ResponseWrapper<AddSkuToCartRespDTO> add(
+            AddSkuToCartReqDTO addSkuToCartReqDTO) {
+        AddSkuToCartCommand command = AddSkuToCartCommand.builder().build();
 
         commandGateway.send(command);
         return null;

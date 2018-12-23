@@ -1,9 +1,9 @@
 package com.damon.order.api.web.facade;
 
-import com.damon.order.api.dto.req.cart.AddItemToCartReqDTO;
+import com.damon.order.api.dto.req.cart.AddSkuToCartReqDTO;
 import com.damon.order.api.dto.req.cart.QueryCartItemsReqDTO;
 import com.damon.order.api.dto.req.cart.UpdateCartItemReqDTO;
-import com.damon.order.api.dto.resp.cart.AddItemToCartRespDTO;
+import com.damon.order.api.dto.resp.cart.AddSkuToCartRespDTO;
 import com.damon.order.api.dto.resp.cart.CartItemInfoRespDTO;
 import com.damon.order.shared.constant.ApiConstants;
 import com.damon.shared.common.Pagination;
@@ -27,8 +27,8 @@ public interface CartFacade {
 
 
     @PostMapping("/cart/items")
-    ResponseWrapper<AddItemToCartRespDTO> add(
-            @RequestBody @Validated AddItemToCartReqDTO addItemToCartReqDTO
+    ResponseWrapper<AddSkuToCartRespDTO> add(
+            @RequestBody @Validated AddSkuToCartReqDTO addSkuToCartReqDTO
     );
 
 

@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class UpdateCartItemReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    private Long cartItemId;
-    private Integer amount;
+    private Long cid;
+    private Boolean selected;
+    private Integer qty;
 }

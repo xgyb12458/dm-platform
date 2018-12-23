@@ -13,6 +13,6 @@ import java.io.Serializable;
 @Data
 @Builder
 @ApiModel(value = "购物车项添加成功返回结果信息")
-public class AddItemToCartRespDTO implements Serializable {
+public class AddSkuToCartRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 }
