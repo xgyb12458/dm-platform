@@ -22,8 +22,8 @@ public class EncryptTest {
 
     @Test
     public void testEncryption() {
-        String username= "hbe";
-        String password= "ddddhhsh";
+        String username= "byyroot";
+        String password= "xTGoxcni59@$";
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("生成加密后的账户：" + stringEncryptor.encrypt(username));

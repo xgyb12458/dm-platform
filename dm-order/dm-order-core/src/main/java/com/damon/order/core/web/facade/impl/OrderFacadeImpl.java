@@ -1,13 +1,15 @@
 package com.damon.order.core.web.facade.impl;
 
 import com.damon.order.api.dto.req.trade.ConfirmOrderReqDTO;
+import com.damon.order.api.dto.req.trade.QueryOrdersReqDTO;
 import com.damon.order.api.dto.req.trade.SubmitOrderReqDTO;
+import com.damon.order.api.dto.req.trade.UpdateOrderReqDTO;
 import com.damon.order.api.dto.resp.trade.ConfirmOrderRespDTO;
+import com.damon.order.api.dto.resp.trade.OrderInfoRespDTO;
 import com.damon.order.api.dto.resp.trade.SubmitOrderRespDTO;
 import com.damon.order.api.web.facade.OrderFacade;
 import com.damon.order.domain.trade.aggregate.TradeId;
-import com.damon.order.domain.trade.command.ConfirmOrderCommand;
-import com.damon.order.domain.trade.command.SubmitOrderCommand;
+import com.damon.order.domain.trade.command.*;
 import com.damon.order.domain.user.aggregate.*;
 import com.damon.shared.common.Constants;
 import com.damon.shared.validation.ArgsValid;
@@ -20,6 +22,8 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -36,14 +40,73 @@ public class OrderFacadeImpl implements OrderFacade {
 
 
     @ArgsValid @Override
+    @ApiOperation(value = "查询订单", notes = "根据指定条件查询订单列表")
+    public ResponseWrapper<OrderInfoRespDTO> list(QueryOrdersReqDTO queryOrdersReqDTO) {
+        Long userId = 100000L;
+        // 非此用户的订单，不可查看；管理员除外
+        QueryOrderCommand command = QueryOrderCommand.builder()
+                .pageIndex(Optional.ofNullable(queryOrdersReqDTO.getPageIndex())
+                        .orElse(Constants.START_PAGE_INDEX))
+                .pageSize(Optional.ofNullable(queryOrdersReqDTO.getPageSize())
+                        .orElse(Constants.DEFAULT_PAGE_SIZE))
+                .build();
+
+        queryGateway.query(command, List.class);
+
+        return null;
+    }
+
+    @ArgsValid @Override
+    @ApiOperation(value = "更新订单", notes = "更新订单信息")
+    public ResponseWrapper<Boolean> update(UpdateOrderReqDTO updateOrderReqDTO) {
+        Long userId = 100000L;
+        // 非此用户的订单，不可更新；管理员除外
+        UpdateOrderCommand command = UpdateOrderCommand.builder()
+                .build();
+
+        commandGateway.send(command);
+
+        return null;
+    }
+
+    @ArgsValid @Override
+    @ApiOperation(value = "取消订单", notes = "取消订单")
+    public ResponseWrapper<OrderInfoRespDTO> cancel(Long orderId) {
+        return null;
+    }
+
+    @ArgsValid @Override
+    @ApiOperation(value = "支付订单", notes = "支付订单")
+    public ResponseWrapper<OrderInfoRespDTO> pay(Long orderId) {
+        return null;
+    }
+
+    @ArgsValid @Override
+    @ApiOperation(value = "移除订单", notes = "逻辑移除订单")
+    public ResponseWrapper<OrderInfoRespDTO> remove(Long orderId) {
+        return null;
+    }
+
+    @ArgsValid @Override
+    @ApiOperation(value = "根据订单ID查找订单", notes = "根据订单ID查找订单")
+    public ResponseWrapper<OrderInfoRespDTO> find(Long orderId) {
+        Long userId = 100000L;
+        // 非此用户的订单，不可查看；管理员除外
+        QueryOrderByIdCommand command = QueryOrderByIdCommand.builder()
+                .build();
+
+        queryGateway.query(command, OrderInfoRespDTO.class);
+
+        return null;
+    }
+
+    @ArgsValid @Override
     @ApiOperation(value = "确认订单", notes = "确认订单参数")
     public ResponseWrapper<ConfirmOrderRespDTO> confirm(
                     ConfirmOrderReqDTO confirmOrderReqDTO) {
         ConfirmOrderCommand command = ConfirmOrderCommand.builder()
                 .skuId(new SkuId(confirmOrderReqDTO.getSkuid()))
                 .quantity(confirmOrderReqDTO.getQty())
-//                .promotionId(confirmOrderReqDTO.getPid())
-//                .detailId(confirmOrderReqDTO.getDid())
                 .cartItemIds(confirmOrderReqDTO.getCid().stream()
                         .map(CartItemId::new)
                         .collect(Collectors.toList())
@@ -80,10 +143,7 @@ public class OrderFacadeImpl implements OrderFacade {
                             if (sku.getCid() > Constants.LONG_ZERO) {
                                 builder.cartItemId(new CartItemId(sku.getCid()));
                             } else {
-                                builder.skuId(new SkuId(sku.getSkuid()))
-                                        .quantity(sku.getQty());
-//                                        .promotionId(sku.getPid())
-//                                        .detailId(sku.getDid());
+                                builder.skuId(new SkuId(sku.getSkuid())).quantity(sku.getQty());
                             }
                             return builder.build();
                         }).collect(Collectors.toList())

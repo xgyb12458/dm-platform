@@ -2,12 +2,12 @@ package com.damon.shared.exception;
 
 import com.damon.shared.enums.ResponseCodeEnum;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Value;
 
 /**
  * @author Damon S.
  */
-@Getter
+@Value
 @AllArgsConstructor
 public class BusinessException extends RuntimeException {
 

@@ -1,6 +1,5 @@
 package com.damon.order.domain.trade.event;
 
-import com.damon.oauth.domain.user.aggregate.*;
 import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.domain.user.aggregate.*;
 import com.damon.order.shared.enums.PayChannel;

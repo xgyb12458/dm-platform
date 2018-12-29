@@ -3,7 +3,6 @@ package com.damon.shared.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.validation.constraints.Min;
 
@@ -12,7 +11,6 @@ import javax.validation.constraints.Min;
  * @author Damon S.
  */
 @Data
-@ToString
 @ApiModel(value = "请求验签参数")
 public class SecurityReqDTO {
 

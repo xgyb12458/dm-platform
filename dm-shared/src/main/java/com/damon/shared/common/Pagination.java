@@ -3,6 +3,7 @@ package com.damon.shared.common;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Value;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public final class Pagination<T> {
         this.pageInfo = new PageInfo(pageIndex, pageSize, totalRows);
     }
 
-    @Getter
+    @Value
     public static class PageInfo {
         /***当前页码*/
         private final Integer pageIndex;

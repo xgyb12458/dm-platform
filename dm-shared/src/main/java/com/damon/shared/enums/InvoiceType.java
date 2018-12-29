@@ -11,7 +11,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum InvoiceType {
     /**不开发票*/
-    NA,
+    NONE,
 
     /**个人发票*/
     PERSONAL,

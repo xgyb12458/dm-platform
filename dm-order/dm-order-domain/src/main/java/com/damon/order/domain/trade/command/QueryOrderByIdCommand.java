@@ -2,14 +2,14 @@ package com.damon.order.domain.trade.command;
 
 import com.damon.shared.enums.SwitchState;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 /**
  * @author Damon S.
  */
-@Getter
+@Value
 @Builder
-public class QueryTradeCommand {
+public class QueryOrderByIdCommand {
     private final String roleId;
     private final String code;
     private final String name;
