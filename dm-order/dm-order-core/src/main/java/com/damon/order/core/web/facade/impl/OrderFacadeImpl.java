@@ -42,9 +42,11 @@ public class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "查询订单", notes = "根据指定条件查询订单列表")
     public ResponseWrapper<OrderInfoRespDTO> list(QueryOrdersReqDTO queryOrdersReqDTO) {
-        Long userId = 100000L;
+        Long currentUserId = 100000L;
         // 非此用户的订单，不可查看；管理员除外
         QueryOrderCommand command = QueryOrderCommand.builder()
+                .payState(queryOrdersReqDTO.getPayState())
+                .orderState(queryOrdersReqDTO.getOrderState())
                 .pageIndex(Optional.ofNullable(queryOrdersReqDTO.getPageIndex())
                         .orElse(Constants.START_PAGE_INDEX))
                 .pageSize(Optional.ofNullable(queryOrdersReqDTO.getPageSize())
@@ -59,7 +61,7 @@ public class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "更新订单", notes = "更新订单信息")
     public ResponseWrapper<Boolean> update(UpdateOrderReqDTO updateOrderReqDTO) {
-        Long userId = 100000L;
+        Long currentUserId = 100000L;
         // 非此用户的订单，不可更新；管理员除外
         UpdateOrderCommand command = UpdateOrderCommand.builder()
                 .build();
@@ -90,7 +92,7 @@ public class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "根据订单ID查找订单", notes = "根据订单ID查找订单")
     public ResponseWrapper<OrderInfoRespDTO> find(Long orderId) {
-        Long userId = 100000L;
+        Long currentUserId = 100000L;
         // 非此用户的订单，不可查看；管理员除外
         QueryOrderByIdCommand command = QueryOrderByIdCommand.builder()
                 .build();

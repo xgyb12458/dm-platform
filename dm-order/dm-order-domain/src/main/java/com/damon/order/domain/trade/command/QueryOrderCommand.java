@@ -1,6 +1,7 @@
 package com.damon.order.domain.trade.command;
 
-import com.damon.shared.enums.SwitchState;
+import com.damon.order.shared.enums.OrderState;
+import com.damon.order.shared.enums.PayState;
 import lombok.Builder;
 import lombok.Value;
 
@@ -10,10 +11,9 @@ import lombok.Value;
 @Value
 @Builder
 public class QueryOrderCommand {
-    private final String roleId;
-    private final String code;
-    private final String name;
-    private final SwitchState state;
+    private final Long userId;
+    private final PayState payState;
+    private final OrderState orderState;
     private final Integer pageSize;
     private final Integer pageIndex;
 }

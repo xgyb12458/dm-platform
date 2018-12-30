@@ -10,15 +10,16 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum OrderState {
+
+    /**
+     * 未知，不可用
+     */
+    NA,
+
     /**
      * 已生成订单，待支付
      */
     SUBMITTED,
-
-    /**
-     * 订单已取消，交易关闭
-     */
-    CANCELLED,
 
     /**
      * 已支付，待发货
@@ -56,7 +57,12 @@ public enum OrderState {
     REFUNDED,
 
     /**
-     * 已删除
+     * 订单已取消，交易关闭
      */
-    REMOVED
+    CANCELLED,
+
+    /**
+     * 完成售后，关闭
+     */
+    CLOSED
 }
