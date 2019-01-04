@@ -2,6 +2,7 @@ package com.damon.order.api.dto.req.trade;
 
 import com.damon.shared.dto.SecurityReqDTO;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,7 +16,12 @@ import java.io.Serializable;
 public class UpdateOrderReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
+    @ApiModelProperty(name = "cid", value = "购物车ID")
     private Long cid;
+
+    @ApiModelProperty(name = "selected", value = "已选中")
     private Boolean selected;
+
+    @ApiModelProperty(name = "qty", value = "商品数量")
     private Integer qty;
 }

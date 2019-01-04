@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
+ * 修改订单信息命令
  * @author Damon S.
  */
 @Value

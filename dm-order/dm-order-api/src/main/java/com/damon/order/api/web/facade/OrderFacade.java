@@ -35,6 +35,11 @@ public interface OrderFacade {
             @PathVariable("orderId") Long orderId
     );
 
+    @DeleteMapping("/orders/{orderId}")
+    ResponseWrapper<OrderInfoRespDTO> remove(
+            @PathVariable("orderId") Long orderId
+    );
+
     @PutMapping("/orders/{orderId}/cancel")
     ResponseWrapper<OrderInfoRespDTO> cancel(
             @PathVariable("orderId") Long orderId
@@ -42,11 +47,6 @@ public interface OrderFacade {
 
     @PutMapping("/orders/{orderId}/pay")
     ResponseWrapper<OrderInfoRespDTO> pay(
-            @PathVariable("orderId") Long orderId
-    );
-
-    @DeleteMapping("/orders/{orderId}")
-    ResponseWrapper<OrderInfoRespDTO> remove(
             @PathVariable("orderId") Long orderId
     );
 

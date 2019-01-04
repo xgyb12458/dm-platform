@@ -34,12 +34,12 @@ public enum OrderState {
     /**
      * 已发货，待收货
      */
-    DELIVERED,
+    SHIPPING,
 
     /**
      * 交易成功，待评价
      */
-    FINISHED,
+    COMPLETED,
 
     /**
      * 已评价

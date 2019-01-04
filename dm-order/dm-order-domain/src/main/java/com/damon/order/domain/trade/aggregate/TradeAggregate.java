@@ -2,6 +2,7 @@ package com.damon.order.domain.trade.aggregate;
 
 import com.damon.order.domain.trade.*;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
+import com.damon.order.domain.trade.event.OrderSubmittedEvent;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -77,8 +78,13 @@ public class TradeAggregate {
         );
     }
 
+    @CommandHandler
+    private void handle(SubmitOrderCommand command) {
+
+    }
+
     @EventSourcingHandler
-    public void on(TradeCreatedEvent event) {
+    private void on(TradeCreatedEvent event) {
         setTradeId(event.getTradeId());
         setTradeOrder(TradeOrder.builder()
                 .createdBy(event.getCreatedBy())
@@ -96,5 +102,10 @@ public class TradeAggregate {
         setDiscount(TradeDiscount.builder()
                 .build()
         );
+    }
+
+    @EventSourcingHandler
+    private void on(OrderSubmittedEvent event) {
+
     }
 }
