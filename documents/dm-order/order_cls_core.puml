@@ -2,28 +2,30 @@
 
 class TradeAggregate {
     - tradeId: TradeId
-    - address: DeliveryAddress
-    - customerId: UserId
-    - merchantId: MerchantId
+    - address: Address
+    - buyerId: UserId
     - orders: Collection
 }
 class OrderAggregate {
     - orderId: OrderId
     - tradeId: TradeId
+    - orderNo: String
     - orderItems: Collection
     - state: SwitchState
 }
 class OrderItemAggregate {
-    - orderItemId: OrderItemId
+    - itemId: OrderItemId
     - orderId: OrderId
-    - tradeId: TradeId
     - state: SwitchState
 }
-
-class OrderAddress {
+class PaymentAggregate {
+    - payId: PayId
+    - orderId: OrderId
+    - payNo: String
 }
 
 TradeAggregate "1"--*"*" OrderAggregate
 OrderAggregate "1"--*"*" OrderItemAggregate
+OrderAggregate "1"--*"*" PaymentAggregate
 
 @enduml

@@ -14,6 +14,7 @@ public class QueryOrderCommand {
     private final Long userId;
     private final PayState payState;
     private final OrderState orderState;
+    private final Long requestedBy;
     private final Integer pageSize;
     private final Integer pageIndex;
 }

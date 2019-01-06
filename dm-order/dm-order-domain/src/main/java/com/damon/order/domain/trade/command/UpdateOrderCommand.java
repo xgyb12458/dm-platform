@@ -10,4 +10,5 @@ import lombok.Value;
 @Value
 @Builder
 public class UpdateOrderCommand {
+    private final Long requestedBy;
 }
