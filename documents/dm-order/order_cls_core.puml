@@ -19,7 +19,7 @@ class OrderItemAggregate {
     - state: SwitchState
 }
 class PaymentAggregate {
-    - payId: PayId
+    - paymentId: PaymentId
     - orderId: OrderId
     - payNo: String
 }
