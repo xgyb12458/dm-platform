@@ -22,6 +22,11 @@ public enum OrderState {
     SUBMITTED,
 
     /**
+     * 订单已取消，交易关闭
+     */
+    CANCELLED,
+
+    /**
      * 已支付，待发货
      */
     PAID,
@@ -34,7 +39,7 @@ public enum OrderState {
     /**
      * 已发货，待收货
      */
-    SHIPPING,
+    SHIPPED,
 
     /**
      * 交易成功，待评价
@@ -55,11 +60,6 @@ public enum OrderState {
      * 已退款
      */
     REFUNDED,
-
-    /**
-     * 订单已取消，交易关闭
-     */
-    CANCELLED,
 
     /**
      * 完成售后，关闭

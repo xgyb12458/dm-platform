@@ -45,7 +45,7 @@ public class OrderFacadeImpl implements OrderFacade {
         Long currentUserId = 100000L;
         // 非此用户的订单，不可查看；管理员除外
         QueryOrderCommand command = QueryOrderCommand.builder()
-                .payState(queryOrdersReqDTO.getPayState())
+                .paidState(queryOrdersReqDTO.getPaidState())
                 .orderState(queryOrdersReqDTO.getOrderState())
                 .requestedBy(currentUserId)
                 .pageIndex(Optional.ofNullable(queryOrdersReqDTO.getPageIndex())

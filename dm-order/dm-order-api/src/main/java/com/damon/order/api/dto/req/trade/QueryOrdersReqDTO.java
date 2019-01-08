@@ -1,7 +1,7 @@
 package com.damon.order.api.dto.req.trade;
 
 import com.damon.order.shared.enums.OrderState;
-import com.damon.order.shared.enums.PayState;
+import com.damon.order.shared.enums.PaidState;
 import com.damon.shared.dto.PageableReqDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,6 +21,6 @@ public class QueryOrdersReqDTO extends PageableReqDTO implements Serializable {
     @ApiModelProperty(name = "orderState", value = "订单状态")
     private OrderState orderState;
 
-    @ApiModelProperty(name = "payState", value = "支付状态")
-    private PayState payState;
+    @ApiModelProperty(name = "paidState", value = "支付状态")
+    private PaidState paidState;
 }

@@ -1,7 +1,7 @@
 package com.damon.order.domain.trade.command;
 
 import com.damon.order.shared.enums.OrderState;
-import com.damon.order.shared.enums.PayState;
+import com.damon.order.shared.enums.PaidState;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,7 +12,7 @@ import lombok.Value;
 @Builder
 public class QueryOrderCommand {
     private final Long userId;
-    private final PayState payState;
+    private final PaidState paidState;
     private final OrderState orderState;
     private final Long requestedBy;
     private final Integer pageSize;

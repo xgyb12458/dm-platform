@@ -28,10 +28,5 @@ public enum PayChannel {
     /**
      * 微信支付：小程序
      */
-    WECHAT_MINI,
-
-    /**
-     * 银联支付
-     */
-    UNION_PAY
+    WECHAT_MINI
 }

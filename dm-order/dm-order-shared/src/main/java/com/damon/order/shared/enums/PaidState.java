@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum PayState {
+public enum PaidState {
     /**
      * 待付款
      */
@@ -19,6 +19,11 @@ public enum PayState {
      * 支付失败
      */
     FAILED,
+
+    /**
+     * 取消支付
+     */
+    CANCELLED,
 
     /**
      * 支付成功

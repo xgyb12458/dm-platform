@@ -29,7 +29,7 @@ public enum OrderType {
     PIECE,
 
     /**
-     * 大会
+     * 买赠
      */
     MEETING
 }

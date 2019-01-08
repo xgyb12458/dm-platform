@@ -1,6 +1,5 @@
 package com.damon.order.shared.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -8,12 +7,11 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-@AllArgsConstructor
 public enum PromotionType {
     /**
      * 无活动
      */
-    NORMAL,
+    NA,
 
     /**
      * 拼团
@@ -21,7 +19,12 @@ public enum PromotionType {
     PIECE,
 
     /**
-     * 大会
+     * 闪购
+     */
+    FLASH,
+
+    /**
+     * 买赠
      */
     MEETING
 }

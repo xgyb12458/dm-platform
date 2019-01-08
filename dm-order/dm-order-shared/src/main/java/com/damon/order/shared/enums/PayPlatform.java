@@ -1,6 +1,5 @@
 package com.damon.order.shared.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -8,7 +7,6 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-@AllArgsConstructor
 public enum PayPlatform {
     /**
      * 支付宝
@@ -23,7 +21,7 @@ public enum PayPlatform {
     /**
      * 银联支付
      */
-    UNIONPAY,
+    UNION,
 
     /**
      * 信用卡支付

@@ -4,7 +4,7 @@ import com.damon.order.domain.trade.aggregate.TradeId;
 import com.damon.order.domain.user.aggregate.UserId;
 import com.damon.order.shared.enums.OrderState;
 import com.damon.order.shared.enums.OrderType;
-import com.damon.order.shared.enums.PayState;
+import com.damon.order.shared.enums.PaidState;
 import lombok.Builder;
 import lombok.Value;
 
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class TradeOrder {
     private TradeId tradeId;
     private OrderState orderState;
-    private PayState payState;
+    private PaidState paidState;
     private OrderType orderType;
 
     private UserId createdBy;
