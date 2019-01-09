@@ -1,6 +1,6 @@
 package com.damon.order.domain.test;
 
-import com.damon.order.starter.OrderApplication;
+import com.damon.order.starter.BankApplication;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
@@ -22,7 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = OrderApplication.class)
+@SpringBootTest(classes = BankApplication.class)
 public class SecurityTest {
 
     @Test

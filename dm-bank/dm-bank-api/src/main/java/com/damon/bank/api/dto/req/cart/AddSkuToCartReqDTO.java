@@ -1,0 +1,18 @@
+package com.damon.bank.api.dto.req.cart;
+
+import com.damon.shared.dto.SecurityReqDTO;
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * 向购物车中添加商品请求
+ * @author Damon S.
+ */
+@Data
+@ApiModel(value = "添加购物车参数")
+public class AddSkuToCartReqDTO extends SecurityReqDTO implements Serializable {
+    private static final Long serialVersionUID = 1L;
+
+}
