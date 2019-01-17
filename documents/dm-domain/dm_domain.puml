@@ -1,0 +1,26 @@
+@startuml
+
+left to right direction
+
+(商品) as product
+(订单) as order
+(库存) as inventory
+(仓库) as wms
+(物流) as logistics
+(日志) as logger
+(会员) as member
+
+note right of product: 核心域
+note right of order: 核心域
+note right of inventory: 核心域
+note right of wms: 支撑子域
+note right of logistics: 支撑子域
+note right of member: 通用子域
+note right of logger: 通用子域
+
+product -> inventory
+inventory -> order
+order -> wms
+wms -> logistics
+
+@enduml

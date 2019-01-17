@@ -19,7 +19,7 @@
        STDOUT将日志信息输出到控制上，为方便开发测试使用
     -->
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 需要更改为linux的路径-->
-    <property name="APP_NAME" value="dm-order"/>
+    <property name="APP_NAME" value="dm-bank"/>
     <property name="LOG_FILE_EXPIRE_DAYS" value="180"/>
 
     <!--根据不同环境（prod:生产环境，sit:测试环境，dev:开发环境）来定义不同的日志输出-->
@@ -73,13 +73,13 @@
     <!-- 按照每天生成日志文件 -->
     <appender name="FILE_DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_HOME}/${APP_NAME:-order}_debug.log</file>
+        <file>${LOG_HOME}/${APP_NAME:-bank}_debug.log</file>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 归档的日志文件的路径，例如今天是2018-12-21日，当前写的日志文件路径为file节点指定，
                  可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
                  而2018-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <FileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_debug_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/dm-bank_%d{yyyy-MM-dd}/${APP_NAME:-bank}_debug_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>${LOG_FILE_EXPIRE_DAYS}</MaxHistory>
             <!-- 日志文件不能超过指定大小，若超过则日志文件会以索引0开始命名日志文件，例如log_debug_2018-12-21.0.log -->
@@ -99,9 +99,9 @@
     </appender>
 
     <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/${APP_NAME:-order}_info.log</file>
+        <file>${LOG_HOME}/${APP_NAME:-bank}_info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_info_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/dm-bank_%d{yyyy-MM-dd}/${APP_NAME:-bank}_info_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
             <MaxHistory>${LOG_FILE_EXPIRE_DAYS}</MaxHistory>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
@@ -117,9 +117,9 @@
     </appender>
 
     <appender name="FILE_WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/${APP_NAME:-order}_warn.log</file>
+        <file>${LOG_HOME}/${APP_NAME:-bank}_warn.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_warn_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/dm-bank_%d{yyyy-MM-dd}/${APP_NAME:-bank}_warn_%d{yyyy-MM-dd}_%i.log.gz</FileNamePattern>
             <MaxHistory>${LOG_FILE_EXPIRE_DAYS}</MaxHistory>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
@@ -135,9 +135,9 @@
     </appender>
 
     <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/${APP_NAME:-order}_error.log</file>
+        <file>${LOG_HOME}/${APP_NAME:-bank}_error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/dm-order_%d{yyyy-MM-dd}/${APP_NAME:-order}_error_%d{yyyyMMdd}_%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/dm-bank_%d{yyyy-MM-dd}/${APP_NAME:-bank}_error_%d{yyyyMMdd}_%i.log</fileNamePattern>
             <maxFileSize>20MB</maxFileSize>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -194,7 +194,7 @@
         第一种把<root level="info">改成<root level="DEBUG">这样就会打印sql，不过这样日志那边会出现很多其他消息
         第二种就是单独给dao下目录配置debug模式，代码如下，这样配置sql语句会打印，其他还是正常info级别：
      -->
-    <logger name="com.damon.order.core" level="${LOG_LEVEL}">
+    <logger name="com.damon.bank.core" level="${LOG_LEVEL}">
         <appender-ref ref="FILE_DEBUG"/>
         <appender-ref ref="FILE_INFO"/>
         <appender-ref ref="FILE_WARN"/>

@@ -1,0 +1,81 @@
+@startuml
+
+interface ValueObject {
+}
+class ProductAggregate {
+    - productId: ProductId
+    - name: String
+    - image: String
+    - price: Long
+    - reviewState: ReviewState
+    - productState: ProductState
+    - removed: Boolean
+    - inventory: Integer
+    - model: ProductModel
+    - type: ProductType
+    - canReturn: Boolean
+    - category: String
+    - brand: String
+    - warehouse: String
+    - supplier: String
+    - h5Detail: Text
+    - saleVolume: Integer
+    - deliveryRegion: String
+    - desc: String
+'    - length: Long
+'    - width: Long
+'    - height: Long
+'    - weight: Long
+'    - boxNum: Integer
+}
+class SkuAggregate {
+    - skuId: SkuId
+    - productId: ProductId
+    - skuCode: String
+    - name: String
+    - image: String
+    - state: State
+    - specs: List<Specification>
+    - inventory: Integer
+    - secureInventory: Integer
+    - price: Long
+    - reduction: Long
+    - promoteFee: Long
+    - exchangePrice: Long
+    - serviceFee: Long
+    - exchangePoint: Long
+    - netWorth: Long
+    - barCode: String
+}
+class Specification {
+    - specId: SpecId
+    - name: String
+    - value: String
+    - type: SpecType
+    - sort: Integer
+    - parent: Specification
+}
+
+' TABLE
+class SkuSpecification {
+    - skuId: SkuId
+    - specId: SpecId
+    - sort: Integer
+}
+
+enum ReviewState {
+    + AUDITING
+    + APPROVED
+    + REJECTED
+}
+enum ProductState {
+    + DRAFT
+    + FORSALE
+    + ONSALE
+    + INSTOCK
+}
+ProductAggregate <--o SkuAggregate
+Specification --> SkuAggregate
+Specification --|> ValueObject
+
+@enduml

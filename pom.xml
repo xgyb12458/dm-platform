@@ -18,11 +18,11 @@
     </parent>
 
     <modules>
-        <module>dm-bank</module>
+        <!--<module>dm-bank</module>-->
         <!--<module>dm-media</module>-->
         <!--<module>dm-oauth</module>-->
         <!--<module>dm-order</module>-->
-        <!--<module>dm-product</module>-->
+        <module>dm-product</module>
         <!--<module>dm-ucenter</module>-->
         <module>dm-shared</module>
     </modules>
