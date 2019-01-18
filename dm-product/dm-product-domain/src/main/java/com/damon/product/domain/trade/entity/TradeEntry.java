@@ -1,6 +1,5 @@
 package com.damon.product.domain.trade.entity;
 
-import com.damon.shared.common.WorkerId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +19,6 @@ import java.sql.Timestamp;
 @Entity
 @Data
 @Builder
-@WorkerId(9)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "dm_order_trade")
