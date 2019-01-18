@@ -4,24 +4,30 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 活动类型
+ * 产品状态
  * @author Damon S.
  */
 @Getter
 @AllArgsConstructor
-public enum PromotionType {
-    /**
-     * 无活动
-     */
-    NORMAL,
+public enum ProductState {
 
     /**
-     * 拼团
+     * 草稿箱
      */
-    PIECE,
+    IN_DRAFT,
 
     /**
-     * 大会
+     * 计划发布
      */
-    MEETING
+    FOR_SALE,
+
+    /**
+     * 上架
+     */
+    ON_SALE,
+
+    /**
+     * 下架
+     */
+    IN_STOCK
 }

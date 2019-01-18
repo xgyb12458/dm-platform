@@ -1,7 +1,7 @@
 package com.damon.product.api.dto.resp.trade;
 
-import com.damon.product.shared.enums.OrderState;
-import com.damon.product.shared.enums.OrderType;
+import com.damon.product.shared.enums.ReviewState;
+import com.damon.product.shared.enums.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -33,10 +33,10 @@ public class SubmitOrderRespDTO implements Serializable {
     private String phone;
 
     @ApiModelProperty(name = "state", value = "用户状态")
-    private OrderState state;
+    private ReviewState state;
 
     @ApiModelProperty(name = "type", value = "用户类型")
-    private OrderType type;
+    private ProductType type;
 
     @ApiModelProperty(name = "qq", value = "QQ")
     private Long qq;

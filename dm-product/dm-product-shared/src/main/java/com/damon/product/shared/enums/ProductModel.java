@@ -9,29 +9,24 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum PayChannel {
+public enum ProductModel {
     /**
-     * 支付宝：APP
+     * 支付宝
      */
     ALIPAY,
 
     /**
-     * 微信支付：网页
+     * 微信支付
      */
     WECHAT,
 
     /**
-     * 微信支付：APP
-     */
-    WECHAT_APP,
-
-    /**
-     * 微信支付：小程序
-     */
-    WECHAT_MINI,
-
-    /**
      * 银联支付
      */
-    UNION_PAY
+    UNIONPAY,
+
+    /**
+     * 信用卡支付
+     */
+    CREDIT
 }

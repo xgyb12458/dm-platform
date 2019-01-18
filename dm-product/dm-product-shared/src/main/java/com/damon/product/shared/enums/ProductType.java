@@ -7,7 +7,7 @@ import lombok.Getter;
  * @author Damon S.
  */
 @Getter
-public enum OrderType {
+public enum ProductType {
     /**
      * 普通订单
      */

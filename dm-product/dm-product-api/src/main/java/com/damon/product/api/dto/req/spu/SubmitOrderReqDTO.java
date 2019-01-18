@@ -1,4 +1,4 @@
-package com.damon.product.api.dto.req.trade;
+package com.damon.product.api.dto.req.spu;
 
 import com.damon.product.shared.enums.PayChannel;
 import io.swagger.annotations.ApiModel;

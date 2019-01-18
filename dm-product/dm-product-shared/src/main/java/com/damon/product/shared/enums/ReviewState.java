@@ -4,24 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 支付状态
+ * 审核状态
  * @author Damon S.
  */
 @Getter
 @AllArgsConstructor
-public enum PayState {
-    /**
-     * 待付款
-     */
-    UNPAID,
+public enum ReviewState {
 
     /**
-     * 支付失败
+     * 审核中
      */
-    FAILED,
+    AUDITING,
 
     /**
-     * 支付成功
+     * 审核通过
      */
-    SUCCESS
+    APPROVED,
+
+    /**
+     * 审核驳回
+     */
+    REJECTED
 }

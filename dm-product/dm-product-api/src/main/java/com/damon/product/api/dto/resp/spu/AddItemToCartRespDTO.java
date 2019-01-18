@@ -1,4 +1,4 @@
-package com.damon.product.api.dto.resp.cart;
+package com.damon.product.api.dto.resp.spu;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Builder;

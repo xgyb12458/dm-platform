@@ -1,25 +1,25 @@
-package com.damon.product.api.dto.req.trade;
+package com.damon.product.api.dto.resp.spu;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
- * 确认订单请求
  * @author Damon S.
  */
 @Data
 @ToString
-@ApiModel(value = "确认订单参数")
-public class ConfirmOrderReqDTO implements Serializable {
-    private static final Long serialVersionUID = 12L;
+@Builder
+@ApiModel(value = "购物车项信息")
+public class CartItemInfoRespDTO implements Serializable {
+    private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "cids", value = "购物车项编号")
-    private List<Long> cids;
+    @ApiModelProperty(name = "cid", value = "购物车项Id")
+    private Long cid;
 
     @ApiModelProperty(name = "skuid", value = "商品SkuId")
     private Long skuid;
