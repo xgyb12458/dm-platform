@@ -1,6 +1,5 @@
 @startuml
 
-
 class dm_spu {
     - spu_id: Long
     - spu_code: String
@@ -22,11 +21,11 @@ class dm_spu {
     - h5_detail: Text
     - sale_volume: Integer
     - deliver_region: String
-'    - length: Long
-'    - width: Long
-'    - height: Long
-'    - weight: Long
-'    - boxNum: Integer
+    - length: Long
+    - width: Long
+    - height: Long
+    - weight: Long
+    - box_num: Integer
     - created_by: Long
     - updated_by: Long
     - created_at: Timestamp
@@ -62,6 +61,18 @@ class dm_sku_specification {
     - updated_by: Long
     - created_at: Timestamp
     - updated_at: Timestamp
+}
+
+' 谁在什么时间对什么进行了什么操作，结果是什么
+class dm_operation_log {
+    - log_id: Long
+    - user_id: Long
+    - target_type: String
+    - target_id: Long
+    - op_type: String
+    - old_object: Text
+    - new_object: Text
+    - op_time: Timestamp
 }
 
 class dm_sku_spec_relate {

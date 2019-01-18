@@ -1,7 +1,7 @@
 package com.damon.product.domain.trade.command;
 
-import com.damon.oauth.domain.user.aggregate.CartItemId;
-import com.damon.oauth.domain.user.aggregate.SkuId;
+import com.damon.product.domain.sku.aggregate.CartItemId;
+import com.damon.product.domain.sku.aggregate.SkuId;
 import lombok.Builder;
 import lombok.Getter;
 

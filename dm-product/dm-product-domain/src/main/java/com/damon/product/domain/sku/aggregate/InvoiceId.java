@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.user.aggregate;
+package com.damon.product.domain.sku.aggregate;
 
 import com.damon.shared.model.AbstractId;
 

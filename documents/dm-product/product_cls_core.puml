@@ -56,14 +56,17 @@ class Specification {
     - sort: Integer
     - parent: Specification
 }
-
-' TABLE
-class SkuSpecification {
-    - skuId: SkuId
-    - specId: SpecId
-    - sort: Integer
+' 谁在什么时间对什么进行了什么操作，结果是什么
+class OperationLog {
+    - logId: Long
+    - userId: Long
+    - targetType: String
+    - targetId: Long
+    - opType: String
+    - oldValue: Text
+    - newValue: Text
+    - opTime: Timestamp
 }
-
 enum ReviewState {
     + AUDITING
     + APPROVED
