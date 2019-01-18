@@ -1,0 +1,114 @@
+@startuml
+
+
+class dm_spu {
+    - spu_id: Long
+    - spu_code: String
+    - name: String
+    - image: String
+    - desc: String
+    - price: Long
+    - review_state: String
+    - product_state: String
+    - removed: Integer
+    - inventory: Integer
+    - model: String
+    - type: String
+    - can_return: Integer
+    - category_id: Long
+    - brand_id: Long
+    - warehouse_id: Long
+    - supplier_id: Long
+    - h5_detail: Text
+    - sale_volume: Integer
+    - deliver_region: String
+'    - length: Long
+'    - width: Long
+'    - height: Long
+'    - weight: Long
+'    - boxNum: Integer
+    - created_by: Long
+    - updated_by: Long
+    - created_at: Timestamp
+    - updated_at: Timestamp
+}
+class dm_sku {
+    - sku_id: Long
+    - product_id: Long
+    - sku_code: String
+    - name: String
+    - image: String
+    - state: String
+    - inventory: Integer
+    - secure_inventory: Integer
+    - price: Long
+    - reduction: Long
+    - promote_fee: Long
+    - exchange_price: Long
+    - service_fee: Long
+    - exchange_point: Long
+    - net_worth: Long
+    - bar_code: String
+}
+
+class dm_sku_specification {
+    - spec_id: Long
+    - name: String
+    - value: String
+    - type: String
+    - sort: Integer
+    - parent_id: Long
+    - created_by: Long
+    - updated_by: Long
+    - created_at: Timestamp
+    - updated_at: Timestamp
+}
+
+class dm_sku_spec_relate {
+    - sku_id: Long
+    - spec_id: Long
+    - sort: Integer
+}
+
+class dm_spu_category {
+    - category_id: Long
+    - name: String
+    - code: String
+    - parent_id: Long
+    - created_by: Long
+    - updated_by: Long
+    - created_at: Timestamp
+    - updated_at: Timestamp
+}
+
+class dm_spu_brand {
+    - brand_id: Long
+    - name: String
+    - code: String
+    - created_by: Long
+    - updated_by: Long
+    - created_at: Timestamp
+    - updated_at: Timestamp
+}
+
+class dm_spu_supplier {
+    - supplier_id: Long
+    - name: String
+    - code: String
+    - created_by: Long
+    - updated_by: Long
+    - created_at: Timestamp
+    - updated_at: Timestamp
+}
+
+class dm_spu_warehouse {
+    - warehouse_id: Long
+    - name: String
+    - code: String
+    - created_by: Long
+    - updated_by: Long
+    - created_at: Timestamp
+    - updated_at: Timestamp
+}
+
+@enduml

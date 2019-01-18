@@ -1,5 +1,6 @@
 package com.damon.order.domain.trade.aggregate;
 
+import com.damon.order.domain.trade.*;
 import com.damon.order.domain.trade.command.SubmitOrderCommand;
 import com.damon.order.domain.trade.event.OrderSubmittedEvent;
 import com.damon.order.domain.trade.event.TradeCreatedEvent;
@@ -45,15 +46,15 @@ public class TradeAggregate {
     @AggregateIdentifier
     private TradeId             tradeId;
     /***交易主订单信息*/
-    private TradeOrder          tradeOrder;
+    private TradeOrder tradeOrder;
     /***交易商品信息*/
-    private TradeProduct        product;
+    private TradeProduct product;
     /***投递信息*/
-    private DeliveryAddress     address;
+    private DeliveryAddress address;
     /***支付信息*/
-    private TradePayment        payment;
+    private TradePayment payment;
     /***优惠折扣信息*/
-    private TradeDiscount       discount;
+    private TradeDiscount discount;
 
 
     @CommandHandler

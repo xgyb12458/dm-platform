@@ -25,6 +25,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         scanBasePackages = {"com.damon.order", "com.damon.shared"})
 public class OrderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BankApplication.class, args);
+        SpringApplication.run(OrderApplication.class, args);
     }
 }

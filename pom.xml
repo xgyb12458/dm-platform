@@ -21,8 +21,8 @@
         <!--<module>dm-bank</module>-->
         <!--<module>dm-media</module>-->
         <!--<module>dm-oauth</module>-->
-        <!--<module>dm-order</module>-->
-        <module>dm-product</module>
+        <module>dm-order</module>
+        <!--<module>dm-product</module>-->
         <!--<module>dm-ucenter</module>-->
         <module>dm-shared</module>
     </modules>
@@ -57,7 +57,7 @@
         <mybatis-spring.version>1.3.2</mybatis-spring.version>
         <mybatis-plus.version>3.0.7.1</mybatis-plus.version>
 
-        <guava.version>27.0.1-jre</guava.version>
+        <guava.version>27.0-jre</guava.version>
         <lombok.version>1.18.4</lombok.version>
         <junit.version>4.12</junit.version>
         <jackson.version>2.9.8</jackson.version>

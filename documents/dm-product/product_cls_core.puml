@@ -2,10 +2,12 @@
 
 interface ValueObject {
 }
-class ProductAggregate {
-    - productId: ProductId
+class SpuAggregate {
+    - spuId: SpuId
+    - spuCode: String
     - name: String
     - image: String
+    - desc: String
     - price: Long
     - reviewState: ReviewState
     - productState: ProductState
@@ -14,14 +16,13 @@ class ProductAggregate {
     - model: ProductModel
     - type: ProductType
     - canReturn: Boolean
-    - category: String
-    - brand: String
-    - warehouse: String
-    - supplier: String
+    - categoryId: CategoryId
+    - brandId: BrandId
+    - warehouseId: WarehouseId
+    - supplierId: SupplierId
     - h5Detail: Text
     - saleVolume: Integer
     - deliveryRegion: String
-    - desc: String
 '    - length: Long
 '    - width: Long
 '    - height: Long
@@ -34,7 +35,7 @@ class SkuAggregate {
     - skuCode: String
     - name: String
     - image: String
-    - state: State
+    - state: SkuState
     - specs: List<Specification>
     - inventory: Integer
     - secureInventory: Integer
@@ -69,12 +70,12 @@ enum ReviewState {
     + REJECTED
 }
 enum ProductState {
-    + DRAFT
-    + FORSALE
-    + ONSALE
-    + INSTOCK
+    + IN_DRAFT
+    + FOR_SALE
+    + ON_SALE
+    + IN_STOCK
 }
-ProductAggregate <--o SkuAggregate
+SpuAggregate <--o SkuAggregate
 Specification --> SkuAggregate
 Specification --|> ValueObject
 
