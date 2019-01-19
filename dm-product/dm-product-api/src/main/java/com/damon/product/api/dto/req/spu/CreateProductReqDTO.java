@@ -59,8 +59,8 @@ public class CreateProductReqDTO implements Serializable {
     @ApiModelProperty(name = "h5Detail", value = "H5详情")
     private String      h5Detail;
 
-    @ApiModelProperty(name = "saleVolume", value = "销量")
-    private Integer     saleVolume;
+    @ApiModelProperty(name = "soldVolume", value = "销量")
+    private Integer     soldVolume;
 
     @ApiModelProperty(name = "deliverRegion", value = "配送区域")
     private String      deliveryRegion;

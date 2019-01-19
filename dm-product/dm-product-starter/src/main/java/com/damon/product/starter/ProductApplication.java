@@ -16,13 +16,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableSwagger2Doc
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement
-@EntityScan(basePackages = {"com.damon.order",
+@EntityScan(basePackages = {"com.damon.product",
         "org.axonframework.eventsourcing.eventstore.jpa",
         "org.axonframework.modelling.saga.repository.jpa",
         "org.axonframework.eventhandling.tokenstore.jpa"})
-@EnableJpaRepositories(basePackages = {"com.damon.order"})
+@EnableJpaRepositories(basePackages = {"com.damon.product"})
 @SpringBootApplication(exclude = AxonServerAutoConfiguration.class,
-        scanBasePackages = {"com.damon.order", "com.damon.shared"})
+        scanBasePackages = {"com.damon.product", "com.damon.shared"})
 public class ProductApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProductApplication.class, args);

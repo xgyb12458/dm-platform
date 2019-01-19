@@ -33,7 +33,7 @@ public class SpuEntry {
     @Column private Long        price;
     @Column private String      reviewState;
     @Column private String      productState;
-    @Column private Integer     removed;
+    @Column private String      removed;
     @Column private Integer     inventory;
     @Column private String      model;
     @Column private String      type;

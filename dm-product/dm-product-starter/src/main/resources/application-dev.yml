@@ -37,7 +37,7 @@ swagger:
   enabled: true
   title: 订单管理接口
   description: REST-API，所有接口以JSON格式返回
-  base-package: com.damon.order
+  base-package: com.damon.product
   base-path: /**
   exclude-path: /error, /ops/**
 #  ignored-parameter-types[0]: com.damon.order.User

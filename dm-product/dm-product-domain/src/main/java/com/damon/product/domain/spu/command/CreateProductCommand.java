@@ -5,47 +5,43 @@ import com.damon.product.shared.enums.ProductModel;
 import com.damon.product.shared.enums.ProductState;
 import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.ReviewState;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import com.damon.shared.enums.YesNoEnum;
+import lombok.Builder;
+import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
-
-import java.time.Instant;
 
 /**
  * @author Damon S.
  */
-@Getter
-@Setter(AccessLevel.MODULE)
+@Value
+@Builder
 public class CreateProductCommand {
     @TargetAggregateIdentifier
-    private SpuId       spuId;
-    private String      spuCode;
-    private String      name;
-    private String      image;
-    private String      desc;
-    private Long        price;
-    private ReviewState reviewState;
-    private ProductState productState;
-    private Integer     removed;
-    private Integer     inventory;
-    private ProductModel model;
-    private ProductType type;
-    private Boolean     canReturn;
-    private Long        categoryId;
-    private Long        brandId;
-    private Long        warehouseId;
-    private Long        supplierId;
-    private String      h5Detail;
-    private Integer     saleVolume;
-    private String      deliverRegion;
-    private Long        length;
-    private Long        width;
-    private Long        height;
-    private Long        weight;
-    private Long        boxNum;
-    private Long        createdBy;
-    private Long        updatedBy;
-    private Instant     createdAt;
-    private Instant     updatedAt;
+    private final SpuId       spuId;
+    private final String      spuCode;
+    private final String      name;
+    private final String      image;
+    private final String      desc;
+    private final Long        price;
+    private final ReviewState reviewState;
+    private final ProductState productState;
+    private final YesNoEnum   removed;
+    private final Integer     inventory;
+    private final ProductModel model;
+    private final ProductType type;
+    private final Boolean     canReturn;
+    private final Long        categoryId;
+    private final Long        brandId;
+    private final Long        warehouseId;
+    private final Long        supplierId;
+    private final String      h5Detail;
+    private final Integer     soldVolume;
+    private final String      deliverRegion;
+    private final Long        length;
+    private final Long        width;
+    private final Long        height;
+    private final Long        weight;
+    private final Long        boxNum;
+    private final Long        createdBy;
+    private final Long        updatedBy;
 }
