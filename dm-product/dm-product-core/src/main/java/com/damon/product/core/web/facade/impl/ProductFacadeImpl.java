@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 商品管理接口
  * @author Damon S.
  */
-@Api(tags = "订单管理接口")
+@Api(tags = "商品管理接口")
 @RestController
 @RequiredArgsConstructor
 public class ProductFacadeImpl implements ProductFacade {
@@ -58,13 +58,12 @@ public class ProductFacadeImpl implements ProductFacade {
                 .warehouseId(createProductReqDTO.getWarehouseId())
                 .supplierId(createProductReqDTO.getSupplierId())
                 .h5Detail(createProductReqDTO.getH5Detail())
-                .soldVolume(createProductReqDTO.getSoldVolume())
                 .deliverRegion(createProductReqDTO.getDeliveryRegion())
-                .length(createProductReqDTO.getLength())
-                .width(createProductReqDTO.getWidth())
-                .height(createProductReqDTO.getHeight())
-                .weight(createProductReqDTO.getWeight())
-                .boxNum(createProductReqDTO.getBoxNum())
+//                .length(createProductReqDTO.getLength())
+//                .width(createProductReqDTO.getWidth())
+//                .height(createProductReqDTO.getHeight())
+//                .weight(createProductReqDTO.getWeight())
+//                .boxNum(createProductReqDTO.getBoxNum())
                 .createdBy(currentUserId)
                 .build();
 

@@ -35,7 +35,6 @@ public class CreateProductCommand {
     private final Long        warehouseId;
     private final Long        supplierId;
     private final String      h5Detail;
-    private final Integer     soldVolume;
     private final String      deliverRegion;
     private final Long        length;
     private final Long        width;

@@ -1,6 +1,5 @@
 package com.damon.product.api.dto.req.spu;
 
-import com.damon.product.shared.enums.PayChannel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -45,10 +44,6 @@ public class SubmitOrderReqDTO implements Serializable {
 
     @ApiModelProperty(name = "couponIds", value = "使用优惠券")
     private List<Long> couponIds;
-
-    @NotNull(message = "支付渠道不能为空")
-    @ApiModelProperty(name = "payChannel", value = "支付渠道", required = true)
-    private PayChannel payChannel;
 
 
     /**

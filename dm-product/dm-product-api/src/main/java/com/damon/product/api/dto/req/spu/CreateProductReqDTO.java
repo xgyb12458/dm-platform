@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 创建商品请求
@@ -59,11 +60,11 @@ public class CreateProductReqDTO implements Serializable {
     @ApiModelProperty(name = "h5Detail", value = "H5详情")
     private String      h5Detail;
 
-    @ApiModelProperty(name = "soldVolume", value = "销量")
-    private Integer     soldVolume;
-
     @ApiModelProperty(name = "deliverRegion", value = "配送区域")
     private String      deliveryRegion;
+
+    @ApiModelProperty(name = "skus", value = "单/多规格")
+    private List<ProductSkuReqDTO> skus;
 
     @ApiModelProperty(name = "length", value = "长")
     private Long        length;
@@ -79,4 +80,52 @@ public class CreateProductReqDTO implements Serializable {
 
     @ApiModelProperty(name = "boxNum", value = "装箱数")
     private Long        boxNum;
+
+
+    /**
+     * 创建商品请求
+     * @author Damon S.
+     */
+    @Data
+    @ApiModel(value = "创建商品SKU参数")
+    public class ProductSkuReqDTO implements Serializable {
+        @ApiModelProperty(name = "skuCode", value = "Sku编码")
+        private String      skuCode;
+
+        @ApiModelProperty(name = "name", value = "名称")
+        private String      name;
+
+        @ApiModelProperty(name = "image", value = "SKU图片")
+        private String      image;
+
+        @ApiModelProperty(name = "inventory", value = "库存")
+        private Integer     inventory;
+
+        @ApiModelProperty(name = "secureInventory", value = "安全库存")
+        private Integer     secureInventory;
+
+        @ApiModelProperty(name = "price", value = "价格")
+        private Long        price;
+
+        @ApiModelProperty(name = "reduction", value = "立减")
+        private Long        reduction;
+
+        @ApiModelProperty(name = "promoteFee", value = "推广费")
+        private Long        promoteFee;
+
+        @ApiModelProperty(name = "serviceFee", value = "服务费")
+        private Long        serviceFee;
+
+        @ApiModelProperty(name = "exchangePrice", value = "兑换价")
+        private Long        exchangePrice;
+
+        @ApiModelProperty(name = "exchangePoint", value = "兑换德分")
+        private Long        exchangePoint;
+
+        @ApiModelProperty(name = "netWorth", value = "净值")
+        private Long        netWorth;
+
+        @ApiModelProperty(name = "barCode", value = "条形码")
+        private String      barCode;
+    }
 }

@@ -63,18 +63,6 @@ class dm_sku_specification {
     - updated_at: Timestamp
 }
 
-' 谁在什么时间对什么进行了什么操作，结果是什么
-class dm_operation_log {
-    - log_id: Long
-    - user_id: Long
-    - target_type: String
-    - target_id: Long
-    - op_type: String
-    - old_object: Text
-    - new_object: Text
-    - op_time: Timestamp
-}
-
 class dm_sku_spec_relate {
     - sku_id: Long
     - spec_id: Long

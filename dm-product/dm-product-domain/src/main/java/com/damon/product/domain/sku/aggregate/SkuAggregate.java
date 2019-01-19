@@ -1,16 +1,10 @@
 package com.damon.product.domain.sku.aggregate;
 
-import com.damon.product.domain.trade.command.SubmitOrderCommand;
-import com.damon.product.domain.trade.event.TradeCreatedEvent;
 import lombok.*;
-import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 /**
  * 一次交易(主订单)
@@ -47,28 +41,28 @@ public class SkuAggregate {
     private SkuId             skuId;
 
 
-    @CommandHandler
-    public SkuAggregate(SubmitOrderCommand command) {
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Order submit command: ");
-        }
-
-        apply(TradeCreatedEvent.builder()
-                .tradeId(command.getTradeId())
-                .addressId(command.getAddressId())
-                .skus(command.getSkus())
-                .commission(command.getCommission())
-                .couponIds(command.getCouponIds())
-                .invoiceId(command.getInvoiceId())
-                .message(command.getMessage())
-                .integration(command.getIntegration())
-                .payChannel(command.getPayChannel())
-                .createdBy(command.getCreatedBy())
-                .build()
-        );
-    }
-
-    @EventSourcingHandler
-    public void on(TradeCreatedEvent event) {
-    }
+//    @CommandHandler
+//    public SkuAggregate(SubmitOrderCommand command) {
+//        if (LOGGER.isInfoEnabled()) {
+//            LOGGER.info("Order submit command: ");
+//        }
+//
+//        apply(TradeCreatedEvent.builder()
+//                .tradeId(command.getTradeId())
+//                .addressId(command.getAddressId())
+//                .skus(command.getSkus())
+//                .commission(command.getCommission())
+//                .couponIds(command.getCouponIds())
+//                .invoiceId(command.getInvoiceId())
+//                .message(command.getMessage())
+//                .integration(command.getIntegration())
+//                .payChannel(command.getPayChannel())
+//                .createdBy(command.getCreatedBy())
+//                .build()
+//        );
+//    }
+//
+//    @EventSourcingHandler
+//    public void on(TradeCreatedEvent event) {
+//    }
 }

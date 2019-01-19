@@ -1,7 +1,5 @@
 package com.damon.product.api.dto.resp.spu;
 
-import com.damon.product.shared.enums.ProductModel;
-import com.damon.product.shared.enums.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,61 +17,4 @@ public class CreateProductRespDTO implements Serializable {
 
     @ApiModelProperty(name = "name", value = "商品名称")
     private String      name;
-
-    @ApiModelProperty(name = "image", value = "商品主图")
-    private String      image;
-
-    @ApiModelProperty(name = "desc", value = "商品说明")
-    private String      desc;
-
-    @ApiModelProperty(name = "price", value = "商品价格")
-    private Long        price;
-
-    @ApiModelProperty(name = "inventory", value = "库存")
-    private Integer     inventory;
-
-    @ApiModelProperty(name = "model", value = "型号")
-    private ProductModel model;
-
-    @ApiModelProperty(name = "type", value = "商品类型")
-    private ProductType type;
-
-    @ApiModelProperty(name = "canReturn", value = "是否支持退货")
-    private Boolean     canReturn;
-
-    @ApiModelProperty(name = "categoryId", value = "商品类别")
-    private Long        categoryId;
-
-    @ApiModelProperty(name = "brandId", value = "商品品牌")
-    private Long        brandId;
-
-    @ApiModelProperty(name = "warehouseId", value = "仓库")
-    private Long        warehouseId;
-
-    @ApiModelProperty(name = "supplierId", value = "供应商")
-    private Long        supplierId;
-
-    @ApiModelProperty(name = "h5Detail", value = "H5详情")
-    private String      h5Detail;
-
-    @ApiModelProperty(name = "saleVolume", value = "销量")
-    private Integer     saleVolume;
-
-    @ApiModelProperty(name = "deliverRegion", value = "配送区域")
-    private String      deliveryRegion;
-
-    @ApiModelProperty(name = "length", value = "长")
-    private Long        length;
-
-    @ApiModelProperty(name = "width", value = "宽")
-    private Long        width;
-
-    @ApiModelProperty(name = "height", value = "高")
-    private Long        height;
-
-    @ApiModelProperty(name = "weight", value = "重")
-    private Long        weight;
-
-    @ApiModelProperty(name = "boxNum", value = "装箱数")
-    private Long        boxNum;
 }

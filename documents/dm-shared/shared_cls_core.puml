@@ -1,0 +1,28 @@
+@startuml
+
+' 谁在什么时间对什么进行了什么操作，有什么变化
+class dm_operation_log {
+    + user_id: Long
+    + object_source: String
+    + object_id: String
+    + operate_type: String
+    + old_value: Text
+    + new_value: Text
+    + operate_at: Timestamp
+}
+
+class dm_image {
+    + img_id: Long
+    + name: String
+    + width: Integer
+    + height: Integer
+    + size: Integer
+    + url: String
+    + removed: YesNoEnum
+    + created_by: Long
+    + updated_by: Long
+    + created_at: Timestamp
+    + updated_at: Timestamp
+}
+
+@enduml

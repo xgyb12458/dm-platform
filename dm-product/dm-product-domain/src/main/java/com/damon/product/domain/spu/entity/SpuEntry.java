@@ -37,14 +37,14 @@ public class SpuEntry {
     @Column private Integer     inventory;
     @Column private String      model;
     @Column private String      type;
-    @Column private Integer     canReturn;
+    @Column private String      canReturn;
     @Column private Long        categoryId;
     @Column private Long        brandId;
     @Column private Long        warehouseId;
     @Column private Long        supplierId;
     @Column private String      h5Detail;
-    @Column private Integer     saleVolume;
-    @Column private String      deliverRegion;
+    @Column private Integer     soldVolume;
+    @Column private String      deliveryRegion;
     @Column private Long        length;
     @Column private Long        width;
     @Column private Long        height;

@@ -36,7 +36,7 @@ jasypt:
 
 swagger:
   enabled: true
-  title: 订单管理接口
+  title: 商品管理接口
   description: REST-API，所有接口以JSON格式返回
   base-package: com.damon.product
   base-path: /**
