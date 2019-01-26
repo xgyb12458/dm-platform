@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ResponseCodeEnum {
     /*** 状态成功 **/
-    SUCCESS(200, "成功"),
+    SUCCESS(2000, "成功"),
     AUTH_FAIL(3004, "鉴权失败"),
     BAD_REQUEST(4000, "请求参数有误"),
     INVALID_TOKEN(4001, "token失效"),

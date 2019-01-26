@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 产品状态
+ * 商品状态
  * @author Damon S.
  */
 @Getter
 @AllArgsConstructor
 public enum ProductState {
-
     /**
      * 草稿箱
      */

@@ -10,6 +10,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ReviewState {
+    /**
+     * 草稿中
+     */
+    DRAFTING,
 
     /**
      * 审核中

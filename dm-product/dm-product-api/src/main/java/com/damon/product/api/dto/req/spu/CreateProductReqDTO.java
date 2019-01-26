@@ -1,6 +1,5 @@
 package com.damon.product.api.dto.req.spu;
 
-import com.damon.product.shared.enums.ProductModel;
 import com.damon.product.shared.enums.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +15,7 @@ import java.util.List;
 @Data
 @ApiModel(value = "创建商品参数")
 public class CreateProductReqDTO implements Serializable {
-    private static final Long serialVersionUID = 12L;
+    private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(name = "name", value = "商品名称")
     private String      name;
@@ -24,8 +23,8 @@ public class CreateProductReqDTO implements Serializable {
     @ApiModelProperty(name = "spuCode", value = "商品编码")
     private String      spuCode;
 
-    @ApiModelProperty(name = "image", value = "商品主图")
-    private String      image;
+    @ApiModelProperty(name = "images", value = "商品图片")
+    private List<Long>      images;
 
     @ApiModelProperty(name = "desc", value = "商品说明")
     private String      desc;
@@ -37,7 +36,7 @@ public class CreateProductReqDTO implements Serializable {
     private Integer     inventory;
 
     @ApiModelProperty(name = "model", value = "型号")
-    private ProductModel model;
+    private String      model;
 
     @ApiModelProperty(name = "type", value = "商品类型")
     private ProductType type;
@@ -89,14 +88,18 @@ public class CreateProductReqDTO implements Serializable {
     @Data
     @ApiModel(value = "创建商品SKU参数")
     public class ProductSkuReqDTO implements Serializable {
+
+        @ApiModelProperty(name = "specIds", value = "规格", notes = "规格Id按顺序排列")
+        private List<Long>      specIds;
+
         @ApiModelProperty(name = "skuCode", value = "Sku编码")
         private String      skuCode;
 
         @ApiModelProperty(name = "name", value = "名称")
         private String      name;
 
-        @ApiModelProperty(name = "image", value = "SKU图片")
-        private String      image;
+        @ApiModelProperty(name = "images", value = "SKU图片")
+        private List<Long>      images;
 
         @ApiModelProperty(name = "inventory", value = "库存")
         private Integer     inventory;

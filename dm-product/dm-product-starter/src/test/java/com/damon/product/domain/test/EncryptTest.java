@@ -1,4 +1,4 @@
-package com.damon.order.domain.test;
+package com.damon.product.domain.test;
 
 import com.fasterxml.jackson.databind.deser.Deserializers;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
@@ -23,7 +23,7 @@ public class EncryptTest {
     @Test
     public void testEncryption() {
         String username= "hbe";
-        String password= "ddddhhsh";
+        String password= "dfdfdffdfdf";
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("生成加密后的账户：" + stringEncryptor.encrypt(username));

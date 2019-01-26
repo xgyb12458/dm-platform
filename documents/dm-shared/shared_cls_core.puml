@@ -11,7 +11,7 @@ class dm_operation_log {
     + operate_at: Timestamp
 }
 
-class dm_image {
+class dm_image_bed {
     + img_id: Long
     + name: String
     + width: Integer

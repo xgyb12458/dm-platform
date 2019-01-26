@@ -1,4 +1,4 @@
-package com.damon.order.domain.test;
+package com.damon.product.domain.test;
 
 import com.damon.product.starter.ProductApplication;
 import org.apache.shiro.SecurityUtils;

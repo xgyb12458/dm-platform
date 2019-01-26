@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @ApiModel(value = "创建商品参数")
 public class CreateProductRespDTO implements Serializable {
-    private static final Long serialVersionUID = 12L;
+    private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(name = "name", value = "商品名称")
     private String      name;

@@ -1,35 +1,22 @@
 package com.damon.product.shared.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 订单类型
+ * 商品类型
  * @author Damon S.
  */
 @Getter
+@AllArgsConstructor
 public enum ProductType {
     /**
-     * 普通订单
+     * 普通商品
      */
     NORMAL,
 
     /**
-     * 闪购
+     * 套装商品
      */
-    FLASH,
-
-    /**
-     * VIP权益
-     */
-    VIP,
-
-    /**
-     * 拼团
-     */
-    PIECE,
-
-    /**
-     * 大会
-     */
-    MEETING
+    SUIT
 }

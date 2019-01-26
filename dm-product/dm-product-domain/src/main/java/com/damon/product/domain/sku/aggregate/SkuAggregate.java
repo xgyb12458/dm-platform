@@ -1,18 +1,23 @@
 package com.damon.product.domain.sku.aggregate;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.time.Instant;
+import java.util.List;
 
 /**
  * 一次交易(主订单)
  * @author Damon S.
  */
+@Slf4j
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
-@ToString
 @Aggregate
 @NoArgsConstructor
 public class SkuAggregate {
@@ -35,10 +40,26 @@ public class SkuAggregate {
      * 生成订单后，还要进行订单拆分，包含优惠拆分和订单拆分，紧接着进入wms系统，最后走财务开票了流程。
      */
 
-    static final Logger LOGGER = LoggerFactory.getLogger(SkuAggregate.class);
-
     @AggregateIdentifier
-    private SkuId             skuId;
+    private SkuId       skuId;
+    private List<Long>  specIds;
+    private String      skuCode;
+    private String      name;
+    private List<Long>  images;
+    private Integer     inventory;
+    private Integer     secureInventory;
+    private Long        price;
+    private Long        reduction;
+    private Long        promoteFee;
+    private Long        serviceFee;
+    private Long        exchangePrice;
+    private Long        exchangePoint;
+    private Long        netWorth;
+    private String      barCode;
+    private Long        createdBy;
+    private Long        updatedBy;
+    private Instant     createdAt;
+    private Instant     updatedAt;
 
 
 //    @CommandHandler
