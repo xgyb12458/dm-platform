@@ -21,14 +21,14 @@ import java.sql.Timestamp;
 public class SpecificationEntry {
     @Id
     @NonNull
-    @Column private Long        specId;
+    @Column(name = "spec_id") private Long        specId;
     @Column private String      name;
     @Column private String      value;
     @Column private String      type;
     @Column private Integer     sort;
-    @Column private Long        parentId;
-    @Column private Long        createdBy;
-    @Column private Long        updatedBy;
-    @Column private Timestamp   createdAt;
-    @Column private Timestamp   updatedAt;
+    @Column(name = "parent_id") private Long        parentId;
+    @Column(name = "created_by") private Long        createdBy;
+    @Column(name = "updated_by") private Long        updatedBy;
+    @Column(name = "created_at") private Timestamp   createdAt;
+    @Column(name = "updated_at") private Timestamp   updatedAt;
 }

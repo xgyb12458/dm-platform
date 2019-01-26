@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class SkuSpecRelateEntry {
     @Id
     @NonNull
-    @Column private Long        skuId;
-    @Column private Long        specId;
-    @Column private Integer     sort;
+    @Column(name = "sku_id") private Long       skuId;
+    @Column(name = "spec_id") private Long      specId;
+    @Column(name = "sort") private Integer      sort;
 }

@@ -21,24 +21,24 @@ import java.sql.Timestamp;
 public class SkuEntry {
     @Id
     @NonNull
-    @Column private Long        skuId;
-    @Column private Long        productId;
-    @Column private String      skuCode;
+    @Column(name = "sku_id") private Long        skuId;
+    @Column(name = "product_id") private Long        productId;
+    @Column(name = "sku_code") private String      skuCode;
     @Column private String      name;
     @Column private String      image;
     @Column private String      state;
     @Column private Integer     inventory;
-    @Column private Integer     secureInventory;
+    @Column(name = "secure_inventory") private Integer     secureInventory;
     @Column private Long        price;
     @Column private Long        reduction;
-    @Column private Long        promoteFee;
-    @Column private Long        exchangePrice;
-    @Column private Long        serviceFee;
-    @Column private Long        exchangePoint;
-    @Column private Long        netWorth;
-    @Column private String      barCode;
-    @Column private Long        createdBy;
-    @Column private Long        updatedBy;
-    @Column private Timestamp   createdAt;
-    @Column private Timestamp   updatedAt;
+    @Column(name = "promote_fee") private Long        promoteFee;
+    @Column(name = "exchange_price") private Long        exchangePrice;
+    @Column(name = "service_fee") private Long        serviceFee;
+    @Column(name = "exchange_point") private Long        exchangePoint;
+    @Column(name = "net_worth") private Long        netWorth;
+    @Column(name = "bar_code") private String      barCode;
+    @Column(name = "created_by") private Long        createdBy;
+    @Column(name = "updated_by") private Long        updatedBy;
+    @Column(name = "created_at") private Timestamp   createdAt;
+    @Column(name = "updated_at") private Timestamp   updatedAt;
 }
