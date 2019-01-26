@@ -21,11 +21,11 @@ import java.sql.Timestamp;
 public class BrandEntry {
     @Id
     @NonNull
-    @Column private Long        brandId;
+    @Column(name = "brand_id") private Long        brandId;
     @Column private String      name;
     @Column private String      code;
-    @Column private Long        createdBy;
-    @Column private Long        updatedBy;
-    @Column private Timestamp   createdAt;
-    @Column private Timestamp   updatedAt;
+    @Column(name = "created_by") private Long        createdBy;
+    @Column(name = "updated_by") private Long        updatedBy;
+    @Column(name = "created_at") private Timestamp   createdAt;
+    @Column(name = "updated_at") private Timestamp   updatedAt;
 }

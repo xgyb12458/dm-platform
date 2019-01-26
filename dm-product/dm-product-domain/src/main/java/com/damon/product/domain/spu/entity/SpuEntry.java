@@ -25,33 +25,46 @@ import java.sql.Timestamp;
 public class SpuEntry {
     @Id
     @NotNull
-    @Column private Long        spuId;
-    @Column private String      spuCode;
+    @Column(name = "spu_id")
+    private Long        spuId;
+    @Column(name = "spu_code")
+    private String      spuCode;
     @Column private String      name;
     @Column private String      image;
     @Column private String      desc;
     @Column private Long        price;
-    @Column private String      reviewState;
-    @Column private String      productState;
+    @Column(name = "review_state")
+    private String      reviewState;
+    @Column(name = "product_state")
+    private String      productState;
     @Column private String      removed;
     @Column private Integer     inventory;
     @Column private String      model;
     @Column private String      type;
-    @Column private String      canReturn;
-    @Column private Long        categoryId;
-    @Column private Long        brandId;
-    @Column private Long        warehouseId;
-    @Column private Long        supplierId;
-    @Column private String      h5Detail;
-    @Column private Integer     soldVolume;
-    @Column private String      deliveryRegion;
+    @Column(name = "can_return")
+    private String      canReturn;
+    @Column(name = "category_id")
+    private Long        categoryId;
+    @Column(name = "brand_id")
+    private Long        brandId;
+    @Column(name = "warehouse_id")
+    private Long        warehouseId;
+    @Column(name = "supplier_id")
+    private Long        supplierId;
+    @Column(name = "h5_detail")
+    private String      h5Detail;
+    @Column(name = "sold_volume")
+    private Integer     soldVolume;
+    @Column(name = "delivery_region")
+    private String      deliveryRegion;
     @Column private Long        length;
     @Column private Long        width;
     @Column private Long        height;
     @Column private Long        weight;
-    @Column private Long        boxNum;
-    @Column private Long        createdBy;
-    @Column private Long        updatedBy;
-    @Column private Timestamp   createdAt;
-    @Column private Timestamp   updatedAt;
+    @Column(name = "box_num")
+    private Long        boxNum;
+    @Column(name = "created_by") private Long        createdBy;
+    @Column(name = "updated_by") private Long        updatedBy;
+    @Column(name = "created_at") private Timestamp   createdAt;
+    @Column(name = "updated_at") private Timestamp   updatedAt;
 }
