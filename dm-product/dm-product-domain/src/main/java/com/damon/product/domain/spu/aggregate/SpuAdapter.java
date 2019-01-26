@@ -50,7 +50,7 @@ public class SpuAdapter {
                 .images(req.getImages())
                 .skus(productSkus)
                 .reviewState(ReviewState.DRAFTING)
-                .productState(ProductState.IN_DRAFT)
+                .productState(ProductState.DRAFT)
                 .removed(YesNoEnum.NO)
                 .desc(req.getDesc())
                 .price(req.getPrice())

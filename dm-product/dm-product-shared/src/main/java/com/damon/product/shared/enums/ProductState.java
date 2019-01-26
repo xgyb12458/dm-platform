@@ -13,20 +13,20 @@ public enum ProductState {
     /**
      * 草稿箱
      */
-    IN_DRAFT,
+    DRAFT,
 
     /**
      * 计划发布
      */
-    FOR_SALE,
+    FORSALE,
 
     /**
      * 上架
      */
-    ON_SALE,
+    ONSALE,
 
     /**
      * 下架
      */
-    IN_STOCK
+    INSTOCK
 }
