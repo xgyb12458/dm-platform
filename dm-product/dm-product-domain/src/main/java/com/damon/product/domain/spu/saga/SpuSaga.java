@@ -22,6 +22,7 @@ public class SpuSaga {
     private final QueryGateway queryGateway;
 
 
+    /*
     @StartSaga
     @EventHandler
     private void on(ProductCreatedEvent event) {
@@ -48,4 +49,5 @@ public class SpuSaga {
                                 .build())
         );
     }
+    */
 }

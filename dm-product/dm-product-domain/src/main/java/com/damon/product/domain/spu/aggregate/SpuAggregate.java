@@ -1,8 +1,6 @@
 package com.damon.product.domain.spu.aggregate;
 
 import com.damon.product.domain.sku.aggregate.SkuAggregate;
-import com.damon.product.domain.sku.aggregate.SkuId;
-import com.damon.product.domain.sku.command.CreateSkuCommand;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.event.ProductCreatedEvent;
 import com.damon.product.shared.enums.ProductState;
@@ -39,37 +37,37 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 public class SpuAggregate {
 
     @AggregateIdentifier
-    private SpuId       spuId;
-    private String      spuCode;
-    private String      name;
+    private SpuId               spuId;
+    private String              spuCode;
+    private String              name;
     @AggregateMember
-    private List<SkuAggregate> skus;
-    private List<Long>  images;
-    private String      desc;
-    private Long        price;
-    private ReviewState reviewState;
-    private ProductState productState;
-    private YesNoEnum   removed;
-    private Integer     inventory;
-    private String      model;
-    private ProductType type;
-    private Boolean     canReturn;
-    private Long        categoryId;
-    private Long        brandId;
-    private Long        warehouseId;
-    private Long        supplierId;
-    private String      h5Detail;
-    private Integer     soldVolume;
-    private String      deliveryRegion;
-    private Long        length;
-    private Long        width;
-    private Long        height;
-    private Long        weight;
-    private Long        boxNum;
-    private Long        createdBy;
-    private Long        updatedBy;
-    private Instant     createdAt;
-    private Instant     updatedAt;
+    private List<SkuAggregate>  skus;
+    private List<Long>          images;
+    private String              desc;
+    private Long                price;
+    private ReviewState         reviewState;
+    private ProductState        productState;
+    private YesNoEnum           removed;
+    private Integer             inventory;
+    private String              model;
+    private ProductType         type;
+    private Boolean             canReturn;
+    private Long                categoryId;
+    private Long                brandId;
+    private Long                warehouseId;
+    private Long                supplierId;
+    private String              h5Detail;
+    private Integer             soldVolume;
+    private String              deliveryRegion;
+    private Long                length;
+    private Long                width;
+    private Long                height;
+    private Long                weight;
+    private Long                boxNum;
+    private Long                createdBy;
+    private Long                updatedBy;
+    private Instant             createdAt;
+    private Instant             updatedAt;
 
     @CommandHandler
     public SpuAggregate(CreateSpuCommand command) {
@@ -77,6 +75,17 @@ public class SpuAggregate {
         if (!SpuAdapter.validate(command)) {
             throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
         }
+
+        /*
+        try {
+            command.getSkus().stream().map(
+                    sku -> AggregateLifecycle.createNew(SkuAggregate.class, () -> new SkuAggregate())
+            ).collect(Collectors.toList());
+        } catch (Exception e) {
+
+        }
+        */
+
         // 参数合法状态下启动创建事件
         apply(ProductCreatedEvent.builder()
                 .spuId(command.getSpuId())
