@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "dm_spu_category")
+@Table(name = "pms_category")
 public class CategoryEntry {
     @Id
     @NonNull

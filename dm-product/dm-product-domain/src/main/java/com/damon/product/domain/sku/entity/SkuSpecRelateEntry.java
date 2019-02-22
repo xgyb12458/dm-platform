@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "dm_sku_spec_relate")
+@Table(name = "pms_sku_spec_relate")
 public class SkuSpecRelateEntry {
     @Id
     @NonNull

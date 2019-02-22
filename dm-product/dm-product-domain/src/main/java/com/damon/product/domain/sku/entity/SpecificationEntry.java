@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "dm_sku_specification")
+@Table(name = "pms_sku_specification")
 public class SpecificationEntry {
     @Id
     @NonNull
