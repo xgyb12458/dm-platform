@@ -38,6 +38,8 @@ public class SpuAggregate {
 
     @AggregateIdentifier
     private SpuId               spuId;
+    @AggregateMember
+    private List<SkuAggregate>  skus;
     /**商品编码*/
     private String              spuCode;
     /**商品名称*/
@@ -48,8 +50,6 @@ public class SpuAggregate {
     private String              imageId;
     /**商品图片集合*/
     private List<Long>          albumImages;
-    @AggregateMember
-    private List<SkuAggregate>  skus;
     /**商品描述*/
     private String              description;
     /**商品价格*/
