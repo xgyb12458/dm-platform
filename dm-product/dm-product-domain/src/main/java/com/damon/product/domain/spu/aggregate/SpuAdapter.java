@@ -4,8 +4,8 @@ import com.damon.product.api.dto.req.spu.CreateProductReqDTO;
 import com.damon.product.domain.sku.aggregate.ProductSku;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.event.ProductCreatedEvent;
-import com.damon.product.shared.enums.ProductState;
-import com.damon.product.shared.enums.ReviewState;
+import com.damon.product.shared.enums.SpuState;
+import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.YesNoEnum;
 
 import java.util.List;
@@ -47,28 +47,24 @@ public class SpuAdapter {
                 .spuId(new SpuId())
                 .spuCode(req.getSpuCode())
                 .name(req.getName())
-                .images(req.getImages())
+//                .imageId(req.getImageId())
                 .skus(productSkus)
-                .reviewState(ReviewState.DRAFTING)
-                .productState(ProductState.DRAFT)
+                .verifyState(VerifyState.DRAFTING)
+                .spuState(SpuState.DRAFT)
                 .removed(YesNoEnum.NO)
-                .desc(req.getDesc())
+                .description(req.getDesc())
                 .price(req.getPrice())
                 .inventory(req.getInventory())
                 .model(req.getModel())
                 .type(req.getType())
-                .canReturn(req.getCanReturn())
+//                .canReturn(req.getCanReturn())
                 .categoryId(req.getCategoryId())
                 .brandId(req.getBrandId())
                 .warehouseId(req.getWarehouseId())
                 .supplierId(req.getSupplierId())
                 .h5Detail(req.getH5Detail())
                 .deliveryRegion(req.getDeliveryRegion())
-                .length(req.getLength())
-                .width(req.getWidth())
-                .height(req.getHeight())
                 .weight(req.getWeight())
-                .boxNum(req.getBoxNum())
                 .createdBy(currentUserId)
                 .build();
     }

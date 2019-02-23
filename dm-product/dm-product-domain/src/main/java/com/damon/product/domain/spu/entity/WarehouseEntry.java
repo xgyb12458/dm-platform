@@ -17,15 +17,20 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pms_warehouse")
+@Table(name = "pms_spu_warehouse")
 public class WarehouseEntry {
     @Id
     @NonNull
     @Column(name = "warehouse_id") private Long      warehouseId;
     @Column private String      name;
     @Column private String      code;
-    @Column(name = "created_by") private Long        createdBy;
-    @Column(name = "updated_by") private Long        updatedBy;
-    @Column(name = "created_at") private Timestamp   createdAt;
-    @Column(name = "updated_at") private Timestamp   updatedAt;
+
+    @Column(name = "created_by")
+    private Long                createdBy;
+    @Column(name = "updated_by")
+    private Long                updatedBy;
+    @Column(name = "created_at")
+    private Timestamp           createdAt;
+    @Column(name = "updated_at")
+    private Timestamp           updatedAt;
 }

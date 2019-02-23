@@ -17,15 +17,21 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pms_supplier")
+@Table(name = "pms_spu_supplier")
 public class SupplierEntry {
     @Id
     @NonNull
-    @Column(name = "supplier_id") private Long        supplierId;
+    @Column(name = "supplier_id")
+    private Long        supplierId;
     @Column private String      name;
     @Column private String      code;
-    @Column(name = "created_by") private Long        createdBy;
-    @Column(name = "updated_by") private Long        updatedBy;
-    @Column(name = "created_at") private Timestamp   createdAt;
-    @Column(name = "updated_at") private Timestamp   updatedAt;
+
+    @Column(name = "created_by")
+    private Long                createdBy;
+    @Column(name = "updated_by")
+    private Long                updatedBy;
+    @Column(name = "created_at")
+    private Timestamp           createdAt;
+    @Column(name = "updated_at")
+    private Timestamp           updatedAt;
 }

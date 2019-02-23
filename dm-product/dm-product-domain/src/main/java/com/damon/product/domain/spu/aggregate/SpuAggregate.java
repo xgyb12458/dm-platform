@@ -3,9 +3,9 @@ package com.damon.product.domain.spu.aggregate;
 import com.damon.product.domain.sku.aggregate.SkuAggregate;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.event.ProductCreatedEvent;
-import com.damon.product.shared.enums.ProductState;
+import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.ProductType;
-import com.damon.product.shared.enums.ReviewState;
+import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.enums.YesNoEnum;
 import com.damon.shared.exception.BusinessException;
@@ -38,36 +38,69 @@ public class SpuAggregate {
 
     @AggregateIdentifier
     private SpuId               spuId;
+    /**商品编码*/
     private String              spuCode;
+    /**商品名称*/
     private String              name;
+    /**商品副标题*/
+    private String              subTitle;
+    /**主图*/
+    private String              imageId;
+    /**商品图片集合*/
+    private List<Long>          albumImages;
     @AggregateMember
     private List<SkuAggregate>  skus;
-    private List<Long>          images;
-    private String              desc;
+    /**商品描述*/
+    private String              description;
+    /**商品价格*/
     private Long                price;
-    private ReviewState         reviewState;
-    private ProductState        productState;
+    /**商品市场价*/
+    private Long                marketPrice;
+    /**审核状态*/
+    private VerifyState         verifyState;
+    /**商品状态：草稿，待发布，已上架，已下架*/
+    private SpuState            spuState;
+    /**新品标识*/
+    private YesNoEnum           newState;
+    /**是否已删除*/
     private YesNoEnum           removed;
+    /**推荐标识*/
+    private YesNoEnum           recommended;
+    /**售罄标识*/
+    private YesNoEnum           soldOut;
+    /**商品库存*/
     private Integer             inventory;
+    /**库存预警值*/
+    private Integer             lowInventoryLimit;
+    /**型号*/
     private String              model;
+    /**商品类型*/
     private ProductType         type;
-    private Boolean             canReturn;
+    /**是否可退货*/
+    private YesNoEnum           canReturn;
+    /**商品类别*/
     private Long                categoryId;
+    /**商品品牌*/
     private Long                brandId;
+    /**发货仓库*/
     private Long                warehouseId;
+    /**供应商*/
     private Long                supplierId;
+    /**运费模板*/
+    private Long                freightTemplateId;
+    /**商品详情*/
     private String              h5Detail;
+    /**销量*/
     private Integer             soldVolume;
+    /**配送区域*/
     private String              deliveryRegion;
-    private Long                length;
-    private Long                width;
-    private Long                height;
+    /**商品重量，单位：毫克*/
     private Long                weight;
-    private Long                boxNum;
     private Long                createdBy;
     private Long                updatedBy;
     private Instant             createdAt;
     private Instant             updatedAt;
+
 
     @CommandHandler
     public SpuAggregate(CreateSpuCommand command) {
@@ -91,29 +124,35 @@ public class SpuAggregate {
                 .spuId(command.getSpuId())
                 .spuCode(command.getSpuCode())
                 .name(command.getName())
+                .subTitle(command.getSubTitle())
+                .imageId(command.getImageId())
                 .skus(command.getSkus())
-                .images(command.getImages())
-                .reviewState(command.getReviewState())
-                .productState(command.getProductState())
+                .albumImages(command.getAlbumImages())
+                .verifyState(command.getVerifyState())
+                .newState(command.getNewState())
+                .spuState(command.getSpuState())
                 .removed(command.getRemoved())
-                .desc(command.getDesc())
+                .recommended(command.getRecommended())
+                .soldOut(command.getSoldOut())
                 .price(command.getPrice())
+                .marketPrice(command.getMarketPrice())
                 .inventory(command.getInventory())
+                .lowInventoryLimit(command.getLowInventoryLimit())
                 .model(command.getModel())
+                .soldVolume(command.getSoldVolume())
                 .type(command.getType())
+                .description(command.getDescription())
                 .canReturn(command.getCanReturn())
                 .categoryId(command.getCategoryId())
                 .brandId(command.getBrandId())
                 .warehouseId(command.getWarehouseId())
                 .supplierId(command.getSupplierId())
+                .freightTemplateId(command.getFreightTemplateId())
                 .h5Detail(command.getH5Detail())
                 .deliveryRegion(command.getDeliveryRegion())
-                .length(command.getLength())
-                .width(command.getWidth())
-                .height(command.getHeight())
                 .weight(command.getWeight())
-                .boxNum(command.getBoxNum())
                 .createdBy(command.getCreatedBy())
+                .createdAt(Instant.now())
                 .build()
         );
     }
@@ -127,13 +166,21 @@ public class SpuAggregate {
         setSpuId(event.getSpuId());
         setSpuCode(event.getSpuCode());
         setName(event.getName());
-        setImages(event.getImages());
-        setReviewState(event.getReviewState());
-        setProductState(event.getProductState());
+        setSubTitle(event.getSubTitle());
+        setImageId(event.getImageId());
+        setAlbumImages(event.getAlbumImages());
+        setVerifyState(event.getVerifyState());
+        setSpuState(event.getSpuState());
+        setNewState(event.getNewState());
         setRemoved(event.getRemoved());
-        setDesc(event.getDesc());
+        setRecommended(event.getRecommended());
+        setSoldOut(event.getSoldOut());
+        setDescription(event.getDescription());
         setPrice(event.getPrice());
+        setMarketPrice(event.getMarketPrice());
         setInventory(event.getInventory());
+        setLowInventoryLimit(event.getLowInventoryLimit());
+        setSoldVolume(event.getSoldVolume());
         setModel(event.getModel());
         setType(event.getType());
         setCanReturn(event.getCanReturn());
@@ -142,13 +189,12 @@ public class SpuAggregate {
         setWarehouseId(event.getWarehouseId());
         setSupplierId(event.getSupplierId());
         setH5Detail(event.getH5Detail());
+        setFreightTemplateId(event.getFreightTemplateId());
         setDeliveryRegion(event.getDeliveryRegion());
-        setLength(event.getLength());
-        setWidth(event.getWidth());
-        setHeight(event.getHeight());
         setWeight(event.getWeight());
-        setBoxNum(event.getBoxNum());
         setCreatedBy(event.getCreatedBy());
+        setCreatedAt(event.getCreatedAt());
+
 //        setSkus(event.getSkus().stream().map(
 //                sku -> {
 //                    CreateSkuCommand.builder()

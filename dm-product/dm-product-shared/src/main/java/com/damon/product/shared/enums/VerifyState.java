@@ -4,29 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 商品状态
+ * 审核状态
  * @author Damon S.
  */
 @Getter
 @AllArgsConstructor
-public enum ProductState {
+public enum VerifyState {
     /**
-     * 草稿箱
+     * 草稿中
      */
-    DRAFT,
+    DRAFTING,
 
     /**
-     * 计划发布
+     * 审核中
      */
-    FORSALE,
+    AUDITING,
 
     /**
-     * 上架
+     * 审核通过
      */
-    ONSALE,
+    APPROVED,
 
     /**
-     * 下架
+     * 审核驳回
      */
-    INSTOCK
+    REJECTED
 }

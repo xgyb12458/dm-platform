@@ -9,7 +9,7 @@ class SpuAggregate {
     - image: String
     - desc: String
     - price: Long
-    - reviewState: ReviewState
+    - verifyState: ReviewState
     - productState: ProductState
     - removed: Boolean
     - inventory: Integer

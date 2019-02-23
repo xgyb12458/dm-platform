@@ -7,7 +7,7 @@ class ProductAggregate {
     - name: String
     - image: String
     - price: Long
-    - reviewState: ReviewState
+    - verifyState: ReviewState
     - productState: ProductState
     - removed: Boolean
     - inventory: Integer

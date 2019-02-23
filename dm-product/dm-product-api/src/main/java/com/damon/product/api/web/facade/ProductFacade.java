@@ -1,9 +1,7 @@
 package com.damon.product.api.web.facade;
 
 import com.damon.product.api.dto.req.spu.CreateProductReqDTO;
-import com.damon.product.api.dto.req.spu.SubmitOrderReqDTO;
 import com.damon.product.api.dto.resp.spu.CreateProductRespDTO;
-import com.damon.product.api.dto.resp.trade.SubmitOrderRespDTO;
 import com.damon.product.shared.constant.ApiConstants;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
@@ -26,8 +24,8 @@ public interface ProductFacade {
     );
 
 
-    @PostMapping("/orders/submit")
-    ResponseWrapper<SubmitOrderRespDTO> submit(
-            @RequestBody @Validated SubmitOrderReqDTO submitOrderReqDTO
-    );
+//    @PostMapping("/orders/submit")
+//    ResponseWrapper<SubmitOrderRespDTO> submit(
+//            @RequestBody @Validated SubmitOrderReqDTO submitOrderReqDTO
+//    );
 }
