@@ -1,9 +1,9 @@
 package com.damon.product.core.web.facade.impl;
 
-import com.damon.product.api.dto.req.spu.CreateProductReqDTO;
-import com.damon.product.api.dto.resp.spu.CreateProductRespDTO;
+import com.damon.product.api.dto.req.spu.CreateSpuReqDTO;
+import com.damon.product.api.dto.resp.spu.CreateSpuRespDTO;
 import com.damon.product.api.web.facade.ProductFacade;
-import com.damon.product.domain.spu.aggregate.SpuAdapter;
+import com.damon.product.core.query.handler.spu.SpuAdapter;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
@@ -29,14 +29,14 @@ public class ProductFacadeImpl implements ProductFacade {
     @ArgsValid
     @Override
     @ApiOperation(value = "创建商品", notes = "创建商品参数")
-    public ResponseWrapper<CreateProductRespDTO> create(
-            CreateProductReqDTO createProductReqDTO) {
+    public ResponseWrapper<CreateSpuRespDTO> create(
+            CreateSpuReqDTO createSpuReqDTO) {
         commandGateway.sendAndWait(
-                SpuAdapter.transformCommand(createProductReqDTO)
+                SpuAdapter.transformCommand(createSpuReqDTO)
         );
-        CreateProductRespDTO createProductRespDTO = new CreateProductRespDTO();
+        CreateSpuRespDTO createSpuRespDTO = new CreateSpuRespDTO();
 
-        return new ResponseWrapper<>(createProductRespDTO);
+        return new ResponseWrapper<>(createSpuRespDTO);
     }
 
 //    @ArgsValid

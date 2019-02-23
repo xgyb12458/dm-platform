@@ -1,7 +1,8 @@
-package com.damon.product.domain.spu.aggregate;
+package com.damon.product.core.query.handler.spu;
 
-import com.damon.product.api.dto.req.spu.CreateProductReqDTO;
+import com.damon.product.api.dto.req.spu.CreateSpuReqDTO;
 import com.damon.product.domain.sku.aggregate.ProductSku;
+import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.event.SpuCreatedEvent;
 import com.damon.product.shared.enums.SpuState;
@@ -20,7 +21,7 @@ public class SpuAdapter {
     /**
      * 转换对象
      */
-    public static CreateSpuCommand transformCommand(CreateProductReqDTO req) {
+    public static CreateSpuCommand transformCommand(CreateSpuReqDTO req) {
         Long currentUserId = 10000L;
 
         List<ProductSku> productSkus = req.getSkus().stream().map(
@@ -30,7 +31,7 @@ public class SpuAdapter {
                         .name(item.getName())
                         .images(item.getImages())
                         .inventory(item.getInventory())
-                        .secureInventory(item.getSecureInventory())
+                        .safetyStock(item.getSafetyStock())
                         .price(item.getPrice())
                         .reduction(item.getReduction())
                         .promoteFee(item.getPromoteFee())
@@ -52,7 +53,7 @@ public class SpuAdapter {
                 .verifyState(VerifyState.DRAFTING)
                 .spuState(SpuState.DRAFT)
                 .removed(YesNoEnum.NO)
-                .description(req.getDesc())
+                .description(req.getDescription())
                 .price(req.getPrice())
                 .inventory(req.getInventory())
                 .model(req.getModel())

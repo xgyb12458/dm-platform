@@ -3,8 +3,8 @@ package com.damon.product.domain.spu.aggregate;
 import com.damon.product.domain.sku.aggregate.SkuAggregate;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.event.SpuCreatedEvent;
-import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.ProductType;
+import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.enums.YesNoEnum;
@@ -47,7 +47,7 @@ public class SpuAggregate {
     /**商品副标题*/
     private String              subTitle;
     /**主图*/
-    private String              imageId;
+    private Long                imageId;
     /**商品图片集合*/
     private List<Long>          albumImages;
     /**商品描述*/
@@ -70,8 +70,8 @@ public class SpuAggregate {
     private YesNoEnum           soldOut;
     /**商品库存*/
     private Integer             inventory;
-    /**库存预警值*/
-    private Integer             lowInventoryLimit;
+    /**安全库存预警值*/
+    private Integer             safetyStock;
     /**型号*/
     private String              model;
     /**商品类型*/
@@ -104,6 +104,8 @@ public class SpuAggregate {
 
     @CommandHandler
     public SpuAggregate(CreateSpuCommand command) {
+        log.info("creating spu aggregate command, parameters: {}", command.toString());
+
         // 验证参数是否合法
         if (!SpuAdapter.validate(command)) {
             throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
@@ -137,7 +139,7 @@ public class SpuAggregate {
                 .price(command.getPrice())
                 .marketPrice(command.getMarketPrice())
                 .inventory(command.getInventory())
-                .lowInventoryLimit(command.getLowInventoryLimit())
+                .safetyStock(command.getSafetyStock())
                 .model(command.getModel())
                 .soldVolume(command.getSoldVolume())
                 .type(command.getType())
@@ -160,6 +162,8 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     public void on(SpuCreatedEvent event) {
+        log.info("creating spu aggregate event, parameters: {}", event.toString());
+
         if (!SpuAdapter.validate(event)) {
             throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
         }
@@ -179,7 +183,7 @@ public class SpuAggregate {
         setPrice(event.getPrice());
         setMarketPrice(event.getMarketPrice());
         setInventory(event.getInventory());
-        setLowInventoryLimit(event.getLowInventoryLimit());
+        setSafetyStock(event.getSafetyStock());
         setSoldVolume(event.getSoldVolume());
         setModel(event.getModel());
         setType(event.getType());

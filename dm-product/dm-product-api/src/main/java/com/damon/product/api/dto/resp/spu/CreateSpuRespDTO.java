@@ -11,10 +11,10 @@ import java.io.Serializable;
  * @author Damon S.
  */
 @Data
-@ApiModel(value = "创建商品参数")
-public class CreateProductRespDTO implements Serializable {
+@ApiModel(value = "创建商品返回信息")
+public class CreateSpuRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "name", value = "商品名称")
-    private String      name;
+    @ApiModelProperty(name = "spuId", value = "商品标识")
+    private Long      spuId;
 }

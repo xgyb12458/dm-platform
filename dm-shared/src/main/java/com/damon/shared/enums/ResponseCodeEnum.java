@@ -15,7 +15,7 @@ public enum ResponseCodeEnum {
     /*** 状态成功 **/
     SUCCESS(2000, "成功"),
     AUTH_FAIL(3004, "鉴权失败"),
-    BAD_REQUEST(4000, "请求参数有误"),
+    BAD_REQUEST(4000, "请求参数不合法"),
     INVALID_TOKEN(4001, "token失效"),
     INTERNAL_ERROR(5000, "服务器异常"),
     NOT_FOUND(5010, "未找到指定对象"),

@@ -17,7 +17,7 @@ public class ProductSku {
     private final String      name;
     private final List<Long>  images;
     private final Integer     inventory;
-    private final Integer     secureInventory;
+    private final Integer     safetyStock;
     private final Long        price;
     private final Long        reduction;
     private final Long        promoteFee;

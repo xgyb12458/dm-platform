@@ -41,7 +41,7 @@ public class SpuEntry {
 
     /**主图*/
     @Column(name = "image_id")
-    private String imageId;
+    private Long    imageId;
 
     /**商品图片Id集合*/
     @Column(name = "album_images")
@@ -86,9 +86,9 @@ public class SpuEntry {
     /**商品库存*/
     @Column private Integer inventory;
 
-    /**库存预警值*/
-    @Column(name = "low_inventory_limit")
-    private Integer lowInventoryLimit;
+    /**安全库存预警值*/
+    @Column(name = "safety_stock")
+    private Integer safetyStock;
 
     /**型号*/
     @Column private String model;

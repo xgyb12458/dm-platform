@@ -3,7 +3,7 @@ package com.damon.shared.wrapper;
 import com.damon.shared.enums.ResponseCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.Getter;
 
 /**
  * @author Damon S.
@@ -22,7 +22,7 @@ public class ResponseWrapper<T> {
     private final T data;
 
     public ResponseWrapper() {
-        this(ResponseCodeEnum.SUCCESS.getCode(), ResponseCodeEnum.SUCCESS.getMessage(), null);
+        this(ResponseCodeEnum.SUCCESS);
     }
 
     public ResponseWrapper(T data) {
@@ -31,10 +31,6 @@ public class ResponseWrapper<T> {
 
     public ResponseWrapper(ResponseCodeEnum code) {
         this(code.getCode(), code.getMessage(), null);
-    }
-
-    public ResponseWrapper(Integer code, String message) {
-        this(code, message, null);
     }
 
     private ResponseWrapper(Integer code, String message, T data) {

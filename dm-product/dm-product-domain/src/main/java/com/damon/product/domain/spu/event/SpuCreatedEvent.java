@@ -23,7 +23,7 @@ public class SpuCreatedEvent {
     private final String            spuCode;
     private final String            name;
     private final String            subTitle;
-    private final String            imageId;
+    private final Long              imageId;
     private final List<Long>        albumImages;
     private final List<ProductSku>  skus;
     private final String            description;
@@ -36,7 +36,7 @@ public class SpuCreatedEvent {
     private final YesNoEnum         recommended;
     private final YesNoEnum         soldOut;
     private final Integer           inventory;
-    private final Integer           lowInventoryLimit;
+    private final Integer           safetyStock;
     private final Integer           soldVolume;
     private final String            model;
     private final ProductType       type;

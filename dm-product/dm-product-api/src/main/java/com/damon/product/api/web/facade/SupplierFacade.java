@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 商品管理接口
+ * 供应商管理接口
  * @author Damon S.
  */
 @RequestMapping(value = "/product/" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_VALUE)
-public interface ProductFacade {
+public interface SupplierFacade {
 
 
-    @PostMapping("/spus")
+    @PostMapping("/supplier")
     ResponseWrapper<CreateSpuRespDTO> create(
             @RequestBody @Validated CreateSpuReqDTO createSpuReqDTO
     );
