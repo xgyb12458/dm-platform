@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * 新建品牌命令
+ * 修改品牌命令
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月23日 18:19
  */
 @Value
 @Builder
-public class CreateBrandCommand {
+public class UpdateBrandCommand {
+    private final Long          brandId;
     /**品牌名称*/
     private final String        name;
     /**品牌编码*/
@@ -32,5 +33,5 @@ public class CreateBrandCommand {
     /**品牌故事*/
     private final String        brandStory;
     /**创建人*/
-    private final Long          createdBy;
+    private final Long          updatedBy;
 }

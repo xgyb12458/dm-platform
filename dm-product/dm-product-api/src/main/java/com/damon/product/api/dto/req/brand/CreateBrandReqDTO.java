@@ -33,7 +33,7 @@ public class CreateBrandReqDTO implements Serializable {
     private Boolean     factoryState;
 
     @ApiModelProperty(name = "sort", value = "排序")
-    private String      sort;
+    private Integer      sort;
 
     @ApiModelProperty(name = "firstLetter", value = "首字母")
     private String      firstLetter;

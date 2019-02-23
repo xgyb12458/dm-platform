@@ -1,21 +1,20 @@
-package com.damon.product.api.dto.req.brand;
+package com.damon.product.api.dto.req.category;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
- * 编辑品牌
+ * 编辑商品类别
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月23日 17:19
  */
 @Data
-@ApiModel(value = "编辑品牌请求参数")
-public class UpdateBrandReqDTO implements Serializable {
+@ApiModel(value = "编辑商品类别")
+public class UpdateCategoryReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(name = "brandId", value = "品牌ID")

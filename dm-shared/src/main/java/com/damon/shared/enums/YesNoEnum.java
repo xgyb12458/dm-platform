@@ -15,4 +15,9 @@ public enum YesNoEnum {
     NO(Boolean.FALSE);
 
     private final Boolean value;
+
+    /**根据真假值转换枚举值*/
+    public static YesNoEnum parse(Boolean b) {
+        return b ? YES : NO;
+    }
 }

@@ -1,27 +1,23 @@
-package com.damon.product.api.dto.req.brand;
+package com.damon.product.api.dto.req.supplier;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
- * 编辑品牌
+ * 创建商品类别
  * @author Damon S.
  * @version v1.0.1
- * @date 2019年02月23日 17:19
+ * @date 2019年02月23日 17:03
  */
 @Data
-@ApiModel(value = "编辑品牌请求参数")
-public class UpdateBrandReqDTO implements Serializable {
+@ApiModel(value = "创建商品类别")
+public class CreateSupplierReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "brandId", value = "品牌ID")
-    private Long        brandId;
-
-    @ApiModelProperty(name = "name", value = "品牌名称")
+    @ApiModelProperty(name = "name", value = "商品名称")
     private String      name;
 
     @ApiModelProperty(name = "code", value = "品牌编码")
@@ -37,7 +33,7 @@ public class UpdateBrandReqDTO implements Serializable {
     private Boolean     factoryState;
 
     @ApiModelProperty(name = "sort", value = "排序")
-    private Integer     sort;
+    private Integer      sort;
 
     @ApiModelProperty(name = "firstLetter", value = "首字母")
     private String      firstLetter;

@@ -6,9 +6,7 @@ import com.damon.product.domain.spu.event.SpuCreatedEvent;
 import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
-import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.enums.YesNoEnum;
-import com.damon.shared.exception.BusinessException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -107,9 +105,9 @@ public class SpuAggregate {
         log.info("creating spu aggregate command, parameters: {}", command.toString());
 
         // 验证参数是否合法
-        if (!SpuAdapter.validate(command)) {
-            throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
-        }
+//        if (!SpuAdapter.validate(command)) {
+//            throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
+//        }
 
         /*
         try {
@@ -164,9 +162,9 @@ public class SpuAggregate {
     public void on(SpuCreatedEvent event) {
         log.info("creating spu aggregate event, parameters: {}", event.toString());
 
-        if (!SpuAdapter.validate(event)) {
-            throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
-        }
+//        if (!SpuAdapter.validate(event)) {
+//            throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
+//        }
         setSpuId(event.getSpuId());
         setSpuCode(event.getSpuCode());
         setName(event.getName());
