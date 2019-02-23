@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author Damon S.
  */
 @Repository
-public interface WarehouseEntryRepository extends EntryRepository<WarehouseEntry, Long> {
+public interface SpuRepository extends EntryRepository<SpuEntry, Long> {
 }
