@@ -1,12 +1,7 @@
 package com.damon.product.domain.spu.saga;
 
-import com.damon.product.domain.sku.aggregate.SkuId;
-import com.damon.product.domain.sku.command.CreateSkuCommand;
-import com.damon.product.domain.spu.event.ProductCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +20,7 @@ public class SpuSaga {
     /*
     @StartSaga
     @EventHandler
-    private void on(ProductCreatedEvent event) {
+    private void on(SpuCreatedEvent event) {
         event.getSkus().forEach(
                 sku -> commandGateway.send(
                         CreateSkuCommand.builder()

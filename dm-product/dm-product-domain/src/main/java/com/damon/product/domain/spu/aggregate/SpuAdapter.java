@@ -3,7 +3,7 @@ package com.damon.product.domain.spu.aggregate;
 import com.damon.product.api.dto.req.spu.CreateProductReqDTO;
 import com.damon.product.domain.sku.aggregate.ProductSku;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
-import com.damon.product.domain.spu.event.ProductCreatedEvent;
+import com.damon.product.domain.spu.event.SpuCreatedEvent;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.YesNoEnum;
@@ -80,7 +80,7 @@ public class SpuAdapter {
     /**
      * 验证创建商品事件参数是否合法
      */
-    static boolean validate(ProductCreatedEvent event) {
+    static boolean validate(SpuCreatedEvent event) {
 
         return true;
     }

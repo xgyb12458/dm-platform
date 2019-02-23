@@ -2,7 +2,7 @@ package com.damon.product.domain.spu.aggregate;
 
 import com.damon.product.domain.sku.aggregate.SkuAggregate;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
-import com.damon.product.domain.spu.event.ProductCreatedEvent;
+import com.damon.product.domain.spu.event.SpuCreatedEvent;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.VerifyState;
@@ -120,7 +120,7 @@ public class SpuAggregate {
         */
 
         // 参数合法状态下启动创建事件
-        apply(ProductCreatedEvent.builder()
+        apply(SpuCreatedEvent.builder()
                 .spuId(command.getSpuId())
                 .spuCode(command.getSpuCode())
                 .name(command.getName())
@@ -159,7 +159,7 @@ public class SpuAggregate {
 
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
-    public void on(ProductCreatedEvent event) {
+    public void on(SpuCreatedEvent event) {
         if (!SpuAdapter.validate(event)) {
             throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
         }

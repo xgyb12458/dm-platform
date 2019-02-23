@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Value
 @Builder
-public class ProductCreatedEvent {
+public class SpuCreatedEvent {
     private final SpuId             spuId;
     private final String            spuCode;
     private final String            name;
