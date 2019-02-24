@@ -4,20 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 资源位类型
+ * 是与否的枚举类
  * @author Damon S.
  */
 @Getter
 @AllArgsConstructor
 public enum YesNoEnum {
     /***/
-    YES(Boolean.TRUE),
-    NO(Boolean.FALSE);
+    Y(1),
+    N(0);
 
-    private final Boolean value;
+    private final int code;
 
-    /**根据真假值转换枚举值*/
-    public static YesNoEnum parse(Boolean b) {
-        return b ? YES : NO;
+    /**
+     * 根据传值转换枚举值。
+     * 小于等于 0 解释为 N 并强制转换为 0，
+     * 大于 0 解释为 Y 并强制转换为 1
+     */
+    public static YesNoEnum parse(int code) {
+        return code > 0 ? Y : N;
     }
 }

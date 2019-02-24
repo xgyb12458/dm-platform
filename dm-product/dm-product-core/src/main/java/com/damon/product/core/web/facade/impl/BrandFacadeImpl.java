@@ -6,9 +6,7 @@ import com.damon.product.api.dto.req.brand.UpdateBrandReqDTO;
 import com.damon.product.api.dto.resp.brand.BrandInfoRespDTO;
 import com.damon.product.api.web.facade.BrandFacade;
 import com.damon.product.core.query.handler.brand.BrandAdapter;
-import com.damon.product.domain.spu.command.CreateBrandCommand;
-import com.damon.product.domain.spu.command.QueryBrandCommand;
-import com.damon.product.domain.spu.command.UpdateBrandCommand;
+import com.damon.product.domain.brand.command.*;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.enums.YesNoEnum;
 import com.damon.shared.validation.ArgsValid;
@@ -18,7 +16,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -84,6 +81,17 @@ public class BrandFacadeImpl implements BrandFacade {
         return new ResponseWrapper<>();
     }
 
+    @Override
+    @ApiOperation(value = "获取品牌信息", notes = "获取品牌信息")
+    public ResponseWrapper<BrandInfoRespDTO> find(Long brandId) {
+        QueryBrandCommand command = QueryBrandCommand.builder()
+                .brandId(brandId)
+                .build();
+
+        queryGateway.query(command, BrandInfoRespDTO.class);
+        return new ResponseWrapper<>();
+    }
+
     @ArgsValid
     @Override
     @ApiOperation(value = "编辑品牌信息", notes = "编辑品牌信息")
@@ -108,26 +116,42 @@ public class BrandFacadeImpl implements BrandFacade {
     }
 
     @Override
-    @ApiOperation(value = "获取品牌信息", notes = "获取品牌信息")
-    public ResponseWrapper<BrandInfoRespDTO> find(@PathVariable Long brandId) {
-        return null;
+    @ApiOperation(value = "删除品牌", notes = "删除品牌")
+    public ResponseWrapper<Boolean> remove(Long brandId) {
+        Long currentUserId = 1L;
+        DeleteBrandCommand command = new DeleteBrandCommand(brandId, currentUserId);
+
+        commandGateway.sendAndWait(command);
+        return new ResponseWrapper<>();
+    }
+
+    @Override
+    @ApiOperation(value = "恢复品牌", notes = "恢复品牌")
+    public ResponseWrapper<Boolean> recover(Long brandId) {
+        Long currentUserId = 1L;
+        RecoverBrandCommand command = new RecoverBrandCommand(brandId, currentUserId);
+
+        commandGateway.sendAndWait(command);
+        return new ResponseWrapper<>();
     }
 
     @Override
     @ApiOperation(value = "更改品牌显示状态", notes = "更改品牌显示状态")
-    public ResponseWrapper<Boolean> changeDisplayState(@PathVariable Long brandId) {
-        return null;
+    public ResponseWrapper<Boolean> changeDisplayState(Long brandId) {
+        Long currentUserId = 1L;
+        ChangeBrandDisplayCommand command = new ChangeBrandDisplayCommand(brandId, currentUserId);
+
+        commandGateway.sendAndWait(command);
+        return new ResponseWrapper<>();
     }
 
     @Override
     @ApiOperation(value = "更改品牌制造商状态", notes = "更改品牌制造商状态")
-    public ResponseWrapper<Boolean> changeFactoryState(@PathVariable Long brandId) {
-        return null;
-    }
+    public ResponseWrapper<Boolean> changeFactoryState(Long brandId) {
+        Long currentUserId = 1L;
+        ChangeBrandFactoryCommand command = new ChangeBrandFactoryCommand(brandId, currentUserId);
 
-    @Override
-    @ApiOperation(value = "删除品牌", notes = "删除品牌")
-    public ResponseWrapper<Boolean> remove(@PathVariable Long brandId) {
-        return null;
+        commandGateway.sendAndWait(command);
+        return new ResponseWrapper<>();
     }
 }

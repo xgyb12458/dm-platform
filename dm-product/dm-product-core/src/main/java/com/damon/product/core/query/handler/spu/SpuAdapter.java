@@ -52,7 +52,7 @@ public class SpuAdapter {
                 .skus(productSkus)
                 .verifyState(VerifyState.DRAFTING)
                 .spuState(SpuState.DRAFT)
-                .removed(YesNoEnum.NO)
+                .removed(YesNoEnum.N)
                 .description(req.getDescription())
                 .price(req.getPrice())
                 .inventory(req.getInventory())

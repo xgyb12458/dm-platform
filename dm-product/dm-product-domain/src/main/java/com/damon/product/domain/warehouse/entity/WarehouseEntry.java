@@ -1,4 +1,4 @@
-package com.damon.product.domain.spu.entity;
+package com.damon.product.domain.warehouse.entity;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
- * 商品供应商
+ * 商品仓库
  * @author Damon S.
  */
 @Entity
@@ -17,12 +17,11 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pms_spu_supplier")
-public class SupplierEntry {
+@Table(name = "pms_spu_warehouse")
+public class WarehouseEntry {
     @Id
     @NonNull
-    @Column(name = "supplier_id")
-    private Long        supplierId;
+    @Column(name = "warehouse_id") private Long      warehouseId;
     @Column private String      name;
     @Column private String      code;
 

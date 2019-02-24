@@ -1,4 +1,4 @@
-package com.damon.product.domain.spu.entity;
+package com.damon.product.domain.brand.entity;
 
 import lombok.*;
 
@@ -27,17 +27,17 @@ public class BrandEntry {
     @Column private String      code;
     /**品牌LOGO*/
     @Column private String      logo;
+    @Column private Integer     sort;
     /**是否已删除*/
     @Column private String      deleted;
     /**是否显示*/
     @Column private String      display;
-    @Column private Integer     sort;
-    /**首字母*/
-    @Column(name = "first_letter")
-    private String              firstLetter;
     /**是否为品牌制造商：0->不是；1->是*/
     @Column(name = "factory_state")
     private String              factoryState;
+    /**首字母*/
+    @Column(name = "first_letter")
+    private String              firstLetter;
     /**专区大图*/
     @Column(name = "big_image")
     private String              bigImage;

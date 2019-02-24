@@ -15,6 +15,6 @@ public class BrandAdapter {
      */
     public static Boolean checkParameter(CreateBrandReqDTO createBrandReqDTO) {
 
-        return false;
+        return true;
     }
 }

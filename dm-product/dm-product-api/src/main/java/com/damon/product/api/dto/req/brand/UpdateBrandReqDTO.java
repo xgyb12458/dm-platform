@@ -30,11 +30,11 @@ public class UpdateBrandReqDTO implements Serializable {
     @ApiModelProperty(name = "logo", value = "品牌LOGO")
     private String      logo;
 
-    @ApiModelProperty(name = "display", value = "是否显示")
-    private Boolean     display;
+    @ApiModelProperty(name = "display", value = "是否显示(1是，0否)")
+    private Integer     display;
 
-    @ApiModelProperty(name = "factoryState", value = "是否为品牌制造商")
-    private Boolean     factoryState;
+    @ApiModelProperty(name = "factoryState", value = "是否为品牌制造商(1是，0否)")
+    private Integer     factoryState;
 
     @ApiModelProperty(name = "sort", value = "排序")
     private Integer     sort;

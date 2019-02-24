@@ -1,18 +1,21 @@
-package com.damon.product.domain.spu.command;
+package com.damon.product.domain.brand.command;
 
 import com.damon.shared.enums.YesNoEnum;
 import lombok.Builder;
 import lombok.Value;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
- * 新建品牌命令
+ * 修改品牌命令
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月23日 18:19
  */
 @Value
 @Builder
-public class CreateBrandCommand {
+public class UpdateBrandCommand {
+    @TargetAggregateIdentifier
+    private final Long          brandId;
     /**品牌名称*/
     private final String        name;
     /**品牌编码*/
@@ -31,6 +34,6 @@ public class CreateBrandCommand {
     private final String        bigImage;
     /**品牌故事*/
     private final String        brandStory;
-    /**创建人*/
-    private final Long          createdBy;
+    /**操作人*/
+    private final Long          updatedBy;
 }
