@@ -56,8 +56,8 @@ public class UpdateSpuReqDTO implements Serializable {
     @ApiModelProperty(name = "type", value = "商品类型")
     private ProductType type;
 
-    @ApiModelProperty(name = "canReturn", value = "是否支持退货")
-    private Boolean     canReturn;
+    @ApiModelProperty(name = "supportReturn", value = "是否支持退货")
+    private Boolean     supportReturn;
 
     @ApiModelProperty(name = "soldOut", value = "是否售罄")
     private Boolean     soldOut;

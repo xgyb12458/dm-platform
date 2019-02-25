@@ -67,7 +67,7 @@ public class SpuAggregate {
     /**售罄标识*/
     private YesNoEnum           soldOut;
     /**是否可退货*/
-    private YesNoEnum           canReturn;
+    private YesNoEnum           supportReturn;
     /**商品库存*/
     private Integer             inventory;
     /**安全库存预警值*/
@@ -142,7 +142,7 @@ public class SpuAggregate {
                 .model(command.getModel())
                 .type(command.getType())
                 .description(command.getDescription())
-                .canReturn(command.getCanReturn())
+                .supportReturn(command.getSupportReturn())
                 .categoryId(command.getCategoryId())
                 .brandId(command.getBrandId())
                 .warehouseId(command.getWarehouseId())
@@ -182,7 +182,7 @@ public class SpuAggregate {
                 .model(command.getModel())
                 .type(command.getType())
                 .description(command.getDescription())
-                .canReturn(command.getCanReturn())
+                .supportReturn(command.getSupportReturn())
                 .categoryId(command.getCategoryId())
                 .brandId(command.getBrandId())
                 .warehouseId(command.getWarehouseId())
@@ -259,12 +259,12 @@ public class SpuAggregate {
 
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
-    private void handle(ChangeSpuCanReturnCommand command) {
+    private void handle(ChangeSpuSupportReturnCommand command) {
         log.info("changing spu aggregate can return flag command, parameters: {}", command.toString());
 
-        apply(new SpuCanReturnChangedEvent(
+        apply(new SpuSupportReturnChangedEvent(
                 command.getSpuId(),
-                YesNoEnum.Y.equals(getCanReturn()) ? YesNoEnum.N : YesNoEnum.Y,
+                YesNoEnum.Y.equals(getSupportReturn()) ? YesNoEnum.N : YesNoEnum.Y,
                 command.getUpdatedBy())
         );
     }
@@ -346,7 +346,7 @@ public class SpuAggregate {
         setSoldVolume(event.getSoldVolume());
         setModel(event.getModel());
         setType(event.getType());
-        setCanReturn(event.getCanReturn());
+        setSupportReturn(event.getSupportReturn());
         setCategoryId(event.getCategoryId());
         setBrandId(event.getBrandId());
         setWarehouseId(event.getWarehouseId());
@@ -403,7 +403,7 @@ public class SpuAggregate {
         setSafetyStock(event.getSafetyStock());
         setPrice(event.getPrice());
         setMarketPrice(event.getMarketPrice());
-        setCanReturn(event.getCanReturn());
+        setSupportReturn(event.getSupportReturn());
         setModel(event.getModel());
         setType(event.getType());
         setFreightTemplateId(event.getFreightTemplateId());
@@ -478,11 +478,11 @@ public class SpuAggregate {
 
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
-    private void on(SpuCanReturnChangedEvent event) {
+    private void on(SpuSupportReturnChangedEvent event) {
         log.info("changing spu aggregate can return flag event, parameters: {}", event.toString());
 
         // 更新属性值
-        setCanReturn(event.getState());
+        setSupportReturn(event.getState());
         recordStateChangedEvent(event);
     }
 

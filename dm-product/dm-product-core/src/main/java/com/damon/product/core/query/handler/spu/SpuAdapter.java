@@ -58,7 +58,7 @@ public class SpuAdapter {
                 .inventory(req.getInventory())
                 .model(req.getModel())
                 .type(req.getType())
-//                .canReturn(req.getCanReturn())
+//                .supportReturn(req.getSupportReturn())
                 .categoryId(req.getCategoryId())
                 .brandId(req.getBrandId())
                 .warehouseId(req.getWarehouseId())

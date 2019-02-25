@@ -1,5 +1,6 @@
 package com.damon.product.domain.spu.event
 
+import com.damon.product.domain.spu.aggregate.SpuId
 import com.damon.shared.enums.YesNoEnum
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.time.Instant
@@ -12,25 +13,25 @@ import java.time.Instant
  */
 abstract class SpuStateChangedEvent (
         @TargetAggregateIdentifier
-        val spuId: Long,
+        val spuId: SpuId,
         val state: YesNoEnum,
         val updatedBy: Long,
         val updatedAt: Instant
 )
-class SpuNewProductChangedEvent(spuId: Long, state: YesNoEnum, updatedBy: Long)
+class SpuNewProductChangedEvent(spuId: SpuId, state: YesNoEnum, updatedBy: Long)
     : SpuStateChangedEvent(spuId, state, updatedBy, Instant.now())
 
-class SpuRecommendedChangedEvent(spuId: Long, state: YesNoEnum, updatedBy: Long)
+class SpuRecommendedChangedEvent(spuId: SpuId, state: YesNoEnum, updatedBy: Long)
     : SpuStateChangedEvent(spuId, state, updatedBy, Instant.now())
 
-class SpuSoldOutChangedEvent(spuId: Long, state: YesNoEnum, updatedBy: Long)
+class SpuSoldOutChangedEvent(spuId: SpuId, state: YesNoEnum, updatedBy: Long)
     : SpuStateChangedEvent(spuId, state, updatedBy, Instant.now())
 
-class SpuCanReturnChangedEvent(spuId: Long, state: YesNoEnum, updatedBy: Long)
+class SpuSupportReturnChangedEvent(spuId: SpuId, state: YesNoEnum, updatedBy: Long)
     : SpuStateChangedEvent(spuId, state, updatedBy, Instant.now())
 
-class SpuRemovedEvent(spuId: Long, updatedBy: Long)
+class SpuRemovedEvent(spuId: SpuId, updatedBy: Long)
     : SpuStateChangedEvent(spuId, YesNoEnum.Y, updatedBy, Instant.now())
 
-class SpuRecoveredEvent(spuId: Long, updatedBy: Long)
+class SpuRecoveredEvent(spuId: SpuId, updatedBy: Long)
     : SpuStateChangedEvent(spuId, YesNoEnum.N, updatedBy, Instant.now())

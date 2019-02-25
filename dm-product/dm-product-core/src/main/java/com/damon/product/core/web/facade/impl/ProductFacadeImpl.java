@@ -139,7 +139,7 @@ public class ProductFacadeImpl implements ProductFacade {
     @ApiOperation(value = "变更退货标识", notes = "变更退货标识")
     public ResponseWrapper<Boolean> changeCanReturnState(Long spuId) {
         final Long currentUserId = 1L;
-        ChangeSpuCanReturnCommand command = new ChangeSpuCanReturnCommand(new SpuId(spuId), currentUserId);
+        ChangeSpuSupportReturnCommand command = new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId);
 
         commandGateway.sendAndWait(command);
         return new ResponseWrapper<>();
@@ -252,7 +252,7 @@ public class ProductFacadeImpl implements ProductFacade {
 
         final long currentUserId = 1L;
         spuIds.forEach(
-                spuId -> commandGateway.sendAndWait(new ChangeSpuCanReturnCommand(new SpuId(spuId), currentUserId))
+                spuId -> commandGateway.sendAndWait(new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId))
         );
         return new ResponseWrapper<>();
     }

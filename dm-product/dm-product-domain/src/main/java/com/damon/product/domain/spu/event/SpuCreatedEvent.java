@@ -40,7 +40,7 @@ public class SpuCreatedEvent {
     private final Integer           soldVolume;
     private final String            model;
     private final ProductType       type;
-    private final YesNoEnum         canReturn;
+    private final YesNoEnum         supportReturn;
     private final Long              categoryId;
     private final Long              brandId;
     private final Long              warehouseId;

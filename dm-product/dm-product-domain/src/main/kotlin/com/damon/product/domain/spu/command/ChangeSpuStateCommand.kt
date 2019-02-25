@@ -23,7 +23,7 @@ class ChangeSpuRecommendedCommand(spuId: SpuId, updatedBy: Long)
 class ChangeSpuSoldOutCommand(spuId: SpuId, updatedBy: Long)
     : ChangeSpuStateCommand(spuId, updatedBy)
 
-class ChangeSpuCanReturnCommand(spuId: SpuId, updatedBy: Long)
+class ChangeSpuSupportReturnCommand(spuId: SpuId, updatedBy: Long)
     : ChangeSpuStateCommand(spuId, updatedBy)
 
 class RemoveSpuCommand(spuId: SpuId, updatedBy: Long)

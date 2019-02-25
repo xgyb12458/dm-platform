@@ -101,8 +101,8 @@ public class SpuEntry {
     private Long freightTemplateId;
 
     /**是否可退货*/
-    @Column(name = "can_return")
-    private String canReturn;
+    @Column(name = "support_return")
+    private String supportReturn;
 
     /**商品类别*/
     @Column(name = "category_id")

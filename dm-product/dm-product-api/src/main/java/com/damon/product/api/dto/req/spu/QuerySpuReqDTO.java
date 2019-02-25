@@ -30,8 +30,8 @@ public class QuerySpuReqDTO implements Serializable {
     @ApiModelProperty(name = "type", value = "商品类型")
     private ProductType type;
 
-    @ApiModelProperty(name = "canReturn", value = "是否支持退货(1是，0否)")
-    private Integer     canReturn;
+    @ApiModelProperty(name = "supportReturn", value = "是否支持退货(1是，0否)")
+    private Integer     supportReturn;
 
     @ApiModelProperty(name = "categoryId", value = "类别")
     private Long        categoryId;
