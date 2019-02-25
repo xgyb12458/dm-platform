@@ -7,25 +7,32 @@ import com.damon.product.api.dto.resp.spu.CreateSpuRespDTO;
 import com.damon.product.api.dto.resp.spu.SpuInfoRespDTO;
 import com.damon.product.api.web.facade.ProductFacade;
 import com.damon.product.core.query.handler.spu.SpuAdapter;
+import com.damon.product.core.query.handler.spu.SpuTranslator;
 import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.domain.spu.command.*;
+import com.damon.product.domain.spu.entity.SpuEntry;
+import com.damon.shared.common.Pagination;
+import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
+import com.querydsl.core.QueryResults;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * 商品管理接口
  * @author Damon S.
  */
+@Slf4j
 @Api(tags = "商品管理接口")
 @RestController
 @RequiredArgsConstructor
@@ -51,14 +58,48 @@ public class ProductFacadeImpl implements ProductFacade {
     @ArgsValid
     @Override
     @ApiOperation(value = "查询商品", notes = "按条件查询商品信息")
-    public ResponseWrapper<List<SpuInfoRespDTO>> query(QuerySpuReqDTO querySpuReqDTO) {
+    public ResponseWrapper<Pagination<SpuInfoRespDTO>> query(QuerySpuReqDTO querySpuReqDTO) {
         QuerySpuCommand command = QuerySpuCommand.builder()
                 .build();
 
-        queryGateway.query(command, List.class);
-        List<SpuInfoRespDTO> spuInfoRespDTOs = new ArrayList<>();
+        CompletableFuture<QueryResults> futureResults =
+                queryGateway.query(command, QueryResults.class);
 
+        QueryResults<SpuEntry> queryResults;
+        try {
+            queryResults = (QueryResults<SpuEntry>) futureResults.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
+        }
+
+        Pagination<SpuInfoRespDTO> spuInfoRespDTOs = new Pagination<>(
+                queryResults.getOffset(),
+                queryResults.getLimit(),
+                queryResults.getTotal(),
+                SpuTranslator.translateToRespDTOs(queryResults)
+        );
         return new ResponseWrapper<>(spuInfoRespDTOs);
+    }
+
+    @Override
+    @ApiOperation(value = "获取商品", notes = "获取指定商品信息")
+    public ResponseWrapper<SpuInfoRespDTO> find(Long spuId) {
+        // 验证用户
+
+        CompletableFuture<SpuEntry> futureResults =
+                queryGateway.query(new FindSpuByIdCommand(spuId), SpuEntry.class);
+
+        SpuEntry spuEntry;
+        try {
+            spuEntry = futureResults.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
+        }
+        return new ResponseWrapper<>(
+                SpuTranslator.translateToRespDTO(spuEntry)
+        );
     }
 
     @ArgsValid
@@ -70,19 +111,6 @@ public class ProductFacadeImpl implements ProductFacade {
 
         queryGateway.query(command, List.class);
         return new ResponseWrapper<>();
-    }
-
-    @Override
-    @ApiOperation(value = "获取商品", notes = "获取指定商品信息")
-    public ResponseWrapper<SpuInfoRespDTO> find(Long spuId) {
-        QuerySpuCommand command = QuerySpuCommand.builder()
-                .spuId(new SpuId(spuId))
-                .build();
-
-        commandGateway.sendAndWait(command);
-        SpuInfoRespDTO spuInfoRespDTO = new SpuInfoRespDTO();
-
-        return new ResponseWrapper<>(spuInfoRespDTO);
     }
 
     @Override

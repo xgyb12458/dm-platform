@@ -6,6 +6,7 @@ import com.damon.product.api.dto.req.spu.UpdateSpuReqDTO;
 import com.damon.product.api.dto.resp.spu.CreateSpuRespDTO;
 import com.damon.product.api.dto.resp.spu.SpuInfoRespDTO;
 import com.damon.product.shared.constant.ApiConstants;
+import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -28,7 +29,7 @@ public interface ProductFacade {
 
 
     @GetMapping("/spus")
-    ResponseWrapper<List<SpuInfoRespDTO>> query(
+    ResponseWrapper<Pagination<SpuInfoRespDTO>> query(
             @RequestBody @Validated QuerySpuReqDTO querySpuReqDTO
     );
 

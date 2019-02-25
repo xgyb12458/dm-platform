@@ -21,8 +21,8 @@ public final class Pagination<T> {
     @Setter
     private List<T> data;
 
-    public Pagination(Integer pageIndex, Integer pageSize,
-                      Integer totalRows, List<T> data) {
+    public Pagination(Long pageIndex, Long pageSize,
+                      Long totalRows, List<T> data) {
         this.data = data;
         this.pageInfo = new PageInfo(pageIndex, pageSize, totalRows);
     }
@@ -30,23 +30,23 @@ public final class Pagination<T> {
     @Value
     public static class PageInfo {
         /***当前页码*/
-        private final Integer pageIndex;
+        private final Long pageIndex;
 
         /***每页数量*/
-        private final Integer pageSize;
+        private final Long pageSize;
 
         /***数据总数*/
-        private final Integer totalRows;
+        private final Long totalRows;
 
         /***总页数*/
-        public Integer getTotalPages() {
-            return Double.valueOf(Math.ceil(totalRows / (pageSize * 1.0d))).intValue();
+        public Long getTotalPages() {
+            return Double.valueOf(Math.ceil(totalRows / (pageSize * 1.0d))).longValue();
         }
 
-        private PageInfo(Integer pageIndex, Integer pageSize, Integer totalRows) {
-            this.totalRows = Optional.ofNullable(totalRows).orElse(Constants.INT_ZERO);
-            this.pageSize = Optional.ofNullable(pageSize).orElse(Constants.DEFAULT_PAGE_SIZE);
-            Integer totalPages = getTotalPages();
+        private PageInfo(Long pageIndex, Long pageSize, Long totalRows) {
+            this.totalRows = Optional.ofNullable(totalRows).orElse(Constants.LONG_ZERO);
+            this.pageSize = Optional.ofNullable(pageSize).orElse(Constants.LONG_TEN);
+            Long totalPages = getTotalPages();
             this.pageIndex = pageIndex > totalPages ? totalPages : pageIndex;
         }
     }

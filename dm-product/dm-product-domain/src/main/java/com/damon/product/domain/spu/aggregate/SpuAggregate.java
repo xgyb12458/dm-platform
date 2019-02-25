@@ -436,7 +436,7 @@ public class SpuAggregate {
 
         // 更新属性值
         setRemoved(event.getState());
-        recordStateChangedEvent(event);
+        updateStateChangedValue(event);
     }
 
 
@@ -447,7 +447,7 @@ public class SpuAggregate {
 
         // 更新属性值
         setRemoved(event.getState());
-        recordStateChangedEvent(event);
+        updateStateChangedValue(event);
     }
 
 
@@ -458,7 +458,7 @@ public class SpuAggregate {
 
         // 更新属性值
         setNewProduct(event.getState());
-        recordStateChangedEvent(event);
+        updateStateChangedValue(event);
     }
 
 
@@ -469,7 +469,7 @@ public class SpuAggregate {
 
         // 更新属性值
         setRecommended(event.getState());
-        recordStateChangedEvent(event);
+        updateStateChangedValue(event);
     }
 
 
@@ -480,7 +480,7 @@ public class SpuAggregate {
 
         // 更新属性值
         setSoldOut(event.getState());
-        recordStateChangedEvent(event);
+        updateStateChangedValue(event);
     }
 
 
@@ -491,7 +491,7 @@ public class SpuAggregate {
 
         // 更新属性值
         setSupportReturn(event.getState());
-        recordStateChangedEvent(event);
+        updateStateChangedValue(event);
     }
 
 
@@ -534,13 +534,21 @@ public class SpuAggregate {
         changeVerifyState(event);
     }
 
+    /**
+     * 更新审核状态值
+     * @param event 商品审核事件
+     */
     private void changeVerifyState(SpuVerifiedEvent event) {
         setVerifyState(event.getState());
         setUpdatedBy(event.getUpdatedBy());
         setUpdatedAt(event.getUpdatedAt());
     }
 
-    private void recordStateChangedEvent(SpuStateChangedEvent event) {
+    /**
+     * 更新状态变更后的属性值
+     * @param event 状态变更事件
+     */
+    private void updateStateChangedValue(SpuStateChangedEvent event) {
         setUpdatedBy(event.getUpdatedBy());
         setUpdatedAt(event.getUpdatedAt());
     }

@@ -43,7 +43,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuCreatedEvent event) {
-        log.info("handling SpuCreatedEvent persistence process, parameters：{}", event.toString());
+        log.trace("handling SpuCreatedEvent persistence process, parameters：{}", event.toString());
 
         SpuEntry spuEntry = SpuEntry.builder()
                 .spuId(event.getSpuId().getValue())
@@ -89,7 +89,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuUpdatedEvent event) {
-        log.info("handling SpuUpdatedEvent persistence process, parameters：{}", event.toString());
+        log.trace("handling SpuUpdatedEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qSpuEntry)
                 .set(qSpuEntry.name, event.getName())
@@ -128,7 +128,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRemovedEvent event) {
-        log.info("handling SpuRemovedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuRemovedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.removed);
 
@@ -140,7 +140,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRecoveredEvent event) {
-        log.info("handling SpuRecoveredEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuRecoveredEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.removed);
 
@@ -152,7 +152,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuNewProductChangedEvent event) {
-        log.info("handling SpuNewProductChangedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuNewProductChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.newProduct);
 
@@ -164,7 +164,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRecommendedChangedEvent event) {
-        log.info("handling SpuRecommendedChangedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuRecommendedChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.recommended);
 
@@ -176,7 +176,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuSoldOutChangedEvent event) {
-        log.info("handling SpuSoldOutChangedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuSoldOutChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.soldOut);
 
@@ -188,7 +188,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuSupportReturnChangedEvent event) {
-        log.info("handling SpuSupportReturnChangedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuSupportReturnChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.supportReturn);
 
@@ -200,7 +200,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuVerificationResettedEvent event) {
-        log.info("handling SpuVerificationResettedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuVerificationResettedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -212,7 +212,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuCommittedEvent event) {
-        log.info("handling SpuCommittedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuCommittedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -224,7 +224,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuApprovedEvent event) {
-        log.info("handling SpuApprovedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuApprovedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -236,7 +236,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRejectedEvent event) {
-        log.info("handling SpuRejectedEvent process, parameters：{}", event.toString());
+        log.trace("handling SpuRejectedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
