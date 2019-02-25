@@ -90,15 +90,15 @@ public class ProductFacadeImpl implements ProductFacade {
         CompletableFuture<SpuEntry> futureResults =
                 queryGateway.query(new FindSpuByIdCommand(spuId), SpuEntry.class);
 
-        SpuEntry spuEntry;
+        SpuEntry foundResult;
         try {
-            spuEntry = futureResults.get();
+            foundResult = futureResults.get();
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
         return new ResponseWrapper<>(
-                SpuTranslator.translateToRespDTO(spuEntry)
+                SpuTranslator.translateToRespDTO(foundResult)
         );
     }
 
