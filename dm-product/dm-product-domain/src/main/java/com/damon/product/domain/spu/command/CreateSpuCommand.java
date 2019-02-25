@@ -2,8 +2,8 @@ package com.damon.product.domain.spu.command;
 
 import com.damon.product.domain.sku.aggregate.ProductSku;
 import com.damon.product.domain.spu.aggregate.SpuId;
-import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.ProductType;
+import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.YesNoEnum;
 import lombok.Builder;
@@ -31,14 +31,13 @@ public class CreateSpuCommand {
     private final Long              price;
     private final Long              marketPrice;
     private final VerifyState       verifyState;
-    private final YesNoEnum         newState;
-    private final SpuState          spuState;
+    private final YesNoEnum         newProduct;
+    private final SpuState          state;
     private final YesNoEnum         removed;
     private final YesNoEnum         recommended;
     private final YesNoEnum         soldOut;
     private final Integer           inventory;
     private final Integer           safetyStock;
-    private final Integer           soldVolume;
     private final String            model;
     private final ProductType       type;
     private final YesNoEnum         canReturn;

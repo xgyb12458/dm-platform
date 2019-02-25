@@ -81,17 +81,6 @@ public class BrandFacadeImpl implements BrandFacade {
         return new ResponseWrapper<>();
     }
 
-    @Override
-    @ApiOperation(value = "获取品牌信息", notes = "获取品牌信息")
-    public ResponseWrapper<BrandInfoRespDTO> find(Long brandId) {
-        QueryBrandCommand command = QueryBrandCommand.builder()
-                .brandId(brandId)
-                .build();
-
-        queryGateway.query(command, BrandInfoRespDTO.class);
-        return new ResponseWrapper<>();
-    }
-
     @ArgsValid
     @Override
     @ApiOperation(value = "编辑品牌信息", notes = "编辑品牌信息")
@@ -112,6 +101,17 @@ public class BrandFacadeImpl implements BrandFacade {
                 .build();
 
         commandGateway.sendAndWait(command);
+        return new ResponseWrapper<>();
+    }
+
+    @Override
+    @ApiOperation(value = "获取品牌信息", notes = "获取品牌信息")
+    public ResponseWrapper<BrandInfoRespDTO> find(Long brandId) {
+        QueryBrandCommand command = QueryBrandCommand.builder()
+                .brandId(brandId)
+                .build();
+
+        queryGateway.query(command, BrandInfoRespDTO.class);
         return new ResponseWrapper<>();
     }
 

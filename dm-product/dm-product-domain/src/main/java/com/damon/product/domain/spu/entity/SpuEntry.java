@@ -62,16 +62,16 @@ public class SpuEntry {
     private String verifyState;
 
     /**商品状态：草稿，待发布，已上架，已下架*/
-    @Column(name = "spu_state")
-    private String spuState;
+    @Column(name = "state")
+    private String state;
 
     /**售罄标识*/
     @Column(name = "sold_out")
     private String soldOut;
 
     /**新品标识*/
-    @Column(name = "new_state")
-    private String newState;
+    @Column(name = "new_product")
+    private String newProduct;
 
     /**推荐标识*/
     @Column(name = "recommended")

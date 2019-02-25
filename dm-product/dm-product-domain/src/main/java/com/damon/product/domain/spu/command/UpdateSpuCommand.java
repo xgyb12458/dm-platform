@@ -1,26 +1,26 @@
-package com.damon.product.domain.spu.event;
+package com.damon.product.domain.spu.command;
 
 import com.damon.product.domain.sku.aggregate.ProductSku;
 import com.damon.product.domain.spu.aggregate.SpuId;
-import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.ProductType;
-import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.YesNoEnum;
 import lombok.Builder;
 import lombok.Value;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.time.Instant;
 import java.util.List;
 
-/***
- * SPU创建完成事件
+/**
+ * 更新商品SPU命令参数，包括其下的SKU信息
  * @author Damon S.
+ * @version v1.0.1
+ * @date 2019年02月24日 17:39
  */
 @Value
 @Builder
-public class SpuCreatedEvent {
+public class UpdateSpuCommand {
+    @TargetAggregateIdentifier
     private final SpuId             spuId;
-    private final String            spuCode;
     private final String            name;
     private final String            subTitle;
     private final Long              imageId;
@@ -29,15 +29,11 @@ public class SpuCreatedEvent {
     private final String            description;
     private final Long              price;
     private final Long              marketPrice;
-    private final VerifyState       verifyState;
     private final YesNoEnum         newProduct;
-    private final SpuState          state;
-    private final YesNoEnum         removed;
     private final YesNoEnum         recommended;
     private final YesNoEnum         soldOut;
     private final Integer           inventory;
     private final Integer           safetyStock;
-    private final Integer           soldVolume;
     private final String            model;
     private final ProductType       type;
     private final YesNoEnum         canReturn;
@@ -49,6 +45,5 @@ public class SpuCreatedEvent {
     private final String            h5Detail;
     private final String            deliveryRegion;
     private final Long              weight;
-    private final Long              createdBy;
-    private final Instant           createdAt;
+    private final Long              updatedBy;
 }

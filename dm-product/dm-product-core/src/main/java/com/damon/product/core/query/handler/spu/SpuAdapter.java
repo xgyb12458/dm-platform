@@ -51,7 +51,7 @@ public class SpuAdapter {
 //                .imageId(req.getImageId())
                 .skus(productSkus)
                 .verifyState(VerifyState.DRAFTING)
-                .spuState(SpuState.DRAFT)
+                .state(SpuState.DRAFT)
                 .removed(YesNoEnum.N)
                 .description(req.getDescription())
                 .price(req.getPrice())

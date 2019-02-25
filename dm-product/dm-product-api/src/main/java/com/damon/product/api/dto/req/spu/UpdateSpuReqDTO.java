@@ -9,22 +9,25 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 创建商品请求
+ * 更新商品请求
  * @author Damon S.
  */
 @Data
 @ApiModel(value = "创建商品请求参数")
-public class CreateSpuReqDTO implements Serializable {
+public class UpdateSpuReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
+
+    @ApiModelProperty(name = "spuId", value = "商品Id")
+    private Long        spuId;
 
     @ApiModelProperty(name = "name", value = "商品名称")
     private String      name;
 
-    @ApiModelProperty(name = "subTitle", value = "商品副标题")
-    private String      subTitle;
-
     @ApiModelProperty(name = "spuCode", value = "商品编码")
     private String      spuCode;
+
+    @ApiModelProperty(name = "subTitle", value = "商品副标题")
+    private String      subTitle;
 
     @ApiModelProperty(name = "imageId", value = "主图")
     private Long        imageId;
@@ -44,23 +47,26 @@ public class CreateSpuReqDTO implements Serializable {
     @ApiModelProperty(name = "safetyStock", value = "安全库存")
     private Integer     safetyStock;
 
+    @ApiModelProperty(name = "soldVolume", value = "销量")
+    private Integer     soldVolume;
+
     @ApiModelProperty(name = "model", value = "型号")
     private String      model;
 
     @ApiModelProperty(name = "type", value = "商品类型")
     private ProductType type;
 
-    @ApiModelProperty(name = "canReturn", value = "是否支持退货(1是，0否)")
-    private Integer     canReturn;
+    @ApiModelProperty(name = "canReturn", value = "是否支持退货")
+    private Boolean     canReturn;
 
-    @ApiModelProperty(name = "soldOut", value = "是否售罄(1是，0否)")
-    private Integer     soldOut;
+    @ApiModelProperty(name = "soldOut", value = "是否售罄")
+    private Boolean     soldOut;
 
-    @ApiModelProperty(name = "newProduct", value = "是否新品(1是，0否)")
-    private Integer     newProduct;
+    @ApiModelProperty(name = "newState", value = "是否新品")
+    private Boolean     newState;
 
-    @ApiModelProperty(name = "recommended", value = "是否推荐(1是，0否)")
-    private Integer     recommended;
+    @ApiModelProperty(name = "recommended", value = "是否推荐")
+    private Boolean     recommended;
 
     @ApiModelProperty(name = "categoryId", value = "类别")
     private Long        categoryId;

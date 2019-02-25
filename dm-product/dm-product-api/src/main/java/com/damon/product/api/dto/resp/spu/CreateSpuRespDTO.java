@@ -15,6 +15,6 @@ import java.io.Serializable;
 public class CreateSpuRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "spuId", value = "商品标识")
+    @ApiModelProperty(name = "spuId", value = "商品ID")
     private Long      spuId;
 }

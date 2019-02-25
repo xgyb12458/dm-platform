@@ -5,8 +5,10 @@ import com.damon.product.api.dto.req.supplier.QuerySupplierReqDTO;
 import com.damon.product.api.dto.req.supplier.UpdateSupplierReqDTO;
 import com.damon.product.api.dto.resp.supplier.SupplierInfoRespDTO;
 import com.damon.product.api.web.facade.SupplierFacade;
+import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
@@ -28,7 +30,10 @@ public class SupplierFacadeImpl implements SupplierFacade {
     private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
 
+
+    @ArgsValid
     @Override
+    @ApiOperation(value = "创建品牌", notes = "创建品牌")
     public ResponseWrapper<Boolean> create(CreateSupplierReqDTO createSupplierReqDTO) {
         return null;
     }
@@ -38,17 +43,24 @@ public class SupplierFacadeImpl implements SupplierFacade {
         return null;
     }
 
+
+    @ArgsValid
     @Override
+    @ApiOperation(value = "创建品牌", notes = "创建品牌")
     public ResponseWrapper<Boolean> update(UpdateSupplierReqDTO updateSupplierReqDTO) {
         return null;
     }
 
+
     @Override
+    @ApiOperation(value = "创建品牌", notes = "创建品牌")
     public ResponseWrapper<SupplierInfoRespDTO> find(Long supplierId) {
         return null;
     }
 
+
     @Override
+    @ApiOperation(value = "创建品牌", notes = "创建品牌")
     public ResponseWrapper<Boolean> remove(Long supplierId) {
         return null;
     }

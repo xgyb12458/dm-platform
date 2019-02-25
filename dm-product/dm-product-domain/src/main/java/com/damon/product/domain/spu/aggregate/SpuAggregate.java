@@ -1,8 +1,8 @@
 package com.damon.product.domain.spu.aggregate;
 
 import com.damon.product.domain.sku.aggregate.SkuAggregate;
-import com.damon.product.domain.spu.command.CreateSpuCommand;
-import com.damon.product.domain.spu.event.SpuCreatedEvent;
+import com.damon.product.domain.spu.command.*;
+import com.damon.product.domain.spu.event.*;
 import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
@@ -57,15 +57,17 @@ public class SpuAggregate {
     /**审核状态*/
     private VerifyState         verifyState;
     /**商品状态：草稿，待发布，已上架，已下架*/
-    private SpuState            spuState;
+    private SpuState            state;
     /**新品标识*/
-    private YesNoEnum           newState;
+    private YesNoEnum           newProduct;
     /**是否已删除*/
     private YesNoEnum           removed;
     /**推荐标识*/
     private YesNoEnum           recommended;
     /**售罄标识*/
     private YesNoEnum           soldOut;
+    /**是否可退货*/
+    private YesNoEnum           canReturn;
     /**商品库存*/
     private Integer             inventory;
     /**安全库存预警值*/
@@ -74,8 +76,6 @@ public class SpuAggregate {
     private String              model;
     /**商品类型*/
     private ProductType         type;
-    /**是否可退货*/
-    private YesNoEnum           canReturn;
     /**商品类别*/
     private Long                categoryId;
     /**商品品牌*/
@@ -129,17 +129,17 @@ public class SpuAggregate {
                 .skus(command.getSkus())
                 .albumImages(command.getAlbumImages())
                 .verifyState(command.getVerifyState())
-                .newState(command.getNewState())
-                .spuState(command.getSpuState())
+                .newProduct(command.getNewProduct())
+                .state(command.getState())
                 .removed(command.getRemoved())
                 .recommended(command.getRecommended())
                 .soldOut(command.getSoldOut())
+                .soldVolume(0)
                 .price(command.getPrice())
                 .marketPrice(command.getMarketPrice())
                 .inventory(command.getInventory())
                 .safetyStock(command.getSafetyStock())
                 .model(command.getModel())
-                .soldVolume(command.getSoldVolume())
                 .type(command.getType())
                 .description(command.getDescription())
                 .canReturn(command.getCanReturn())
@@ -158,13 +158,175 @@ public class SpuAggregate {
     }
 
     @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(UpdateSpuCommand command) {
+        log.info("updating spu aggregate command, parameters: {}", command.toString());
+
+        // 验证参数是否合法
+
+        // 参数合法状态下启动创建事件
+        apply(SpuUpdatedEvent.builder()
+                .spuId(command.getSpuId())
+                .name(command.getName())
+                .subTitle(command.getSubTitle())
+                .imageId(command.getImageId())
+                .skus(command.getSkus())
+                .albumImages(command.getAlbumImages())
+                .newProduct(command.getNewProduct())
+                .recommended(command.getRecommended())
+                .soldOut(command.getSoldOut())
+                .price(command.getPrice())
+                .marketPrice(command.getMarketPrice())
+                .inventory(command.getInventory())
+                .safetyStock(command.getSafetyStock())
+                .model(command.getModel())
+                .type(command.getType())
+                .description(command.getDescription())
+                .canReturn(command.getCanReturn())
+                .categoryId(command.getCategoryId())
+                .brandId(command.getBrandId())
+                .warehouseId(command.getWarehouseId())
+                .supplierId(command.getSupplierId())
+                .freightTemplateId(command.getFreightTemplateId())
+                .h5Detail(command.getH5Detail())
+                .deliveryRegion(command.getDeliveryRegion())
+                .weight(command.getWeight())
+                .updatedBy(command.getUpdatedBy())
+                .updatedAt(Instant.now())
+                .build()
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(RemoveSpuCommand command) {
+        if (YesNoEnum.N.equals(getRemoved())) {
+            log.info("deleting spu aggregate command, parameters: {}", command.toString());
+            apply(new SpuRemovedEvent(command.getSpuId(), command.getUpdatedBy()));
+        }
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(RecoverSpuCommand command) {
+        if (YesNoEnum.Y.equals(getRemoved())) {
+            log.info("recovering spu aggregate command, parameters: {}", command.toString());
+            apply(new SpuRecoveredEvent(command.getSpuId(), command.getUpdatedBy()));
+        }
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(ChangeSpuNewProductCommand command) {
+        log.info("changing spu aggregate new product flag command, parameters: {}", command.toString());
+
+        apply(new SpuNewProductChangedEvent(
+                command.getSpuId(),
+                YesNoEnum.Y.equals(getNewProduct()) ? YesNoEnum.N : YesNoEnum.Y,
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(ChangeSpuRecommendedCommand command) {
+        log.info("changing spu aggregate recommended flag command, parameters: {}", command.toString());
+
+        apply(new SpuRecommendedChangedEvent(
+                command.getSpuId(),
+                YesNoEnum.Y.equals(getRecommended()) ? YesNoEnum.N : YesNoEnum.Y,
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(ChangeSpuSoldOutCommand command) {
+        log.info("changing spu aggregate sold out flag command, parameters: {}", command.toString());
+
+        apply(new SpuSoldOutChangedEvent(
+                command.getSpuId(),
+                YesNoEnum.Y.equals(getSoldOut()) ? YesNoEnum.N : YesNoEnum.Y,
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(ChangeSpuCanReturnCommand command) {
+        log.info("changing spu aggregate can return flag command, parameters: {}", command.toString());
+
+        apply(new SpuCanReturnChangedEvent(
+                command.getSpuId(),
+                YesNoEnum.Y.equals(getCanReturn()) ? YesNoEnum.N : YesNoEnum.Y,
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(ResetSpuVerificationCommand command) {
+        log.info("resetting spu aggregate verify state command, parameters: {}", command.toString());
+
+        apply(new SpuVerificationResettedEvent(
+                command.getSpuId(),
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(CommitSpuVerificationCommand command) {
+        log.info("committing spu aggregate to verify command, parameters: {}", command.toString());
+
+        apply(new SpuCommittedEvent(
+                command.getSpuId(),
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(ApproveSpuCommand command) {
+        log.info("approving spu aggregate command, parameters: {}", command.toString());
+
+        apply(new SpuApprovedEvent(
+                command.getSpuId(),
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(RejectSpuCommand command) {
+        log.info("rejecting spu aggregate command, parameters: {}", command.toString());
+
+        apply(new SpuRejectedEvent(
+                command.getSpuId(),
+                command.getUpdatedBy())
+        );
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
-    public void on(SpuCreatedEvent event) {
+    private void on(SpuCreatedEvent event) {
         log.info("creating spu aggregate event, parameters: {}", event.toString());
 
 //        if (!SpuAdapter.validate(event)) {
 //            throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
 //        }
+        // 设置属性值
         setSpuId(event.getSpuId());
         setSpuCode(event.getSpuCode());
         setName(event.getName());
@@ -172,12 +334,11 @@ public class SpuAggregate {
         setImageId(event.getImageId());
         setAlbumImages(event.getAlbumImages());
         setVerifyState(event.getVerifyState());
-        setSpuState(event.getSpuState());
-        setNewState(event.getNewState());
+        setState(event.getState());
+        setNewProduct(event.getNewProduct());
         setRemoved(event.getRemoved());
         setRecommended(event.getRecommended());
         setSoldOut(event.getSoldOut());
-        setDescription(event.getDescription());
         setPrice(event.getPrice());
         setMarketPrice(event.getMarketPrice());
         setInventory(event.getInventory());
@@ -194,6 +355,7 @@ public class SpuAggregate {
         setFreightTemplateId(event.getFreightTemplateId());
         setDeliveryRegion(event.getDeliveryRegion());
         setWeight(event.getWeight());
+        setDescription(event.getDescription());
         setCreatedBy(event.getCreatedBy());
         setCreatedAt(event.getCreatedAt());
 
@@ -219,5 +381,159 @@ public class SpuAggregate {
 //                            .build();
 //                }
 //        ));
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuUpdatedEvent event) {
+        log.info("updating spu aggregate event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setSpuId(event.getSpuId());
+        setName(event.getName());
+        setSubTitle(event.getSubTitle());
+        setImageId(event.getImageId());
+        setAlbumImages(event.getAlbumImages());
+        setNewProduct(event.getNewProduct());
+        setRecommended(event.getRecommended());
+        setDescription(event.getDescription());
+        setSoldOut(event.getSoldOut());
+        setInventory(event.getInventory());
+        setSafetyStock(event.getSafetyStock());
+        setPrice(event.getPrice());
+        setMarketPrice(event.getMarketPrice());
+        setCanReturn(event.getCanReturn());
+        setModel(event.getModel());
+        setType(event.getType());
+        setFreightTemplateId(event.getFreightTemplateId());
+        setCategoryId(event.getCategoryId());
+        setBrandId(event.getBrandId());
+        setDeliveryRegion(event.getDeliveryRegion());
+        setWarehouseId(event.getWarehouseId());
+        setSupplierId(event.getSupplierId());
+        setH5Detail(event.getH5Detail());
+        setWeight(event.getWeight());
+        setUpdatedBy(event.getUpdatedBy());
+        setUpdatedAt(event.getUpdatedAt());
+        // TODO: 更新SKU属性
+//        setSkus(event.getSkus());
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuRemovedEvent event) {
+        log.info("deleting spu aggregate event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setRemoved(event.getState());
+        recordStateChangedEvent(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuRecoveredEvent event) {
+        log.info("recovering spu aggregate event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setRemoved(event.getState());
+        recordStateChangedEvent(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuNewProductChangedEvent event) {
+        log.info("changing spu aggregate new product flag event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setNewProduct(event.getState());
+        recordStateChangedEvent(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuRecommendedChangedEvent event) {
+        log.info("changing spu aggregate recommended flag event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setRecommended(event.getState());
+        recordStateChangedEvent(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuSoldOutChangedEvent event) {
+        log.info("changing spu aggregate sold out flag event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setSoldOut(event.getState());
+        recordStateChangedEvent(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuCanReturnChangedEvent event) {
+        log.info("changing spu aggregate can return flag event, parameters: {}", event.toString());
+
+        // 更新属性值
+        setCanReturn(event.getState());
+        recordStateChangedEvent(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuVerificationResettedEvent event) {
+        log.info("resetting spu aggregate verify state to DRAFTING event, parameters: {}", event.toString());
+
+        // 更新审核状态
+        changeVerifyState(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuCommittedEvent event) {
+        log.info("committing spu aggregate to verify[AUDITING] event, parameters: {}", event.toString());
+
+        // 更新审核状态
+        changeVerifyState(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuApprovedEvent event) {
+        log.info("approving spu aggregate event, parameters: {}", event.toString());
+
+        // 更新审核状态
+        changeVerifyState(event);
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(SpuRejectedEvent event) {
+        log.info("rejecting spu aggregate event, parameters: {}", event.toString());
+
+        // 更新审核状态
+        changeVerifyState(event);
+    }
+
+    private void changeVerifyState(SpuVerifiedEvent event) {
+        setVerifyState(event.getState());
+        setUpdatedBy(event.getUpdatedBy());
+        setUpdatedAt(event.getUpdatedAt());
+    }
+
+    private void recordStateChangedEvent(SpuStateChangedEvent event) {
+        setUpdatedBy(event.getUpdatedBy());
+        setUpdatedAt(event.getUpdatedAt());
     }
 }

@@ -1,5 +1,6 @@
-package com.damon.product.api.dto.req.spu;
+package com.damon.product.api.dto.resp.spu;
 
+import com.damon.product.api.dto.req.spu.CreateSpuReqDTO;
 import com.damon.product.shared.enums.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,13 +10,18 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 创建商品请求
+ * SPU返回信息
  * @author Damon S.
+ * @version v1.0.1
+ * @date 2019年02月24日 23:50
  */
 @Data
-@ApiModel(value = "创建商品请求参数")
-public class CreateSpuReqDTO implements Serializable {
+@ApiModel(value = "SPU对外返回信息")
+public class SpuInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
+
+    @ApiModelProperty(name = "spuId", value = "商品ID")
+    private Long        spuId;
 
     @ApiModelProperty(name = "name", value = "商品名称")
     private String      name;
@@ -30,7 +36,7 @@ public class CreateSpuReqDTO implements Serializable {
     private Long        imageId;
 
     @ApiModelProperty(name = "albumImages", value = "商品图片")
-    private List<Long>  albumImages;
+    private List<Long> albumImages;
 
     @ApiModelProperty(name = "price", value = "售价（单位：分）")
     private Long        price;
@@ -40,9 +46,6 @@ public class CreateSpuReqDTO implements Serializable {
 
     @ApiModelProperty(name = "inventory", value = "库存")
     private Integer     inventory;
-
-    @ApiModelProperty(name = "safetyStock", value = "安全库存")
-    private Integer     safetyStock;
 
     @ApiModelProperty(name = "model", value = "型号")
     private String      model;
@@ -81,7 +84,7 @@ public class CreateSpuReqDTO implements Serializable {
     private String      deliveryRegion;
 
     @ApiModelProperty(name = "skus", value = "单/多规格")
-    private List<ProductSkuReqDTO> skus;
+    private List<CreateSpuReqDTO.ProductSkuReqDTO> skus;
 
     @ApiModelProperty(name = "weight", value = "商品重量（单位：毫克）")
     private Long        weight;
@@ -91,56 +94,4 @@ public class CreateSpuReqDTO implements Serializable {
 
     @ApiModelProperty(name = "description", value = "商品说明")
     private String      description;
-
-
-    /**
-     * 创建商品请求
-     * @author Damon S.
-     */
-    @Data
-    @ApiModel(value = "创建商品SKU参数")
-    public class ProductSkuReqDTO implements Serializable {
-
-        @ApiModelProperty(name = "specIds", value = "规格", notes = "规格Id按顺序排列")
-        private List<Long>      specIds;
-
-        @ApiModelProperty(name = "skuCode", value = "SKU编码")
-        private String      skuCode;
-
-        @ApiModelProperty(name = "name", value = "名称")
-        private String      name;
-
-        @ApiModelProperty(name = "images", value = "SKU图片")
-        private List<Long>      images;
-
-        @ApiModelProperty(name = "inventory", value = "库存")
-        private Integer     inventory;
-
-        @ApiModelProperty(name = "safetyStock", value = "安全库存")
-        private Integer     safetyStock;
-
-        @ApiModelProperty(name = "price", value = "价格")
-        private Long        price;
-
-        @ApiModelProperty(name = "reduction", value = "立减")
-        private Long        reduction;
-
-        @ApiModelProperty(name = "promoteFee", value = "推广费")
-        private Long        promoteFee;
-
-        @ApiModelProperty(name = "serviceFee", value = "服务费")
-        private Long        serviceFee;
-
-        @ApiModelProperty(name = "exchangePrice", value = "兑换价")
-        private Long        exchangePrice;
-
-        @ApiModelProperty(name = "exchangePoint", value = "兑换德分")
-        private Long        exchangePoint;
-
-        @ApiModelProperty(name = "netWorth", value = "净值")
-        private Long        netWorth;
-
-        @ApiModelProperty(name = "barCode", value = "条形码")
-        private String      barCode;
-    }
 }

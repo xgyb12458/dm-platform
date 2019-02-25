@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author Damon S.
  */
 @Repository
-public interface SkuSpecRelateEntryRepository extends EntryRepository<SkuSpecRelateEntry, Long> {
+public interface SkuSpecRelateRepository extends EntryRepository<SkuSpecRelateEntry, Long> {
 }
