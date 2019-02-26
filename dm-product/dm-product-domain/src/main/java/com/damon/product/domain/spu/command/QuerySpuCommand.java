@@ -1,6 +1,5 @@
 package com.damon.product.domain.spu.command;
 
-import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
@@ -27,7 +26,6 @@ public class QuerySpuCommand {
     private final YesNoEnum         soldOut;
     private final YesNoEnum         supportReturn;
     private final SpuState          state;
-    private final String            model;
     private final ProductType       type;
     private final Long              categoryId;
     private final Long              brandId;
@@ -37,4 +35,6 @@ public class QuerySpuCommand {
     private final Long              createdBy;
     private final Instant           createdFrom;
     private final Instant           createdTo;
+    private final Long              pageSize;
+    private final Long              pageIndex;
 }

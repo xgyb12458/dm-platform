@@ -8,9 +8,10 @@ public final class Constants {
     public static final String STR_EMPTY = "";
     public static final String STR_NA = "NA";
 
-    public static final Integer START_PAGE_INDEX = 1;
-    public static final Integer DEFAULT_PAGE_SIZE = 10;
+    public static final Long START_PAGE_INDEX = 1L;
+    public static final Long DEFAULT_PAGE_SIZE = 10L;
     public static final Integer INT_ZERO = 0;
+    public static final Integer INT_ONE = 1;
     public static final Long LONG_ZERO = 0L;
     public static final Long LONG_TEN = 10L;
 
@@ -18,4 +19,5 @@ public final class Constants {
 
     public static final String PREFIX_SHARED = "[DMP-SHARED]";
     public static final String PREFIX_ORDER = "[DMP-ORDER]";
+    public static final String PREFIX_PRODUCT = "[DMP-PRODUCT]";
 }

@@ -13,10 +13,30 @@ public enum ProductType {
     /**
      * 普通商品
      */
-    NORMAL,
+    NORMAL(0),
 
     /**
      * 套装商品
      */
-    SUIT
+    SUIT(1);
+
+    private final int code;
+
+    /**
+     * 根据传值转换枚举值。
+     */
+    public static ProductType parse(int code) {
+        ProductType type;
+        switch (code) {
+            case 0:
+                type = NORMAL;
+                break;
+            case 1:
+                type = SUIT;
+                break;
+            default:
+                type = NORMAL;
+        }
+        return type;
+    }
 }

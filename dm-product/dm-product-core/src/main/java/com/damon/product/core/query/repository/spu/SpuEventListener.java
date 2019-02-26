@@ -43,7 +43,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuCreatedEvent event) {
-        log.trace("handling SpuCreatedEvent persistence process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuCreatedEvent persistence process, parameters：{}", event.toString());
 
         SpuEntry spuEntry = SpuEntry.builder()
                 .spuId(event.getSpuId().getValue())
@@ -81,7 +81,7 @@ public class SpuEventListener {
                 .build();
 
         spuRepository.saveAndFlush(spuEntry);
-        log.info("========>>Spu aggregate[Id:{}, name:'{}'] created by User[Id:{}] at {} is successfully stored-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}, name:'{}'] created by User[Id:{}] at {} is successfully stored-[DB].",
                 event.getSpuId().getValue(), event.getName(), event.getCreatedBy(), event.getCreatedAt());
     }
 
@@ -89,7 +89,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuUpdatedEvent event) {
-        log.trace("handling SpuUpdatedEvent persistence process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuUpdatedEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qSpuEntry)
                 .set(qSpuEntry.name, event.getName())
@@ -120,7 +120,7 @@ public class SpuEventListener {
                 .where(qSpuEntry.spuId.eq(event.getSpuId().getValue()))
                 .execute();
 
-        log.info("========>>Spu aggregate[Id:{}] is updated by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] is updated by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -128,11 +128,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRemovedEvent event) {
-        log.trace("handling SpuRemovedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRemovedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.removed);
 
-        log.info("========>>Spu aggregate[Id:{}] has bean removed by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] has bean removed by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -140,11 +140,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRecoveredEvent event) {
-        log.trace("handling SpuRecoveredEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRecoveredEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.removed);
 
-        log.info("========>>Spu aggregate[Id:{}] has bean recovered by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] has bean recovered by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -152,11 +152,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuNewProductChangedEvent event) {
-        log.trace("handling SpuNewProductChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuNewProductChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.newProduct);
 
-        log.info("========>>Spu aggregate[Id:{}] newProduct has bean updated by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] newProduct has bean updated by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -164,11 +164,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRecommendedChangedEvent event) {
-        log.trace("handling SpuRecommendedChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRecommendedChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.recommended);
 
-        log.info("========>>Spu aggregate[Id:{}] recommended has bean updated by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] recommended has bean updated by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -176,11 +176,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuSoldOutChangedEvent event) {
-        log.trace("handling SpuSoldOutChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuSoldOutChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.soldOut);
 
-        log.info("========>>Spu aggregate[Id:{}] soldOut has bean updated by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] soldOut has bean updated by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -188,11 +188,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuSupportReturnChangedEvent event) {
-        log.trace("handling SpuSupportReturnChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuSupportReturnChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.supportReturn);
 
-        log.info("========>>Spu aggregate[Id:{}] supportReturn has bean updated by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] supportReturn has bean updated by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -200,11 +200,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuVerificationResettedEvent event) {
-        log.trace("handling SpuVerificationResettedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuVerificationResettedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
-        log.info("========>>Spu aggregate[Id:{}] has bean reset to verify by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] has bean reset to verify by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -212,11 +212,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuCommittedEvent event) {
-        log.trace("handling SpuCommittedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuCommittedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
-        log.info("========>>Spu aggregate[Id:{}] has bean committed to verify by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] has bean committed to verify by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -224,11 +224,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuApprovedEvent event) {
-        log.trace("handling SpuApprovedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuApprovedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
-        log.info("========>>Spu aggregate[Id:{}] has bean approved by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] has bean approved by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 
@@ -236,11 +236,11 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRejectedEvent event) {
-        log.trace("handling SpuRejectedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRejectedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
-        log.info("========>>Spu aggregate[Id:{}] has bean rejected by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Spu aggregate[Id:{}] has bean rejected by User[Id:{}] at {}-[DB].",
                 event.getSpuId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 

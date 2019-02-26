@@ -6,6 +6,7 @@ import com.damon.product.domain.spu.event.*;
 import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
+import com.damon.shared.common.Constants;
 import com.damon.shared.enums.YesNoEnum;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -102,7 +103,7 @@ public class SpuAggregate {
 
     @CommandHandler
     public SpuAggregate(CreateSpuCommand command) {
-        log.info("creating spu aggregate command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "creating spu aggregate command, parameters: {}", command.toString());
 
         // 验证参数是否合法
 //        if (!SpuAdapter.validate(command)) {
@@ -160,7 +161,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(UpdateSpuCommand command) {
-        log.info("updating spu aggregate command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "updating spu aggregate command, parameters: {}", command.toString());
 
         // 验证参数是否合法
 
@@ -201,7 +202,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(RemoveSpuCommand command) {
-        log.info("deleting spu aggregate command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "deleting spu aggregate command, parameters: {}", command.toString());
 
         if (YesNoEnum.N.equals(getRemoved())) {
             apply(new SpuRemovedEvent(
@@ -215,7 +216,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(RecoverSpuCommand command) {
-        log.info("recovering spu aggregate command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "recovering spu aggregate command, parameters: {}", command.toString());
 
         if (YesNoEnum.Y.equals(getRemoved())) {
             apply(new SpuRecoveredEvent(
@@ -229,7 +230,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(ChangeSpuNewProductCommand command) {
-        log.info("changing spu aggregate newProduct command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate newProduct command, parameters: {}", command.toString());
 
         apply(new SpuNewProductChangedEvent(
                 command.getSpuId(),
@@ -242,7 +243,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(ChangeSpuRecommendedCommand command) {
-        log.info("changing spu aggregate recommended command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate recommended command, parameters: {}", command.toString());
 
         apply(new SpuRecommendedChangedEvent(
                 command.getSpuId(),
@@ -255,7 +256,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(ChangeSpuSoldOutCommand command) {
-        log.info("changing spu aggregate soldOut command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate soldOut command, parameters: {}", command.toString());
 
         apply(new SpuSoldOutChangedEvent(
                 command.getSpuId(),
@@ -268,7 +269,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(ChangeSpuSupportReturnCommand command) {
-        log.info("changing spu aggregate supportReturn command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate supportReturn command, parameters: {}", command.toString());
 
         apply(new SpuSupportReturnChangedEvent(
                 command.getSpuId(),
@@ -281,7 +282,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(ResetSpuVerificationCommand command) {
-        log.info("resetting spu aggregate verifyState command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "resetting spu aggregate verifyState command, parameters: {}", command.toString());
 
         apply(new SpuVerificationResettedEvent(
                 command.getSpuId(),
@@ -293,7 +294,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(CommitSpuVerificationCommand command) {
-        log.info("committing spu aggregate to verify command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "committing spu aggregate to verify command, parameters: {}", command.toString());
 
         apply(new SpuCommittedEvent(
                 command.getSpuId(),
@@ -305,7 +306,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(ApproveSpuCommand command) {
-        log.info("approving spu aggregate command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "approving spu aggregate command, parameters: {}", command.toString());
 
         apply(new SpuApprovedEvent(
                 command.getSpuId(),
@@ -317,7 +318,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(RejectSpuCommand command) {
-        log.info("rejecting spu aggregate command, parameters: {}", command.toString());
+        log.info(Constants.PREFIX_PRODUCT + "rejecting spu aggregate command, parameters: {}", command.toString());
 
         apply(new SpuRejectedEvent(
                 command.getSpuId(),
@@ -329,7 +330,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuCreatedEvent event) {
-        log.info("creating spu aggregate event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "creating spu aggregate event, parameters: {}", event.toString());
 
 //        if (!SpuAdapter.validate(event)) {
 //            throw new BusinessException(ResponseCodeEnum.BAD_REQUEST);
@@ -395,7 +396,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuUpdatedEvent event) {
-        log.info("updating spu aggregate event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "updating spu aggregate event, parameters: {}", event.toString());
 
         // 更新属性值
         setSpuId(event.getSpuId());
@@ -432,7 +433,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuRemovedEvent event) {
-        log.info("deleting spu aggregate event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "deleting spu aggregate event, parameters: {}", event.toString());
 
         // 更新属性值
         setRemoved(event.getState());
@@ -443,7 +444,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuRecoveredEvent event) {
-        log.info("recovering spu aggregate event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "recovering spu aggregate event, parameters: {}", event.toString());
 
         // 更新属性值
         setRemoved(event.getState());
@@ -454,7 +455,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuNewProductChangedEvent event) {
-        log.info("changing spu aggregate newProduct event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate newProduct event, parameters: {}", event.toString());
 
         // 更新属性值
         setNewProduct(event.getState());
@@ -465,7 +466,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuRecommendedChangedEvent event) {
-        log.info("changing spu aggregate recommended event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate recommended event, parameters: {}", event.toString());
 
         // 更新属性值
         setRecommended(event.getState());
@@ -476,7 +477,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuSoldOutChangedEvent event) {
-        log.info("changing spu aggregate soldOut event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate soldOut event, parameters: {}", event.toString());
 
         // 更新属性值
         setSoldOut(event.getState());
@@ -487,7 +488,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuSupportReturnChangedEvent event) {
-        log.info("changing spu aggregate supportReturn event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "changing spu aggregate supportReturn event, parameters: {}", event.toString());
 
         // 更新属性值
         setSupportReturn(event.getState());
@@ -498,7 +499,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuVerificationResettedEvent event) {
-        log.info("resetting spu aggregate verifyState to DRAFTING event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "resetting spu aggregate verifyState to DRAFTING event, parameters: {}", event.toString());
 
         // 更新审核状态
         changeVerifyState(event);
@@ -508,7 +509,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuCommittedEvent event) {
-        log.info("committing spu aggregate to verify[AUDITING] event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "committing spu aggregate to verify[AUDITING] event, parameters: {}", event.toString());
 
         // 更新审核状态
         changeVerifyState(event);
@@ -518,7 +519,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuApprovedEvent event) {
-        log.info("approving spu aggregate event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "approving spu aggregate event, parameters: {}", event.toString());
 
         // 更新审核状态
         changeVerifyState(event);
@@ -528,7 +529,7 @@ public class SpuAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(SpuRejectedEvent event) {
-        log.info("rejecting spu aggregate event, parameters: {}", event.toString());
+        log.info(Constants.PREFIX_PRODUCT + "rejecting spu aggregate event, parameters: {}", event.toString());
 
         // 更新审核状态
         changeVerifyState(event);

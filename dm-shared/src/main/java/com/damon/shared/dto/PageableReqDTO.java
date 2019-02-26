@@ -16,9 +16,9 @@ public class PageableReqDTO {
 
     @ApiModelProperty(name = "pageSize", value = "每页数量")
     @Min(value = 6, message = "每页数量必须大于等于6")
-    private Integer pageSize;
+    private Long pageSize;
 
     @ApiModelProperty(name = "pageIndex", value = "页码")
     @Min(value = 1, message = "页码值必须大于0")
-    private Integer pageIndex;
+    private Long pageIndex;
 }

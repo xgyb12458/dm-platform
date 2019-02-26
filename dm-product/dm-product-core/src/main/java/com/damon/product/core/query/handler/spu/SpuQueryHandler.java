@@ -5,6 +5,8 @@ import com.damon.product.domain.spu.command.QuerySpuCommand;
 import com.damon.product.domain.spu.entity.QSpuEntry;
 import com.damon.product.domain.spu.entity.SpuEntry;
 import com.damon.product.domain.spu.entity.SpuRepository;
+import com.damon.shared.common.Constants;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -54,68 +56,69 @@ public class SpuQueryHandler {
     private QueryResults<SpuEntry> handle(QuerySpuCommand command) {
         log.trace("=======>handling QuerySpuCommand：{}", command);
 
-        JPAQuery<SpuEntry> spuEntryQuery = jpaQueryFactory.selectFrom(qSpuEntry);
-
+        final BooleanBuilder whereExpression = new BooleanBuilder();
         // 拼接查询条件
         Optional.ofNullable(command.getName()).ifPresent(
-                name -> spuEntryQuery.where(qSpuEntry.name.like(name))
+                name -> whereExpression.and(qSpuEntry.name.like(name))
         );
         Optional.ofNullable(command.getSpuCode()).ifPresent(
-                spuCode -> spuEntryQuery.where(qSpuEntry.spuCode.eq(spuCode))
-        );
-        Optional.ofNullable(command.getBrandId()).ifPresent(
-                brandId -> spuEntryQuery.where(qSpuEntry.brandId.eq(brandId))
-        );
-        Optional.ofNullable(command.getCategoryId()).ifPresent(
-                categoryId -> spuEntryQuery.where(qSpuEntry.categoryId.eq(categoryId))
-        );
-        Optional.ofNullable(command.getSupplierId()).ifPresent(
-                supplierId -> spuEntryQuery.where(qSpuEntry.supplierId.eq(supplierId))
-        );
-        Optional.ofNullable(command.getWarehouseId()).ifPresent(
-                warehouseId -> spuEntryQuery.where(qSpuEntry.warehouseId.eq(warehouseId))
-        );
-        Optional.ofNullable(command.getDeliveryRegion()).ifPresent(
-                deliveryRegion -> spuEntryQuery.where(qSpuEntry.deliveryRegion.like(deliveryRegion))
-        );
-        Optional.ofNullable(command.getModel()).ifPresent(
-                model -> spuEntryQuery.where(qSpuEntry.model.eq(model))
-        );
-        Optional.ofNullable(command.getNewProduct()).ifPresent(
-                newProduct -> spuEntryQuery.where(qSpuEntry.newProduct.eq(newProduct.name()))
-        );
-        Optional.ofNullable(command.getRecommended()).ifPresent(
-                recommended -> spuEntryQuery.where(qSpuEntry.recommended.eq(recommended.name()))
-        );
-        Optional.ofNullable(command.getSoldOut()).ifPresent(
-                soldOut -> spuEntryQuery.where(qSpuEntry.soldOut.eq(soldOut.name()))
-        );
-        Optional.ofNullable(command.getState()).ifPresent(
-                spuState -> spuEntryQuery.where(qSpuEntry.state.eq(spuState.name()))
-        );
-        Optional.ofNullable(command.getSupportReturn()).ifPresent(
-                supportReturn -> spuEntryQuery.where(qSpuEntry.supportReturn.eq(supportReturn.name()))
-        );
-        Optional.ofNullable(command.getVerifyState()).ifPresent(
-                verifyState -> spuEntryQuery.where(qSpuEntry.verifyState.eq(verifyState.name()))
+                spuCode -> whereExpression.and(qSpuEntry.spuCode.eq(spuCode))
         );
         Optional.ofNullable(command.getType()).ifPresent(
-                type -> spuEntryQuery.where(qSpuEntry.type.eq(type.name()))
+                type -> whereExpression.and(qSpuEntry.type.eq(type.name()))
+        );
+        Optional.ofNullable(command.getState()).ifPresent(
+                spuState -> whereExpression.and(qSpuEntry.state.eq(spuState.name()))
+        );
+        Optional.ofNullable(command.getVerifyState()).ifPresent(
+                verifyState -> whereExpression.and(qSpuEntry.verifyState.eq(verifyState.name()))
+        );
+        Optional.ofNullable(command.getBrandId()).ifPresent(
+                brandId -> whereExpression.and(qSpuEntry.brandId.eq(brandId))
+        );
+        Optional.ofNullable(command.getCategoryId()).ifPresent(
+                categoryId -> whereExpression.and(qSpuEntry.categoryId.eq(categoryId))
+        );
+        Optional.ofNullable(command.getSupplierId()).ifPresent(
+                supplierId -> whereExpression.and(qSpuEntry.supplierId.eq(supplierId))
+        );
+        Optional.ofNullable(command.getWarehouseId()).ifPresent(
+                warehouseId -> whereExpression.and(qSpuEntry.warehouseId.eq(warehouseId))
+        );
+        Optional.ofNullable(command.getNewProduct()).ifPresent(
+                newProduct -> whereExpression.and(qSpuEntry.newProduct.eq(newProduct.name()))
+        );
+        Optional.ofNullable(command.getRecommended()).ifPresent(
+                recommended -> whereExpression.and(qSpuEntry.recommended.eq(recommended.name()))
+        );
+        Optional.ofNullable(command.getSoldOut()).ifPresent(
+                soldOut -> whereExpression.and(qSpuEntry.soldOut.eq(soldOut.name()))
+        );
+        Optional.ofNullable(command.getSupportReturn()).ifPresent(
+                supportReturn -> whereExpression.and(qSpuEntry.supportReturn.eq(supportReturn.name()))
+        );
+        Optional.ofNullable(command.getDeliveryRegion()).ifPresent(
+                deliveryRegion -> whereExpression.and(qSpuEntry.deliveryRegion.like(deliveryRegion))
         );
         Optional.ofNullable(command.getCreatedBy()).ifPresent(
-                createdBy -> spuEntryQuery.where(qSpuEntry.createdBy.eq(createdBy))
+                createdBy -> whereExpression.and(qSpuEntry.createdBy.eq(createdBy))
         );
         Optional.ofNullable(command.getCreatedFrom()).ifPresent(
-                createdFrom -> spuEntryQuery.where(
+                createdFrom -> whereExpression.and(
                         qSpuEntry.createdAt.after(new Timestamp(createdFrom.toEpochMilli()))
                 )
         );
         Optional.ofNullable(command.getCreatedTo()).ifPresent(
-                createdTo -> spuEntryQuery.where(
+                createdTo -> whereExpression.and(
                         qSpuEntry.createdAt.before(new Timestamp(createdTo.toEpochMilli()))
                 )
         );
         // 获取查询结果
-        return spuEntryQuery.fetchResults();
+        return this.jpaQueryFactory.selectFrom(qSpuEntry)
+                .where(whereExpression)
+                .orderBy(qSpuEntry.createdAt.desc(), qSpuEntry.updatedAt.desc())
+                .limit(command.getPageSize())
+                .offset(command.getPageIndex() - Constants.INT_ONE)
+                .fetchResults();
     }
 }

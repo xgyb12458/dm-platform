@@ -1,6 +1,6 @@
 package com.damon.product.api.dto.req.spu;
 
-import com.damon.product.shared.enums.ProductType;
+import com.damon.shared.dto.PageableReqDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel(value = "创建商品请求参数")
-public class QuerySpuReqDTO implements Serializable {
+public class QuerySpuReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(name = "name", value = "商品名称")
@@ -24,11 +24,8 @@ public class QuerySpuReqDTO implements Serializable {
     @ApiModelProperty(name = "spuCode", value = "商品编码")
     private String      spuCode;
 
-    @ApiModelProperty(name = "model", value = "型号")
-    private String      model;
-
-    @ApiModelProperty(name = "type", value = "商品类型")
-    private ProductType type;
+    @ApiModelProperty(name = "type", value = "商品类型(0普通商品，1套装商品)")
+    private Integer     type;
 
     @ApiModelProperty(name = "supportReturn", value = "是否支持退货(1是，0否)")
     private Integer     supportReturn;
@@ -44,4 +41,19 @@ public class QuerySpuReqDTO implements Serializable {
 
     @ApiModelProperty(name = "supplierId", value = "供应商")
     private Long        supplierId;
+
+    @ApiModelProperty(name = "verifyState", value = "审核状态(0草稿，1审核中，2通过，3驳回)")
+    private Integer     verifyState;
+
+    @ApiModelProperty(name = "state", value = "商品状态(0草稿箱,1计划发布,2上架,3下架)")
+    private Integer     state;
+
+    @ApiModelProperty(name = "deliveryRegion", value = "配送区域")
+    private String      deliveryRegion;
+
+    @ApiModelProperty(name = "createdFrom", value = "创建时间-从(毫秒数)")
+    private Long        createdFrom;
+
+    @ApiModelProperty(name = "createdTo", value = "创建时间-到(毫秒数)")
+    private Long        createdTo;
 }

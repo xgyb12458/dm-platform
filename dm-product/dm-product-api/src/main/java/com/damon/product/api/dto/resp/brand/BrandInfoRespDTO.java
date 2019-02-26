@@ -7,13 +7,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 获取品牌信息
+ * 品牌信息
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月23日 17:12
  */
 @Data
-@ApiModel(value = "获取品牌信息")
+@ApiModel(value = "品牌信息")
 public class BrandInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

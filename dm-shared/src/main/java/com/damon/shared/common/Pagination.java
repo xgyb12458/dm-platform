@@ -45,7 +45,7 @@ public final class Pagination<T> {
 
         private PageInfo(Long pageIndex, Long pageSize, Long totalRows) {
             this.totalRows = Optional.ofNullable(totalRows).orElse(Constants.LONG_ZERO);
-            this.pageSize = Optional.ofNullable(pageSize).orElse(Constants.LONG_TEN);
+            this.pageSize = Optional.ofNullable(pageSize).orElse(Constants.DEFAULT_PAGE_SIZE);
             Long totalPages = getTotalPages();
             this.pageIndex = pageIndex > totalPages ? totalPages : pageIndex;
         }

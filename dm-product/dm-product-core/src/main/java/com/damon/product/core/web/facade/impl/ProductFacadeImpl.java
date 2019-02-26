@@ -6,7 +6,6 @@ import com.damon.product.api.dto.req.spu.UpdateSpuReqDTO;
 import com.damon.product.api.dto.resp.spu.CreateSpuRespDTO;
 import com.damon.product.api.dto.resp.spu.SpuInfoRespDTO;
 import com.damon.product.api.web.facade.ProductFacade;
-import com.damon.product.core.query.handler.spu.SpuAdapter;
 import com.damon.product.core.query.handler.spu.SpuTranslator;
 import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.domain.spu.command.*;
@@ -38,6 +37,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class ProductFacadeImpl implements ProductFacade {
 
+    private final SpuTranslator spuTranslator;
     private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
 
@@ -45,23 +45,20 @@ public class ProductFacadeImpl implements ProductFacade {
     @ArgsValid
     @Override
     @ApiOperation(value = "创建商品", notes = "创建商品参数")
-    public ResponseWrapper<CreateSpuRespDTO> create(
-            CreateSpuReqDTO createSpuReqDTO) {
-        commandGateway.sendAndWait(
-                SpuAdapter.transformCommand(createSpuReqDTO)
+    public ResponseWrapper<CreateSpuRespDTO> create(CreateSpuReqDTO createSpuReqDTO) {
+        Long createdSpuId = commandGateway.sendAndWait(
+                spuTranslator.translateFromReqDTO(createSpuReqDTO)
         );
-        CreateSpuRespDTO createSpuRespDTO = new CreateSpuRespDTO();
-
-        return new ResponseWrapper<>(createSpuRespDTO);
+        return new ResponseWrapper<>(
+                new CreateSpuRespDTO(createdSpuId)
+        );
     }
 
     @ArgsValid
     @Override
     @ApiOperation(value = "查询商品", notes = "按条件查询商品信息")
     public ResponseWrapper<Pagination<SpuInfoRespDTO>> query(QuerySpuReqDTO querySpuReqDTO) {
-        QuerySpuCommand command = QuerySpuCommand.builder()
-                .build();
-
+        QuerySpuCommand command = spuTranslator.translateFromReqDTO(querySpuReqDTO);
         CompletableFuture<QueryResults> futureResults =
                 queryGateway.query(command, QueryResults.class);
 
@@ -77,7 +74,7 @@ public class ProductFacadeImpl implements ProductFacade {
                 queryResults.getOffset(),
                 queryResults.getLimit(),
                 queryResults.getTotal(),
-                SpuTranslator.translateToRespDTOs(queryResults)
+                spuTranslator.translateToRespDTOs(queryResults)
         );
         return new ResponseWrapper<>(spuInfoRespDTOs);
     }
@@ -87,18 +84,18 @@ public class ProductFacadeImpl implements ProductFacade {
     public ResponseWrapper<SpuInfoRespDTO> find(Long spuId) {
         // 验证用户
 
-        CompletableFuture<SpuEntry> futureResults =
+        CompletableFuture<SpuEntry> futureResult =
                 queryGateway.query(new FindSpuByIdCommand(spuId), SpuEntry.class);
 
         SpuEntry foundResult;
         try {
-            foundResult = futureResults.get();
+            foundResult = futureResult.get();
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
         return new ResponseWrapper<>(
-                SpuTranslator.translateToRespDTO(foundResult)
+                spuTranslator.translateToRespDTO(foundResult)
         );
     }
 
@@ -106,111 +103,121 @@ public class ProductFacadeImpl implements ProductFacade {
     @Override
     @ApiOperation(value = "更新商品", notes = "编辑商品信息")
     public ResponseWrapper<Boolean> update(UpdateSpuReqDTO updateSpuReqDTO) {
-        UpdateSpuCommand command = UpdateSpuCommand.builder()
-                .build();
-
-        queryGateway.query(command, List.class);
-        return new ResponseWrapper<>();
+        final Long currentUserId = 1L;
+        commandGateway.sendAndWait(
+                spuTranslator.translateFromReqDTO(updateSpuReqDTO)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "删除商品", notes = "删除商品（逻辑删除）")
     public ResponseWrapper<Boolean> remove(Long spuId) {
-        final Long currentUserId = 1L;
-        RemoveSpuCommand command = new RemoveSpuCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new RemoveSpuCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "恢复商品", notes = "恢复删除的商品")
     public ResponseWrapper<Boolean> recover(Long spuId) {
-        final Long currentUserId = 1L;
-        RecoverSpuCommand command = new RecoverSpuCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new RecoverSpuCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "变更新品标识", notes = "变更新品标识")
     public ResponseWrapper<Boolean> changeNewProductState(Long spuId) {
-        final Long currentUserId = 1L;
-        ChangeSpuNewProductCommand command = new ChangeSpuNewProductCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new ChangeSpuNewProductCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "变更推荐标识", notes = "变更推荐标识")
     public ResponseWrapper<Boolean> changeRecommendState(Long spuId) {
-        final Long currentUserId = 1L;
-        ChangeSpuRecommendedCommand command = new ChangeSpuRecommendedCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new ChangeSpuRecommendedCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "变更售罄标识", notes = "变更售罄标识")
     public ResponseWrapper<Boolean> changeSoldOutState(Long spuId) {
-        final Long currentUserId = 1L;
-        ChangeSpuSoldOutCommand command = new ChangeSpuSoldOutCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new ChangeSpuSoldOutCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "变更退货标识", notes = "变更退货标识")
     public ResponseWrapper<Boolean> changeCanReturnState(Long spuId) {
-        final Long currentUserId = 1L;
-        ChangeSpuSupportReturnCommand command = new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "重置审核状态", notes = "重置审核状态至草稿状态")
     public ResponseWrapper<Boolean> resetVerifyState(Long spuId) {
-        final Long currentUserId = 1L;
-        ResetSpuVerificationCommand command = new ResetSpuVerificationCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new ResetSpuVerificationCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "提交审核", notes = "提交审核")
     public ResponseWrapper<Boolean> commitVerification(Long spuId) {
-        final Long currentUserId = 1L;
-        CommitSpuVerificationCommand command = new CommitSpuVerificationCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new CommitSpuVerificationCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "通过审核", notes = "通过审核")
     public ResponseWrapper<Boolean> approveSpu(Long spuId) {
-        final Long currentUserId = 1L;
-        ApproveSpuCommand command = new ApproveSpuCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new ApproveSpuCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "驳回审核", notes = "驳回审核")
     public ResponseWrapper<Boolean> rejectSpu(Long spuId) {
-        final Long currentUserId = 1L;
-        RejectSpuCommand command = new RejectSpuCommand(new SpuId(spuId), currentUserId);
+        final long currentUserId = 1L;
 
-        commandGateway.sendAndWait(command);
-        return new ResponseWrapper<>();
+        commandGateway.sendAndWait(
+                new RejectSpuCommand(new SpuId(spuId), currentUserId)
+        );
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
@@ -226,7 +233,7 @@ public class ProductFacadeImpl implements ProductFacade {
                 System.out.println();
             }
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
@@ -237,10 +244,10 @@ public class ProductFacadeImpl implements ProductFacade {
         }
 
         final long currentUserId = 1L;
-        spuIds.forEach(
-                spuId -> commandGateway.sendAndWait(new ChangeSpuNewProductCommand(new SpuId(spuId), currentUserId))
+        spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                new ChangeSpuNewProductCommand(new SpuId(spuId), currentUserId))
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
@@ -251,10 +258,10 @@ public class ProductFacadeImpl implements ProductFacade {
         }
 
         final long currentUserId = 1L;
-        spuIds.forEach(
-                spuId -> commandGateway.sendAndWait(new ChangeSpuRecommendedCommand(new SpuId(spuId), currentUserId))
+        spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                new ChangeSpuRecommendedCommand(new SpuId(spuId), currentUserId))
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
@@ -265,10 +272,10 @@ public class ProductFacadeImpl implements ProductFacade {
         }
 
         final long currentUserId = 1L;
-        spuIds.forEach(
-                spuId -> commandGateway.sendAndWait(new ChangeSpuSoldOutCommand(new SpuId(spuId), currentUserId))
+        spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                new ChangeSpuSoldOutCommand(new SpuId(spuId), currentUserId))
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
@@ -279,9 +286,9 @@ public class ProductFacadeImpl implements ProductFacade {
         }
 
         final long currentUserId = 1L;
-        spuIds.forEach(
-                spuId -> commandGateway.sendAndWait(new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId))
+        spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId))
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 }
