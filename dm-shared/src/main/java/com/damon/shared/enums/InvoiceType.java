@@ -11,14 +11,40 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum InvoiceType {
     /**不开发票*/
-    NONE,
+    NONE(0),
 
     /**个人发票*/
-    PERSONAL,
+    PERSONAL(1),
 
     /**增值税普通发票*/
-    VAT_ORDINARY,
+    VAT_ORDINARY(2),
 
     /**增值税专用发票*/
-    VAT_SPECIAL
+    VAT_SPECIAL(3);
+
+    private final int code;
+
+    /**
+     * 根据传值转换枚举值。
+     */
+    public static InvoiceType parse(int code) {
+        InvoiceType type;
+        switch (code) {
+            case 0:
+                type = NONE;
+                break;
+            case 2:
+                type = VAT_ORDINARY;
+                break;
+            case 3:
+                type = VAT_SPECIAL;
+                break;
+            case 1:
+                type = PERSONAL;
+                break;
+            default:
+                type = NONE;
+        }
+        return type;
+    }
 }

@@ -16,5 +16,29 @@ public enum OSCategory {
     OTHERS(4),
     NA(0);
 
-    private final Integer value;
+    private final int code;
+
+    /**
+     * 根据传值转换枚举值。
+     */
+    public static OSCategory parse(int code) {
+        OSCategory category;
+        switch (code) {
+            case 0:
+                category = NA;
+                break;
+            case 1:
+                category = IOS;
+                break;
+            case 2:
+                category = ANDROID;
+                break;
+            case 4:
+                category = OTHERS;
+                break;
+            default:
+                category = NA;
+        }
+        return category;
+    }
 }
