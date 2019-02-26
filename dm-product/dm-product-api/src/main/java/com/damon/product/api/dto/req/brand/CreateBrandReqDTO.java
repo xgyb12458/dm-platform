@@ -20,16 +20,16 @@ import java.io.Serializable;
 public class CreateBrandReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "name", value = "商品名称")
-    @NotNull
+    @ApiModelProperty(name = "name", value = "品牌名称")
+    @NotNull(message = "品牌名称不能为空")
     private String      name;
 
     @ApiModelProperty(name = "code", value = "品牌编码")
-    @NotNull
+    @NotNull(message = "品牌编码不能为空")
     private String      code;
 
     @ApiModelProperty(name = "logo", value = "品牌LOGO")
-    @NotNull
+    @NotNull(message = "品牌LOGO不能为空")
     private String      logo;
 
     @ApiModelProperty(name = "display", value = "是否显示(1是，0否)")
@@ -39,11 +39,11 @@ public class CreateBrandReqDTO implements Serializable {
     private Integer     factoryState;
 
     @ApiModelProperty(name = "sort", value = "排序")
-    @Min(value = 0, message = "sort须大于等于0")
+    @Min(value = 0, message = "排序值须大于等于0")
     private Integer      sort;
 
     @ApiModelProperty(name = "firstLetter", value = "首字母")
-    @Pattern(regexp = "[a-zA-Z]{1}", message = "首字母必须为一位英文字母且不为空")
+    @Pattern(regexp = "[a-zA-Z]{1}", message = "首字母必须为1位英文字母且不为空")
     private String      firstLetter;
 
     @ApiModelProperty(name = "bigImage", value = "专区大图")

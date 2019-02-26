@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -19,6 +20,7 @@ public class UpdateBrandReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(name = "brandId", value = "品牌ID")
+    @NotNull(message = "品牌ID不能为空")
     private Long        brandId;
 
     @ApiModelProperty(name = "name", value = "品牌名称")

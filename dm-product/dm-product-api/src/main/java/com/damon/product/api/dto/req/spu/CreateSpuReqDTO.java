@@ -1,6 +1,6 @@
 package com.damon.product.api.dto.req.spu;
 
-import com.damon.product.api.dto.resp.sku.SkuInfoRespDTO;
+import com.damon.product.api.dto.req.sku.CreateSkuReqDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -109,5 +109,5 @@ public class CreateSpuReqDTO implements Serializable {
     private String      description;
 
     @ApiModelProperty(name = "skus", value = "单/多规格")
-    private List<SkuInfoRespDTO> skus;
+    private List<CreateSkuReqDTO> skus;
 }
