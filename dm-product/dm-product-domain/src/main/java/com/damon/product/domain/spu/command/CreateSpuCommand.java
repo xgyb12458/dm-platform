@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -21,26 +22,26 @@ import java.util.List;
 public class CreateSpuCommand {
     @TargetAggregateIdentifier
     private final SpuId             spuId;
+    @NotNull
     private final String            spuCode;
+    @NotNull
     private final String            name;
     private final String            subTitle;
+    @NotNull
     private final Long              imageId;
     private final List<Long>        albumImages;
     private final List<ProductSku>  skus;
-    private final String            description;
+    @NotNull
     private final Long              price;
+    private final Long              weight;
     private final Long              marketPrice;
-    private final VerifyState       verifyState;
     private final YesNoEnum         newProduct;
-    private final SpuState          state;
-    private final YesNoEnum         removed;
     private final YesNoEnum         recommended;
-    private final YesNoEnum         soldOut;
+    private final YesNoEnum         supportReturn;
     private final Integer           inventory;
     private final Integer           safetyStock;
     private final String            model;
     private final ProductType       type;
-    private final YesNoEnum         supportReturn;
     private final Long              categoryId;
     private final Long              brandId;
     private final Long              warehouseId;
@@ -48,6 +49,6 @@ public class CreateSpuCommand {
     private final Long              freightTemplateId;
     private final String            h5Detail;
     private final String            deliveryRegion;
-    private final Long              weight;
+    private final String            description;
     private final Long              createdBy;
 }

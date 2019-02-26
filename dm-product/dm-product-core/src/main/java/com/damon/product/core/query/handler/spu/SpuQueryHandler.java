@@ -8,7 +8,6 @@ import com.damon.product.domain.spu.entity.SpuRepository;
 import com.damon.shared.common.Constants;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.common.jpa.EntityManagerProvider;
@@ -43,7 +42,7 @@ public class SpuQueryHandler {
     @SuppressWarnings("UnusedDeclaration")
     @QueryHandler
     private SpuEntry handle(FindSpuByIdCommand command) {
-        log.trace("=======>handling FindSpuByIdCommand：{}", command);
+        log.trace(Constants.PREFIX_PRODUCT + "=======>handling FindSpuByIdCommand：{}", command);
 
         return this.jpaQueryFactory.selectFrom(qSpuEntry)
                 .where(qSpuEntry.spuId.eq(command.getSpuId()))
@@ -54,7 +53,7 @@ public class SpuQueryHandler {
     @SuppressWarnings("UnusedDeclaration")
     @QueryHandler
     private QueryResults<SpuEntry> handle(QuerySpuCommand command) {
-        log.trace("=======>handling QuerySpuCommand：{}", command);
+        log.trace(Constants.PREFIX_PRODUCT + "=======>handling QuerySpuCommand：{}", command);
 
         final BooleanBuilder whereExpression = new BooleanBuilder();
         // 拼接查询条件

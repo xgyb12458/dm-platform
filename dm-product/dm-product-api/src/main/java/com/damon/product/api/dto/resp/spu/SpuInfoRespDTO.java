@@ -1,6 +1,6 @@
 package com.damon.product.api.dto.resp.spu;
 
-import com.damon.product.api.dto.req.spu.CreateSpuReqDTO;
+import com.damon.product.api.dto.resp.sku.SkuInfoRespDTO;
 import com.damon.product.shared.enums.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -84,7 +84,7 @@ public class SpuInfoRespDTO implements Serializable {
     private String      deliveryRegion;
 
     @ApiModelProperty(name = "skus", value = "单/多规格")
-    private List<CreateSpuReqDTO.ProductSkuReqDTO> skus;
+    private List<SkuInfoRespDTO> skus;
 
     @ApiModelProperty(name = "weight", value = "商品重量（单位：毫克）")
     private Long        weight;

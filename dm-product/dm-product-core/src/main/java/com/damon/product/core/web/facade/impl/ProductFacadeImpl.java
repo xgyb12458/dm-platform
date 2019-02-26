@@ -46,11 +46,11 @@ public class ProductFacadeImpl implements ProductFacade {
     @Override
     @ApiOperation(value = "创建商品", notes = "创建商品参数")
     public ResponseWrapper<CreateSpuRespDTO> create(CreateSpuReqDTO createSpuReqDTO) {
-        Long createdSpuId = commandGateway.sendAndWait(
+        SpuId createdSpuId = commandGateway.sendAndWait(
                 spuTranslator.translateFromReqDTO(createSpuReqDTO)
         );
         return new ResponseWrapper<>(
-                new CreateSpuRespDTO(createdSpuId)
+                new CreateSpuRespDTO(createdSpuId.getValue())
         );
     }
 

@@ -14,12 +14,14 @@ import com.damon.product.shared.enums.ProductType;
 import com.damon.product.shared.enums.SpuState;
 import com.damon.product.shared.enums.VerifyState;
 import com.damon.shared.enums.YesNoEnum;
+import com.google.common.collect.Lists;
 import com.querydsl.core.QueryResults;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,8 +38,29 @@ public final class SpuTranslator {
     public SpuInfoRespDTO translateToRespDTO(SpuEntry spuEntry) {
         SpuInfoRespDTO spuInfoRespDTO = new SpuInfoRespDTO();
         BeanUtils.copyProperties(spuEntry, spuInfoRespDTO);
+
+        // 处理其它未自动赋值的字段
+        spuInfoRespDTO.setType(ProductType.valueOf(spuEntry.getType()));
+        // TODO:
+        spuInfoRespDTO.setAlbumImages(Lists.newArrayList());
+        spuInfoRespDTO.setSupportReturn(getCode(spuEntry.getSupportReturn()));
+        spuInfoRespDTO.setSoldOut(getCode(spuEntry.getSoldOut()));
+        spuInfoRespDTO.setNewProduct(getCode(spuEntry.getNewProduct()));
+        spuInfoRespDTO.setRecommended(getCode(spuEntry.getRecommended()));
+        // TODO:
+        spuInfoRespDTO.setSkus(Collections.emptyList());
+
         return spuInfoRespDTO;
     }
+
+
+    /**
+     * 将数据库中的状态值转换为数值
+     */
+    private int getCode(String entryValue) {
+        return YesNoEnum.valueOf(entryValue).getCode();
+    }
+
 
     /**
      * 转换SPU对象列表
@@ -116,26 +139,30 @@ public final class SpuTranslator {
 
         return CreateSpuCommand.builder()
                 .spuId(new SpuId())
-                .spuCode(reqDTO.getSpuCode())
                 .name(reqDTO.getName())
-//                .imageId(req.getImageId())
+                .spuCode(reqDTO.getSpuCode())
+                .subTitle(reqDTO.getSubTitle())
+                .imageId(reqDTO.getImageId())
+                .albumImages(reqDTO.getAlbumImages())
                 .skus(productSkus)
-                .verifyState(VerifyState.DRAFTING)
-                .state(SpuState.DRAFT)
-                .removed(YesNoEnum.N)
-                .description(reqDTO.getDescription())
+                .weight(reqDTO.getWeight())
+                .model(reqDTO.getModel())
+                .marketPrice(reqDTO.getMarketPrice())
                 .price(reqDTO.getPrice())
                 .inventory(reqDTO.getInventory())
-                .model(reqDTO.getModel())
-                .type(reqDTO.getType())
-//                .supportReturn(req.getSupportReturn())
-                .categoryId(reqDTO.getCategoryId())
+                .safetyStock(reqDTO.getSafetyStock())
+                .description(reqDTO.getDescription())
+                .freightTemplateId(reqDTO.getFreightTemplateId())
+                .type(ProductType.parse(reqDTO.getType()))
+                .supportReturn(YesNoEnum.parse(reqDTO.getSupportReturn()))
+                .recommended(YesNoEnum.parse(reqDTO.getRecommended()))
+                .newProduct(YesNoEnum.parse(reqDTO.getNewProduct()))
                 .brandId(reqDTO.getBrandId())
+                .categoryId(reqDTO.getCategoryId())
                 .warehouseId(reqDTO.getWarehouseId())
                 .supplierId(reqDTO.getSupplierId())
                 .h5Detail(reqDTO.getH5Detail())
                 .deliveryRegion(reqDTO.getDeliveryRegion())
-                .weight(reqDTO.getWeight())
                 .createdBy(currentUserId)
                 .build();
     }

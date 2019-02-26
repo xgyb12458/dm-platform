@@ -16,7 +16,7 @@ import java.util.List;
  * 商品类别管理接口
  * @author Damon S.
  */
-@RequestMapping(value = "/product/" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ApiConstants.SERVE_NAME + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_VALUE)
 public interface CategoryFacade {
 
 

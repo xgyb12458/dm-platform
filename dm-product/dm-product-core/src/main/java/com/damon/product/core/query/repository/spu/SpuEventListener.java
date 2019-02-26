@@ -43,7 +43,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuCreatedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuCreatedEvent persistence process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuCreatedEvent persistence process, parameters：{}", event.toString());
 
         SpuEntry spuEntry = SpuEntry.builder()
                 .spuId(event.getSpuId().getValue())
@@ -89,7 +89,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuUpdatedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuUpdatedEvent persistence process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuUpdatedEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qSpuEntry)
                 .set(qSpuEntry.name, event.getName())
@@ -128,7 +128,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRemovedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRemovedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuRemovedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.removed);
 
@@ -140,7 +140,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRecoveredEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRecoveredEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuRecoveredEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.removed);
 
@@ -152,7 +152,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuNewProductChangedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuNewProductChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuNewProductChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.newProduct);
 
@@ -164,7 +164,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRecommendedChangedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRecommendedChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuRecommendedChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.recommended);
 
@@ -176,7 +176,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuSoldOutChangedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuSoldOutChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuSoldOutChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.soldOut);
 
@@ -188,7 +188,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuSupportReturnChangedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuSupportReturnChangedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuSupportReturnChangedEvent process, parameters：{}", event.toString());
 
         this.handleSpuStateChangeEvent(event, qSpuEntry.supportReturn);
 
@@ -200,7 +200,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuVerificationResettedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuVerificationResettedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuVerificationResettedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -212,7 +212,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuCommittedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuCommittedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuCommittedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -224,7 +224,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuApprovedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuApprovedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuApprovedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -236,7 +236,7 @@ public class SpuEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(SpuRejectedEvent event) {
-        log.trace(Constants.PREFIX_PRODUCT + "handling SpuRejectedEvent process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling SpuRejectedEvent process, parameters：{}", event.toString());
 
         this.handleSpuVerifyEvent(event);
 
@@ -279,10 +279,12 @@ public class SpuEventListener {
      * @return 逗号分隔的字符串或者为空
      */
     private String collection2Plain(Collection<Long> collection) {
-        StringBuilder builder = new StringBuilder(",");
+        StringBuilder builder = new StringBuilder();
 
         if (!CollectionUtils.isEmpty(collection)) {
-            collection.forEach(builder::append);
+            collection.forEach(imageId ->
+                    builder.append(Constants.STR_COMMA).append(imageId)
+            );
         }
         if (builder.length() <= NUM_ONE) {
             return Constants.STR_EMPTY;

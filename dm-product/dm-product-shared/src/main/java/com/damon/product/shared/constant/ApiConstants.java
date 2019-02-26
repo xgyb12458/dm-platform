@@ -8,6 +8,8 @@ public final class ApiConstants {
     /*** APP接口版本V1 */
     public final static String API_V1 = "v1";
 
+    public final static String SERVE_NAME = "/pms/";
+
 
     /*** 获取当前接口版本 **/
     public static String apiVersion() {

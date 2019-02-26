@@ -119,6 +119,7 @@ public class SpuAggregate {
 
         }
         */
+        // 验证spu_code，sku_code是否有重复
 
         // 参数合法状态下启动创建事件
         apply(SpuCreatedEvent.builder()
@@ -129,13 +130,13 @@ public class SpuAggregate {
                 .imageId(command.getImageId())
                 .skus(command.getSkus())
                 .albumImages(command.getAlbumImages())
-                .verifyState(command.getVerifyState())
+                .verifyState(VerifyState.DRAFTING)
                 .newProduct(command.getNewProduct())
-                .state(command.getState())
-                .removed(command.getRemoved())
+                .state(SpuState.DRAFT)
+                .removed(YesNoEnum.N)
                 .recommended(command.getRecommended())
-                .soldOut(command.getSoldOut())
-                .soldVolume(0)
+                .soldOut(YesNoEnum.N)
+                .soldVolume(Constants.INT_ZERO)
                 .price(command.getPrice())
                 .marketPrice(command.getMarketPrice())
                 .inventory(command.getInventory())

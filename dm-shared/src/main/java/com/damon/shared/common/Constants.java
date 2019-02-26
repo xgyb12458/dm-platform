@@ -8,6 +8,7 @@ public final class Constants {
     public static final String STR_EMPTY = "";
     public static final String STR_NA = "NA";
     public static final String UUID_DELIMITER = "-";
+    public static final String STR_COMMA = ",";
 
     public static final Long START_PAGE_INDEX = 1L;
     public static final Long DEFAULT_PAGE_SIZE = 10L;
