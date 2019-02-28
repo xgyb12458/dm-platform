@@ -24,14 +24,14 @@ public class SkuEntry {
     @NotNull
     @Column(name = "sku_id")
     private Long        skuId;
-    @Column(name = "product_id")
-    private Long        productId;
+    @Column(name = "spu_id")
+    private Long        spuId;
     @Column(name = "sku_code")
     private String      skuCode;
     @Column
     private String      name;
     @Column
-    private String      image;
+    private String      imageIds;
     @Column
     private String      state;
     @Column

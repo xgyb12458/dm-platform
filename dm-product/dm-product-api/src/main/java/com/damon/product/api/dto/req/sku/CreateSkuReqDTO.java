@@ -30,8 +30,8 @@ public class CreateSkuReqDTO implements Serializable {
     @ApiModelProperty(name = "specIds", value = "规格", notes = "规格Id按顺序排列")
     private List<Long> specIds;
 
-    @ApiModelProperty(name = "images", value = "SKU图片")
-    private List<Long>      images;
+    @ApiModelProperty(name = "imageIds", value = "SKU图片")
+    private List<Long>      imageIds;
 
     @ApiModelProperty(name = "inventory", value = "库存")
     private Integer     inventory;

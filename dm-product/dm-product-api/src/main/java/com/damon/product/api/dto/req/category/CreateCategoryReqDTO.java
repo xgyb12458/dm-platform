@@ -17,30 +17,36 @@ import java.io.Serializable;
 public class CreateCategoryReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "name", value = "商品名称")
+    @ApiModelProperty(name = "name", value = "品类名称")
     private String      name;
 
-    @ApiModelProperty(name = "code", value = "品牌编码")
-    private String      code;
+    @ApiModelProperty(name = "level", value = "品类级别")
+    private String      level;
 
-    @ApiModelProperty(name = "logo", value = "品牌LOGO")
-    private String      logo;
+    @ApiModelProperty(name = "icon", value = "图标")
+    private String      icon;
 
-    @ApiModelProperty(name = "display", value = "是否显示")
-    private Boolean     display;
+    @ApiModelProperty(name = "spuCount", value = "商品数量")
+    private Integer     spuCount;
 
-    @ApiModelProperty(name = "factoryState", value = "是否为品牌制造商")
-    private Boolean     factoryState;
+    @ApiModelProperty(name = "spuUnit", value = "数量单位")
+    private String      spuUnit;
 
     @ApiModelProperty(name = "sort", value = "排序")
-    private Integer      sort;
+    private Integer     sort;
 
-    @ApiModelProperty(name = "firstLetter", value = "首字母")
-    private String      firstLetter;
+    @ApiModelProperty(name = "navState", value = "是否显示在导航栏")
+    private String      navState;
 
-    @ApiModelProperty(name = "bigImage", value = "专区大图")
-    private String      bigImage;
+    @ApiModelProperty(name = "showState", value = "显示状态")
+    private String      showState;
 
-    @ApiModelProperty(name = "brandStory", value = "品牌故事")
-    private String      brandStory;
+    @ApiModelProperty(name = "keywords", value = "关键字")
+    private String      keywords;
+
+    @ApiModelProperty(name = "parentId", value = "上级分类的编号：0表示一级分类")
+    private Long        parentId;
+
+    @ApiModelProperty(name = "description", value = "描述信息")
+    private String      description;
 }

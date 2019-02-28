@@ -1,18 +1,25 @@
 package com.damon.product.domain.sku.aggregate;
 
+import com.damon.product.domain.sku.command.CreateSkuCommand;
+import com.damon.product.domain.sku.event.SkuCreatedEvent;
+import com.damon.shared.common.Constants;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import java.time.Instant;
 import java.util.List;
 
+import static org.axonframework.modelling.command.AggregateLifecycle.apply;
+
 /**
- * 一次交易(主订单)
+ * SKU单品
  * @author Damon S.
  */
 @Slf4j
@@ -21,33 +28,15 @@ import java.util.List;
 @Aggregate
 @NoArgsConstructor
 public class SkuAggregate {
-    /**
-     * 基础信息：包含订单号，订单时间，订单状态等信息；
-     * 用户信息：涉及用户的信息，比如买家姓名、注册手机号、收件人等信息；
-     * 商品信息：涉及订单中的商品字段，主要包括商品名称、单价、数量、所属店铺等；
-     * 支付信息：涉及支付的字段信息，主要包括支付方式、支付状态、支付时间、支付单号、支付金额、订单金额、优惠金额等；
-     * 时间信息：涉及订单流转中各个时间戳的字段，包括下单时间、支付时间、发货时间、完成时间等
-     * 权益资产：包含红包，卡券，积分，京豆等虚拟资产；
-     * 促销信息：涉及促销的字段信息，主要包括优惠方式、优惠面额、折扣等；
-     * 状态信息：涉及订单流转中状态变更的字段，主要包括订单状态、物流状态及退款状态等；
-     * 发票信息：发票类型选择，增值税普通发票还是增值税专用发票，电子发票还是不开票等信息；
-     * 物流信息：物流具体的状态，什么时间点，哪个站点/仓，哪位配送员进行配送，是否签收，节点时间等信息。
-     * 配送信息：涉及订单配送的基本信息，比如配送方式、物流单号等；
-     *
-     * 商品信息需要从商品获取，促销信息从促销系统获取，库存从库存系统获取，
-     * 支付信息从支付系统获取，发票从发票系统，业务表示从对应的业务系统获取.
-     *
-     * 生成订单后，还要进行订单拆分，包含优惠拆分和订单拆分，紧接着进入wms系统，最后走财务开票了流程。
-     */
-
     @AggregateIdentifier
     private SkuId       skuId;
-    private List<Long>  specIds;
-    private String      skuCode;
     private String      name;
-    private List<Long>  images;
+    private String      skuCode;
+    private Long        spuId;
+    private List<Long>  specIds;
+    private List<Long>  imageIds;
     private Integer     inventory;
-    private Integer     secureInventory;
+    private Integer     safetyStock;
     private Long        price;
     private Long        reduction;
     private Long        promoteFee;
@@ -62,28 +51,55 @@ public class SkuAggregate {
     private Instant     updatedAt;
 
 
-//    @CommandHandler
-//    public SkuAggregate(SubmitOrderCommand command) {
-//        if (LOGGER.isInfoEnabled()) {
-//            LOGGER.info("Order submit command: ");
-//        }
-//
-//        apply(TradeCreatedEvent.builder()
-//                .tradeId(command.getTradeId())
-//                .addressId(command.getAddressId())
-//                .skus(command.getSkus())
-//                .commission(command.getCommission())
-//                .couponIds(command.getCouponIds())
-//                .invoiceId(command.getInvoiceId())
-//                .message(command.getMessage())
-//                .integration(command.getIntegration())
-//                .payChannel(command.getPayChannel())
-//                .createdBy(command.getCreatedBy())
-//                .build()
-//        );
-//    }
-//
-//    @EventSourcingHandler
-//    public void on(TradeCreatedEvent event) {
-//    }
+    @CommandHandler
+    public SkuAggregate(CreateSkuCommand command) {
+        log.info(Constants.PREFIX_PRODUCT + "==========>>creating sku aggregate command, parameters: {}", command.toString());
+
+        apply(SkuCreatedEvent.builder()
+                .skuId(new SkuId())
+                .name(command.getName())
+                .skuCode(command.getSkuCode())
+                .spuId(command.getSpuId())
+                .specIds(command.getSpecIds())
+                .imageIds(command.getImageIds())
+                .inventory(command.getInventory())
+                .safetyStock(command.getSafetyStock())
+                .price(command.getPrice())
+                .reduction(command.getReduction())
+                .promoteFee(command.getPromoteFee())
+                .serviceFee(command.getServiceFee())
+                .exchangePrice(command.getExchangePrice())
+                .exchangePoint(command.getExchangePoint())
+                .netWorth(command.getNetWorth())
+                .barCode(command.getBarCode())
+                .createdBy(command.getCreatedBy())
+                .createdAt(Instant.now())
+                .build()
+        );
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    public void on(SkuCreatedEvent event) {
+        log.info(Constants.PREFIX_PRODUCT + "==========>>creating sku aggregate event, parameters: {}", event.toString());
+
+        setSkuId(event.getSkuId());
+        setName(event.getName());
+        setSkuCode(event.getSkuCode());
+        setSpuId(event.getSpuId());
+        setSpecIds(event.getSpecIds());
+        setImageIds(event.getImageIds());
+        setInventory(event.getInventory());
+        setSafetyStock(event.getSafetyStock());
+        setPrice(event.getPrice());
+        setReduction(event.getReduction());
+        setPromoteFee(event.getPromoteFee());
+        setServiceFee(event.getServiceFee());
+        setExchangePoint(event.getExchangePoint());
+        setExchangePrice(event.getExchangePrice());
+        setNetWorth(event.getNetWorth());
+        setBarCode(event.getBarCode());
+        setCreatedBy(event.getCreatedBy());
+        setCreatedAt(event.getCreatedAt());
+    }
 }

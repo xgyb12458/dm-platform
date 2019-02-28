@@ -8,7 +8,7 @@ spring:
 #    schema: classpath:db/schema.sql
 #    data: classpath:db/data.sql
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
       use-new-id-generator-mappings: true

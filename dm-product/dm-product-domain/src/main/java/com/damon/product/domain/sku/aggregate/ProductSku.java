@@ -12,10 +12,10 @@ import java.util.List;
 @Value
 @Builder
 public class ProductSku {
-    private final List<Long>  specIds;
-    private final String      skuCode;
     private final String      name;
-    private final List<Long>  images;
+    private final String      skuCode;
+    private final List<Long>  specIds;
+    private final List<Long>  imageIds;
     private final Integer     inventory;
     private final Integer     safetyStock;
     private final Long        price;

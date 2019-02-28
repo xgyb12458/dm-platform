@@ -18,17 +18,17 @@ import java.util.List;
 public class UpdateSkuReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "specIds", value = "规格", notes = "规格Id按顺序排列")
-    private List<Long>      specIds;
+    @ApiModelProperty(name = "name", value = "名称")
+    private String      name;
 
     @ApiModelProperty(name = "skuCode", value = "SKU编码")
     private String      skuCode;
 
-    @ApiModelProperty(name = "name", value = "名称")
-    private String      name;
+    @ApiModelProperty(name = "specIds", value = "规格", notes = "规格Id按顺序排列")
+    private List<Long>      specIds;
 
-    @ApiModelProperty(name = "images", value = "SKU图片")
-    private List<Long>      images;
+    @ApiModelProperty(name = "imageIds", value = "SKU图片")
+    private List<Long>      imageIds;
 
     @ApiModelProperty(name = "inventory", value = "库存")
     private Integer     inventory;

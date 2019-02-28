@@ -1,10 +1,12 @@
 package com.damon.product.core.web.facade.impl;
 
-import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
+import com.damon.product.api.dto.req.category.CreateCategoryReqDTO;
 import com.damon.product.api.dto.req.category.QueryCategoryReqDTO;
 import com.damon.product.api.dto.req.category.UpdateCategoryReqDTO;
-import com.damon.product.api.dto.req.spu.CreateSpuReqDTO;
+import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
 import com.damon.product.api.web.facade.CategoryFacade;
+import com.damon.product.core.query.handler.category.CategoryTranslator;
+import com.damon.product.domain.category.aggregate.CategoryId;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
@@ -29,42 +31,52 @@ public class CategoryFacadeImpl implements CategoryFacade {
 
     private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
+    private final CategoryTranslator categoryTranslator;
 
 
     @ArgsValid
     @Override
-    @ApiOperation(value = "创建品牌", notes = "创建品牌")
-    public ResponseWrapper<Boolean> create(CreateSpuReqDTO createSpuReqDTO) {
-        return null;
+    @ApiOperation(value = "创建品类", notes = "创建品类")
+    public ResponseWrapper<Long> create(CreateCategoryReqDTO createCategoryReqDTO) {
+        CategoryId createdSpuId = commandGateway.sendAndWait(
+                categoryTranslator.translateFromReqDTO(createCategoryReqDTO)
+        );
+        return new ResponseWrapper<>(createdSpuId.getValue());
     }
 
 
     @ArgsValid
     @Override
-    @ApiOperation(value = "创建品牌", notes = "创建品牌")
-    public ResponseWrapper<List<CategoryInfoRespDTO>> query(QueryCategoryReqDTO queryCategoryReqDTO) {
-        return null;
+    @ApiOperation(value = "查询品类", notes = "查询品类")
+    public ResponseWrapper<List<CategoryInfoRespDTO>> query(
+            QueryCategoryReqDTO queryCategoryReqDTO) {
+        return new ResponseWrapper<>(
+                categoryTranslator.translateToRespDTOs(null)
+        );
     }
 
 
     @ArgsValid
     @Override
-    @ApiOperation(value = "创建品牌", notes = "创建品牌")
-    public ResponseWrapper<Boolean> update(UpdateCategoryReqDTO updateCategoryReqDTO) {
-        return null;
+    @ApiOperation(value = "更新品类", notes = "更新品类")
+    public ResponseWrapper<Boolean> update(
+            UpdateCategoryReqDTO updateCategoryReqDTO) {
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
 
     @Override
-    @ApiOperation(value = "创建品牌", notes = "创建品牌")
+    @ApiOperation(value = "获取信息", notes = "获取信息")
     public ResponseWrapper<CategoryInfoRespDTO> find(Long categoryId) {
-        return null;
+        return new ResponseWrapper<>(
+                categoryTranslator.translateToRespDTO(null)
+        );
     }
 
 
     @Override
-    @ApiOperation(value = "创建品牌", notes = "创建品牌")
+    @ApiOperation(value = "删除品类", notes = "删除指定品类")
     public ResponseWrapper<Boolean> remove(Long categoryId) {
-        return null;
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 }

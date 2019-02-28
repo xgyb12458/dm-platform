@@ -4,6 +4,7 @@ import com.damon.product.domain.spu.entity.QSpuEntry;
 import com.damon.product.domain.spu.entity.SpuEntry;
 import com.damon.product.domain.spu.entity.SpuRepository;
 import com.damon.product.domain.spu.event.*;
+import com.damon.product.shared.utils.CollectionUtil;
 import com.damon.shared.common.Constants;
 import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -11,10 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import java.sql.Timestamp;
-import java.util.Collection;
 
 /**
  * SPU事件侦听器
@@ -27,8 +26,6 @@ public class SpuEventListener {
     private final JPAQueryFactory jpaQueryFactory;
     private final QSpuEntry qSpuEntry;
     private final SpuRepository spuRepository;
-
-    private final static Integer NUM_ONE = 1;
 
     public SpuEventListener(EntityManagerProvider managerProvider,
                             SpuRepository spuRepository) {
@@ -51,7 +48,7 @@ public class SpuEventListener {
                 .name(event.getName())
                 .subTitle(event.getSubTitle())
                 .imageId(event.getImageId())
-                .albumImages(collection2Plain(event.getAlbumImages()))
+                .albumImages(CollectionUtil.collection2Plain(event.getAlbumImages()))
                 .description(event.getDescription())
                 .price(event.getPrice())
                 .marketPrice(event.getMarketPrice())
@@ -95,7 +92,7 @@ public class SpuEventListener {
                 .set(qSpuEntry.name, event.getName())
                 .set(qSpuEntry.subTitle, event.getSubTitle())
                 .set(qSpuEntry.imageId, event.getImageId())
-                .set(qSpuEntry.albumImages, collection2Plain(event.getAlbumImages()))
+                .set(qSpuEntry.albumImages, CollectionUtil.collection2Plain(event.getAlbumImages()))
                 .set(qSpuEntry.price, event.getPrice())
                 .set(qSpuEntry.marketPrice, event.getMarketPrice())
                 .set(qSpuEntry.newProduct, event.getNewProduct().name())
@@ -270,25 +267,5 @@ public class SpuEventListener {
                 .set(qSpuEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
                 .where(qSpuEntry.spuId.eq(event.getSpuId().getValue()))
                 .execute();
-    }
-
-
-    /**
-     * 将Long集合转换为逗号分隔的字符串进行存储
-     * @param collection Long集合
-     * @return 逗号分隔的字符串或者为空
-     */
-    private String collection2Plain(Collection<Long> collection) {
-        StringBuilder builder = new StringBuilder();
-
-        if (!CollectionUtils.isEmpty(collection)) {
-            collection.forEach(imageId ->
-                    builder.append(Constants.STR_COMMA).append(imageId)
-            );
-        }
-        if (builder.length() <= NUM_ONE) {
-            return Constants.STR_EMPTY;
-        }
-        return builder.substring(NUM_ONE);
     }
 }

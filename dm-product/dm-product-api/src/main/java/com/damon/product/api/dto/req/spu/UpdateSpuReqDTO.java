@@ -63,8 +63,8 @@ public class UpdateSpuReqDTO implements Serializable {
     @ApiModelProperty(name = "soldOut", value = "是否售罄")
     private Boolean     soldOut;
 
-    @ApiModelProperty(name = "newState", value = "是否新品")
-    private Boolean     newState;
+    @ApiModelProperty(name = "newProduct", value = "是否新品")
+    private Boolean     newProduct;
 
     @ApiModelProperty(name = "recommended", value = "是否推荐")
     private Boolean     recommended;

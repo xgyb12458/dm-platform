@@ -5,6 +5,8 @@ import com.damon.product.api.dto.req.spu.QuerySpuReqDTO;
 import com.damon.product.api.dto.req.spu.UpdateSpuReqDTO;
 import com.damon.product.api.dto.resp.spu.SpuInfoRespDTO;
 import com.damon.product.domain.sku.aggregate.ProductSku;
+import com.damon.product.domain.sku.aggregate.SkuId;
+import com.damon.product.domain.sku.command.CreateSkuCommand;
 import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.command.QuerySpuCommand;
@@ -122,7 +124,7 @@ public final class SpuTranslator {
                         .specIds(item.getSpecIds())
                         .skuCode(item.getSkuCode())
                         .name(item.getName())
-                        .images(item.getImages())
+                        .imageIds(item.getImageIds())
                         .inventory(item.getInventory())
                         .safetyStock(item.getSafetyStock())
                         .price(item.getPrice())

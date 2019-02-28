@@ -1,9 +1,9 @@
 package com.damon.product.api.web.facade;
 
-import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
+import com.damon.product.api.dto.req.category.CreateCategoryReqDTO;
 import com.damon.product.api.dto.req.category.QueryCategoryReqDTO;
 import com.damon.product.api.dto.req.category.UpdateCategoryReqDTO;
-import com.damon.product.api.dto.req.spu.CreateSpuReqDTO;
+import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
 import com.damon.product.shared.constant.ApiConstants;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
@@ -21,8 +21,8 @@ public interface CategoryFacade {
 
 
     @PostMapping("/categories")
-    ResponseWrapper<Boolean> create(
-            @RequestBody @Validated CreateSpuReqDTO createSpuReqDTO
+    ResponseWrapper<Long> create(
+            @RequestBody @Validated CreateCategoryReqDTO createCategoryReqDTO
     );
 
 
