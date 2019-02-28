@@ -31,7 +31,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
 
     private final CommandGateway commandGateway;
     private final QueryGateway queryGateway;
-    private final CategoryTranslator categoryTranslator;
+    private final CategoryTranslator translator;
 
 
     @ArgsValid
@@ -39,7 +39,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @ApiOperation(value = "创建品类", notes = "创建品类")
     public ResponseWrapper<Long> create(CreateCategoryReqDTO createCategoryReqDTO) {
         CategoryId createdSpuId = commandGateway.sendAndWait(
-                categoryTranslator.translateFromReqDTO(createCategoryReqDTO)
+                translator.translateFromReqDTO(createCategoryReqDTO)
         );
         return new ResponseWrapper<>(createdSpuId.getValue());
     }
@@ -50,8 +50,9 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @ApiOperation(value = "查询品类", notes = "查询品类")
     public ResponseWrapper<List<CategoryInfoRespDTO>> query(
             QueryCategoryReqDTO queryCategoryReqDTO) {
+
         return new ResponseWrapper<>(
-                categoryTranslator.translateToRespDTOs(null)
+                translator.translateToRespDTOs(null)
         );
     }
 
@@ -69,7 +70,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @ApiOperation(value = "获取信息", notes = "获取信息")
     public ResponseWrapper<CategoryInfoRespDTO> find(Long categoryId) {
         return new ResponseWrapper<>(
-                categoryTranslator.translateToRespDTO(null)
+                translator.translateToRespDTO(null)
         );
     }
 
