@@ -5,7 +5,7 @@ import com.damon.product.api.dto.req.brand.QueryBrandReqDTO;
 import com.damon.product.api.dto.req.brand.UpdateBrandReqDTO;
 import com.damon.product.api.dto.resp.brand.BrandInfoRespDTO;
 import com.damon.product.api.web.facade.BrandFacade;
-import com.damon.product.core.query.handler.brand.BrandAdapter;
+import com.damon.product.core.query.handler.brand.BrandTranslator;
 import com.damon.product.domain.brand.command.*;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.enums.YesNoEnum;
@@ -38,7 +38,7 @@ public class BrandFacadeImpl implements BrandFacade {
     @Override
     @ApiOperation(value = "创建品牌", notes = "创建品牌")
     public ResponseWrapper<Boolean> create(CreateBrandReqDTO createBrandReqDTO) {
-        if (!BrandAdapter.checkParameter(createBrandReqDTO)) {
+        if (!BrandTranslator.checkParameter(createBrandReqDTO)) {
             return new ResponseWrapper<>(ResponseCodeEnum.BAD_REQUEST);
         }
 

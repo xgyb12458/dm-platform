@@ -1,4 +1,4 @@
-package com.damon.product.domain.category.command;
+package com.damon.product.domain.category.event;
 
 import com.damon.product.domain.category.aggregate.CategoryId;
 import com.damon.shared.enums.YesNoEnum;
@@ -6,15 +6,17 @@ import lombok.Builder;
 import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import java.time.Instant;
+
 /**
- * 创建商品品类
+ * 商品品类更新事件
  * @author Damon S.
  * @version v1.0.1
- * @date 2019年02月28日 10:15
+ * @date 2019年02月28日 22:37
  */
 @Value
 @Builder
-public class CreateCategoryCommand {
+public class CategoryUpdatedEvent {
     @TargetAggregateIdentifier
     private final CategoryId categoryId;
     /**
@@ -56,7 +58,8 @@ public class CreateCategoryCommand {
     /**
      * 上级分类的编号：0表示一级分类
      */
-    private final Long  parentId;
-    private final String description;
-    private final Long  createdBy;
+    private final Long      parentId;
+    private final String    description;
+    private final Long      updatedBy;
+    private final Instant   updatedAt;
 }

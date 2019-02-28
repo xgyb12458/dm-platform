@@ -21,11 +21,11 @@ public class QueryCategoryReqDTO extends PageableReqDTO implements Serializable 
     @ApiModelProperty(name = "name", value = "品类名称")
     private String      name;
 
-    @ApiModelProperty(name = "navState", value = "是否显示在导航栏")
-    private String      navState;
+    @ApiModelProperty(name = "navState", value = "是否显示在导航栏(1是，0否)")
+    private Integer      navState;
 
-    @ApiModelProperty(name = "showState", value = "显示状态")
-    private String      showState;
+    @ApiModelProperty(name = "showState", value = "显示状态(1显示，0不显示)")
+    private Integer      showState;
 
     @ApiModelProperty(name = "keywords", value = "关键字")
     private String      keywords;

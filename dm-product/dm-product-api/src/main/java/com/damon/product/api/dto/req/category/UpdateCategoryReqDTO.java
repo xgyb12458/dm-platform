@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -18,6 +19,7 @@ public class UpdateCategoryReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(name = "categoryId", value = "品类Id")
+    @NotNull
     private Long        categoryId;
 
     @ApiModelProperty(name = "name", value = "品类名称")
@@ -39,10 +41,10 @@ public class UpdateCategoryReqDTO implements Serializable {
     private Integer     sort;
 
     @ApiModelProperty(name = "navState", value = "是否显示在导航栏")
-    private String      navState;
+    private Integer      navState;
 
     @ApiModelProperty(name = "showState", value = "显示状态")
-    private String      showState;
+    private Integer      showState;
 
     @ApiModelProperty(name = "keywords", value = "关键字")
     private String      keywords;

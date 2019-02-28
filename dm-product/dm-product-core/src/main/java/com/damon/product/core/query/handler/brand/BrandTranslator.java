@@ -8,7 +8,7 @@ import com.damon.product.api.dto.req.brand.CreateBrandReqDTO;
  * @version v1.0.1
  * @date 2019年02月23日 18:04
  */
-public class BrandAdapter {
+public final class BrandTranslator {
 
     /**
      * 检查参数是否合法

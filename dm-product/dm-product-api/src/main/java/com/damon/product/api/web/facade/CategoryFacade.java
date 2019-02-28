@@ -44,20 +44,26 @@ public interface CategoryFacade {
     );
 
 
-//    @PutMapping("/categories/{categoryId}/change_display_state")
-//    ResponseWrapper<Boolean> changeDisplayState(
-//            @PathVariable(name = "categoryId") Long categoryId
-//    );
-//
-//
-//    @PutMapping("/categories/{categoryId}/change_factory_state")
-//    ResponseWrapper<Boolean> changeFactoryState(
-//            @PathVariable(name = "categoryId") Long categoryId
-//    );
-
-
     @DeleteMapping("/categories/{categoryId}")
     ResponseWrapper<Boolean> remove(
+            @PathVariable(name = "categoryId") Long categoryId
+    );
+
+
+    @PutMapping("/categories/{categoryId}/recovery")
+    ResponseWrapper<Boolean> recover(
+            @PathVariable(name = "categoryId") Long categoryId
+    );
+
+
+    @PutMapping("/categories/{categoryId}/change_nav_state")
+    ResponseWrapper<Boolean> changeNavState(
+            @PathVariable(name = "categoryId") Long categoryId
+    );
+
+
+    @PutMapping("/categories/{categoryId}/change_show_state")
+    ResponseWrapper<Boolean> changeShowState(
             @PathVariable(name = "categoryId") Long categoryId
     );
 }

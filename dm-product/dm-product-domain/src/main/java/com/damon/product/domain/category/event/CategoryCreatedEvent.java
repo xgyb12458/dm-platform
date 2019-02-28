@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * 商品品类创建事件
@@ -60,5 +60,5 @@ public class CategoryCreatedEvent {
     private final Long      parentId;
     private final String    description;
     private final Long      createdBy;
-    private final Timestamp createdAt;
+    private final Instant   createdAt;
 }

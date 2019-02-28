@@ -1,10 +1,13 @@
 package com.damon.product.core.query.handler.category;
 
 import com.damon.product.api.dto.req.category.CreateCategoryReqDTO;
+import com.damon.product.api.dto.req.category.UpdateCategoryReqDTO;
 import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
 import com.damon.product.domain.category.aggregate.CategoryId;
 import com.damon.product.domain.category.command.CreateCategoryCommand;
+import com.damon.product.domain.category.command.UpdateCategoryCommand;
 import com.damon.product.domain.category.entity.CategoryEntry;
+import com.damon.shared.enums.YesNoEnum;
 import com.querydsl.core.QueryResults;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -54,6 +57,30 @@ public final class CategoryTranslator {
 
 
     /**
+     * 转换为更新命令
+     */
+    public UpdateCategoryCommand translateFromReqDTO(UpdateCategoryReqDTO reqDTO) {
+        Long currentUserId = 10000L;
+
+        return UpdateCategoryCommand.builder()
+                .categoryId(new CategoryId())
+                .name(reqDTO.getName())
+                .description(reqDTO.getDescription())
+                .icon(reqDTO.getIcon())
+                .keywords(reqDTO.getKeywords())
+                .level(reqDTO.getLevel())
+                .navState(YesNoEnum.parse(reqDTO.getNavState()))
+                .showState(YesNoEnum.parse(reqDTO.getShowState()))
+                .sort(reqDTO.getSort())
+                .spuCount(reqDTO.getSpuCount())
+                .spuUnit(reqDTO.getSpuUnit())
+                .parentId(reqDTO.getParentId())
+                .updatedBy(currentUserId)
+                .build();
+    }
+
+
+    /**
      * 转换为创建命令
      */
     public CreateCategoryCommand translateFromReqDTO(CreateCategoryReqDTO reqDTO) {
@@ -62,17 +89,16 @@ public final class CategoryTranslator {
         return CreateCategoryCommand.builder()
                 .categoryId(new CategoryId())
                 .name(reqDTO.getName())
-                .createdBy(currentUserId)
                 .description(reqDTO.getDescription())
                 .icon(reqDTO.getIcon())
                 .keywords(reqDTO.getKeywords())
                 .level(reqDTO.getLevel())
-                .navState(reqDTO.getNavState())
-                .parentId(reqDTO.getParentId())
-                .showState(reqDTO.getShowState())
+                .navState(YesNoEnum.parse(reqDTO.getNavState()))
+                .showState(YesNoEnum.parse(reqDTO.getShowState()))
                 .sort(reqDTO.getSort())
                 .spuCount(reqDTO.getSpuCount())
                 .spuUnit(reqDTO.getSpuUnit())
+                .parentId(reqDTO.getParentId())
                 .createdBy(currentUserId)
                 .build();
     }

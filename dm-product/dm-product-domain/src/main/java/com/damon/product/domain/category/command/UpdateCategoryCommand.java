@@ -7,14 +7,14 @@ import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
- * 创建商品品类
+ * 更新品类命令
  * @author Damon S.
  * @version v1.0.1
- * @date 2019年02月28日 10:15
+ * @date 2019年02月28日 21:54
  */
 @Value
 @Builder
-public class CreateCategoryCommand {
+public class UpdateCategoryCommand {
     @TargetAggregateIdentifier
     private final CategoryId categoryId;
     /**
@@ -58,5 +58,5 @@ public class CreateCategoryCommand {
      */
     private final Long  parentId;
     private final String description;
-    private final Long  createdBy;
+    private final Long  updatedBy;
 }
