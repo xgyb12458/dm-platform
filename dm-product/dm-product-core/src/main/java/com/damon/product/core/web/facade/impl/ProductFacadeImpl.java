@@ -66,7 +66,6 @@ public class ProductFacadeImpl implements ProductFacade {
         try {
             queryResults = (QueryResults<SpuEntry>) futureResults.get();
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
 
@@ -223,72 +222,61 @@ public class ProductFacadeImpl implements ProductFacade {
     @Override
     @ApiOperation(value = "批量删除", notes = "批量删除SPU")
     public ResponseWrapper<Boolean> batchRemove(List<Long> spuIds) {
-        if (CollectionUtils.isEmpty(spuIds)) {
-            return new ResponseWrapper<>(Boolean.TRUE);
-        }
-
-        final long currentUserId = 1L;
-        spuIds.forEach(spuId -> {
+        if (!CollectionUtils.isEmpty(spuIds)) {
+            final long currentUserId = 1L;
+            spuIds.forEach(spuId -> {
                 commandGateway.sendAndWait(new RemoveSpuCommand(new SpuId(spuId), currentUserId));
                 System.out.println();
-            }
-        );
+            });
+        }
         return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "批量变更新品状态", notes = "批量变更新品状态")
     public ResponseWrapper<Boolean> batchChangeNewProductState(List<Long> spuIds) {
-        if (CollectionUtils.isEmpty(spuIds)) {
-            return new ResponseWrapper<>(Boolean.TRUE);
+        if (!CollectionUtils.isEmpty(spuIds)) {
+            final long currentUserId = 1L;
+            spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                    new ChangeSpuNewProductCommand(new SpuId(spuId), currentUserId))
+            );
         }
-
-        final long currentUserId = 1L;
-        spuIds.forEach(spuId -> commandGateway.sendAndWait(
-                new ChangeSpuNewProductCommand(new SpuId(spuId), currentUserId))
-        );
         return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "批量变更推荐状态", notes = "批量变更推荐状态")
     public ResponseWrapper<Boolean> batchChangeRecommendState(List<Long> spuIds) {
-        if (CollectionUtils.isEmpty(spuIds)) {
-            return new ResponseWrapper<>(Boolean.TRUE);
+        if (!CollectionUtils.isEmpty(spuIds)) {
+            final long currentUserId = 1L;
+            spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                    new ChangeSpuRecommendedCommand(new SpuId(spuId), currentUserId))
+            );
         }
-
-        final long currentUserId = 1L;
-        spuIds.forEach(spuId -> commandGateway.sendAndWait(
-                new ChangeSpuRecommendedCommand(new SpuId(spuId), currentUserId))
-        );
         return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "批量变更售罄状态", notes = "批量变更售罄状态")
     public ResponseWrapper<Boolean> batchChangeSoldOutState(List<Long> spuIds) {
-        if (CollectionUtils.isEmpty(spuIds)) {
-            return new ResponseWrapper<>(Boolean.TRUE);
+        if (!CollectionUtils.isEmpty(spuIds)) {
+            final long currentUserId = 1L;
+            spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                    new ChangeSpuSoldOutCommand(new SpuId(spuId), currentUserId))
+            );
         }
-
-        final long currentUserId = 1L;
-        spuIds.forEach(spuId -> commandGateway.sendAndWait(
-                new ChangeSpuSoldOutCommand(new SpuId(spuId), currentUserId))
-        );
         return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "批量变更退货状态", notes = "批量变更退货状态")
     public ResponseWrapper<Boolean> batchChangeCanReturnState(List<Long> spuIds) {
-        if (CollectionUtils.isEmpty(spuIds)) {
-            return new ResponseWrapper<>(Boolean.TRUE);
+        if (!CollectionUtils.isEmpty(spuIds)) {
+            final long currentUserId = 1L;
+            spuIds.forEach(spuId -> commandGateway.sendAndWait(
+                    new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId))
+            );
         }
-
-        final long currentUserId = 1L;
-        spuIds.forEach(spuId -> commandGateway.sendAndWait(
-                new ChangeSpuSupportReturnCommand(new SpuId(spuId), currentUserId))
-        );
         return new ResponseWrapper<>(Boolean.TRUE);
     }
 }

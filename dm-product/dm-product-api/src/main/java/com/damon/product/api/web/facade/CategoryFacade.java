@@ -5,12 +5,11 @@ import com.damon.product.api.dto.req.category.QueryCategoryReqDTO;
 import com.damon.product.api.dto.req.category.UpdateCategoryReqDTO;
 import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
 import com.damon.product.shared.constant.ApiConstants;
+import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 商品类别管理接口
@@ -27,7 +26,7 @@ public interface CategoryFacade {
 
 
     @GetMapping("/categories")
-    ResponseWrapper<List<CategoryInfoRespDTO>> query(
+    ResponseWrapper<Pagination<CategoryInfoRespDTO>> query(
             @RequestBody @Validated QueryCategoryReqDTO queryCategoryReqDTO
     );
 

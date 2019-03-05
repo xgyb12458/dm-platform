@@ -24,7 +24,7 @@ public class UpdateCategoryCommand {
     /**
      * '品类级别：0->1级；1->2级'
      */
-    private final String level;
+    private final Integer level;
     /**
      * 图标
      */

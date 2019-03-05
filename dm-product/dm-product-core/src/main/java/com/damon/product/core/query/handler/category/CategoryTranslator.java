@@ -1,10 +1,12 @@
 package com.damon.product.core.query.handler.category;
 
 import com.damon.product.api.dto.req.category.CreateCategoryReqDTO;
+import com.damon.product.api.dto.req.category.QueryCategoryReqDTO;
 import com.damon.product.api.dto.req.category.UpdateCategoryReqDTO;
 import com.damon.product.api.dto.resp.category.CategoryInfoRespDTO;
 import com.damon.product.domain.category.aggregate.CategoryId;
 import com.damon.product.domain.category.command.CreateCategoryCommand;
+import com.damon.product.domain.category.command.QueryCategoryCommand;
 import com.damon.product.domain.category.command.UpdateCategoryCommand;
 import com.damon.product.domain.category.entity.CategoryEntry;
 import com.damon.shared.enums.YesNoEnum;
@@ -76,6 +78,21 @@ public final class CategoryTranslator {
                 .spuUnit(reqDTO.getSpuUnit())
                 .parentId(reqDTO.getParentId())
                 .updatedBy(currentUserId)
+                .build();
+    }
+
+    /**
+     * 转换为查询命命令
+     */
+    public QueryCategoryCommand translateFromReqDTO(QueryCategoryReqDTO reqDTO) {
+        return QueryCategoryCommand.builder()
+                .name(reqDTO.getName())
+                .keywords(reqDTO.getKeywords())
+                .parentId(reqDTO.getParentId())
+                .navState(YesNoEnum.parse(reqDTO.getNavState()))
+                .showState(YesNoEnum.parse(reqDTO.getShowState()))
+                .pageIndex(reqDTO.getPageIndex())
+                .pageSize(reqDTO.getPageSize())
                 .build();
     }
 

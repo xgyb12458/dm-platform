@@ -45,7 +45,8 @@ public class CategoryEntry {
     /**上级分类的编号：0表示一级分类*/
     @Column(name = "parent_id")
     private Long        parentId;
-    @Column private String description;
+    @Column
+    private String description;
     @Column(name = "created_by")
     private Long                createdBy;
     @Column(name = "updated_by")

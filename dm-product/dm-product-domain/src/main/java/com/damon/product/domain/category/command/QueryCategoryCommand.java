@@ -31,4 +31,8 @@ public class QueryCategoryCommand {
      * 上级分类的编号：0表示一级分类
      */
     private final Long  parentId;
+
+    private final Long pageSize;
+
+    private final Long pageIndex;
 }

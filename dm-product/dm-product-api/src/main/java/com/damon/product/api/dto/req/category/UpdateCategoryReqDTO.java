@@ -26,7 +26,7 @@ public class UpdateCategoryReqDTO implements Serializable {
     private String      name;
 
     @ApiModelProperty(name = "level", value = "品类级别")
-    private String      level;
+    private Integer      level;
 
     @ApiModelProperty(name = "icon", value = "图标")
     private String      icon;

@@ -9,9 +9,11 @@ import com.damon.product.core.query.handler.category.CategoryTranslator;
 import com.damon.product.domain.category.aggregate.CategoryId;
 import com.damon.product.domain.category.command.*;
 import com.damon.product.domain.category.entity.CategoryEntry;
+import com.damon.shared.common.Pagination;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
+import com.querydsl.core.QueryResults;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,6 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -53,12 +54,27 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @ArgsValid
     @Override
     @ApiOperation(value = "查询品类", notes = "查询品类")
-    public ResponseWrapper<List<CategoryInfoRespDTO>> query(
+    public ResponseWrapper<Pagination<CategoryInfoRespDTO>> query(
             QueryCategoryReqDTO queryCategoryReqDTO) {
+        QueryCategoryCommand command = translator.translateFromReqDTO(queryCategoryReqDTO);
+        CompletableFuture<QueryResults> futureResults =
+                queryGateway.query(command, QueryResults.class);
 
-        return new ResponseWrapper<>(
-                translator.translateToRespDTOs(null)
+        QueryResults<CategoryEntry> queryResults;
+        try {
+            queryResults = (QueryResults<CategoryEntry>) futureResults.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
+        }
+
+        Pagination<CategoryInfoRespDTO> categoryInfoRespDTOs = new Pagination<>(
+                queryResults.getOffset(),
+                queryResults.getLimit(),
+                queryResults.getTotal(),
+                translator.translateToRespDTOs(queryResults)
         );
+        return new ResponseWrapper<>(categoryInfoRespDTOs);
     }
 
 
@@ -84,7 +100,6 @@ public class CategoryFacadeImpl implements CategoryFacade {
         try {
             foundResult = futureResult.get();
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
         return new ResponseWrapper<>(
