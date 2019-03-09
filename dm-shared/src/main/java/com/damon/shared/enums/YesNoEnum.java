@@ -24,4 +24,11 @@ public enum YesNoEnum {
     public static YesNoEnum parse(int code) {
         return code > 0 ? Y : N;
     }
+
+    /**
+     * 将数据库中的状态值转换为数值
+     */
+    public static int nameOf(String name) {
+        return valueOf(name).code;
+    }
 }

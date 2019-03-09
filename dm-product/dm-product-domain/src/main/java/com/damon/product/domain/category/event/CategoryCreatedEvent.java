@@ -1,6 +1,7 @@
 package com.damon.product.domain.category.event;
 
 import com.damon.product.domain.category.aggregate.CategoryId;
+import com.damon.shared.enums.YesNoEnum;
 import lombok.Builder;
 import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
@@ -41,11 +42,15 @@ public class CategoryCreatedEvent {
     /**
      * 是否显示在导航栏
      */
-    private final String navState;
+    private final YesNoEnum navState;
     /**
      * 显示状态
      */
-    private final String showState;
+    private final YesNoEnum showState;
+    /**
+     * 是否删除
+     */
+    private final YesNoEnum removed;
     /**
      * 排序
      */

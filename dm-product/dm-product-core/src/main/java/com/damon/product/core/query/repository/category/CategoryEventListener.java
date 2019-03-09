@@ -4,6 +4,8 @@ import com.damon.product.domain.category.entity.CategoryEntry;
 import com.damon.product.domain.category.entity.CategoryRepository;
 import com.damon.product.domain.category.entity.QCategoryEntry;
 import com.damon.product.domain.category.event.CategoryCreatedEvent;
+import com.damon.product.domain.category.event.CategoryRecoveredEvent;
+import com.damon.product.domain.category.event.CategoryRemovedEvent;
 import com.damon.product.domain.category.event.CategoryUpdatedEvent;
 import com.damon.shared.common.Constants;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -52,9 +54,10 @@ public class CategoryEventListener {
                 .parentId(event.getParentId())
                 .sort(event.getSort())
                 .spuCount(event.getSpuCount())
+                .removed(event.getRemoved().name())
                 .spuUnit(event.getSpuUnit())
-                .showState(event.getShowState())
-                .navState(event.getNavState())
+                .showState(event.getShowState().name())
+                .navState(event.getNavState().name())
                 .keywords(event.getKeywords())
                 .description(event.getDescription())
                 .createdBy(event.getCreatedBy())
@@ -90,6 +93,38 @@ public class CategoryEventListener {
                 .execute();
 
         log.info(Constants.PREFIX_PRODUCT + "========>>Category aggregate[Id:{}] is updated by User[Id:{}] at {}-[DB].",
+                event.getCategoryId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventHandler
+    private void on(CategoryRemovedEvent event) {
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling CategoryRemovedEvent persistence process, parameters：{}", event.toString());
+
+        jpaQueryFactory.update(qCategoryEntry)
+                .set(qCategoryEntry.removed, event.getState().name())
+                .set(qCategoryEntry.updatedBy, event.getUpdatedBy())
+                .set(qCategoryEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
+                .execute();
+
+        log.info(Constants.PREFIX_PRODUCT + "========>>Category aggregate[Id:{}] is removed by User[Id:{}] at {}-[DB].",
+                event.getCategoryId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventHandler
+    private void on(CategoryRecoveredEvent event) {
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling CategoryRecoveredEvent persistence process, parameters：{}", event.toString());
+
+        jpaQueryFactory.update(qCategoryEntry)
+                .set(qCategoryEntry.updatedBy, event.getUpdatedBy())
+                .set(qCategoryEntry.removed, event.getState().name())
+                .set(qCategoryEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
+                .execute();
+
+        log.info(Constants.PREFIX_PRODUCT + "========>>Category aggregate[Id:{}] is removed by User[Id:{}] at {}-[DB].",
                 event.getCategoryId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 }

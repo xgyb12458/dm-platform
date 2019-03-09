@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @date 2019年02月23日 17:03
  */
 @Data
-@ApiModel(value = "创建商品类别")
+//@ApiModel(value = "创建商品类别")
 public class CreateCategoryReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class CreateCategoryReqDTO implements Serializable {
 
     @ApiModelProperty(name = "level", value = "品类级别")
     @NotNull
-    private String      level;
+    private Integer     level;
 
     @ApiModelProperty(name = "icon", value = "图标")
     @NotNull
@@ -41,18 +41,18 @@ public class CreateCategoryReqDTO implements Serializable {
 
     @ApiModelProperty(name = "navState", value = "是否显示在导航栏")
     @NotNull
-    private Integer      navState;
+    private Integer     navState;
 
     @ApiModelProperty(name = "showState", value = "显示状态")
     @NotNull
-    private Integer      showState;
+    private Integer     showState;
 
     @ApiModelProperty(name = "keywords", value = "关键字")
     private String      keywords;
 
-    @ApiModelProperty(name = "parentId", value = "上级分类的编号：0表示一级分类")
-    private Long        parentId;
-
     @ApiModelProperty(name = "description", value = "描述信息")
     private String      description;
+
+    @ApiModelProperty(name = "parentId", value = "上级分类的编号：0表示一级分类")
+    private Long        parentId;
 }

@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @date 2019年02月23日 17:03
  */
 @Data
-@ApiModel(value = "创建商品品牌请求参数")
+//@ApiModel(value = "创建商品品牌请求参数")
 public class CreateBrandReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

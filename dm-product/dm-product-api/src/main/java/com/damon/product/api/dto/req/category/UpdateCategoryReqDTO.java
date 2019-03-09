@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @date 2019年02月23日 17:19
  */
 @Data
-@ApiModel(value = "编辑商品类别")
+//@ApiModel(value = "编辑商品类别")
 public class UpdateCategoryReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

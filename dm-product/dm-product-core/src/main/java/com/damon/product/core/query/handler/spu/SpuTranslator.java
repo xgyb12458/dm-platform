@@ -45,22 +45,14 @@ public final class SpuTranslator {
         spuInfoRespDTO.setType(ProductType.valueOf(spuEntry.getType()));
         // TODO:
         spuInfoRespDTO.setAlbumImages(Lists.newArrayList());
-        spuInfoRespDTO.setSupportReturn(getCode(spuEntry.getSupportReturn()));
-        spuInfoRespDTO.setSoldOut(getCode(spuEntry.getSoldOut()));
-        spuInfoRespDTO.setNewProduct(getCode(spuEntry.getNewProduct()));
-        spuInfoRespDTO.setRecommended(getCode(spuEntry.getRecommended()));
+        spuInfoRespDTO.setSupportReturn(YesNoEnum.nameOf(spuEntry.getSupportReturn()));
+        spuInfoRespDTO.setSoldOut(YesNoEnum.nameOf(spuEntry.getSoldOut()));
+        spuInfoRespDTO.setNewProduct(YesNoEnum.nameOf(spuEntry.getNewProduct()));
+        spuInfoRespDTO.setRecommended(YesNoEnum.nameOf(spuEntry.getRecommended()));
         // TODO:
         spuInfoRespDTO.setSkus(Collections.emptyList());
 
         return spuInfoRespDTO;
-    }
-
-
-    /**
-     * 将数据库中的状态值转换为数值
-     */
-    private int getCode(String entryValue) {
-        return YesNoEnum.valueOf(entryValue).getCode();
     }
 
 

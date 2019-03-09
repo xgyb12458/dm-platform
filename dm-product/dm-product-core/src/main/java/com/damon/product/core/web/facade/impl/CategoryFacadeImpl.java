@@ -29,7 +29,7 @@ import java.util.concurrent.CompletableFuture;
  * @version v1.0.1
  * @date 2019年02月23日 17:44
  */
-@Api(tags = "品类管理接口")
+@Api(tags = "品类管理接口", description = "品类管理接口")
 @RestController
 @RequiredArgsConstructor
 public class CategoryFacadeImpl implements CategoryFacade {

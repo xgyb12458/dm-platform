@@ -40,19 +40,19 @@ public class CategoryEntry {
     @Column(name = "show_state")
     private String showState;
     @Column private Integer sort;
-    @Column private String icon;
-    @Column private String keywords;
+    @Column private String  removed;
+    @Column private String  icon;
+    @Column private String  keywords;
+    @Column private String  description;
     /**上级分类的编号：0表示一级分类*/
     @Column(name = "parent_id")
-    private Long        parentId;
-    @Column
-    private String description;
+    private Long            parentId;
     @Column(name = "created_by")
-    private Long                createdBy;
+    private Long            createdBy;
     @Column(name = "updated_by")
-    private Long                updatedBy;
+    private Long            updatedBy;
     @Column(name = "created_at")
-    private Timestamp           createdAt;
+    private Timestamp       createdAt;
     @Column(name = "updated_at")
-    private Timestamp           updatedAt;
+    private Timestamp       updatedAt;
 }

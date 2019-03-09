@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @date 2019年02月23日 17:14
  */
 @Data
-@ApiModel(value = "查询商品类别")
+//@ApiModel(value = "查询商品类别")
 public class QueryCategoryReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

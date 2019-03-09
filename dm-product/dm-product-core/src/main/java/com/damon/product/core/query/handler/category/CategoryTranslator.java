@@ -34,14 +34,11 @@ public final class CategoryTranslator {
         CategoryInfoRespDTO categoryInfoRespDTO = new CategoryInfoRespDTO();
         BeanUtils.copyProperties(categoryEntry, categoryInfoRespDTO);
 
-//        // 处理其它未自动赋值的字段
-//        categoryInfoRespDTO.setType(ProductType.valueOf(categoryEntry.getType()));
-//        categoryInfoRespDTO.setAlbumImages(Lists.newArrayList());
-//        categoryInfoRespDTO.setSupportReturn(getCode(categoryEntry.getSupportReturn()));
-//        categoryInfoRespDTO.setSoldOut(getCode(categoryEntry.getSoldOut()));
-//        categoryInfoRespDTO.setNewProduct(getCode(categoryEntry.getNewProduct()));
-//        categoryInfoRespDTO.setRecommended(getCode(categoryEntry.getRecommended()));
-//        categoryInfoRespDTO.setSkus(Collections.emptyList());
+        // 处理其它未自动赋值的字段
+        categoryInfoRespDTO.setNavState(YesNoEnum.nameOf(categoryEntry.getNavState()));
+        categoryInfoRespDTO.setShowState(YesNoEnum.nameOf(categoryEntry.getShowState()));
+        categoryInfoRespDTO.setCreatedAt(categoryEntry.getCreatedAt().getTime());
+        categoryInfoRespDTO.setUpdatedAt(categoryEntry.getUpdatedAt().getTime());
 
         return categoryInfoRespDTO;
     }
@@ -65,7 +62,7 @@ public final class CategoryTranslator {
         Long currentUserId = 10000L;
 
         return UpdateCategoryCommand.builder()
-                .categoryId(new CategoryId())
+                .categoryId(new CategoryId(reqDTO.getCategoryId()))
                 .name(reqDTO.getName())
                 .description(reqDTO.getDescription())
                 .icon(reqDTO.getIcon())
