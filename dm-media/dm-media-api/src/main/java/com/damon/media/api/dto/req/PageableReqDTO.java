@@ -14,10 +14,10 @@ import javax.validation.constraints.Min;
 public class PageableReqDTO {
 
     @Min(value = 1, message = "页码必须大于等于1")
-    @ApiModelProperty(name = "pageIndex", value = "页码")
+    @ApiModelProperty(value = "页码")
     private Integer pageIndex;
 
     @Min(value = 1, message = "每页数量必须大于等于1")
-    @ApiModelProperty(name = "pageSize", value = "每页数量")
+    @ApiModelProperty(value = "每页数量")
     private Integer pageSize;
 }

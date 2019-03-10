@@ -16,12 +16,12 @@ import java.io.Serializable;
 public class UpdateOrderReqDTO extends SecurityReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "cid", value = "购物车ID")
+    @ApiModelProperty(value = "购物车ID")
     private Long cid;
 
-    @ApiModelProperty(name = "selected", value = "已选中")
+    @ApiModelProperty(value = "已选中")
     private Boolean selected;
 
-    @ApiModelProperty(name = "qty", value = "商品数量")
+    @ApiModelProperty(value = "商品数量")
     private Integer qty;
 }

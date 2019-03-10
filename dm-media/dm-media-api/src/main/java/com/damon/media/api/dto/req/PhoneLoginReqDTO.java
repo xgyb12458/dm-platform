@@ -19,12 +19,12 @@ import java.time.LocalTime;
 public class PhoneLoginReqDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "phoneNumber", value = "手机号", required = true)
+    @ApiModelProperty(value = "手机号", required = true)
     @NotNull(message = "手机号码不能为空")
     @Pattern(regexp = "(\\d\\w\\s*)", message = "手机号码不合法")
     private String phoneNumber;
 
-    @ApiModelProperty(name = "captcha", value = "验证码", required = true)
+    @ApiModelProperty(value = "验证码", required = true)
     @NotNull(message = "验证码不能为空")
     @Pattern(regexp = "(\\d\\w\\s*)", message = "验证码不合法")
     private String captcha;

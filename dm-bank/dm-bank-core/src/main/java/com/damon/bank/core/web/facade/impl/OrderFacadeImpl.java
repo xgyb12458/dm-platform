@@ -127,7 +127,7 @@ public class OrderFacadeImpl implements OrderFacade {
     @ArgsValid @Override
     @ApiOperation(value = "提交订单", notes = "提交商品购买订单")
     public ResponseWrapper<SubmitOrderRespDTO> submit(
-            @ApiParam(name = "orderSubmit", value = "订单提交项", required = true)
+            @ApiParam(value = "订单提交项", required = true)
                     SubmitOrderReqDTO submitOrderReqDTO) {
         Long currentUserId = 0L;
         SubmitOrderCommand command = SubmitOrderCommand.builder()

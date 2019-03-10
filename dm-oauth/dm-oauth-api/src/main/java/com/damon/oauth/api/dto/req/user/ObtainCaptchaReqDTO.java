@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
 @ApiModel(value = "获取验证码")
 public class ObtainCaptchaReqDTO {
 
-    @ApiModelProperty(name = "userName", value = "手机号/邮箱/用户名", required = true)
+    @ApiModelProperty(value = "手机号/邮箱/用户名", required = true)
     @NotNull(message = "请输入登录账号")
     @Pattern(regexp = "(1\\d{10}|\\w{6,20}|/^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w+)+)$/)", message = "账号或密码错误")
     private String userName;

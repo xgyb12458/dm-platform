@@ -14,44 +14,44 @@ import java.io.Serializable;
  * @date 2019年02月23日 17:19
  */
 @Data
-//@ApiModel(value = "编辑商品类别")
+@ApiModel(value = "编辑商品类别")
 public class UpdateCategoryReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "categoryId", value = "品类Id")
+    @ApiModelProperty(value = "品类Id")
     @NotNull
     private Long        categoryId;
 
-    @ApiModelProperty(name = "name", value = "品类名称")
+    @ApiModelProperty(value = "品类名称")
     private String      name;
 
-    @ApiModelProperty(name = "level", value = "品类级别")
+    @ApiModelProperty(value = "品类级别")
     private Integer      level;
 
-    @ApiModelProperty(name = "icon", value = "图标")
+    @ApiModelProperty(value = "图标")
     private String      icon;
 
-    @ApiModelProperty(name = "spuCount", value = "商品数量")
+    @ApiModelProperty(value = "商品数量")
     private Integer     spuCount;
 
-    @ApiModelProperty(name = "spuUnit", value = "数量单位")
+    @ApiModelProperty(value = "数量单位")
     private String      spuUnit;
 
-    @ApiModelProperty(name = "sort", value = "排序")
+    @ApiModelProperty(value = "排序")
     private Integer     sort;
 
-    @ApiModelProperty(name = "navState", value = "是否显示在导航栏")
+    @ApiModelProperty(value = "是否显示在导航栏")
     private Integer      navState;
 
-    @ApiModelProperty(name = "showState", value = "显示状态")
+    @ApiModelProperty(value = "显示状态")
     private Integer      showState;
 
-    @ApiModelProperty(name = "keywords", value = "关键字")
+    @ApiModelProperty(value = "关键字")
     private String      keywords;
 
-    @ApiModelProperty(name = "parentId", value = "上级分类的编号：0表示一级分类")
+    @ApiModelProperty(value = "上级分类的编号：0表示一级分类")
     private Long        parentId;
 
-    @ApiModelProperty(name = "description", value = "描述信息")
+    @ApiModelProperty(value = "描述信息")
     private String      description;
 }

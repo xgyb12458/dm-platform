@@ -21,21 +21,21 @@ import java.io.Serializable;
 public final class QuerySpecReqDTO extends PageableReqDTO implements Serializable {
     private static final long serialVersionUID = 2608969900176L;
 
-    @ApiModelProperty(name = "width", value = "宽度")
+    @ApiModelProperty(value = "宽度")
     @Min(value = 0, message = "宽度必须大于0")
     private Integer width;
 
-    @ApiModelProperty(name = "height", value = "高度")
+    @ApiModelProperty(value = "高度")
     @Min(value = 0, message = "高度必须大于0")
     private Integer height;
 
-    @ApiModelProperty(name = "imageType", value = "图片类型(PNG,JPG,GIF)")
+    @ApiModelProperty(value = "图片类型(PNG,JPG,GIF)")
     private String imageType;
 
-    @ApiModelProperty(name = "slotType", value = "资源位类型(SPLASH|BULLET|BANNER|FEEDS)")
+    @ApiModelProperty(value = "资源位类型(SPLASH|BULLET|BANNER|FEEDS)")
     private SlotType slotType;
 
-    @ApiModelProperty(name = "state", value = "启停状态")
+    @ApiModelProperty(value = "启停状态")
     private SwitchState state;
 
 

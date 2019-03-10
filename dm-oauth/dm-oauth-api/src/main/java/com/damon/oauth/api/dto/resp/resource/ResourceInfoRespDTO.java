@@ -12,14 +12,14 @@ import lombok.ToString;
 public class ResourceInfoRespDTO {
 
 
-    @ApiModelProperty(name = "resourceId", value = "资源ID")
+    @ApiModelProperty(value = "资源ID")
     private String resourceId;
 
 
-    @ApiModelProperty(name = "code", value = "资源编码")
+    @ApiModelProperty(value = "资源编码")
     private String code;
 
 
-    @ApiModelProperty(name = "name", value = "资源名称")
+    @ApiModelProperty(value = "资源名称")
     private String name;
 }

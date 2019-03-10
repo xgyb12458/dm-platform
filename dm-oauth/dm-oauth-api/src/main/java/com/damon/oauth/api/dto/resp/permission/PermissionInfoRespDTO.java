@@ -11,12 +11,12 @@ import lombok.ToString;
 @ToString
 public class PermissionInfoRespDTO {
 
-    @ApiModelProperty(name = "permissionId", value = "权限ID")
+    @ApiModelProperty(value = "权限ID")
     private String permissionId;
 
-    @ApiModelProperty(name = "resourceId", value = "资源ID", required = true)
+    @ApiModelProperty(value = "资源ID", required = true)
     private Long resourceId;
 
-    @ApiModelProperty(name = "operationId", value = "操作ID", required = true)
+    @ApiModelProperty(value = "操作ID", required = true)
     private Long operationId;
 }

@@ -14,10 +14,10 @@ import javax.validation.constraints.Min;
 @ApiModel(value = "请求验签参数")
 public class SecurityReqDTO {
 
-    @ApiModelProperty(name = "sign", value = "验签字符")
+    @ApiModelProperty(value = "验签字符")
     private String sign;
 
-    @ApiModelProperty(name = "nonce", value = "请求发起时间(毫秒)")
+    @ApiModelProperty(value = "请求发起时间(毫秒)")
     @Min(0)
     private Long nonce;
 }

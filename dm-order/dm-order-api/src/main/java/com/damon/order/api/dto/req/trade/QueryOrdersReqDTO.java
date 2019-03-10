@@ -18,9 +18,9 @@ import java.io.Serializable;
 public class QueryOrdersReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "orderState", value = "订单状态")
+    @ApiModelProperty(value = "订单状态")
     private OrderState orderState;
 
-    @ApiModelProperty(name = "paidState", value = "支付状态")
+    @ApiModelProperty(value = "支付状态")
     private PaidState paidState;
 }

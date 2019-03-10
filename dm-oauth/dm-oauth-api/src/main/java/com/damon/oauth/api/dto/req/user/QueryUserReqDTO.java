@@ -18,27 +18,27 @@ import lombok.ToString;
 @ApiModel(value = "用户查询请求")
 public class QueryUserReqDTO {
 
-    @ApiModelProperty(name = "userId", value = "用户ID")
+    @ApiModelProperty(value = "用户ID")
     private Long userId;
 
-    @ApiModelProperty(name = "userName", value = "用户名")
+    @ApiModelProperty(value = "用户名")
     private String userName;
 
-    @ApiModelProperty(name = "state", value = "用户状态")
+    @ApiModelProperty(value = "用户状态")
     private OrderState state;
 
-    @ApiModelProperty(name = "type", value = "用户类型")
+    @ApiModelProperty(value = "用户类型")
     private OrderType type;
 
-    @ApiModelProperty(name = "email", value = "邮箱地址")
+    @ApiModelProperty(value = "邮箱地址")
     private String email;
 
-    @ApiModelProperty(name = "phone", value = "手机号码")
+    @ApiModelProperty(value = "手机号码")
     private String phone;
 
-    @ApiModelProperty(name = "registerAt", value = "注册时间")
+    @ApiModelProperty(value = "注册时间")
     private Long registerAt;
 
-    @ApiModelProperty(name = "lastLoginAt", value = "最近登录时间")
+    @ApiModelProperty(value = "最近登录时间")
     private Long lastLoginAt;
 }

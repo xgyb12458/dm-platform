@@ -22,16 +22,16 @@ import java.io.Serializable;
 public class NormalLoginReqDTO implements Serializable {
     private static final long serialVersionUID = 15900157076L;
 
-    @ApiModelProperty(name = "name", value = "用户名/邮箱/手机号", required = true)
+    @ApiModelProperty(value = "用户名/邮箱/手机号", required = true)
     @NotNull(message = "登录名称不能为空")
     @Pattern(regexp = "(\\d\\w\\s*)", message = "登录名称不存在")
     private String name;
 
-    @ApiModelProperty(name = "password", value = "登录密码", required = true)
+    @ApiModelProperty(value = "登录密码", required = true)
     @NotNull(message = "密码不能为空")
     private String password;
 
-    @ApiModelProperty(name = "captcha", value = "验证码", required = true)
+    @ApiModelProperty(value = "验证码", required = true)
     @NotNull(message = "验证码不能为空")
     private String captcha;
 

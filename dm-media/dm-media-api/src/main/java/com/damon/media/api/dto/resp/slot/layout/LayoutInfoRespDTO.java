@@ -19,27 +19,27 @@ import java.io.Serializable;
 public class LayoutInfoRespDTO implements Serializable {
     private static final long serialVersionUID = 25201614910176L;
 
-    @ApiModelProperty(name = "layoutId", value = "信息流样式ID")
+    @ApiModelProperty(value = "信息流样式ID")
     private Long layoutId;
 
-    @ApiModelProperty(name = "width", value = "宽度")
+    @ApiModelProperty(value = "宽度")
     private Integer width;
 
-    @ApiModelProperty(name = "height", value = "高度")
+    @ApiModelProperty(value = "高度")
     private Integer height;
 
-    @ApiModelProperty(name = "layoutType", value = "样式类型")
+    @ApiModelProperty(value = "样式类型")
     private String layoutType;
 
-    @ApiModelProperty(name = "imageCount", value = "图片数量")
+    @ApiModelProperty(value = "图片数量")
     private Integer imageCount;
 
-    @ApiModelProperty(name = "snapshot", value = "信息流样式示意图")
+    @ApiModelProperty(value = "信息流样式示意图")
     private String snapshot;
 
-    @ApiModelProperty(name = "state", value = "启停状态")
+    @ApiModelProperty(value = "启停状态")
     private String state;
 
-    @ApiModelProperty(name = "editable", value = "是否可进行编辑")
+    @ApiModelProperty(value = "是否可进行编辑")
     private Boolean editable;
 }

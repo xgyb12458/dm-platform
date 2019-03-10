@@ -22,13 +22,13 @@ public class CreateTenantReqDTO implements Serializable {
     private static final Long serialVersionUID = 12237484090L;
 
 
-    @ApiModelProperty(name = "code", value = "租户编码", required = true)
+    @ApiModelProperty(value = "租户编码", required = true)
     @NotNull(message = "请输入租户编码")
     @Pattern(regexp = "^\\w{1,15}$", message = "角色编码应为15个以内英文数字组合")
     private String code;
 
 
-    @ApiModelProperty(name = "name", value = "租户名称", required = true)
+    @ApiModelProperty(value = "租户名称", required = true)
     @NotNull(message = "请输入租户名称")
     @Pattern(regexp = "[\\u4e00-\\u9fa5]{1,10}", message = "租户名称应为10个以内汉字")
     private String name;

@@ -21,19 +21,19 @@ public class CreateResourceReqDTO implements Serializable {
 
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "code", value = "资源编码", required = true)
+    @ApiModelProperty(value = "资源编码", required = true)
     @NotNull(message = "请输入资源编码")
     @Pattern(regexp = "^\\w{1,15}$", message = "资源编码应为15个以内英文数字组合")
     private String code;
 
 
-    @ApiModelProperty(name = "name", value = "资源名称", required = true)
+    @ApiModelProperty(value = "资源名称", required = true)
     @NotNull(message = "请输入资源名称")
     @Pattern(regexp = "[\\u4e00-\\u9fa5]{1,10}", message = "资源名称应为10个以内汉字")
     private String name;
 
 
-    @ApiModelProperty(name = "parentId", value = "父资源ID")
+    @ApiModelProperty(value = "父资源ID")
     private Long parentId;
 
 }

@@ -12,14 +12,14 @@ import lombok.ToString;
 public class OperationInfoRespDTO {
 
 
-    @ApiModelProperty(name = "operationId", value = "操作ID")
+    @ApiModelProperty(value = "操作ID")
     private String operationId;
 
 
-    @ApiModelProperty(name = "code", value = "操作编码")
+    @ApiModelProperty(value = "操作编码")
     private String code;
 
 
-    @ApiModelProperty(name = "name", value = "操作名称")
+    @ApiModelProperty(value = "操作名称")
     private String name;
 }

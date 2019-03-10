@@ -20,17 +20,17 @@ import java.io.Serializable;
 public final class QueryLayoutReqDTO extends PageableReqDTO implements Serializable {
     private static final long serialVersionUID = 6069699057176L;
 
-    @ApiModelProperty(name = "width", value = "样式宽度")
+    @ApiModelProperty(value = "样式宽度")
     @Min(value = 0, message = "宽度必须大于0")
     private Integer width;
 
-    @ApiModelProperty(name = "height", value = "样式高度")
+    @ApiModelProperty(value = "样式高度")
     @Min(value = 0, message = "高度必须大于0")
     private Integer height;
 
-    @ApiModelProperty(name = "state", value = "启停状态")
+    @ApiModelProperty(value = "启停状态")
     private SwitchState state;
 
-    @ApiModelProperty(name = "layoutType", value = "样式类型")
+    @ApiModelProperty(value = "样式类型")
     private LayoutType layoutType;
 }

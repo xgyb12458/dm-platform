@@ -20,12 +20,12 @@ public class CreatePermissionReqDTO implements Serializable {
 
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "resourceId", value = "资源ID", required = true)
+    @ApiModelProperty(value = "资源ID", required = true)
     @NotNull(message = "请输入资源ID")
     private Long resourceId;
 
 
-    @ApiModelProperty(name = "operationId", value = "操作ID", required = true)
+    @ApiModelProperty(value = "操作ID", required = true)
     @NotNull(message = "请输入操作ID")
     private Long operationId;
 
