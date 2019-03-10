@@ -27,11 +27,14 @@ public class BrandEntry {
     @Column private String      code;
     /**品牌LOGO*/
     @Column private String      logo;
+    @Column private String      homepage;
     @Column private Integer     sort;
     /**是否已删除*/
-    @Column private String      deleted;
+    @Column private String      removed;
     /**是否显示*/
     @Column private String      display;
+    /**品牌故事*/
+    @Column private String      description;
     /**是否为品牌制造商：0->不是；1->是*/
     @Column(name = "factory_state")
     private String              factoryState;
@@ -41,9 +44,6 @@ public class BrandEntry {
     /**专区大图*/
     @Column(name = "big_image")
     private String              bigImage;
-    /**品牌故事*/
-    @Column(name = "brand_story")
-    private String              brandStory;
 
     @Column(name = "created_by")
     private Long                createdBy;

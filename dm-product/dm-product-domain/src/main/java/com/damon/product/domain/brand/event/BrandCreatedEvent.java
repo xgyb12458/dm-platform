@@ -1,5 +1,6 @@
 package com.damon.product.domain.brand.event;
 
+import com.damon.product.domain.brand.aggregate.BrandId;
 import com.damon.shared.enums.YesNoEnum;
 import lombok.Builder;
 import lombok.Value;
@@ -17,11 +18,13 @@ import java.time.Instant;
 @Builder
 public class BrandCreatedEvent {
     @TargetAggregateIdentifier
-    private final Long          brandId;
+    private final BrandId       brandId;
     /**品牌名称*/
     private final String        name;
     /**品牌编码*/
     private final String        code;
+    /**品牌主页*/
+    private final String        homepage;
     /**品牌LOGO*/
     private final String        logo;
     /**首字母*/
@@ -33,11 +36,11 @@ public class BrandCreatedEvent {
     /**是否为品牌制造商*/
     private final YesNoEnum     factoryState;
     /**是否已删除*/
-    private final YesNoEnum     deleted;
+    private final YesNoEnum     removed;
     /**专区大图*/
     private final String        bigImage;
     /**品牌故事*/
-    private final String        brandStory;
+    private final String        description;
     /**创建人*/
     private final Long          createdBy;
     /**创建时间*/

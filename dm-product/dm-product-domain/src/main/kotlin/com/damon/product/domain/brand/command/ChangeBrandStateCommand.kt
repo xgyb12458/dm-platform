@@ -1,5 +1,6 @@
 package com.damon.product.domain.brand.command
 
+import com.damon.product.domain.brand.aggregate.BrandId
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 
 /**
@@ -10,17 +11,17 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier
  */
 abstract class ChangeBrandStateCommand (
         @TargetAggregateIdentifier
-        val brandId: Long,
+        val brandId: BrandId,
         val updatedBy: Long
 )
-class ChangeBrandDisplayCommand(brandId: Long, updatedBy: Long)
+class ChangeBrandDisplayCommand(brandId: BrandId, updatedBy: Long)
     : ChangeBrandStateCommand(brandId, updatedBy)
 
-class ChangeBrandFactoryCommand(brandId: Long, updatedBy: Long)
+class ChangeBrandFactoryCommand(brandId: BrandId, updatedBy: Long)
     : ChangeBrandStateCommand(brandId, updatedBy)
 
-class DeleteBrandCommand(brandId: Long, updatedBy: Long)
+class RemoveBrandCommand(brandId: BrandId, updatedBy: Long)
     : ChangeBrandStateCommand(brandId, updatedBy)
 
-class RecoverBrandCommand(brandId: Long, updatedBy: Long)
+class RecoverBrandCommand(brandId: BrandId, updatedBy: Long)
     : ChangeBrandStateCommand(brandId, updatedBy)

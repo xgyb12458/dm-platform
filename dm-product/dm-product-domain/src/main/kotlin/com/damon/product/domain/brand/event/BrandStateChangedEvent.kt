@@ -1,5 +1,6 @@
 package com.damon.product.domain.brand.event
 
+import com.damon.product.domain.brand.aggregate.BrandId
 import com.damon.shared.enums.YesNoEnum
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.time.Instant
@@ -12,19 +13,19 @@ import java.time.Instant
  */
 abstract class BrandStateChangedEvent (
         @TargetAggregateIdentifier
-        val brandId: Long,
+        val brandId: BrandId,
         val state: YesNoEnum,
         val updatedBy: Long,
         val updatedAt: Instant
 )
-class BrandDisplayChangedEvent(brandId: Long, state: YesNoEnum, updatedBy: Long)
+class BrandDisplayChangedEvent(brandId: BrandId, state: YesNoEnum, updatedBy: Long)
     : BrandStateChangedEvent(brandId, state, updatedBy, Instant.now())
 
-class BrandFactoryChangedEvent(brandId: Long, state: YesNoEnum, updatedBy: Long)
+class BrandFactoryChangedEvent(brandId: BrandId, state: YesNoEnum, updatedBy: Long)
     : BrandStateChangedEvent(brandId, state, updatedBy, Instant.now())
 
-class BrandDeletedEvent(brandId: Long, updatedBy: Long)
+class BrandRemovedEvent(brandId: BrandId, updatedBy: Long)
     : BrandStateChangedEvent(brandId, YesNoEnum.Y, updatedBy, Instant.now())
 
-class BrandRecoveredEvent(brandId: Long, updatedBy: Long)
+class BrandRecoveredEvent(brandId: BrandId, updatedBy: Long)
     : BrandStateChangedEvent(brandId, YesNoEnum.N, updatedBy, Instant.now())

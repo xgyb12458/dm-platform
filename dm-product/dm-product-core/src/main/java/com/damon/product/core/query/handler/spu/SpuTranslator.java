@@ -5,8 +5,6 @@ import com.damon.product.api.dto.req.spu.QuerySpuReqDTO;
 import com.damon.product.api.dto.req.spu.UpdateSpuReqDTO;
 import com.damon.product.api.dto.resp.spu.SpuInfoRespDTO;
 import com.damon.product.domain.sku.aggregate.ProductSku;
-import com.damon.product.domain.sku.aggregate.SkuId;
-import com.damon.product.domain.sku.command.CreateSkuCommand;
 import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.domain.spu.command.CreateSpuCommand;
 import com.damon.product.domain.spu.command.QuerySpuCommand;
@@ -45,10 +43,10 @@ public final class SpuTranslator {
         spuInfoRespDTO.setType(ProductType.valueOf(spuEntry.getType()));
         // TODO:
         spuInfoRespDTO.setAlbumImages(Lists.newArrayList());
-        spuInfoRespDTO.setSupportReturn(YesNoEnum.nameOf(spuEntry.getSupportReturn()));
-        spuInfoRespDTO.setSoldOut(YesNoEnum.nameOf(spuEntry.getSoldOut()));
-        spuInfoRespDTO.setNewProduct(YesNoEnum.nameOf(spuEntry.getNewProduct()));
-        spuInfoRespDTO.setRecommended(YesNoEnum.nameOf(spuEntry.getRecommended()));
+        spuInfoRespDTO.setSupportReturn(YesNoEnum.codeOf(spuEntry.getSupportReturn()));
+        spuInfoRespDTO.setSoldOut(YesNoEnum.codeOf(spuEntry.getSoldOut()));
+        spuInfoRespDTO.setNewProduct(YesNoEnum.codeOf(spuEntry.getNewProduct()));
+        spuInfoRespDTO.setRecommended(YesNoEnum.codeOf(spuEntry.getRecommended()));
         // TODO:
         spuInfoRespDTO.setSkus(Collections.emptyList());
 

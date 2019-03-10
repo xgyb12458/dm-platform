@@ -5,12 +5,11 @@ import com.damon.product.api.dto.req.brand.QueryBrandReqDTO;
 import com.damon.product.api.dto.req.brand.UpdateBrandReqDTO;
 import com.damon.product.api.dto.resp.brand.BrandInfoRespDTO;
 import com.damon.product.shared.constant.ApiConstants;
+import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 品牌管理接口
@@ -21,13 +20,13 @@ public interface BrandFacade {
 
 
     @PostMapping("/brands")
-    ResponseWrapper<Boolean> create(
+    ResponseWrapper<Long> create(
             @RequestBody @Validated CreateBrandReqDTO createBrandReqDTO
     );
 
 
-    @GetMapping("/brands")
-    ResponseWrapper<List<BrandInfoRespDTO>> query(
+    @PostMapping("/brands/query")
+    ResponseWrapper<Pagination<BrandInfoRespDTO>> query(
             @RequestBody @Validated QueryBrandReqDTO queryBrandReqDTO
     );
 

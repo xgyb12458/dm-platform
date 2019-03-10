@@ -57,8 +57,8 @@ public class BrandInfoRespDTO implements Serializable {
     private Long        updatedBy;
 
     @ApiModelProperty(value = "创建时间")
-    private String      createdAt;
+    private Long      createdAt;
 
     @ApiModelProperty(value = "最近一次修改时间")
-    private String      updatedAt;
+    private Long      updatedAt;
 }

@@ -1,8 +1,10 @@
 package com.damon.product.domain.brand.command;
 
+import com.damon.product.domain.brand.aggregate.BrandId;
 import com.damon.shared.enums.YesNoEnum;
 import lombok.Builder;
 import lombok.Value;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * 新建品牌命令
@@ -14,9 +16,14 @@ import lombok.Value;
 @Builder
 public class CreateBrandCommand {
     /**品牌名称*/
+    @TargetAggregateIdentifier
+    private final BrandId       brandId;
+    /**品牌名称*/
     private final String        name;
     /**品牌编码*/
     private final String        code;
+    /**品牌主页*/
+    private final String        homepage;
     /**排序*/
     private final Integer       sort;
     /**是否显示*/
@@ -30,7 +37,7 @@ public class CreateBrandCommand {
     /**专区大图*/
     private final String        bigImage;
     /**品牌故事*/
-    private final String        brandStory;
+    private final String        description;
     /**创建人*/
     private final Long          createdBy;
 }

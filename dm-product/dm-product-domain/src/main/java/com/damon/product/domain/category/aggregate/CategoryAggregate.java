@@ -22,6 +22,7 @@ import java.time.Instant;
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 /**
+ * 类别
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月28日 10:14
@@ -176,6 +177,8 @@ public class CategoryAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(CategoryRemovedEvent event) {
+        log.info(Constants.PREFIX_PRODUCT + "==========>>removing brand aggregate event, parameters: {}", event.toString());
+
         setRemoved(event.getState());
         updateStateChangedValue(event);
     }
@@ -183,6 +186,8 @@ public class CategoryAggregate {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(CategoryRecoveredEvent event) {
+        log.info(Constants.PREFIX_PRODUCT + "==========>>recovering brand aggregate event, parameters: {}", event.toString());
+
         setRemoved(event.getState());
         updateStateChangedValue(event);
     }

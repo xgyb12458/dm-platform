@@ -28,7 +28,7 @@ public enum YesNoEnum {
     /**
      * 将数据库中的状态值转换为数值
      */
-    public static int nameOf(String name) {
+    public static int codeOf(String name) {
         return valueOf(name).code;
     }
 }

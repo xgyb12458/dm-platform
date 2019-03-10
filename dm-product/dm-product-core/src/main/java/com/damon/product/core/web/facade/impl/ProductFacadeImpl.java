@@ -32,7 +32,7 @@ import java.util.concurrent.CompletableFuture;
  * @author Damon S.
  */
 @Slf4j
-@Api(tags = "商品管理接口")
+@Api(tags = "商品管理")
 @RestController
 @RequiredArgsConstructor
 public class ProductFacadeImpl implements ProductFacade {

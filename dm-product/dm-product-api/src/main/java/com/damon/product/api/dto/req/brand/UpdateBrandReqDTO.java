@@ -31,10 +31,13 @@ public class UpdateBrandReqDTO implements Serializable {
     @ApiModelProperty(value = "品牌LOGO")
     private String      logo;
 
-    @ApiModelProperty(value = "是否显示(1是，0否)")
+    @ApiModelProperty(value = "品牌主页")
+    private String      homepage;
+
+    @ApiModelProperty(value = "是否显示(1是，0否)", allowableValues = "range=[0,1]")
     private Integer     display;
 
-    @ApiModelProperty(value = "是否为品牌制造商(1是，0否)")
+    @ApiModelProperty(value = "是否为品牌制造商(1是，0否)", allowableValues = "range=[0,1]")
     private Integer     factoryState;
 
     @ApiModelProperty(value = "排序")
@@ -47,5 +50,5 @@ public class UpdateBrandReqDTO implements Serializable {
     private String      bigImage;
 
     @ApiModelProperty(value = "品牌故事")
-    private String      brandStory;
+    private String      description;
 }

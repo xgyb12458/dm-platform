@@ -35,8 +35,8 @@ public final class CategoryTranslator {
         BeanUtils.copyProperties(categoryEntry, categoryInfoRespDTO);
 
         // 处理其它未自动赋值的字段
-        categoryInfoRespDTO.setNavState(YesNoEnum.nameOf(categoryEntry.getNavState()));
-        categoryInfoRespDTO.setShowState(YesNoEnum.nameOf(categoryEntry.getShowState()));
+        categoryInfoRespDTO.setNavState(YesNoEnum.codeOf(categoryEntry.getNavState()));
+        categoryInfoRespDTO.setShowState(YesNoEnum.codeOf(categoryEntry.getShowState()));
         categoryInfoRespDTO.setCreatedAt(categoryEntry.getCreatedAt().getTime());
         categoryInfoRespDTO.setUpdatedAt(categoryEntry.getUpdatedAt().getTime());
 

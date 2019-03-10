@@ -124,7 +124,7 @@ public class CategoryEventListener {
                 .set(qCategoryEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
                 .execute();
 
-        log.info(Constants.PREFIX_PRODUCT + "========>>Category aggregate[Id:{}] is removed by User[Id:{}] at {}-[DB].",
+        log.info(Constants.PREFIX_PRODUCT + "========>>Category aggregate[Id:{}] is recovered by User[Id:{}] at {}-[DB].",
                 event.getCategoryId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 }

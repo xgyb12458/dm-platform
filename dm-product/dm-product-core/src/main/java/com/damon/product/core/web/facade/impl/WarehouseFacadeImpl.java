@@ -22,7 +22,7 @@ import java.util.List;
  * @version v1.0.1
  * @date 2019年02月23日 21:43
  */
-@Api(tags = "仓库管理接口")
+@Api(tags = "仓库管理")
 @RestController
 @RequiredArgsConstructor
 public class WarehouseFacadeImpl implements WarehouseFacade {
