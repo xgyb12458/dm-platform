@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @date 2019年02月27日 23:29
  */
 @Data
-@ApiModel(value = "创建SKU单项规格请求参数")
+@ApiModel(value = "创建SKU单项规格")
 public class CreateSpecificationReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

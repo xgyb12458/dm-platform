@@ -10,13 +10,13 @@ import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
- * 查询SPU参数
+ * 查询商品
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月24日 23:53
  */
 @Data
-@ApiModel(value = "创建商品请求参数")
+@ApiModel(value = "查询商品")
 public class QuerySpuReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
@@ -26,22 +26,22 @@ public class QuerySpuReqDTO extends PageableReqDTO implements Serializable {
     @ApiModelProperty(value = "商品编码")
     private String      spuCode;
 
-    @ApiModelProperty(value = "商品类型(0普通商品，1套装商品)")
+    @ApiModelProperty(value = "商品类型(0普通商品，1套装商品)", allowableValues = "range[0,1]")
     @Min(value = 0, message = "type取值不合法")
     @Max(value = 1, message = "type取值不合法")
     private Integer     type;
 
-    @ApiModelProperty(value = "是否支持退货(1是，0否)")
+    @ApiModelProperty(value = "是否支持退货(1是，0否)", allowableValues = "range[0,1]")
     @Min(value = 0, message = "supportReturn取值不合法")
     @Max(value = 1, message = "supportReturn取值不合法")
     private Integer     supportReturn;
 
-    @ApiModelProperty(value = "审核状态(0草稿，1审核中，2通过，3驳回)")
+    @ApiModelProperty(value = "审核状态(0草稿，1审核中，2通过，3驳回)", allowableValues = "range[0,3]")
     @Min(value = 0, message = "verifyState取值不合法")
     @Max(value = 3, message = "verifyState取值不合法")
     private Integer     verifyState;
 
-    @ApiModelProperty(value = "商品状态(0草稿箱,1计划发布,2上架,3下架)")
+    @ApiModelProperty(value = "商品状态(0草稿箱,1计划发布,2上架,3下架)", allowableValues = "range[0,3]")
     @Min(value = 0, message = "state取值不合法")
     @Max(value = 3, message = "state取值不合法")
     private Integer     state;

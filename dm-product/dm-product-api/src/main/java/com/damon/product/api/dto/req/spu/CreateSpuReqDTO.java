@@ -17,7 +17,7 @@ import java.util.List;
  * @author Damon S.
  */
 @Data
-@ApiModel(value = "创建商品请求参数")
+@ApiModel(value = "创建商品")
 public class CreateSpuReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

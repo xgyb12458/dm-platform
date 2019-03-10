@@ -7,13 +7,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 编辑商品类别
+ * 编辑商品供应商
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月23日 17:19
  */
 @Data
-@ApiModel(value = "编辑商品类别")
+@ApiModel(value = "编辑商品供应商")
 public class UpdateSupplierReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

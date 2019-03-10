@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2019年02月26日 21:51
  */
 @Data
-@ApiModel(value = "SKU对外返回信息")
+@ApiModel(value = "SKU信息")
 public class SkuInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

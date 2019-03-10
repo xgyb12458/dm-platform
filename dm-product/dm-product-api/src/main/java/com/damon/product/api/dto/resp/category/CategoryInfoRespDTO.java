@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @date 2019年02月23日 21:21
  */
 @Data
-@ApiModel(value = "获取商品类别信息")
+@ApiModel(value = "商品类别信息")
 public class CategoryInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

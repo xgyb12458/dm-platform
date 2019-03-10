@@ -10,13 +10,13 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * SPU返回信息
+ * 商品SPU信息
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年02月24日 23:50
  */
 @Data
-@ApiModel(value = "SPU对外返回信息")
+@ApiModel(value = "商品SPU信息")
 public class SpuInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
