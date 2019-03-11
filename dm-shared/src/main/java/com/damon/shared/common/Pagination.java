@@ -19,11 +19,11 @@ public final class Pagination<T> {
     private PageInfo pageInfo;
 
     @Setter
-    private List<T> data;
+    private List<T> result;
 
     public Pagination(Long pageIndex, Long pageSize,
-                      Long totalRows, List<T> data) {
-        this.data = data;
+                      Long totalRows, List<T> result) {
+        this.result = result;
         this.pageInfo = new PageInfo(pageIndex, pageSize, totalRows);
     }
 

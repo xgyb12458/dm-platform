@@ -18,7 +18,7 @@ public class BrandInfoRespDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "品牌ID")
-    private String      brandId;
+    private Long        brandId;
 
     @ApiModelProperty(value = "品牌名称")
     private String      name;
@@ -29,17 +29,20 @@ public class BrandInfoRespDTO implements Serializable {
     @ApiModelProperty(value = "品牌LOGO")
     private String      logo;
 
-    @ApiModelProperty(value = "是否显示")
-    private Boolean     display;
+    @ApiModelProperty(value = "品牌主页")
+    private String      homepage;
 
-    @ApiModelProperty(value = "是否为品牌制造商")
-    private Boolean     factoryState;
+    @ApiModelProperty(value = "是否显示(1是，0否)")
+    private Integer     display;
 
-    @ApiModelProperty(value = "是否已删除")
-    private Boolean     deleted;
+    @ApiModelProperty(value = "是否为品牌制造商(1是，0否)")
+    private Integer     factoryState;
+
+    @ApiModelProperty(value = "是否已删除(1是，0否)")
+    private Integer     removed;
 
     @ApiModelProperty(value = "排序")
-    private String      sort;
+    private Integer     sort;
 
     @ApiModelProperty(value = "首字母")
     private String      firstLetter;
@@ -48,7 +51,7 @@ public class BrandInfoRespDTO implements Serializable {
     private String      bigImage;
 
     @ApiModelProperty(value = "品牌故事")
-    private String      brandStory;
+    private String      description;
 
     @ApiModelProperty(value = "创建人")
     private Long        createdBy;

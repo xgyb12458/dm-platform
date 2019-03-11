@@ -15,7 +15,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -36,8 +38,9 @@ public final class BrandTranslator {
         BeanUtils.copyProperties(brandEntry, brandInfoRespDTO);
 
         // 处理其它未自动赋值的字段
-//        brandInfoRespDTO.setNavState(YesNoEnum.codeOf(brandEntry.getNavState()));
-//        brandInfoRespDTO.setShowState(YesNoEnum.codeOf(brandEntry.getShowState()));
+        brandInfoRespDTO.setDisplay(YesNoEnum.codeOf(brandEntry.getDisplay()));
+        brandInfoRespDTO.setRemoved(YesNoEnum.codeOf(brandEntry.getRemoved()));
+        brandInfoRespDTO.setFactoryState(YesNoEnum.codeOf(brandEntry.getFactoryState()));
         brandInfoRespDTO.setCreatedAt(brandEntry.getCreatedAt().getTime());
         brandInfoRespDTO.setUpdatedAt(brandEntry.getUpdatedAt().getTime());
 
@@ -50,9 +53,14 @@ public final class BrandTranslator {
      */
     public List<BrandInfoRespDTO> translateToRespDTOs(
             QueryResults<BrandEntry> entries) {
-        return entries.getResults().stream()
-                .map(this::translateToRespDTO)
-                .collect(Collectors.toList());
+        List<BrandInfoRespDTO> brandInfoRespDTOs = Collections.emptyList();
+        // 非空数据才进行处理
+        if (Objects.nonNull(entries)) {
+            brandInfoRespDTOs = entries.getResults().stream()
+                    .map(this::translateToRespDTO)
+                    .collect(Collectors.toList());
+        }
+        return brandInfoRespDTOs;
     }
 
 

@@ -9,6 +9,7 @@ import com.damon.product.core.query.handler.category.CategoryTranslator;
 import com.damon.product.domain.category.aggregate.CategoryId;
 import com.damon.product.domain.category.command.*;
 import com.damon.product.domain.category.entity.CategoryEntry;
+import com.damon.shared.common.Constants;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.validation.ArgsValid;
@@ -69,7 +70,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
         }
 
         Pagination<CategoryInfoRespDTO> categoryInfoRespDTOs = new Pagination<>(
-                queryResults.getOffset(),
+                (queryResults.getOffset() + Constants.INT_ONE),
                 queryResults.getLimit(),
                 queryResults.getTotal(),
                 translator.translateToRespDTOs(queryResults)

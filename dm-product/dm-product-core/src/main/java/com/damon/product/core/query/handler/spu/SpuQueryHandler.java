@@ -58,7 +58,7 @@ public class SpuQueryHandler {
         final BooleanBuilder whereExpression = new BooleanBuilder();
         // 拼接查询条件
         Optional.ofNullable(command.getName()).ifPresent(
-                name -> whereExpression.and(qSpuEntry.name.like(name))
+                name -> whereExpression.and(qSpuEntry.name.contains(name))
         );
         Optional.ofNullable(command.getSpuCode()).ifPresent(
                 spuCode -> whereExpression.and(qSpuEntry.spuCode.eq(spuCode))
@@ -97,19 +97,19 @@ public class SpuQueryHandler {
                 supportReturn -> whereExpression.and(qSpuEntry.supportReturn.eq(supportReturn.name()))
         );
         Optional.ofNullable(command.getDeliveryRegion()).ifPresent(
-                deliveryRegion -> whereExpression.and(qSpuEntry.deliveryRegion.like(deliveryRegion))
+                deliveryRegion -> whereExpression.and(qSpuEntry.deliveryRegion.contains(deliveryRegion))
         );
         Optional.ofNullable(command.getCreatedBy()).ifPresent(
                 createdBy -> whereExpression.and(qSpuEntry.createdBy.eq(createdBy))
         );
-        Optional.ofNullable(command.getCreatedFrom()).ifPresent(
-                createdFrom -> whereExpression.and(
-                        qSpuEntry.createdAt.after(new Timestamp(createdFrom.toEpochMilli()))
-                )
-        );
         Optional.ofNullable(command.getCreatedTo()).ifPresent(
                 createdTo -> whereExpression.and(
                         qSpuEntry.createdAt.before(new Timestamp(createdTo.toEpochMilli()))
+                )
+        );
+        Optional.ofNullable(command.getCreatedFrom()).ifPresent(
+                createdFrom -> whereExpression.and(
+                        qSpuEntry.createdAt.after(new Timestamp(createdFrom.toEpochMilli()))
                 )
         );
         // 获取查询结果

@@ -3,10 +3,7 @@ package com.damon.product.core.query.repository.brand;
 import com.damon.product.domain.brand.entity.BrandEntry;
 import com.damon.product.domain.brand.entity.BrandRepository;
 import com.damon.product.domain.brand.entity.QBrandEntry;
-import com.damon.product.domain.brand.event.BrandCreatedEvent;
-import com.damon.product.domain.brand.event.BrandRecoveredEvent;
-import com.damon.product.domain.brand.event.BrandRemovedEvent;
-import com.damon.product.domain.brand.event.BrandUpdatedEvent;
+import com.damon.product.domain.brand.event.*;
 import com.damon.shared.common.Constants;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -123,6 +120,38 @@ public class BrandEventListener {
                 .execute();
 
         log.info(Constants.PREFIX_PRODUCT + "========>>Brand aggregate[Id:{}] is recovered by User[Id:{}] at {}-[DB].",
+                event.getBrandId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventHandler
+    private void on(BrandDisplayChangedEvent event) {
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling BrandDisplayChangedEvent persistence process, parameters：{}", event.toString());
+
+        jpaQueryFactory.update(qBrandEntry)
+                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
+                .set(qBrandEntry.display, event.getState().name())
+                .set(qBrandEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
+                .execute();
+
+        log.info(Constants.PREFIX_PRODUCT + "========>>Brand aggregate[Id:{}] display state is changed by User[Id:{}] at {}-[DB].",
+                event.getBrandId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventHandler
+    private void on(BrandFactoryChangedEvent event) {
+        log.trace(Constants.PREFIX_PRODUCT + "========>>handling BrandFactoryChangedEvent persistence process, parameters：{}", event.toString());
+
+        jpaQueryFactory.update(qBrandEntry)
+                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
+                .set(qBrandEntry.factoryState, event.getState().name())
+                .set(qBrandEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
+                .execute();
+
+        log.info(Constants.PREFIX_PRODUCT + "========>>Brand aggregate[Id:{}] factory state is changed by User[Id:{}] at {}-[DB].",
                 event.getBrandId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 }

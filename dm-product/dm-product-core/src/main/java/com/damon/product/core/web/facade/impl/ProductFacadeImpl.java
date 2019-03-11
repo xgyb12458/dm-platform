@@ -10,6 +10,7 @@ import com.damon.product.core.query.handler.spu.SpuTranslator;
 import com.damon.product.domain.spu.aggregate.SpuId;
 import com.damon.product.domain.spu.command.*;
 import com.damon.product.domain.spu.entity.SpuEntry;
+import com.damon.shared.common.Constants;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.validation.ArgsValid;
@@ -70,7 +71,7 @@ public class ProductFacadeImpl implements ProductFacade {
         }
 
         Pagination<SpuInfoRespDTO> spuInfoRespDTOs = new Pagination<>(
-                queryResults.getOffset(),
+                (queryResults.getOffset() + Constants.INT_ONE),
                 queryResults.getLimit(),
                 queryResults.getTotal(),
                 spuTranslator.translateToRespDTOs(queryResults)

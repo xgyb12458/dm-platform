@@ -9,6 +9,7 @@ import com.damon.product.core.query.handler.brand.BrandTranslator;
 import com.damon.product.domain.brand.aggregate.BrandId;
 import com.damon.product.domain.brand.command.*;
 import com.damon.product.domain.brand.entity.BrandEntry;
+import com.damon.shared.common.Constants;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.enums.ResponseCodeEnum;
 import com.damon.shared.validation.ArgsValid;
@@ -17,6 +18,7 @@ import com.querydsl.core.QueryResults;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,7 @@ import java.util.concurrent.CompletableFuture;
  * @version v1.0.1
  * @date 2019年02月23日 17:44
  */
+@Slf4j
 @Api(tags = "品牌管理")
 @RestController
 @RequiredArgsConstructor
@@ -42,14 +45,10 @@ public class BrandFacadeImpl implements BrandFacade {
     @Override
     @ApiOperation(value = "创建品牌", notes = "创建品牌")
     public ResponseWrapper<Long> create(CreateBrandReqDTO createBrandReqDTO) {
-//        if (!BrandTranslator.checkParameter(createBrandReqDTO)) {
-//            return new ResponseWrapper<>(ResponseCodeEnum.BAD_REQUEST);
-//        }
-
-        Long createdBrandId = commandGateway.sendAndWait(
+        BrandId createdBrandId = commandGateway.sendAndWait(
                 translator.translateFromReqDTO(createBrandReqDTO)
         );
-        return new ResponseWrapper<>(createdBrandId);
+        return new ResponseWrapper<>(createdBrandId.getValue());
     }
 
     @ArgsValid
@@ -58,20 +57,18 @@ public class BrandFacadeImpl implements BrandFacade {
     public ResponseWrapper<Pagination<BrandInfoRespDTO>> query(
             QueryBrandReqDTO queryBrandReqDTO) {
         CompletableFuture<QueryResults> futureResults = queryGateway.query(
-                translator.translateFromReqDTO(queryBrandReqDTO),
-                QueryResults.class
-        );
+                translator.translateFromReqDTO(queryBrandReqDTO), QueryResults.class);
 
         QueryResults<BrandEntry> queryResults;
         try {
             queryResults = (QueryResults<BrandEntry>) futureResults.get();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("查询品牌数据异常{}", e);
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
 
         Pagination<BrandInfoRespDTO> brandInfoRespDTOs = new Pagination<>(
-                queryResults.getOffset(),
+                (queryResults.getOffset() + Constants.INT_ONE),
                 queryResults.getLimit(),
                 queryResults.getTotal(),
                 translator.translateToRespDTOs(queryResults)
@@ -99,7 +96,8 @@ public class BrandFacadeImpl implements BrandFacade {
         try {
             foundResult = futureResult.get();
         } catch (Exception e) {
-            return new ResponseWrapper<>(ResponseCodeEnum.NOT_FOUND);
+            log.error("获取指定品牌信息异常{0}", e);
+            return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
         return new ResponseWrapper<>(
                 translator.translateToRespDTO(foundResult)
@@ -110,43 +108,39 @@ public class BrandFacadeImpl implements BrandFacade {
     @ApiOperation(value = "删除品牌", notes = "删除品牌")
     public ResponseWrapper<Boolean> remove(Long brandId) {
         Long currentUserId = 1L;
-
         commandGateway.sendAndWait(
                 new RemoveBrandCommand(new BrandId(brandId), currentUserId)
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "恢复品牌", notes = "恢复品牌")
     public ResponseWrapper<Boolean> recover(Long brandId) {
         Long currentUserId = 1L;
-
         commandGateway.sendAndWait(
                 new RecoverBrandCommand(new BrandId(brandId), currentUserId)
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "更改品牌显示状态", notes = "更改品牌显示状态")
     public ResponseWrapper<Boolean> changeDisplayState(Long brandId) {
         Long currentUserId = 1L;
-
         commandGateway.sendAndWait(
                 new ChangeBrandDisplayCommand(new BrandId(brandId), currentUserId)
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 
     @Override
     @ApiOperation(value = "更改品牌制造商状态", notes = "更改品牌制造商状态")
     public ResponseWrapper<Boolean> changeFactoryState(Long brandId) {
         Long currentUserId = 1L;
-
         commandGateway.sendAndWait(
                 new ChangeBrandFactoryCommand(new BrandId(brandId), currentUserId)
         );
-        return new ResponseWrapper<>();
+        return new ResponseWrapper<>(Boolean.TRUE);
     }
 }

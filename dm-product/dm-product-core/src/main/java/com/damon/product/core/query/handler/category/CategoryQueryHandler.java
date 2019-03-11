@@ -53,29 +53,29 @@ public class CategoryQueryHandler {
 
     @SuppressWarnings("UnusedDeclaration")
     @QueryHandler
-    private QueryResults<CategoryEntry> handle(QueryCategoryCommand command) {
+    private QueryResults handle(QueryCategoryCommand command) {
         log.trace(Constants.PREFIX_PRODUCT + "=======>handling QueryCategoryCommand：{}", command);
 
-        final BooleanBuilder whereExpression = new BooleanBuilder();
+        final BooleanBuilder expression = new BooleanBuilder();
         // 拼接查询条件
         Optional.ofNullable(command.getName()).ifPresent(
-                name -> whereExpression.and(qCategoryEntry.name.like(name))
+                name -> expression.and(qCategoryEntry.name.contains(name))
         );
         Optional.ofNullable(command.getKeywords()).ifPresent(
-                keywords -> whereExpression.and(qCategoryEntry.keywords.like(keywords))
+                keywords -> expression.and(qCategoryEntry.keywords.contains(keywords))
         );
         Optional.ofNullable(command.getNavState()).ifPresent(
-                navState -> whereExpression.and(qCategoryEntry.navState.eq(navState.name()))
+                navState -> expression.and(qCategoryEntry.navState.eq(navState.name()))
         );
         Optional.ofNullable(command.getShowState()).ifPresent(
-                showState -> whereExpression.and(qCategoryEntry.showState.eq(showState.name()))
+                showState -> expression.and(qCategoryEntry.showState.eq(showState.name()))
         );
         Optional.ofNullable(command.getParentId()).ifPresent(
-                parentId -> whereExpression.and(qCategoryEntry.parentId.eq(parentId))
+                parentId -> expression.and(qCategoryEntry.parentId.eq(parentId))
         );
         // 获取查询结果
         return this.jpaQueryFactory.selectFrom(qCategoryEntry)
-                .where(whereExpression)
+                .where(expression)
                 .orderBy(qCategoryEntry.createdAt.desc(), qCategoryEntry.updatedAt.desc())
                 .limit(command.getPageSize())
                 .offset(command.getPageIndex() - Constants.INT_ONE)
