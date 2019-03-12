@@ -1,10 +1,12 @@
 package com.damon.product.api.dto.req.log;
 
 import com.damon.shared.dto.PageableReqDTO;
+import com.damon.shared.enums.OperateTarget;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
@@ -19,7 +21,7 @@ public class QueryOperateLogReqDTO extends PageableReqDTO implements Serializabl
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "操作目标对象类型")
-    private String    target;
+    private OperateTarget target;
 
     @ApiModelProperty(value = "操作对象Id")
     private Long      objectId;
@@ -28,12 +30,10 @@ public class QueryOperateLogReqDTO extends PageableReqDTO implements Serializabl
     private Long      operatedBy;
 
     @ApiModelProperty(value = "操作时间-从（毫秒数）")
-//    @Min(value = 1551161592000L, message = "开始时间毫秒数不合法")
-//    @Max(value = 2177424000000L, message = "开始时间毫秒数不合法")
+    @Min(value = 1551161592000L, message = "开始时间毫秒数不合法")
     private Long      operatedFrom;
 
-    @ApiModelProperty(value = "操作时间-从（毫秒数）")
-//    @Min(value = 1551161592000L, message = "开始时间毫秒数不合法")
-//    @Max(value = 2177424000000L, message = "开始时间毫秒数不合法")
+    @ApiModelProperty(value = "操作时间-至（毫秒数）")
+    @Min(value = 1551161592000L, message = "开始时间毫秒数不合法")
     private Long      operatedTo;
 }
