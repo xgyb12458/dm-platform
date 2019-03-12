@@ -11,6 +11,7 @@ import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 
 /**
@@ -50,8 +51,18 @@ public class OperateLogQueryHandler {
         Optional.ofNullable(command.getOperatedBy()).ifPresent(
                 operatedBy -> expression.and(qOperateLogEntry.operatedBy.eq(operatedBy))
         );
+        Optional.ofNullable(command.getOperatedTo()).ifPresent(
+                to -> expression.and(
+                        qOperateLogEntry.operatedAt.before(new Timestamp(to))
+                )
+        );
+        Optional.ofNullable(command.getOperatedFrom()).ifPresent(
+                from -> expression.and(
+                        qOperateLogEntry.operatedAt.after(new Timestamp(from))
+                )
+        );
         // 执行查询操作
-        return jpaQueryFactory.selectFrom(qOperateLogEntry)
+        return this.jpaQueryFactory.selectFrom(qOperateLogEntry)
                 .where(expression)
                 .orderBy(qOperateLogEntry.operatedAt.desc())
                 .limit(command.getPageSize())

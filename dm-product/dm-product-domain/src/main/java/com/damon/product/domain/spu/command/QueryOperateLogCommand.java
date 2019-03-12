@@ -15,6 +15,8 @@ public class QueryOperateLogCommand {
     private final String    source;
     private final Long      objectId;
     private final Long      operatedBy;
+    private final Long      operatedFrom;
+    private final Long      operatedTo;
     private final Long      pageIndex;
     private final Long      pageSize;
 }

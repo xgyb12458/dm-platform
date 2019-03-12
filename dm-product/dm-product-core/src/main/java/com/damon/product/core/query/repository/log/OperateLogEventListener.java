@@ -41,7 +41,7 @@ public class OperateLogEventListener {
                     event.getContent()
             );
         } catch (JsonProcessingException e) {
-            log.error("========>>parsing OperateLogEvent object failed. {}", e);
+            log.error(Constants.PREFIX_PRODUCT + "========>>parsing OperateLogEvent object failed. {}", e);
         }
 
         OperateLogEntry logEntry = OperateLogEntry.builder()
