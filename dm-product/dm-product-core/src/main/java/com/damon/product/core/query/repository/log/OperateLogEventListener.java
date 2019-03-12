@@ -1,8 +1,8 @@
 package com.damon.product.core.query.repository.log;
 
-import com.damon.product.domain.log.event.OperateLogEvent;
 import com.damon.product.domain.spu.entity.OperateLogEntry;
 import com.damon.product.domain.spu.entity.OperateLogRepository;
+import com.damon.product.domain.spu.event.OperateLogEvent;
 import com.damon.shared.common.Constants;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +45,7 @@ public class OperateLogEventListener {
         }
 
         OperateLogEntry logEntry = OperateLogEntry.builder()
-                .source(event.getSource())
+                .target(event.getTarget())
                 .objectId(event.getObjectId())
                 .type(event.getType())
                 .content(content)

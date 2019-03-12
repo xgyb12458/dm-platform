@@ -1,6 +1,6 @@
 package com.damon.product.domain.spu.command;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
 import lombok.Value;
 
 /**
@@ -10,9 +10,9 @@ import lombok.Value;
  * @date 2019年03月10日 21:30
  */
 @Value
-@RequiredArgsConstructor
+@Builder
 public class QueryOperateLogCommand {
-    private final String    source;
+    private final String    target;
     private final Long      objectId;
     private final Long      operatedBy;
     private final Long      operatedFrom;

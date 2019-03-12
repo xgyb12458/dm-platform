@@ -42,8 +42,8 @@ public class OperateLogQueryHandler {
 
         final BooleanBuilder expression = new BooleanBuilder();
         // 拼接查询条件
-        Optional.ofNullable(command.getSource()).ifPresent(
-                source -> expression.and(qOperateLogEntry.source.eq(source))
+        Optional.ofNullable(command.getTarget()).ifPresent(
+                target -> expression.and(qOperateLogEntry.target.eq(target))
         );
         Optional.ofNullable(command.getObjectId()).ifPresent(
                 objectId -> expression.and(qOperateLogEntry.objectId.eq(objectId))

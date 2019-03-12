@@ -1,4 +1,4 @@
-package com.damon.product.domain.log.event;
+package com.damon.product.domain.spu.event;
 
 import lombok.Builder;
 import lombok.Value;
@@ -12,8 +12,8 @@ import lombok.Value;
 @Value
 @Builder
 public class OperateLogEvent {
+    private final String    target;
     private final Long      objectId;
-    private final String    source;
     private final String    type;
     private final Object    content;
     private final Long      operatedBy;

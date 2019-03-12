@@ -27,7 +27,7 @@ public class OperateLogEntry {
     private Long        logId;
     @Column(name = "object_id")
     private Long        objectId;
-    @Column private String      source;
+    @Column private String      target;
     @Column private String      type;
     @Column private String      content;
 
