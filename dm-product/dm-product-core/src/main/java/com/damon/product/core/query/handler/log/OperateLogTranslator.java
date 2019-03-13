@@ -2,18 +2,20 @@ package com.damon.product.core.query.handler.log;
 
 import com.damon.product.api.dto.req.log.QueryOperateLogReqDTO;
 import com.damon.product.api.dto.resp.log.OperateLogRespDTO;
-import com.damon.product.domain.brand.aggregate.BrandAggregate;
-import com.damon.product.domain.brand.event.BrandUpdatedEvent;
-import com.damon.product.domain.log.aggregate.OperateContent;
+import com.damon.product.domain.brand.event.BrandCreatedEvent;
 import com.damon.product.domain.log.command.QueryOperateLogCommand;
 import com.damon.product.domain.log.entity.OperateLogEntry;
+import com.damon.product.domain.log.event.OperateLogEvent;
+import com.damon.shared.enums.OperateType;
 import com.querydsl.core.QueryResults;
+import lombok.RequiredArgsConstructor;
+import org.axonframework.eventhandling.EventBus;
+import org.axonframework.eventhandling.GenericEventMessage;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 操作日志对象转换工具
@@ -22,12 +24,16 @@ import java.util.Objects;
  * @date 2019年03月12日 09:18
  */
 @Component
+@RequiredArgsConstructor
 public final class OperateLogTranslator {
+
+    private final EventBus eventBus;
+
 
     /**
      * 转换SPU对象
      */
-    private OperateLogRespDTO translateToRespDTO(OperateLogEntry logEntry) {
+    public OperateLogRespDTO translateToRespDTO(OperateLogEntry logEntry) {
         OperateLogRespDTO operateLogRespDTO = new OperateLogRespDTO();
         BeanUtils.copyProperties(logEntry, operateLogRespDTO);
 
@@ -63,15 +69,32 @@ public final class OperateLogTranslator {
                 .build();
     }
 
-    public List<OperateContent> translateUpdates(BrandAggregate brand, BrandUpdatedEvent event) {
-        List<OperateContent> contents = new ArrayList<>();
 
-        OperateContent.OperateContentBuilder builder = OperateContent.builder();
-        if (!Objects.equals(brand.getBrandId(), event.getBrandId())) {
-            builder.field("brandId").origin(brand.getBrandId()).present(event.getBrandId());
-        }
-        contents.add(builder.build());
-
-        return contents;
+    /**
+     * 发布操作日志事件
+     */
+    public void logCreateOperation(BrandCreatedEvent event) {
+        eventBus.publish(new GenericEventMessage<>(
+                OperateLogEvent.builder()
+                        .target("BRAND")
+                        .objectId(event.getBrandId().getValue())
+                        .type(OperateType.CREATE.name())
+                        .content(event)
+                        .operatedBy(event.getCreatedBy())
+                        .operatedAt(event.getCreatedAt().toEpochMilli())
+                        .build()));
     }
+
+//    public void getMethod(Object obj){
+//        Class clazz=obj.getClass();//获得实体类名
+//        Field[] fields = obj.getClass().getDeclaredFields();//获得属性
+//        //获得Object对象中的所有方法
+//        for(Field field:fields){
+//            PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
+//            Method getMethod = pd.getReadMethod();//获得get方法
+//            getMethod.invoke(obj);//此处为执行该Object对象的get方法
+//            Method setMethod = pd.getWriteMethod();//获得set方法
+//            setMethod.invoke(obj,"参数");//此处为执行该Object对象的set方法
+//        }
+//    }
 }

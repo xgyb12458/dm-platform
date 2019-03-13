@@ -168,17 +168,6 @@ public class BrandAggregate {
         setBigImage(event.getBigImage());
         setCreatedBy(event.getCreatedBy());
         setCreatedAt(event.getCreatedAt());
-
-//        eventBus.publish(new GenericEventMessage<>(
-//                OperateLogEvent.builder()
-//                        .objectId(event.getBrandId().getValue())
-//                        .source("BRAND")
-//                        .type(OperateType.CREATE.name())
-//                        .content(event.toString())
-//                        .operatedBy(event.getCreatedBy())
-//                        .operatedAt(event.getCreatedAt())
-//                        .build())
-//        );
     }
 
 

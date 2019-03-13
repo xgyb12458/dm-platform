@@ -61,19 +61,19 @@ public class CategoryFacadeImpl implements CategoryFacade {
         CompletableFuture<QueryResults> futureResults =
                 queryGateway.query(command, QueryResults.class);
 
-        QueryResults<CategoryEntry> queryResults;
+        QueryResults<CategoryEntry> resultEntries;
         try {
-            queryResults = (QueryResults<CategoryEntry>) futureResults.get();
+            resultEntries = (QueryResults<CategoryEntry>) futureResults.get();
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
 
         Pagination<CategoryInfoRespDTO> categoryInfoRespDTOs = new Pagination<>(
-                (queryResults.getOffset() + Constants.INT_ONE),
-                queryResults.getLimit(),
-                queryResults.getTotal(),
-                translator.translateToRespDTOs(queryResults)
+                (resultEntries.getOffset() + Constants.INT_ONE),
+                resultEntries.getLimit(),
+                resultEntries.getTotal(),
+                translator.translateToRespDTOs(resultEntries)
         );
         return new ResponseWrapper<>(categoryInfoRespDTOs);
     }
@@ -97,14 +97,14 @@ public class CategoryFacadeImpl implements CategoryFacade {
         CompletableFuture<CategoryEntry> futureResult =
                 queryGateway.query(new FindCategoryByIdCommand(categoryId), CategoryEntry.class);
 
-        CategoryEntry foundResult;
+        CategoryEntry foundEntry;
         try {
-            foundResult = futureResult.get();
+            foundEntry = futureResult.get();
         } catch (Exception e) {
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
         return new ResponseWrapper<>(
-                translator.translateToRespDTO(foundResult)
+                translator.translateToRespDTO(foundEntry)
         );
     }
 

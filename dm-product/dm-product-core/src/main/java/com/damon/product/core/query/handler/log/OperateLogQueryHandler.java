@@ -1,7 +1,9 @@
 package com.damon.product.core.query.handler.log;
 
+import com.damon.product.domain.log.command.FindOperateLogByIdCommand;
 import com.damon.product.domain.log.command.QueryOperateLogCommand;
-import com.damon.product.domain.spu.entity.QOperateLogEntry;
+import com.damon.product.domain.log.entity.OperateLogEntry;
+import com.damon.product.domain.log.entity.QOperateLogEntry;
 import com.damon.shared.common.Constants;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
@@ -32,6 +34,17 @@ public class OperateLogQueryHandler {
                 managerProvider.getEntityManager()
         );
         this.qOperateLogEntry = QOperateLogEntry.operateLogEntry;
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @QueryHandler
+    private OperateLogEntry handle(FindOperateLogByIdCommand command) {
+        log.trace(Constants.PREFIX_PRODUCT + "=======>handling FindOperateLogByIdCommand：{}", command);
+
+        return this.jpaQueryFactory.selectFrom(qOperateLogEntry)
+                .where(qOperateLogEntry.logId.eq(command.getLogId()))
+                .fetchOne();
     }
 
 

@@ -33,7 +33,7 @@ public class CreateWarehouseReqDTO implements Serializable {
     private Boolean     factoryState;
 
     @ApiModelProperty(value = "排序")
-    private Integer      sort;
+    private Integer     sort;
 
     @ApiModelProperty(value = "首字母")
     private String      firstLetter;

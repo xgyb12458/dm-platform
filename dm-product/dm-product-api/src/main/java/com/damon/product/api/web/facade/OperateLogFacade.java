@@ -7,9 +7,7 @@ import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Damon S.
@@ -23,4 +21,7 @@ public interface OperateLogFacade {
     ResponseWrapper<Pagination<OperateLogRespDTO>> query(
             @RequestBody @Validated QueryOperateLogReqDTO queryOperateLogReqDTO
     );
+
+    @GetMapping("/logs/{logId}")
+    ResponseWrapper<OperateLogRespDTO> find(@PathVariable Long logId);
 }

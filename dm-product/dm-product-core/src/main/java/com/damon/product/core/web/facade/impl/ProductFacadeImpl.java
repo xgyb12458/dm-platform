@@ -63,18 +63,18 @@ public class ProductFacadeImpl implements ProductFacade {
         CompletableFuture<QueryResults> futureResults =
                 queryGateway.query(command, QueryResults.class);
 
-        QueryResults<SpuEntry> queryResults;
+        QueryResults<SpuEntry> resultEntries;
         try {
-            queryResults = (QueryResults<SpuEntry>) futureResults.get();
+            resultEntries = (QueryResults<SpuEntry>) futureResults.get();
         } catch (Exception e) {
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
 
         Pagination<SpuInfoRespDTO> spuInfoRespDTOs = new Pagination<>(
-                (queryResults.getOffset() + Constants.INT_ONE),
-                queryResults.getLimit(),
-                queryResults.getTotal(),
-                spuTranslator.translateToRespDTOs(queryResults)
+                (resultEntries.getOffset() + Constants.INT_ONE),
+                resultEntries.getLimit(),
+                resultEntries.getTotal(),
+                spuTranslator.translateToRespDTOs(resultEntries)
         );
         return new ResponseWrapper<>(spuInfoRespDTOs);
     }
@@ -87,15 +87,15 @@ public class ProductFacadeImpl implements ProductFacade {
         CompletableFuture<SpuEntry> futureResult =
                 queryGateway.query(new FindSpuByIdCommand(spuId), SpuEntry.class);
 
-        SpuEntry foundResult;
+        SpuEntry foundEntry;
         try {
-            foundResult = futureResult.get();
+            foundEntry = futureResult.get();
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
         return new ResponseWrapper<>(
-                spuTranslator.translateToRespDTO(foundResult)
+                spuTranslator.translateToRespDTO(foundEntry)
         );
     }
 

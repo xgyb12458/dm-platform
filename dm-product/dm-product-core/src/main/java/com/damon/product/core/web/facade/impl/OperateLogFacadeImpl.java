@@ -4,6 +4,7 @@ import com.damon.product.api.dto.req.log.QueryOperateLogReqDTO;
 import com.damon.product.api.dto.resp.log.OperateLogRespDTO;
 import com.damon.product.api.web.facade.OperateLogFacade;
 import com.damon.product.core.query.handler.log.OperateLogTranslator;
+import com.damon.product.domain.log.command.FindOperateLogByIdCommand;
 import com.damon.product.domain.log.entity.OperateLogEntry;
 import com.damon.shared.common.Constants;
 import com.damon.shared.common.Pagination;
@@ -48,7 +49,7 @@ public class OperateLogFacadeImpl implements OperateLogFacade {
         try {
             queryResults = (QueryResults<OperateLogEntry>) futureResults.get();
         } catch (Exception e) {
-            log.error("查询日志信息异常{}", e);
+            log.error("查询操作日志信息异常{}", e);
             return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
         }
 
@@ -59,5 +60,23 @@ public class OperateLogFacadeImpl implements OperateLogFacade {
                 translator.translateToRespDTOs(queryResults)
         );
         return new ResponseWrapper<>(operateLogRespDTOs);
+    }
+
+    @Override
+    @ApiOperation(value = "获取指定日志", notes = "获取指定日志")
+    public ResponseWrapper<OperateLogRespDTO> find(Long logId) {
+        CompletableFuture<OperateLogEntry> futureResult =
+                queryGateway.query(new FindOperateLogByIdCommand(logId), OperateLogEntry.class);
+
+        OperateLogEntry foundEntry;
+        try {
+            foundEntry = futureResult.get();
+        } catch (Exception e) {
+            log.error("获取指定操作日志信息异常{0}", e);
+            return new ResponseWrapper<>(ResponseCodeEnum.INTERNAL_ERROR);
+        }
+        return new ResponseWrapper<>(
+                translator.translateToRespDTO(foundEntry)
+        );
     }
 }
