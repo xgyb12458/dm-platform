@@ -1,4 +1,4 @@
-package com.damon.product.core.query.handler.spu;
+package com.damon.product.core.query.handler.log;
 
 import com.damon.product.api.dto.req.log.QueryOperateLogReqDTO;
 import com.damon.product.api.dto.resp.log.OperateLogRespDTO;
