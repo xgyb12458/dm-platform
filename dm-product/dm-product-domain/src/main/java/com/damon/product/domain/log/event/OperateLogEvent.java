@@ -1,4 +1,4 @@
-package com.damon.product.domain.spu.event;
+package com.damon.product.domain.log.event;
 
 import lombok.Builder;
 import lombok.Value;

@@ -1,5 +1,6 @@
-package com.damon.product.domain.spu.command;
+package com.damon.product.domain.log.command;
 
+import com.damon.shared.enums.OperateTarget;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,7 +13,7 @@ import lombok.Value;
 @Value
 @Builder
 public class QueryOperateLogCommand {
-    private final String    target;
+    private final OperateTarget target;
     private final Long      objectId;
     private final Long      operatedBy;
     private final Long      operatedFrom;

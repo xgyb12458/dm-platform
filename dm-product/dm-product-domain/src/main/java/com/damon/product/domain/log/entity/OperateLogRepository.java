@@ -1,4 +1,4 @@
-package com.damon.product.domain.spu.entity;
+package com.damon.product.domain.log.entity;
 
 import com.damon.shared.model.EntryRepository;
 import org.springframework.stereotype.Repository;

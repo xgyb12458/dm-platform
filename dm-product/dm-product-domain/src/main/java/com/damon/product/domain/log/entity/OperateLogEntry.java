@@ -1,4 +1,4 @@
-package com.damon.product.domain.spu.entity;
+package com.damon.product.domain.log.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,15 +24,14 @@ public class OperateLogEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "log_id")
-    private Long        logId;
+    private Long logId;
     @Column(name = "object_id")
-    private Long        objectId;
-    @Column private String      target;
-    @Column private String      type;
-    @Column private String      content;
-
+    private Long objectId;
+    @Column private String target;
+    @Column private String type;
+    @Column private String content;
     @Column(name = "operated_by")
-    private Long        operatedBy;
+    private Long operatedBy;
     @Column(name = "operated_at")
-    private Timestamp   operatedAt;
+    private Timestamp operatedAt;
 }

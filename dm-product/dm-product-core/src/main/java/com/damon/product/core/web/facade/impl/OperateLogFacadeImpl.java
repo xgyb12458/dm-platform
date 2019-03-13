@@ -4,7 +4,7 @@ import com.damon.product.api.dto.req.log.QueryOperateLogReqDTO;
 import com.damon.product.api.dto.resp.log.OperateLogRespDTO;
 import com.damon.product.api.web.facade.OperateLogFacade;
 import com.damon.product.core.query.handler.spu.OperateLogTranslator;
-import com.damon.product.domain.spu.entity.OperateLogEntry;
+import com.damon.product.domain.log.entity.OperateLogEntry;
 import com.damon.shared.common.Constants;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.enums.ResponseCodeEnum;

@@ -1,6 +1,6 @@
 package com.damon.product.core.query.handler.log;
 
-import com.damon.product.domain.spu.command.QueryOperateLogCommand;
+import com.damon.product.domain.log.command.QueryOperateLogCommand;
 import com.damon.product.domain.spu.entity.QOperateLogEntry;
 import com.damon.shared.common.Constants;
 import com.querydsl.core.BooleanBuilder;
@@ -43,7 +43,7 @@ public class OperateLogQueryHandler {
         final BooleanBuilder expression = new BooleanBuilder();
         // 拼接查询条件
         Optional.ofNullable(command.getTarget()).ifPresent(
-                target -> expression.and(qOperateLogEntry.target.eq(target))
+                target -> expression.and(qOperateLogEntry.target.eq(target.name()))
         );
         Optional.ofNullable(command.getObjectId()).ifPresent(
                 objectId -> expression.and(qOperateLogEntry.objectId.eq(objectId))
