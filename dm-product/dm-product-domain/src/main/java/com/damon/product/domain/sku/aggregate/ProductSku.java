@@ -12,7 +12,6 @@ import java.util.List;
 @Value
 @Builder
 public class ProductSku {
-    private final String      name;
     private final String      skuCode;
     private final List<Long>  specIds;
     private final List<Long>  imageIds;
@@ -22,7 +21,6 @@ public class ProductSku {
     private final Long        reduction;
     private final Long        promoteFee;
     private final Long        serviceFee;
-    private final Long        exchangePrice;
     private final Long        exchangePoint;
     private final Long        netWorth;
     private final String      barCode;

@@ -20,8 +20,7 @@ public class SkuUpdatedEvent {
     private final SkuId       skuId;
     @NotNull
     private final Long        spuId;
-    private final List<Long> specIds;
-    private final String      name;
+    private final List<Long>  specIds;
     private final List<Long>  imageIds;
     private final Integer     inventory;
     private final Integer     safetyStock;
@@ -29,7 +28,6 @@ public class SkuUpdatedEvent {
     private final Long        reduction;
     private final Long        promoteFee;
     private final Long        serviceFee;
-    private final Long        exchangePrice;
     private final Long        exchangePoint;
     private final Long        netWorth;
     private final String      barCode;

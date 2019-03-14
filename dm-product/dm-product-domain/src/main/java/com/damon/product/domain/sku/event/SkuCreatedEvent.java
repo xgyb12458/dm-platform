@@ -18,7 +18,6 @@ import java.util.List;
 public class SkuCreatedEvent {
     @TargetAggregateIdentifier
     private final SkuId       skuId;
-    private final String      name;
     @NotNull
     private final Long        spuId;
     private final List<Long> specIds;
@@ -31,7 +30,6 @@ public class SkuCreatedEvent {
     private final Long        reduction;
     private final Long        promoteFee;
     private final Long        serviceFee;
-    private final Long        exchangePrice;
     private final Long        exchangePoint;
     private final Long        netWorth;
     private final String      barCode;

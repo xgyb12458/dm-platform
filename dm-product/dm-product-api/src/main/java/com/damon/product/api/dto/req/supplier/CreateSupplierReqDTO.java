@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 创建供应商
@@ -17,30 +18,12 @@ import java.io.Serializable;
 public class CreateSupplierReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "商品名称")
+    @ApiModelProperty(value = "供应商名称")
     private String      name;
 
-    @ApiModelProperty(value = "品牌编码")
+    @ApiModelProperty(value = "供应商编码")
     private String      code;
 
-    @ApiModelProperty(value = "品牌LOGO")
-    private String      logo;
-
-    @ApiModelProperty(value = "是否显示")
-    private Boolean     display;
-
-    @ApiModelProperty(value = "是否为品牌制造商")
-    private Boolean     factoryState;
-
-    @ApiModelProperty(value = "排序")
-    private Integer      sort;
-
-    @ApiModelProperty(value = "首字母")
-    private String      firstLetter;
-
-    @ApiModelProperty(value = "专区大图")
-    private String      bigImage;
-
-    @ApiModelProperty(value = "品牌故事")
-    private String      brandStory;
+    @ApiModelProperty(value = "关联仓库")
+    private List<Long>  warehouseId;
 }

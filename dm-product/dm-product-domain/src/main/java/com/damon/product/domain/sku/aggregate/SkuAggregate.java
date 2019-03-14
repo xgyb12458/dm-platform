@@ -30,7 +30,6 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 public class SkuAggregate {
     @AggregateIdentifier
     private SkuId       skuId;
-    private String      name;
     private String      skuCode;
     private Long        spuId;
     private List<Long>  specIds;
@@ -41,7 +40,6 @@ public class SkuAggregate {
     private Long        reduction;
     private Long        promoteFee;
     private Long        serviceFee;
-    private Long        exchangePrice;
     private Long        exchangePoint;
     private Long        netWorth;
     private String      barCode;
@@ -57,7 +55,6 @@ public class SkuAggregate {
 
         apply(SkuCreatedEvent.builder()
                 .skuId(new SkuId())
-                .name(command.getName())
                 .skuCode(command.getSkuCode())
                 .spuId(command.getSpuId())
                 .specIds(command.getSpecIds())
@@ -68,7 +65,6 @@ public class SkuAggregate {
                 .reduction(command.getReduction())
                 .promoteFee(command.getPromoteFee())
                 .serviceFee(command.getServiceFee())
-                .exchangePrice(command.getExchangePrice())
                 .exchangePoint(command.getExchangePoint())
                 .netWorth(command.getNetWorth())
                 .barCode(command.getBarCode())
@@ -84,7 +80,6 @@ public class SkuAggregate {
         log.info(Constants.PREFIX_PRODUCT + "==========>>creating sku aggregate event, parameters: {}", event.toString());
 
         setSkuId(event.getSkuId());
-        setName(event.getName());
         setSkuCode(event.getSkuCode());
         setSpuId(event.getSpuId());
         setSpecIds(event.getSpecIds());
@@ -96,7 +91,6 @@ public class SkuAggregate {
         setPromoteFee(event.getPromoteFee());
         setServiceFee(event.getServiceFee());
         setExchangePoint(event.getExchangePoint());
-        setExchangePrice(event.getExchangePrice());
         setNetWorth(event.getNetWorth());
         setBarCode(event.getBarCode());
         setCreatedBy(event.getCreatedBy());

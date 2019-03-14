@@ -376,7 +376,6 @@ public class SpuAggregate {
         event.getSkus().forEach(sku -> {
                 CreateSkuCommand command = CreateSkuCommand.builder()
                         .skuId(new SkuId())
-                        .name(sku.getName())
                         .spuId(event.getSpuId().getValue())
                         .specIds(sku.getSpecIds())
                         .skuCode(sku.getSkuCode())
@@ -387,7 +386,6 @@ public class SpuAggregate {
                         .reduction(sku.getReduction())
                         .promoteFee(sku.getPromoteFee())
                         .serviceFee(sku.getServiceFee())
-                        .exchangePrice(sku.getExchangePrice())
                         .exchangePoint(sku.getExchangePoint())
                         .netWorth(sku.getNetWorth())
                         .barCode(sku.getBarCode())

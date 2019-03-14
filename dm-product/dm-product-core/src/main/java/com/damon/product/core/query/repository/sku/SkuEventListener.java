@@ -49,7 +49,6 @@ public class SkuEventListener {
 
         SkuEntry skuEntry = SkuEntry.builder()
                 .skuId(event.getSkuId().getValue())
-                .name(event.getName())
                 .skuCode(event.getSkuCode())
                 .spuId(event.getSpuId())
 //                .specIds(CollectionUtil.collection2Plain(event.getSpecIds()))
@@ -60,7 +59,6 @@ public class SkuEventListener {
                 .reduction(event.getReduction())
                 .promoteFee(event.getPromoteFee())
                 .serviceFee(event.getServiceFee())
-                .exchangePrice(event.getExchangePrice())
                 .exchangePoint(event.getExchangePoint())
                 .netWorth(event.getNetWorth())
                 .barCode(event.getBarCode())
@@ -76,8 +74,8 @@ public class SkuEventListener {
 
         skuSpecRelateRepository.saveAndFlush(skuSpecRelateEntry);
         skuRepository.saveAndFlush(skuEntry);
-        log.info(Constants.PREFIX_PRODUCT + "========>>Sku aggregate[Id:{}, name:'{}'] created by User[Id:{}] at {} is successfully stored-[DB].",
-                event.getSkuId().getValue(), event.getName(), event.getCreatedBy(), event.getCreatedAt());
+        log.info(Constants.PREFIX_PRODUCT + "========>>Sku aggregate[Id:{}] created by User[Id:{}] at {} is successfully stored-[DB].",
+                event.getSkuId().getValue(), event.getCreatedBy(), event.getCreatedAt());
     }
 
 
@@ -88,7 +86,6 @@ public class SkuEventListener {
         log.trace(Constants.PREFIX_PRODUCT + "========>>handling SkuUpdatedEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qSkuEntry)
-                .set(qSkuEntry.name, event.getName())
 //                .set(qSkuEntry.imageIds, event.getImageIds())
                 .set(qSkuEntry.inventory, event.getInventory())
                 .set(qSkuEntry.safetyStock, event.getSafetyStock())
@@ -97,7 +94,6 @@ public class SkuEventListener {
                 .set(qSkuEntry.promoteFee, event.getPromoteFee())
                 .set(qSkuEntry.serviceFee, event.getServiceFee())
                 .set(qSkuEntry.exchangePoint, event.getExchangePoint())
-                .set(qSkuEntry.exchangePrice, event.getExchangePrice())
                 .set(qSkuEntry.netWorth, event.getNetWorth())
                 .set(qSkuEntry.barCode, event.getBarCode())
                 .set(qSkuEntry.updatedBy, event.getUpdatedBy())

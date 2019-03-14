@@ -18,27 +18,9 @@ import java.io.Serializable;
 public class QueryWarehouseReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "品牌名称")
+    @ApiModelProperty(value = "仓库名称")
     private String      name;
 
-    @ApiModelProperty(value = "品牌编码")
+    @ApiModelProperty(value = "仓库编码")
     private String      code;
-
-    @ApiModelProperty(value = "是否显示")
-    private Boolean     display;
-
-    @ApiModelProperty(value = "是否为品牌制造商")
-    private Boolean     factoryState;
-
-    @ApiModelProperty(value = "是否已删除")
-    private Boolean     removed;
-
-    @ApiModelProperty(value = "首字母")
-    private String      firstLetter;
-
-    @ApiModelProperty(value = "创建时间-从")
-    private String   createdFrom;
-
-    @ApiModelProperty(value = "创建时间-到")
-    private String   createdTo;
 }

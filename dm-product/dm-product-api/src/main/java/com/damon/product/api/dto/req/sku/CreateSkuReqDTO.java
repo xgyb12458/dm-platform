@@ -21,9 +21,6 @@ public class CreateSkuReqDTO implements Serializable {
     @ApiModelProperty(value = "skuId")
     private Long      skuId;
 
-    @ApiModelProperty(value = "名称")
-    private String      name;
-
     @ApiModelProperty(value = "SKU编码")
     private String      skuCode;
 
@@ -50,9 +47,6 @@ public class CreateSkuReqDTO implements Serializable {
 
     @ApiModelProperty(value = "服务费")
     private Long        serviceFee;
-
-    @ApiModelProperty(value = "兑换价")
-    private Long        exchangePrice;
 
     @ApiModelProperty(value = "兑换德分")
     private Long        exchangePoint;
