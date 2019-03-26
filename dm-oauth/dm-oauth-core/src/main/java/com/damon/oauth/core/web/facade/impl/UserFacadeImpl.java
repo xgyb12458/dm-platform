@@ -8,45 +8,41 @@ import com.damon.oauth.api.dto.req.user.UserLoginReqDTO;
 import com.damon.oauth.api.dto.resp.user.UserInfoRespDTO;
 import com.damon.oauth.api.dto.resp.user.UserLoginRespDTO;
 import com.damon.oauth.api.web.facade.UserFacade;
-import com.damon.oauth.domain.user.aggregate.UserId;
-import com.damon.order.domain.trade.command.CreateTradeCommand;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.validation.ArgsValid;
 import com.damon.shared.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-
 
 /**
+ * 用户接口
  * @author Damon S.
  */
+@RequiredArgsConstructor
 @RestController
 @Api(tags = "用户管理接口")
 public class UserFacadeImpl implements UserFacade {
-    private final CommandGateway commandGateway;
 
-    public UserFacadeImpl(CommandGateway commandGateway) {
-        this.commandGateway = commandGateway;
-    }
+    private final CommandGateway commandGateway;
 
 
     @ArgsValid
     @Override
     @ApiOperation(value = "用户注册", notes = "用户主动注册")
     public ResponseWrapper<Boolean> registerUser(CreateUserReqDTO createUserReqDTO) {
-        CreateTradeCommand command = CreateTradeCommand.builder()
-                .userId(new UserId())
-                .userName(createUserReqDTO.getUserName())
-                .password(createUserReqDTO.getPassword())
-                .captcha(createUserReqDTO.getCaptcha())
-                .createdAt(LocalDateTime.now())
-                .createdBy(0L)
-                .build();
-        commandGateway.sendAndWait(command);
+//        CreateTradeCommand command = CreateTradeCommand.builder()
+//                .userId(new UserId())
+//                .userName(createUserReqDTO.getUserName())
+//                .password(createUserReqDTO.getPassword())
+//                .captcha(createUserReqDTO.getCaptcha())
+//                .createdAt(LocalDateTime.now())
+//                .createdBy(0L)
+//                .build();
+//        commandGateway.sendAndWait(command);
         return null;
     }
 
@@ -82,12 +78,12 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     @ApiOperation(value = "用户登录", notes = "用户登录（用户名/密码/验证码）。")
     public ResponseWrapper<UserLoginRespDTO> login(UserLoginReqDTO loginReqDTO) {
-        UserLoginCommand command = UserLoginCommand.builder()
-                .userName(loginReqDTO.getUserName())
-                .password(loginReqDTO.getPassword())
-                .captcha(loginReqDTO.getCaptcha())
-                .build();
-        commandGateway.sendAndWait(command);
+//        UserLoginCommand command = UserLoginCommand.builder()
+//                .userName(loginReqDTO.getUserName())
+//                .password(loginReqDTO.getPassword())
+//                .captcha(loginReqDTO.getCaptcha())
+//                .build();
+//        commandGateway.sendAndWait(command);
 
         return null;
     }

@@ -6,7 +6,7 @@ import com.damon.shared.enums.SwitchState;
 import com.damon.shared.tenant.TenantAware;
 import com.damon.shared.tenant.TenantId;
 import lombok.*;
-import org.axonframework.commandhandling.model.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import java.time.LocalDateTime;

@@ -4,7 +4,7 @@ import com.damon.oauth.api.dto.req.operation.CreateOperationReqDTO;
 import com.damon.oauth.api.dto.req.permission.CreatePermissionReqDTO;
 import com.damon.oauth.api.dto.req.resource.CreateResourceReqDTO;
 import com.damon.oauth.api.dto.req.tenant.CreateTenantReqDTO;
-import com.damon.order.shared.constant.ApiConstants;
+import com.damon.oauth.shared.constant.ApiConstants;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;

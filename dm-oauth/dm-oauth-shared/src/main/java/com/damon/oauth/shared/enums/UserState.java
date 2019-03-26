@@ -24,5 +24,5 @@ public enum UserState {
     /**
      * 删除
      */
-    REMOVED;
+    REMOVED
 }

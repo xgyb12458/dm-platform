@@ -7,7 +7,7 @@ import com.damon.oauth.api.dto.req.user.QueryUserReqDTO;
 import com.damon.oauth.api.dto.req.user.UserLoginReqDTO;
 import com.damon.oauth.api.dto.resp.user.UserInfoRespDTO;
 import com.damon.oauth.api.dto.resp.user.UserLoginRespDTO;
-import com.damon.order.shared.constant.ApiConstants;
+import com.damon.oauth.shared.constant.ApiConstants;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;

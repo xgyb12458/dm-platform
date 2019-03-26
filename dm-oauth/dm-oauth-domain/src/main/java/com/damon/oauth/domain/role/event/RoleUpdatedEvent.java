@@ -3,7 +3,7 @@ package com.damon.oauth.domain.role.event;
 import com.damon.oauth.domain.role.aggregate.RoleId;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.sql.Timestamp;
 

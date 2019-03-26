@@ -1,7 +1,5 @@
 package com.damon.oauth.api.dto.req.user;
 
-import com.damon.order.shared.enums.OrderState;
-import com.damon.order.shared.enums.OrderType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,10 +23,10 @@ public class QueryUserReqDTO {
     private String userName;
 
     @ApiModelProperty(value = "用户状态")
-    private OrderState state;
+    private String state;
 
     @ApiModelProperty(value = "用户类型")
-    private OrderType type;
+    private String type;
 
     @ApiModelProperty(value = "邮箱地址")
     private String email;

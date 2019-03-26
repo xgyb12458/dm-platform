@@ -1,6 +1,5 @@
 package com.damon.oauth.domain.role.entity;
 
-import com.damon.shared.common.WorkerId;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -15,13 +14,11 @@ import java.sql.Timestamp;
 @Entity
 @Builder
 @Data
-@WorkerId(11)
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "t_rbac_role")
 public final class RoleEntry {
-
     @Id
     @NonNull
     @Column private Long roleId;

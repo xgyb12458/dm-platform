@@ -2,51 +2,55 @@ package com.damon.oauth.domain.user.aggregate;
 
 import com.damon.oauth.domain.role.aggregate.RoleAggregate;
 import com.damon.oauth.domain.user.command.CreateUserCommand;
+import com.damon.oauth.domain.user.command.UpdateUserCommand;
 import com.damon.oauth.domain.user.event.UserCreatedEvent;
-import com.damon.order.shared.enums.OrderState;
-import com.damon.order.shared.enums.OrderType;
+import com.damon.oauth.domain.user.event.UserUpdatedEvent;
+import com.damon.oauth.shared.enums.UserState;
+import com.damon.oauth.shared.enums.UserType;
 import com.damon.shared.tenant.TenantAware;
 import com.damon.shared.tenant.TenantId;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
+import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
+import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 /**
+ * 用户聚合
  * @author Damon
  */
-@ToString
+@Slf4j
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
 @Aggregate
 @NoArgsConstructor
 public class UserAggregate implements TenantAware<TenantId> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserAggregate.class);
-
     @AggregateIdentifier
-    private UserId userId;
-    private String userName;
-    private String password;
-    private String salt;
-    private String phone;
-    private String email;
+    private UserId          userId;
+    private String          userName;
+    private String          nickName;
+    private String          password;
+    private String          phoneNo;
+    private String          email;
+    private String          salt;
+    private UserState       state;
+    private UserType        type;
     private Collection<RoleAggregate> roles;
-    private OrderType type;
-    private OrderState state;
-    private TenantId tenantId;
-    private Long createdBy;
-    private Long updatedBy;
-    private LocalDateTime lastLogin;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private TenantId        tenantId;
+    private Long            createdBy;
+    private Long            updatedBy;
+    private LocalDateTime   createdAt;
+    private LocalDateTime   updatedAt;
+    private LocalDateTime   lastLoginAt;
 
 
     @CommandHandler
@@ -55,29 +59,64 @@ public class UserAggregate implements TenantAware<TenantId> {
         apply(UserCreatedEvent.builder()
                 .userId(command.getUserId())
                 .userName(command.getUserName())
+                .nickName(command.getNickName())
                 .password(command.getPassword())
-                .type(OrderType.NORMAL)
-                .state(OrderState.ACTIVE)
+                .phoneNo(command.getPhoneNo())
+                .email(command.getEmail())
+                .captcha(command.getCaptcha())
+                .type(command.getType())
+                .state(UserState.ACTIVE)
                 .salt("")
                 .tenantId(command.getTenantId())
                 .createdBy(command.getCreatedBy())
-                .createdAt(command.getCreatedAt())
+                .createdAt(LocalDateTime.now())
                 .build());
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings("UnusedDeclaration")
+    @CommandHandler
+    private void handle(UpdateUserCommand command) {
+
+        apply(UserUpdatedEvent.builder()
+
+                .build());
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(UserCreatedEvent event) {
         this.setUserId(event.getUserId());
         this.setUserName(event.getUserName());
+        this.setNickName(event.getNickName());
         this.setPassword(event.getPassword());
-        this.setSalt(event.getSalt());
+        this.setPhoneNo(event.getPhoneNo());
+        this.setEmail(event.getEmail());
         this.setType(event.getType());
         this.setState(event.getState());
+        this.setSalt(event.getSalt());
+        this.setTenantId(event.getTenantId());
         this.setCreatedBy(event.getCreatedBy());
         this.setCreatedAt(event.getCreatedAt());
 
-        LOGGER.info("========>>User aggregate[Id:{}, name:'{}'] is created by User[Id:{}] at {}.",
+        log.info("========>>User aggregate[Id:{}, name:'{}'] is created by User[Id:{}] at {}.",
                 event.getUserId().getValue(), event.getUserName(), event.getCreatedBy(), event.getCreatedAt());
+    }
+
+
+    @SuppressWarnings("UnusedDeclaration")
+    @EventSourcingHandler
+    private void on(UserUpdatedEvent event) {
+        this.setNickName(event.getNickName());
+        this.setPhoneNo(event.getPhoneNo());
+        this.setEmail(event.getEmail());
+//        this.setType(event.getType());
+//        this.setState(event.getState());
+//        this.setSalt(event.getSalt());
+        this.setTenantId(event.getTenantId());
+        this.setUpdatedBy(event.getUpdatedBy());
+        this.setUpdatedAt(event.getUpdatedAt());
+
+        log.info("========>>User aggregate[Id:{}, name:'{}'] is updated by User[Id:{}] at {}.",
+                event.getUserId().getValue(), getUserName(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 }

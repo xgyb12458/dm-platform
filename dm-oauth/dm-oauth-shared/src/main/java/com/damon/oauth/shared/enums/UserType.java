@@ -24,5 +24,5 @@ public enum UserType {
     /**
      * User is removed, the user is not exist any more.
      */
-    OTHERS;
+    OTHERS
 }

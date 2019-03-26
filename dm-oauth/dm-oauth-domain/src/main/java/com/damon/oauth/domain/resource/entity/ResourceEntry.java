@@ -1,6 +1,5 @@
 package com.damon.oauth.domain.resource.entity;
 
-import com.damon.shared.common.WorkerId;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import java.sql.Timestamp;
 @Entity
 @Data
 @Builder
-@WorkerId(2)
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor

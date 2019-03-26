@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.resource.entity;
+package com.damon.oauth.domain.operation.entity;
 
 import com.damon.shared.model.EntryRepository;
 import org.springframework.stereotype.Repository;
@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author Damon S.
  */
 @Repository
-public interface ResourceEntryRepository extends EntryRepository<ResourceEntry, Long> {
+public interface OperationRepository extends EntryRepository<OperationEntry, Long> {
 }

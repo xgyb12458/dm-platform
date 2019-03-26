@@ -1,11 +1,12 @@
 package com.damon.oauth.domain.user.event;
 
-import com.damon.oauth.domain.role.aggregate.RoleId;
+import com.damon.oauth.domain.user.aggregate.UserId;
+import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 应用更新事件
@@ -15,9 +16,13 @@ import java.sql.Timestamp;
 @Builder
 public class UserUpdatedEvent {
     @TargetAggregateIdentifier
-    private final RoleId roleId;
-    private final String name;
-    private final String permsJson;
-    private final Long updatedBy;
-    private final Timestamp updatedAt;
+    private final UserId            userId;
+    private final String            nickName;
+    private final String            rolesJson;
+    private final String            phoneNo;
+    private final String            email;
+    private final TenantId          tenantId;
+    private final Long              updatedBy;
+    private final LocalDateTime     updatedAt;
+
 }

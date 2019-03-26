@@ -2,7 +2,7 @@ package com.damon.oauth.api.web.facade;
 
 import com.damon.oauth.api.dto.req.role.CreateRoleReqDTO;
 import com.damon.oauth.api.dto.req.tenant.CreateTenantReqDTO;
-import com.damon.order.shared.constant.ApiConstants;
+import com.damon.oauth.shared.constant.ApiConstants;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;

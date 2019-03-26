@@ -3,7 +3,7 @@ package com.damon.oauth.domain.user.command;
 import com.damon.oauth.domain.role.aggregate.RoleId;
 import lombok.Builder;
 import lombok.Getter;
-import org.axonframework.commandhandling.TargetAggregateIdentifier;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * 应用更新命令
