@@ -1,6 +1,7 @@
 package com.damon.oauth.domain.user.command;
 
-import com.damon.oauth.domain.role.aggregate.RoleId;
+import com.damon.oauth.domain.user.aggregate.UserId;
+import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
@@ -13,8 +14,11 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Builder
 public class UpdateUserCommand {
     @TargetAggregateIdentifier
-    private final RoleId roleId;
-    private final String name;
-    private final String permsJson;
-    private final Long updatedBy;
+    private final UserId    userId;
+    private final String    nickName;
+    private final String    rolesJson;
+    private final String    phoneNo;
+    private final String    email;
+    private final TenantId  tenantId;
+    private final Long      updatedBy;
 }

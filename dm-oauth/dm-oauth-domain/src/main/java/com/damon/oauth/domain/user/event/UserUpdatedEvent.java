@@ -24,5 +24,4 @@ public class UserUpdatedEvent {
     private final TenantId          tenantId;
     private final Long              updatedBy;
     private final LocalDateTime     updatedAt;
-
 }

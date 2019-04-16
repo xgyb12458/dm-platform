@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateMember;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import java.time.LocalDateTime;
@@ -44,6 +45,7 @@ public class UserAggregate implements TenantAware<TenantId> {
     private String          salt;
     private UserState       state;
     private UserType        type;
+    @AggregateMember
     private Collection<RoleAggregate> roles;
     private TenantId        tenantId;
     private Long            createdBy;
@@ -60,12 +62,12 @@ public class UserAggregate implements TenantAware<TenantId> {
                 .userId(command.getUserId())
                 .userName(command.getUserName())
                 .nickName(command.getNickName())
-                .password(command.getPassword())
                 .phoneNo(command.getPhoneNo())
                 .email(command.getEmail())
                 .captcha(command.getCaptcha())
                 .type(command.getType())
                 .state(UserState.ACTIVE)
+                .password(command.getPassword())
                 .salt("")
                 .tenantId(command.getTenantId())
                 .createdBy(command.getCreatedBy())
@@ -76,9 +78,14 @@ public class UserAggregate implements TenantAware<TenantId> {
     @SuppressWarnings("UnusedDeclaration")
     @CommandHandler
     private void handle(UpdateUserCommand command) {
-
         apply(UserUpdatedEvent.builder()
-
+                .nickName(command.getNickName())
+                .email(command.getEmail())
+                .phoneNo(command.getPhoneNo())
+                .rolesJson(command.getRolesJson())
+                .tenantId(command.getTenantId())
+                .updatedBy(command.getUpdatedBy())
+                .updatedAt(LocalDateTime.now())
                 .build());
     }
 

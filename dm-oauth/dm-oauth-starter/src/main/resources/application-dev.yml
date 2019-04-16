@@ -1,6 +1,6 @@
 spring:
   datasource:
-    driverClassName: org.h2.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://47.104.101.37:3306/oms_dev?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: ENC(TkqJeS/vmnn2ZYjVloMk+Q==)
