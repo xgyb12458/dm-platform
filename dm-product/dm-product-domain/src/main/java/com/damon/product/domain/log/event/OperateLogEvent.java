@@ -1,5 +1,6 @@
 package com.damon.product.domain.log.event;
 
+import com.damon.shared.enums.OperateType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,10 +13,10 @@ import lombok.Value;
 @Value
 @Builder
 public class OperateLogEvent {
-    private final String    target;
-    private final Long      objectId;
-    private final String    type;
-    private final Object    content;
-    private final Long      operatedBy;
-    private final Long      operatedAt;
+    private final String        target;
+    private final Long          objectId;
+    private final OperateType   type;
+    private final Object        content;
+    private final Long          operatedBy;
+    private final Long          operatedAt;
 }

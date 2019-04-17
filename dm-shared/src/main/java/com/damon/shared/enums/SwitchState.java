@@ -7,5 +7,5 @@ package com.damon.shared.enums;
  */
 public enum SwitchState {
     /**开启。停止*/
-    ON, OFF;
+    ON, OFF
 }

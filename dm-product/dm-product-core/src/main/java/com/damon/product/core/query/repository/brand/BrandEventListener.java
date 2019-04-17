@@ -114,8 +114,8 @@ public class BrandEventListener {
         log.trace(Constants.PREFIX_PRODUCT + "========>>handling BrandRecoveredEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qBrandEntry)
-                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
                 .set(qBrandEntry.removed, event.getState().name())
+                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
                 .set(qBrandEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
                 .execute();
 
@@ -130,8 +130,8 @@ public class BrandEventListener {
         log.trace(Constants.PREFIX_PRODUCT + "========>>handling BrandDisplayChangedEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qBrandEntry)
-                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
                 .set(qBrandEntry.display, event.getState().name())
+                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
                 .set(qBrandEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
                 .execute();
 
@@ -146,8 +146,8 @@ public class BrandEventListener {
         log.trace(Constants.PREFIX_PRODUCT + "========>>handling BrandFactoryChangedEvent persistence process, parameters：{}", event.toString());
 
         jpaQueryFactory.update(qBrandEntry)
-                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
                 .set(qBrandEntry.factoryState, event.getState().name())
+                .set(qBrandEntry.updatedBy, event.getUpdatedBy())
                 .set(qBrandEntry.updatedAt, new Timestamp(event.getUpdatedAt().toEpochMilli()))
                 .execute();
 

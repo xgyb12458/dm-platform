@@ -47,7 +47,7 @@ public class OperateLogEventListener {
         OperateLogEntry logEntry = OperateLogEntry.builder()
                 .target(event.getTarget())
                 .objectId(event.getObjectId())
-                .type(event.getType())
+                .type(event.getType().name())
                 .content(content)
                 .operatedBy(event.getOperatedBy())
                 .operatedAt(new Timestamp(event.getOperatedAt()))

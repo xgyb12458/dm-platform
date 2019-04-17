@@ -21,4 +21,5 @@ public final class Constants {
     static final String PREFIX_SHARED = "[DMP-SHARED]";
     public static final String PREFIX_ORDER = "[DMP-ORDER]";
     public static final String PREFIX_PRODUCT = "[DMP-PRODUCT]";
+    public static final String PREFIX_OAUTH = "[DMP-OAUTH]";
 }
