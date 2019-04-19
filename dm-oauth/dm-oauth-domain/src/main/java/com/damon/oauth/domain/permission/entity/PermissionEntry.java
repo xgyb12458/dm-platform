@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
 
 /**
  * @author Damon
@@ -17,19 +16,27 @@ import java.sql.Timestamp;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "dm_oauth_permission")
+@Table(name = "oms_oauth_permission")
 public final class PermissionEntry {
 
     @Id
     @NonNull
-    @Column private Long permissionId;
-    @Column private Long resourceId;
-    @Column private Long operationId;
+    @Column(name = "permission_id")
+    private Long        permissionId;
+    @Column(name = "resource_id")
+    private Long        resourceId;
+    @Column(name = "operation_id")
+    private Long        operationId;
     @Column private String state;
-    @Column private Long tenantId;
+    @Column(name = "tenant_id")
+    private Long        tenantId;
 
-    @Column private Long createdBy;
-    @Column private Long updatedBy;
-    @Column private Timestamp createAt;
-    @Column private Timestamp updateAt;
+    @Column(name = "created_by")
+    private Long        createdBy;
+    @Column(name = "updated_by")
+    private Long        updatedBy;
+    @Column(name = "created_at")
+    private Long        createdAt;
+    @Column(name = "updated_at")
+    private Long        updatedAt;
 }

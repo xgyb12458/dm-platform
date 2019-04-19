@@ -1,7 +1,7 @@
 package com.damon.oauth.domain.permission.aggregate;
 
-import com.damon.oauth.domain.operation.entity.Operation;
-import com.damon.oauth.domain.resource.entity.Resource;
+import com.damon.oauth.domain.operation.aggregate.Operation;
+import com.damon.oauth.domain.resource.aggregate.Resource;
 import com.damon.shared.enums.SwitchState;
 import com.damon.shared.tenant.TenantAware;
 import com.damon.shared.tenant.TenantId;

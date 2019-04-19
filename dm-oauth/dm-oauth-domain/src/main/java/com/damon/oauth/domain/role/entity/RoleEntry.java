@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
 
 /**
  * @author Damon
@@ -17,19 +16,26 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "t_rbac_role")
+@Table(name = "oms_oauth_role")
 public final class RoleEntry {
     @Id
     @NonNull
-    @Column private Long roleId;
+    @Column(name = "role_id")
+    private Long        roleId;
     @Column private String name;
     @Column private String code;
     @Column private String state;
-    @Column private String permsJson;
-    @Column private Long tenantId;
+    @Column(name = "perms_json")
+    private String      permsJson;
+    @Column(name = "tenant_id")
+    private Long        tenantId;
 
-    @Column private Long createdBy;
-    @Column private Long updatedBy;
-    @Column private Timestamp createdAt;
-    @Column private Timestamp updatedAt;
+    @Column(name = "created_by")
+    private Long        createdBy;
+    @Column(name = "updated_by")
+    private Long        updatedBy;
+    @Column(name = "created_at")
+    private Long        createdAt;
+    @Column(name = "updated_at")
+    private Long        updatedAt;
 }

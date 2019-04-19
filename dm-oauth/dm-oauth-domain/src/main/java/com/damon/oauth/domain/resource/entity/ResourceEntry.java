@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
 
 /**
  * @author Damon
@@ -17,20 +16,27 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "dm_oauth_resource")
+@Table(name = "oms_oauth_resource")
 public final class ResourceEntry {
 
     @Id
     @NonNull
-    @Column private Long resourceId;
+    @Column(name = "resource_id")
+    private Long resourceId;
     @Column private String name;
     @Column private String code;
     @Column private String state;
-    @Column private Long parentId;
-    @Column private Long tenantId;
+    @Column(name = "parent_id")
+    private Long parentId;
+    @Column(name = "tenant_id")
+    private Long        tenantId;
 
-    @Column private Long createdBy;
-    @Column private Long updatedBy;
-    @Column private Timestamp createdAt;
-    @Column private Timestamp updatedAt;
+    @Column(name = "created_by")
+    private Long        createdBy;
+    @Column(name = "updated_by")
+    private Long        updatedBy;
+    @Column(name = "created_at")
+    private Long        createdAt;
+    @Column(name = "updated_at")
+    private Long        updatedAt;
 }

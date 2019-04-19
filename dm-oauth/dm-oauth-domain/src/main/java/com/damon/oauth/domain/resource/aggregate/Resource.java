@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.resource.entity;
+package com.damon.oauth.domain.resource.aggregate;
 
 import com.damon.shared.enums.SwitchState;
 import com.damon.shared.model.ValueObject;
