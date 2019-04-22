@@ -6,7 +6,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 资源位规格ID
+ * 权限ID
  * @author Damon S.
  */
 public class PermissionId extends AbstractId<PermissionId, Long> {

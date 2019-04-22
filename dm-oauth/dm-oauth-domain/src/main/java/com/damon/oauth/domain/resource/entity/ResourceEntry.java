@@ -29,14 +29,14 @@ public final class ResourceEntry {
     @Column(name = "parent_id")
     private Long parentId;
     @Column(name = "tenant_id")
-    private Long        tenantId;
+    private Long tenantId;
 
     @Column(name = "created_by")
-    private Long        createdBy;
+    private Long createdBy;
     @Column(name = "updated_by")
-    private Long        updatedBy;
+    private Long updatedBy;
     @Column(name = "created_at")
-    private Long        createdAt;
+    private Long createdAt;
     @Column(name = "updated_at")
-    private Long        updatedAt;
+    private Long updatedAt;
 }

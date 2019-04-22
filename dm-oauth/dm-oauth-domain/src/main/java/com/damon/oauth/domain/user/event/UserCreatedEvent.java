@@ -5,7 +5,7 @@ import com.damon.oauth.shared.enums.UserState;
 import com.damon.oauth.shared.enums.UserType;
 import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  * 应用创建完成事件
  * @author Damon S.
  */
-@Getter
+@Value
 @Builder
 public class UserCreatedEvent {
     @TargetAggregateIdentifier
