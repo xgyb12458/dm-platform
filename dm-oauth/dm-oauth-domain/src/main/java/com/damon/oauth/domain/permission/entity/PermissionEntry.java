@@ -1,5 +1,6 @@
 package com.damon.oauth.domain.permission.entity;
 
+import com.damon.oauth.shared.entity.TenantEntry;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -13,30 +14,22 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "oms_oauth_permission")
-public final class PermissionEntry {
+public final class PermissionEntry extends TenantEntry {
 
     @Id
     @NonNull
     @Column(name = "permission_id")
-    private Long        permissionId;
-    @Column(name = "resource_id")
-    private Long        resourceId;
-    @Column(name = "operation_id")
-    private Long        operationId;
-    @Column private String state;
-    @Column(name = "tenant_id")
-    private Long        tenantId;
+    private Long    permissionId;
 
-    @Column(name = "created_by")
-    private Long        createdBy;
-    @Column(name = "updated_by")
-    private Long        updatedBy;
-    @Column(name = "created_at")
-    private Long        createdAt;
-    @Column(name = "updated_at")
-    private Long        updatedAt;
+    @Column(name = "resource_id")
+    private Long    resourceId;
+
+    @Column(name = "operation_id")
+    private Long    operationId;
+
+    @Column private String state;
 }

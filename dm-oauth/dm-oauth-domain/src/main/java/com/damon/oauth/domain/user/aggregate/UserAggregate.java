@@ -57,16 +57,15 @@ public class UserAggregate implements TenantAware<TenantId> {
 
     @CommandHandler
     public UserAggregate(CreateUserCommand command) {
-        // TODO: 检查name+type是否重复，重复则抛出异常
+        // TODO: 检查name+phoneNo+tenantId是否重复，重复则抛出异常
         apply(UserCreatedEvent.builder()
                 .userId(command.getUserId())
                 .userName(command.getUserName())
                 .nickName(command.getNickName())
                 .phoneNo(command.getPhoneNo())
                 .email(command.getEmail())
-                .captcha(command.getCaptcha())
                 .type(command.getType())
-                .state(UserState.ACTIVE)
+                .state(UserState.NORMAL)
                 .password(command.getPassword())
                 .salt("")
                 .tenantId(command.getTenantId())

@@ -14,15 +14,10 @@ public enum UserState {
     /**
      * 正常
      */
-    ACTIVE,
+    NORMAL,
 
     /**
      * 冻结
      */
-    FROZEN,
-
-    /**
-     * 删除
-     */
-    REMOVED
+    FROZEN
 }

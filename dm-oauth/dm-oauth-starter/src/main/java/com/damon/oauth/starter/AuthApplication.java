@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 权限管理系统
  * @author Damon S.
  */
+@EnableJpaAuditing
 @EnableSwagger2Doc
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement

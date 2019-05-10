@@ -1,0 +1,45 @@
+package com.damon.shared.entity;
+
+import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+/**
+ * 数据库表映射基础类
+ * @author Damon S.
+ * @version v1.0.1
+ * @date 2019年05月02日 20:25
+ */
+@Data
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public abstract class AbstractEntry implements Serializable {
+
+    @Column(nullable = false)
+    protected Integer removed;
+
+    @CreatedBy
+    @Column(name = "created_by", nullable = false, updatable = false)
+    protected Long    createdBy;
+
+    @LastModifiedBy
+    @Column(name = "updated_by")
+    protected Long    updatedBy;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    protected Timestamp   createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    protected Timestamp   updatedAt;
+}

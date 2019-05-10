@@ -20,7 +20,6 @@ public class CreateUserCommand {
     private final String        nickName;
     private final String        password;
     private final String        phoneNo;
-    private final String        captcha;
     private final String        email;
     private final UserType      type;
     private final TenantId      tenantId;

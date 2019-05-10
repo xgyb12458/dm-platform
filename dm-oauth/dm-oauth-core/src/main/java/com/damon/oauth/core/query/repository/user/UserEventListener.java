@@ -12,6 +12,7 @@ import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.time.ZoneOffset;
 
 /**
@@ -52,10 +53,11 @@ public class UserEventListener {
                 .type(event.getType().name())
                 .state(event.getState().name())
                 .salt(event.getSalt())
-                .tenantId(event.getTenantId().getValue())
-                .createdBy(event.getCreatedBy())
-                .createdAt(event.getCreatedAt().toEpochSecond(ZoneOffset.UTC))
                 .build();
+
+//        userEntry.setTenantId(event.getTenantId().getValue());
+//        userEntry.setCreatedBy(event.getCreatedBy());
+//        userEntry.setCreatedAt(Timestamp.valueOf(event.getCreatedAt()));
 
         this.userRepository.saveAndFlush(userEntry);
         log.info(Constants.PREFIX_OAUTH + "========>>User aggregate[Id:{}] created by User[Id:{}] at {} is successfully stored-[DB].",
@@ -75,7 +77,7 @@ public class UserEventListener {
                 .set(qUserEntry.tenantId, event.getTenantId().getValue())
                 .set(qUserEntry.rolesJson, event.getRolesJson())
                 .set(qUserEntry.updatedBy, event.getUpdatedBy())
-                .set(qUserEntry.updatedAt, event.getUpdatedAt().toEpochSecond(ZoneOffset.UTC))
+                .set(qUserEntry.updatedAt, Timestamp.valueOf(event.getUpdatedAt()))
                 .where(qUserEntry.userId.eq(event.getUserId().getValue()))
                 .execute();
 
