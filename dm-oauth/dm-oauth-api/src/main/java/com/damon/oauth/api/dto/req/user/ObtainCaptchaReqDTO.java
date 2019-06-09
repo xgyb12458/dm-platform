@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -13,7 +12,6 @@ import javax.validation.constraints.Pattern;
  * 获取验证码
  * @author Damon S.
  */
-@ToString
 @Data
 @NoArgsConstructor
 @ApiModel(value = "获取验证码")

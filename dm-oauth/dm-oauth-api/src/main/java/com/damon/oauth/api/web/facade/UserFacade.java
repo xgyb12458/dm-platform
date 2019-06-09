@@ -1,7 +1,7 @@
 package com.damon.oauth.api.web.facade;
 
 import com.damon.oauth.api.dto.req.tenant.CreateTenantReqDTO;
-import com.damon.oauth.api.dto.req.user.CreateUserReqDTO;
+import com.damon.oauth.api.dto.req.user.CreateUserByNameReqDTO;
 import com.damon.oauth.api.dto.req.user.ObtainCaptchaReqDTO;
 import com.damon.oauth.api.dto.req.user.QueryUserReqDTO;
 import com.damon.oauth.api.dto.req.user.UserLoginReqDTO;
@@ -10,9 +10,13 @@ import com.damon.oauth.api.dto.resp.user.UserLoginRespDTO;
 import com.damon.oauth.shared.constant.ApiConstants;
 import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.async.DeferredResult;
+
+import javax.validation.Valid;
 
 /**
  * 用户权限管理
@@ -26,7 +30,7 @@ public interface UserFacade {
      */
     @PostMapping("/users/register")
     ResponseWrapper<Boolean> registerUser(
-            @RequestBody @Validated CreateUserReqDTO createUserReqDTO
+            @RequestBody @Valid CreateUserByNameReqDTO createUserByNameReqDTO
     );
 
     /**
@@ -34,7 +38,7 @@ public interface UserFacade {
      */
     @PostMapping("/users")
     ResponseWrapper<Boolean> createUser(
-            @RequestBody @Validated CreateUserReqDTO createUserReqDTO,
+            @RequestBody @Valid CreateUserByNameReqDTO createUserByNameReqDTO,
             @RequestHeader("tenantId") Long tenantId
     );
 
@@ -43,7 +47,7 @@ public interface UserFacade {
      */
     @GetMapping("/users")
     ResponseWrapper<Pagination<UserInfoRespDTO>> listUsers(
-            @RequestBody @Validated QueryUserReqDTO queryUserReqDTO
+            @RequestBody @Valid QueryUserReqDTO queryUserReqDTO
     );
 
     /**
@@ -51,7 +55,7 @@ public interface UserFacade {
      */
     @GetMapping("/users/signin")
     ResponseWrapper<UserLoginRespDTO> login(
-            @RequestBody @Validated UserLoginReqDTO loginReqDTO
+            @RequestBody @Valid UserLoginReqDTO loginReqDTO
     );
 
     /**
@@ -67,7 +71,7 @@ public interface UserFacade {
      */
     @PostMapping("/tenants")
     ResponseWrapper<Boolean> createTenant(
-            @RequestBody @Validated CreateTenantReqDTO createTenantReqDTO
+            @RequestBody @Valid CreateTenantReqDTO createTenantReqDTO
     );
 
     /**
@@ -75,6 +79,9 @@ public interface UserFacade {
      */
     @GetMapping("/captcha")
     ResponseWrapper<Boolean> obtainCaptcha(
-            @RequestBody @Validated ObtainCaptchaReqDTO obtainCaptchaReqDTO
+            @RequestBody @Valid ObtainCaptchaReqDTO obtainCaptchaReqDTO
     );
+
+//    ResponseWrapper<Boolean> ddd(@MatrixVariable("niu") String time, DeferredResult dd,
+//                                 HttpHeaders headers, BindingResult validation);
 }

@@ -1,4 +1,4 @@
-package com.damon.shared.common;
+package com.damon.shared.id.impl;
 
 import java.time.Instant;
 
@@ -15,7 +15,7 @@ import java.time.Instant;
  *
  * @author Twitter
  */
-final class IdWorker {
+final class SnowflakeIdWorker {
     /** 开始时间截 (2018-07-31 10:00:00) 入职时间*/
     private static final long TWEPOCH = 1533002400000L;
 
@@ -29,10 +29,10 @@ final class IdWorker {
     private final static long TIMESTAMP_LEFT_SHIFT = WORKER_ID_BITS + SEQUENCE_BITS;
 
     /** 生成序列的掩码，这里为4095 (0b111111111111=0xfff=4095) */
-    private static final long SEQUENCE_MASK = -1L ^ (-1L << SEQUENCE_BITS);
+    private static final long SEQUENCE_MASK = ~(-1L << SEQUENCE_BITS);
 
     /** 支持的最大机器id，结果是1023 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数) */
-    private final static long MAX_WORKER_ID = -1L ^ (-1L << WORKER_ID_BITS);
+    private final static long MAX_WORKER_ID = ~(-1L << WORKER_ID_BITS);
 
     /** 工作机器ID(0~31) */
     private long workerId;
@@ -44,7 +44,7 @@ final class IdWorker {
     private long lastTimestamp = -1L;
 
 
-    IdWorker(long workerId) {
+    SnowflakeIdWorker(long workerId) {
         if (workerId > MAX_WORKER_ID || workerId < 0) {
             throw new IllegalArgumentException(String.format("workerId can't be greater than %d or less than 0",
                     MAX_WORKER_ID));

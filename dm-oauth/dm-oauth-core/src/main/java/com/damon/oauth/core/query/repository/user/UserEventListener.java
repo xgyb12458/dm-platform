@@ -13,7 +13,6 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.time.ZoneOffset;
 
 /**
  * 用户事件侦听
@@ -46,9 +45,8 @@ public class UserEventListener {
         UserEntry userEntry = UserEntry.builder()
                 .userId(event.getUserId().getValue())
                 .userName(event.getUserName())
-                .nickName(event.getNickName())
                 .password(event.getPassword())
-                .phoneNo(event.getPhoneNo())
+                .phone(event.getPhone())
                 .email(event.getEmail())
                 .type(event.getType().name())
                 .state(event.getState().name())
@@ -71,8 +69,7 @@ public class UserEventListener {
         log.trace(Constants.PREFIX_OAUTH + "========>>handling UserUpdatedEvent persistence process, parameters：{}", event.toString());
 
         this.jpaQueryFactory.update(qUserEntry)
-                .set(qUserEntry.nickName, event.getNickName())
-                .set(qUserEntry.phoneNo, event.getPhoneNo())
+                .set(qUserEntry.phone, event.getPhoneNo())
                 .set(qUserEntry.email, event.getEmail())
                 .set(qUserEntry.tenantId, event.getTenantId().getValue())
                 .set(qUserEntry.rolesJson, event.getRolesJson())

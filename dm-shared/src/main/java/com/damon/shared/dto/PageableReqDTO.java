@@ -13,7 +13,7 @@ import javax.validation.constraints.Min;
 public class PageableReqDTO {
 
     @ApiModelProperty(value = "每页数量")
-    @Min(value = 5, message = "每页数量必须大于等于6")
+    @Min(value = 5, message = "每页数量必须大于等于5")
     private Long pageSize;
 
     @ApiModelProperty(value = "页码")

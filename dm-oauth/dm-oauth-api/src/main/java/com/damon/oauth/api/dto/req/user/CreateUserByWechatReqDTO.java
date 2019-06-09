@@ -4,20 +4,20 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
+ * 通过微信信息创建用户
  * @author Damon S.
  */
-@ToString
 @Data
 @NoArgsConstructor
-@ApiModel(value = "创建用户请求")
-public class CreateUserReqDTO implements Serializable {
+@ApiModel(value = "通过微信信息创建用户")
+public class CreateUserByWechatReqDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户名", required = true)
     @NotNull(message = "请输入用户名")

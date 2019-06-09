@@ -22,9 +22,9 @@ public class EncryptTest {
 
     @Test
     public void generateEncryption() {
-        String username= "byyroot";
+        String username = "byyroot";
         String password1= "xTGoxcni59@$";
-        String password2= "Z_tzfe$mhE62";
+        String password2= "U5Mp*E94C9qZ";
 
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");

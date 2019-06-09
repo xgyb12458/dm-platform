@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 /**
- * 权限管理基表
+ * 租户基础字段
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年05月05日 18:41

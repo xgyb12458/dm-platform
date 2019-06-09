@@ -1,9 +1,8 @@
 package com.damon.shared.utils;
 
-import org.springframework.util.ObjectUtils;
-
 import java.net.*;
 import java.util.Enumeration;
+import java.util.Objects;
 
 /**
  * @author Damon S.
@@ -38,7 +37,7 @@ public final class ApplicationUtils {
         String ipAddress = null;
 
         InetAddress address = findInetAddress();
-        if (!ObjectUtils.isEmpty(address)) {
+        if (Objects.nonNull(address)) {
             ipAddress = address.getHostAddress();
         }
         return ipAddress;
@@ -53,20 +52,20 @@ public final class ApplicationUtils {
             Enumeration addresses = netInterface.getInetAddresses();
 
             while (addresses.hasMoreElements()) {
-                InetAddress candidateAddress = (InetAddress) addresses.nextElement();
-                if (!ObjectUtils.isEmpty(address)
-                        && address instanceof Inet4Address
-                        && !address.isLoopbackAddress()
-                        && address.isSiteLocalAddress()) {
-                    address = candidateAddress;
+                InetAddress candidate = (InetAddress) addresses.nextElement();
+                if (Objects.nonNull(candidate)
+                        && candidate instanceof Inet4Address
+                        && !candidate.isLoopbackAddress()
+                        && candidate.isSiteLocalAddress()) {
+                    address = candidate;
                     break;
                 }
             }
         }
         // 如果没有发现 non-loopback 地址.只能用最次选的方案
-        if (ObjectUtils.isEmpty(address)) {
+        if (Objects.isNull(address)) {
             address = InetAddress.getLocalHost();
-            if (ObjectUtils.isEmpty(address)) {
+            if (Objects.isNull(address)) {
                 throw new UnknownHostException("The JDK InetAddress.getLocalHost() method unexpectedly returned null.");
             }
         }

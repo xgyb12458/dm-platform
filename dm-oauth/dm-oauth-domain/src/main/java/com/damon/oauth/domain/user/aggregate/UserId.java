@@ -1,7 +1,7 @@
 package com.damon.oauth.domain.user.aggregate;
 
 import com.damon.oauth.domain.user.entity.UserEntry;
-import com.damon.shared.common.IdFactory;
+import com.damon.shared.id.impl.SnowflakeIdFactory;
 import com.damon.shared.model.AbstractId;
 
 
@@ -13,7 +13,7 @@ public class UserId extends AbstractId<UserId, Long> {
     private static final long serialVersionUID = 1L;
 
     public UserId() {
-        super(IdFactory.instance().nextId(UserEntry.class));
+        super(SnowflakeIdFactory.instance().nextId(UserEntry.class));
     }
 
     public UserId(Long identifier) {

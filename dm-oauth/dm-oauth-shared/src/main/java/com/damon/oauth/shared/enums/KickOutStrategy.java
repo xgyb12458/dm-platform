@@ -1,18 +1,19 @@
 package com.damon.oauth.shared.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
+ * 踢出策略
  * @author Damon
  */
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum KickOutStrategy {
     /***踢出策略*/
-    FIFO(1, "踢出先登录的用户"),
-    LIFO(2, "踢出后登录的用户");
+    FIFO(1, "先进先出策略"),
+    LIFO(2, "后进先出策略");
 
-    private Integer value;
-    private String message;
+    private final Integer value;
+    private final String message;
 }

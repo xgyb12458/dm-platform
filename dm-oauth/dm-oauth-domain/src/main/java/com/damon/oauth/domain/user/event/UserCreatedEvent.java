@@ -23,7 +23,7 @@ public class UserCreatedEvent {
     private final String        userName;
     private final String        nickName;
     private final String        password;
-    private final String        phoneNo;
+    private final String        phone;
     private final String        email;
     private final UserType      type;
     private final UserState     state;

@@ -60,7 +60,7 @@ public class AuthorityFacadeImpl implements AuthorityFacade {
 //
 //    @Override
 //    public ResponseWrapper<Boolean> createUser(
-//            CreateUserReqDTO createUserReqDTO, Long tenantId) {
+//            CreateUserByNameReqDTO createUserReqDTO, Long tenantId) {
 //        return null;
 //    }
 //

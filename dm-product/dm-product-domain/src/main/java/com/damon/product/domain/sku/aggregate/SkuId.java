@@ -1,7 +1,7 @@
 package com.damon.product.domain.sku.aggregate;
 
 import com.damon.product.domain.sku.entity.SkuEntry;
-import com.damon.shared.common.IdFactory;
+import com.damon.shared.id.impl.SnowflakeIdFactory;
 import com.damon.shared.model.AbstractId;
 
 
@@ -12,7 +12,7 @@ import com.damon.shared.model.AbstractId;
 public final class SkuId extends AbstractId<SkuId, Long> {
     private static final long serialVersionUID = 1L;
 
-    public SkuId() {super(IdFactory.instance().nextId(SkuEntry.class));}
+    public SkuId() {super(SnowflakeIdFactory.instance().nextId(SkuEntry.class));}
 
     public SkuId(Long identifier) {
         super(identifier);

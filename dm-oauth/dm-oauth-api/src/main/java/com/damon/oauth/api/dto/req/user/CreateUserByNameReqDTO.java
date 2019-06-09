@@ -10,13 +10,14 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
- * 用户登录请求参数
+ * 通过用户名密码创建用户
  * @author Damon S.
  */
 @Data
 @NoArgsConstructor
-@ApiModel(value = "用户登录请求参数")
-public class UserLoginReqDTO implements Serializable {
+@ApiModel(value = "通过用户名密码创建用户")
+public class CreateUserByNameReqDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户名", required = true)
     @NotNull(message = "请输入用户名")

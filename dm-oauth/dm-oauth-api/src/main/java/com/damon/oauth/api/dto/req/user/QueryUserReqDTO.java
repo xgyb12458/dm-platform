@@ -4,14 +4,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * 用户登录请求
  * @author Damon S.
  */
 @Data
-@ToString
 @NoArgsConstructor
 @ApiModel(value = "用户查询请求")
 public class QueryUserReqDTO {

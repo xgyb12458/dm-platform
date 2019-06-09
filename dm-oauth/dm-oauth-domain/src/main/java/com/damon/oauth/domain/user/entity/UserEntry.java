@@ -28,21 +28,16 @@ public class UserEntry extends TenantEntry {
     @Column(name = "user_name")
     private String  userName;
 
-    @Column(name = "nick_name")
-    private String  nickName;
-
-    @Column(name = "phone_no")
-    private String  phoneNo;
-
     @Column(name = "roles_json")
     private String  rolesJson;
 
     @Column(name = "last_login_at")
     private Long    lastLoginAt;
 
+    @Column private String  phone;
+    @Column private String  email;
     @Column private String  password;
     @Column private String  salt;
-    @Column private String  email;
     @Column private String  state;
     @Column private String  type;
 }

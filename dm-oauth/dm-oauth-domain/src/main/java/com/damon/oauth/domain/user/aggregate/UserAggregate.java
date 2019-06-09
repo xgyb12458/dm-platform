@@ -1,7 +1,7 @@
 package com.damon.oauth.domain.user.aggregate;
 
 import com.damon.oauth.domain.role.aggregate.RoleAggregate;
-import com.damon.oauth.domain.user.command.CreateUserCommand;
+import com.damon.oauth.domain.user.command.CreateUserByWechatCommand;
 import com.damon.oauth.domain.user.command.UpdateUserCommand;
 import com.damon.oauth.domain.user.event.UserCreatedEvent;
 import com.damon.oauth.domain.user.event.UserUpdatedEvent;
@@ -38,9 +38,8 @@ public class UserAggregate implements TenantAware<TenantId> {
     @AggregateIdentifier
     private UserId          userId;
     private String          userName;
-    private String          nickName;
     private String          password;
-    private String          phoneNo;
+    private String          phone;
     private String          email;
     private String          salt;
     private UserState       state;
@@ -56,13 +55,12 @@ public class UserAggregate implements TenantAware<TenantId> {
 
 
     @CommandHandler
-    public UserAggregate(CreateUserCommand command) {
+    public UserAggregate(CreateUserByWechatCommand command) {
         // TODO: 检查name+phoneNo+tenantId是否重复，重复则抛出异常
         apply(UserCreatedEvent.builder()
                 .userId(command.getUserId())
                 .userName(command.getUserName())
-                .nickName(command.getNickName())
-                .phoneNo(command.getPhoneNo())
+                .phone(command.getPhone())
                 .email(command.getEmail())
                 .type(command.getType())
                 .state(UserState.NORMAL)
@@ -93,9 +91,8 @@ public class UserAggregate implements TenantAware<TenantId> {
     private void on(UserCreatedEvent event) {
         this.setUserId(event.getUserId());
         this.setUserName(event.getUserName());
-        this.setNickName(event.getNickName());
         this.setPassword(event.getPassword());
-        this.setPhoneNo(event.getPhoneNo());
+        this.setPhone(event.getPhone());
         this.setEmail(event.getEmail());
         this.setType(event.getType());
         this.setState(event.getState());
@@ -112,8 +109,7 @@ public class UserAggregate implements TenantAware<TenantId> {
     @SuppressWarnings("UnusedDeclaration")
     @EventSourcingHandler
     private void on(UserUpdatedEvent event) {
-        this.setNickName(event.getNickName());
-        this.setPhoneNo(event.getPhoneNo());
+        this.setPhone(event.getPhoneNo());
         this.setEmail(event.getEmail());
 //        this.setType(event.getType());
 //        this.setState(event.getState());

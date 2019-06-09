@@ -1,6 +1,6 @@
 package com.damon.shared.tenant;
 
-import com.damon.shared.common.IdFactory;
+import com.damon.shared.id.impl.SnowflakeIdFactory;
 import com.damon.shared.model.AbstractId;
 
 
@@ -12,7 +12,7 @@ public class TenantId extends AbstractId<TenantId, Long> {
     private static final long serialVersionUID = 690159676476L;
 
     public TenantId() {
-        super(IdFactory.instance().nextId());
+        super(SnowflakeIdFactory.instance().nextId());
     }
 
     public TenantId(Long identifier) {

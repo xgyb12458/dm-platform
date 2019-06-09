@@ -7,7 +7,7 @@ package com.damon.shared.common;
 public final class Constants {
     public static final String STR_EMPTY = "";
     public static final String STR_NA = "NA";
-    public static final String UUID_DELIMITER = "-";
+    public static final String STR_CENTER_LINE = "-";
     public static final String STR_COMMA = ",";
 
     public static final Long START_PAGE_INDEX = 1L;
@@ -18,7 +18,7 @@ public final class Constants {
     public static final Long LONG_ZERO = 0L;
     public static final Long LONG_TEN = 10L;
 
-    static final String PREFIX_SHARED = "[DMP-SHARED]";
+    public static final String PREFIX_SHARED = "[DMP-SHARED]";
     public static final String PREFIX_ORDER = "[DMP-ORDER]";
     public static final String PREFIX_PRODUCT = "[DMP-PRODUCT]";
     public static final String PREFIX_OAUTH = "[DMP-OAUTH]";
