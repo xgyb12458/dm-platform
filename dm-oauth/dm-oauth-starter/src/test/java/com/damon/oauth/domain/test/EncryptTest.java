@@ -25,12 +25,14 @@ public class EncryptTest {
         String username = "byyroot";
         String password1= "xTGoxcni59@$";
         String password2= "U5Mp*E94C9qZ";
+        String encodedpwd= "ztQG+uJNo0CzapI2zT+FNVHNBvJXcZrz";
 
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("生成加密后的账户：" + stringEncryptor.encrypt(username));
         System.out.println("生成加密后的密码：" + stringEncryptor.encrypt(password1));
         System.out.println("生成加密后的密码：" + stringEncryptor.encrypt(password2));
+        System.out.println("生成解密后的密码：" + stringEncryptor.decrypt(encodedpwd));
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
