@@ -15,10 +15,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Data
-@Builder(toBuilder = true)
+@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "oms_oauth_operate")
 public class AuditEntry extends TenantEntry {
 

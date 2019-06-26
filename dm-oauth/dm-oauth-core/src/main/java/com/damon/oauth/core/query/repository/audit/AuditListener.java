@@ -2,10 +2,10 @@ package com.damon.oauth.core.query.repository.audit;
 
 import com.damon.oauth.domain.audit.aggregate.OperationLog;
 import com.damon.oauth.domain.audit.entity.AuditRepository;
+import com.damon.oauth.domain.audit.entity.QAuditEntry;
 import com.damon.product.domain.brand.event.AuditEvent;
 import com.damon.product.domain.brand.event.LoginEvent;
 import com.damon.product.domain.brand.event.OperateEvent;
-import com.damon.shared.audit.entity.QAuditEntry;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.common.jpa.EntityManagerProvider;
