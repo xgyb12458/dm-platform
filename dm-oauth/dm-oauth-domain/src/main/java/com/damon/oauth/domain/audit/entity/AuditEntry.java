@@ -1,6 +1,6 @@
 package com.damon.oauth.domain.audit.entity;
 
-import com.damon.shared.entity.AbstractEntry;
+import com.damon.oauth.shared.entity.TenantEntry;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 //@RequiredArgsConstructor
 @Table(name = "oms_oauth_operate")
-public class AuditEntry extends AbstractEntry {
+public class AuditEntry extends TenantEntry {
 
     @Column(name = "operate_id")
     private Long operateId;
