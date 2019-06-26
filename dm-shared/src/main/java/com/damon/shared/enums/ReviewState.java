@@ -32,7 +32,7 @@ public enum ReviewState {
      * 根据传值转换枚举值。
      */
     public static ReviewState parse(int code) {
-        ReviewState state;
+        ReviewState state = AUDITING;
         switch (code) {
             case 1:
                 state = AUDITING;
@@ -44,7 +44,6 @@ public enum ReviewState {
                 state = REJECTED;
                 break;
             default:
-                state = AUDITING;
         }
         return state;
     }

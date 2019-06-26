@@ -1,15 +1,14 @@
-package com.damon.shared.audit.aspect;
+package com.damon.oauth.domain.audit.aspect;
 
-import com.damon.shared.audit.anno.AuditOperation;
+import com.damon.oauth.domain.audit.aggregate.OperationLog;
+import com.damon.shared.anno.AuditOperation;
 import com.damon.shared.enums.OperateType;
 import com.damon.shared.exception.SystemException;
-import com.damon.shared.utils.ApplicationUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -54,13 +53,21 @@ public class AuditLogAspect {
         Object result = point.proceed();
         long duration = System.currentTimeMillis() - beginTime;
 
-        this.recordAuditOrOperateLog("", operateType, point.getArgs(), duration);
+        this.recordAuditLog(OperationLog.builder()
+                .operateId(0L)
+                .userId("")
+                .operate("")
+                .ip("")
+                .uri("")
+                .duration(duration)
+                .params(Arrays.toString(point.getArgs()))
+                .type("")
+                .build());
         return result;
     }
 
-    private void recordAuditOrOperateLog(String title, OperateType type, Object [] args, long duration) {
+    private void recordAuditLog(OperationLog operationLog) {
         try {
-            String params = Arrays.toString(args);
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             String requestURI = request.getRequestURI();
 

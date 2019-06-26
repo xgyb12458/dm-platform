@@ -22,7 +22,7 @@ public enum OSCategory {
      * 根据传值转换枚举值。
      */
     public static OSCategory parse(int code) {
-        OSCategory category;
+        OSCategory category = NA;
         switch (code) {
             case 0:
                 category = NA;
@@ -37,7 +37,6 @@ public enum OSCategory {
                 category = OTHERS;
                 break;
             default:
-                category = NA;
         }
         return category;
     }
