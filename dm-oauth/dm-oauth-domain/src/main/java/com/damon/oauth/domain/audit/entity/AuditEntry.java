@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -22,12 +23,14 @@ import javax.persistence.Table;
 @Table(name = "oms_oauth_operate")
 public class AuditEntry extends TenantEntry {
 
+    @Id
+    @NonNull
     @Column(name = "operate_id")
     private Long operateId;
     @Column(name = "user_id")
     private String userId;
     @Column private String operate;
-    @Column private Long time;
+    @Column private Long duration;
     @Column private String ip;
     @Column private String params;
     @Column private String uri;
