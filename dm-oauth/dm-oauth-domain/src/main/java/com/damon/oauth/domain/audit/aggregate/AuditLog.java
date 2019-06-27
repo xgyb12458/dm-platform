@@ -4,14 +4,14 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * 操作日志
+ * 审计日志
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年06月09日 18:34
  */
 @Value
 @Builder
-public class OperationLog {
+public class AuditLog {
     private final Long    operateId;
     private final String  userId;
     private final String  operate;

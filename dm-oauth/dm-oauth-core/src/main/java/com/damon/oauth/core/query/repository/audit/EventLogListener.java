@@ -1,6 +1,6 @@
 package com.damon.oauth.core.query.repository.audit;
 
-import com.damon.oauth.domain.audit.aggregate.OperationLog;
+import com.damon.oauth.domain.audit.aggregate.AuditLog;
 import com.damon.oauth.domain.audit.entity.AuditEntry;
 import com.damon.oauth.domain.audit.entity.AuditRepository;
 import com.damon.product.domain.brand.event.AuditEvent;
@@ -32,20 +32,20 @@ public class EventLogListener {
     @Async
     @EventListener(AuditEvent.class)
     public void onAuditLog(AuditEvent event) {
-        OperationLog operationLog = (OperationLog) event.getSource();
+        AuditLog auditLog = (AuditLog) event.getSource();
         AuditEntry auditEntry = AuditEntry.builder()
-                .operateId(operationLog.getOperateId())
-                .userId(operationLog.getUserId())
-                .ip(operationLog.getIp())
-                .uri(operationLog.getUri())
-                .params(operationLog.getParams())
-                .duration(operationLog.getDuration())
-                .type(operationLog.getType())
-                .operate(operationLog.getOperate())
+                .operateId(auditLog.getOperateId())
+                .userId(auditLog.getUserId())
+                .ip(auditLog.getIp())
+                .uri(auditLog.getUri())
+                .params(auditLog.getParams())
+                .duration(auditLog.getDuration())
+                .type(auditLog.getType())
+                .operate(auditLog.getOperate())
                 .build();
 
         this.auditRepository.saveAndFlush(auditEntry);
-        log.info(Constants.PREFIX_LOG + "========>>日志记录成功：{}.", operationLog);
+        log.info(Constants.PREFIX_LOG + "========>>日志记录成功：{}.", auditLog);
     }
 
 

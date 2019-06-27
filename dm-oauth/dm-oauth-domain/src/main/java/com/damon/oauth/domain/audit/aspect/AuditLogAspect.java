@@ -1,6 +1,6 @@
 package com.damon.oauth.domain.audit.aspect;
 
-import com.damon.oauth.domain.audit.aggregate.OperationLog;
+import com.damon.oauth.domain.audit.aggregate.AuditLog;
 import com.damon.shared.anno.AuditOperation;
 import com.damon.shared.enums.OperateType;
 import com.damon.shared.exception.SystemException;
@@ -53,7 +53,7 @@ public class AuditLogAspect {
         Object result = point.proceed();
         long duration = System.currentTimeMillis() - beginTime;
 
-        this.recordAuditLog(OperationLog.builder()
+        this.recordAuditLog(AuditLog.builder()
                 .operateId(0L)
                 .userId("")
                 .operate("")
@@ -66,7 +66,7 @@ public class AuditLogAspect {
         return result;
     }
 
-    private void recordAuditLog(OperationLog operationLog) {
+    private void recordAuditLog(AuditLog auditLog) {
         try {
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             String requestURI = request.getRequestURI();
