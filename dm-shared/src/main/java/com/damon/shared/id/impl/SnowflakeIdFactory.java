@@ -36,25 +36,27 @@ public final class SnowflakeIdFactory extends AbstractIdFactory
         return workerNick.nextId();
     }
 
-    /***
-     * 本实现方式中不可用
-     **/
+    /**
+     * 通过类名生成唯一标识
+     * @param clazzName 全路径类名
+     * @return 返回唯一标识
+     */
     @Override
-    public Long nextId(String prefix) {
-        throw new UnsupportedOperationException();
+    public synchronized Long nextId(String clazzName) {
+        int workerId = initWorkerId;
+
+        if (initWorkerId <= DEFAULT_WORKER_ID) {
+            workerId = findWorkerId();
+        }
+        return nextId(clazzName, workerId);
     }
 
     /***
      * 获取以Long为值的ID
      * */
     @Override
-    public synchronized Long nextId(Class clazz) {
-        int workerId = initWorkerId;
-
-        if (initWorkerId <= DEFAULT_WORKER_ID) {
-            workerId = findWorkerId();
-        }
-        return nextId(clazz.getName(), workerId);
+    public Long nextId(Class clazz) {
+        return nextId(clazz.getName());
     }
 
     private Long nextId(String clazzName, int workerId) {
