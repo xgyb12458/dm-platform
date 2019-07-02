@@ -28,7 +28,7 @@ public enum InvoiceType {
      * 根据传值转换枚举值。
      */
     public static InvoiceType parse(int code) {
-        InvoiceType type;
+        InvoiceType type = NONE;
         switch (code) {
             case 0:
                 type = NONE;
@@ -43,7 +43,6 @@ public enum InvoiceType {
                 type = PERSONAL;
                 break;
             default:
-                type = NONE;
         }
         return type;
     }

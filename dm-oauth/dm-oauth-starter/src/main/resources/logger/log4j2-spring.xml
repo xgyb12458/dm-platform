@@ -7,13 +7,18 @@
     warn： 有些信息不是错误信息，但是也要给程序员的一些提示，类似于eclipse中代码的验证不是有error 和warn（不算错误但是也请注意，比如以下depressed的方法）。
     error： 错误信息。用的也比较多。
     fatal： 级别比较高了。重大错误，这种级别你可以直接停止程序了，是不应该出现的错误么！不用那么紧张，其实就是一个程度的问题。
+
+    日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL
  -->
-<Configuration status="OFF" strict="true" name="LogConfig">
+
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出-->
+<!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数-->
+<Configuration status="OFF" monitorInterval="5">
     <!-- 定义日志存放目录 -->
     <Properties>
-        <Property name="LOG_HOME" value="app-log/"/>
-        <Property name="APP_NAME" value="dm-oauth"/>
-        <Property name="LOG_FILE_EXPIRE_DAYS" value="180"/>
+        <property name="LOG_HOME" value="app-log/"/>
+        <property name="LOG_NAME" value="dm-oauth"/>
+        <property name="LOG_FILE_EXPIRE_DAYS" value="180"/>
         <!-- 输出日志的格式
                 %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间
                 %p : 日志输出格式
@@ -26,8 +31,39 @@
                 hostName : 本地机器名
                 hostAddress : 本地ip地址 
          -->
-        <Property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t-%L] %-5level %logger{36} %L %M - %msg%xEx%n</Property>
+        <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t-%L] %-5level %logger{36} %L %M - %msg%xEx%n"/>
+        <property name="COLORED_PATTERN" value="%highlight{[%p] %-d{yyyy-MM-dd HH:mm:ss} --> %l%n[massage] %m%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=cyan, DEBUG=cyan,TRACE=blue}"/>
     </Properties>
+    <!--根据不同环境（prod:生产环境，sit:测试环境，dev:开发环境）来定义不同的日志输出，-->
+    <!--在 logback-spring.xml中使用 springProfile 节点来定义-->
+    <springProfile name="dev">
+        <property name="LOG_LEVEL" value="INFO"/>
+    </springProfile>
+    <springProfile name="sit">
+        <property name="LOG_LEVEL" value="DEBUG"/>
+    </springProfile>
+    <springProfile name="uat">
+        <property name="LOG_LEVEL" value="INFO"/>
+    </springProfile>
+    <springProfile name="stage">
+        <property name="LOG_LEVEL" value="ERROR"/>
+    </springProfile>
+    <springProfile name="prod">
+        <property name="LOG_LEVEL" value="INFO"/>
+    </springProfile>
+
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr"
+                    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }) [%t]{magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"/>
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%t] %-40.40logger{39} : %m%n%wex"/>
+
+
     <!--先定义所有的appender(输出器) -->
     <Appenders>
         <!--输出到控制台 -->
@@ -40,7 +76,7 @@
         <!--输出到文件 -->
         <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用 -->
         <!--append为TRUE表示消息增加到指定文件中，false表示消息覆盖指定的文件内容，默认值是true -->
-        <File name="TestLog" fileName="${LOG_HOME}/test.log" append="false">
+        <File name="TestLog" fileName="${LOG_HOME}/test.log">
             <PatternLayout pattern="${PATTERN}" />
         </File>
         <!-- 把error等级记录到文件 一般不用 -->
@@ -49,28 +85,65 @@
             <PatternLayout pattern="${PATTERN}" />
         </File>
         <!--输出到循环日志，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFileLog" fileName="${LOG_HOME}/app.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="RollingFileLog" fileName="${LOG_HOME}/app.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${LOG_NAME}_ERROR_%d{yyyy-MM-dd}_%i.log.gz">
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
             <PatternLayout pattern="${PATTERN}" />
-            <SizeBasedTriggeringPolicy size="10MB" />
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+        <!-- 这个会打印出所有的warn及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="RollingFileWarn" fileName="${FILE_PATH}/warn.log" filePattern="${FILE_PATH}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+        <!-- 这个会打印出所有的error及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="RollingFileError" fileName="${FILE_PATH}/error.log" filePattern="${FILE_PATH}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+            <DefaultRolloverStrategy max="15"/>
         </RollingFile>
     </Appenders>
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <Loggers>
-        <!--建立一个默认的Root的logger，记录大于level高于warn的信息，如果这里的level高于Appenders中的，则Appenders中也是以此等级为起点，比如，这里level="fatal"，则Appenders中只出现fatal信息 -->
-        <!-- 生产环境level>=warn -->
-        <Root level="debug">
-            <!-- 输出器,可选上面定义的任何项组合，或全选，做到可随意定制 -->
-            <appender-ref ref="STDOUT" />
-            <appender-ref ref="TestLog" />
-            <appender-ref ref="FileLog" />
-            <appender-ref ref="RollingFileLog" />
-        </Root>
-        <!-- 第三方日志系统 -->
-        <!--过滤掉spring和mybatis的一些无用的DEBUG信息，也可以在spring boot 的logging.level.org.springframework=FATAL设置-->
-        <!-- <logger name="org.springframework" level="INFO"></logger> -->
-        <!-- <logger name="org.mybatis" level="INFO"></logger> -->
-        <!-- <logger name="org.apache.http" level="warn" /> -->
+        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+        <logger name="org.mybatis" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <!--监控系统信息-->
+        <!--若是additivity设为false，则 子Logger 只会在自己的appender里输出，而不会在 父Logger 的appender里输出。-->
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <root level="info">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Filelog"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
     </Loggers>
 </Configuration>
