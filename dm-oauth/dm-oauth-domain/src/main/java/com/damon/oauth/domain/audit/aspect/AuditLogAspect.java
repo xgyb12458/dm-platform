@@ -54,7 +54,6 @@ public class AuditLogAspect {
         long duration = System.currentTimeMillis() - beginTime;
 
         this.recordAuditLog(AuditLog.builder()
-                .operateId(0L)
                 .userId("")
                 .operate("")
                 .ip("")

@@ -12,7 +12,6 @@ import lombok.Value;
 @Value
 @Builder
 public class AuditLog {
-    private final Long    operateId;
     private final String  userId;
     private final String  operate;
     private final Long    duration;

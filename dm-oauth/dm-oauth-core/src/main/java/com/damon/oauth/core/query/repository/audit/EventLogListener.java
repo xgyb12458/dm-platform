@@ -34,7 +34,6 @@ public class EventLogListener {
     public void onAuditLog(AuditEvent event) {
         AuditLog auditLog = (AuditLog) event.getSource();
         AuditEntry auditEntry = AuditEntry.builder()
-                .operateId(auditLog.getOperateId())
                 .userId(auditLog.getUserId())
                 .ip(auditLog.getIp())
                 .uri(auditLog.getUri())

@@ -36,32 +36,32 @@
     </Properties>
     <!--根据不同环境（prod:生产环境，sit:测试环境，dev:开发环境）来定义不同的日志输出，-->
     <!--在 logback-spring.xml中使用 springProfile 节点来定义-->
-    <springProfile name="dev">
-        <property name="LOG_LEVEL" value="INFO"/>
-    </springProfile>
-    <springProfile name="sit">
-        <property name="LOG_LEVEL" value="DEBUG"/>
-    </springProfile>
-    <springProfile name="uat">
-        <property name="LOG_LEVEL" value="INFO"/>
-    </springProfile>
-    <springProfile name="stage">
-        <property name="LOG_LEVEL" value="ERROR"/>
-    </springProfile>
-    <springProfile name="prod">
-        <property name="LOG_LEVEL" value="INFO"/>
-    </springProfile>
+<!--    <springProfile name="dev">-->
+<!--        <property name="LOG_LEVEL" value="INFO"/>-->
+<!--    </springProfile>-->
+<!--    <springProfile name="sit">-->
+<!--        <property name="LOG_LEVEL" value="DEBUG"/>-->
+<!--    </springProfile>-->
+<!--    <springProfile name="uat">-->
+<!--        <property name="LOG_LEVEL" value="INFO"/>-->
+<!--    </springProfile>-->
+<!--    <springProfile name="stage">-->
+<!--        <property name="LOG_LEVEL" value="ERROR"/>-->
+<!--    </springProfile>-->
+<!--    <springProfile name="prod">-->
+<!--        <property name="LOG_LEVEL" value="INFO"/>-->
+<!--    </springProfile>-->
 
-    <!-- 彩色日志依赖的渲染类 -->
-    <conversionRule conversionWord="clr"
-                    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <!-- 彩色日志格式 -->
-    <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }) [%t]{magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"/>
-    <property name="FILE_LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%t] %-40.40logger{39} : %m%n%wex"/>
+<!--    &lt;!&ndash; 彩色日志依赖的渲染类 &ndash;&gt;-->
+<!--    <conversionRule conversionWord="clr"-->
+<!--                    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>-->
+<!--    <conversionRule conversionWord="wex"-->
+<!--                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>-->
+<!--    &lt;!&ndash; 彩色日志格式 &ndash;&gt;-->
+<!--    <property name="CONSOLE_LOG_PATTERN"-->
+<!--              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }) [%t]{magenta} %clr(-&#45;&#45;){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"/>-->
+<!--    <property name="FILE_LOG_PATTERN"-->
+<!--              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } -&#45;&#45; [%t] %-40.40logger{39} : %m%n%wex"/>-->
 
 
     <!--先定义所有的appender(输出器) -->
@@ -71,23 +71,23 @@
             <!--只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
             <!--输出日志的格式，引用自定义模板 PATTERN -->
-            <PatternLayout pattern="${PATTERN}" />
+            <PatternLayout pattern="${COLORED_PATTERN}" />
         </Console>
         <!--输出到文件 -->
         <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用 -->
         <!--append为TRUE表示消息增加到指定文件中，false表示消息覆盖指定的文件内容，默认值是true -->
         <File name="TestLog" fileName="${LOG_HOME}/test.log">
-            <PatternLayout pattern="${PATTERN}" />
+            <PatternLayout pattern="${COLORED_PATTERN}" />
         </File>
         <!-- 把error等级记录到文件 一般不用 -->
         <File name="FileLog" fileName="${LOG_HOME}/error.log">
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
-            <PatternLayout pattern="${PATTERN}" />
+            <PatternLayout pattern="${COLORED_PATTERN}" />
         </File>
         <!--输出到循环日志，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFileLog" fileName="${LOG_HOME}/app.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${LOG_NAME}_ERROR_%d{yyyy-MM-dd}_%i.log.gz">
+        <RollingFile name="RollingFileInfo" fileName="${LOG_HOME}/app.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${LOG_NAME}_ERROR_%d{yyyy-MM-dd}_%i.log.gz">
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
-            <PatternLayout pattern="${PATTERN}" />
+            <PatternLayout pattern="${COLORED_PATTERN}" />
             <Policies>
                 <!--interval属性用来指定多久滚动一次，默认是1 hour-->
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -98,10 +98,10 @@
         </RollingFile>
 
         <!-- 这个会打印出所有的warn及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <RollingFile name="RollingFileWarn" fileName="${FILE_PATH}/warn.log" filePattern="${FILE_PATH}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz">
+        <RollingFile name="RollingFileWarn" fileName="${LOG_HOME}/warn.log" filePattern="${LOG_HOME}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${COLORED_PATTERN}"/>
             <Policies>
                 <!--interval属性用来指定多久滚动一次，默认是1 hour-->
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -112,10 +112,10 @@
         </RollingFile>
 
         <!-- 这个会打印出所有的error及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <RollingFile name="RollingFileError" fileName="${FILE_PATH}/error.log" filePattern="${FILE_PATH}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz">
+        <RollingFile name="RollingFileError" fileName="${LOG_HOME}/error.log" filePattern="${LOG_HOME}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${COLORED_PATTERN}"/>
             <Policies>
                 <!--interval属性用来指定多久滚动一次，默认是1 hour-->
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -126,10 +126,9 @@
         </RollingFile>
     </Appenders>
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
-    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
     <Loggers>
         <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
-        <logger name="org.mybatis" level="info" additivity="false">
+        <logger name="com.damon" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
         <!--监控系统信息-->
@@ -140,7 +139,6 @@
 
         <root level="info">
             <appender-ref ref="Console"/>
-            <appender-ref ref="Filelog"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>
             <appender-ref ref="RollingFileError"/>
