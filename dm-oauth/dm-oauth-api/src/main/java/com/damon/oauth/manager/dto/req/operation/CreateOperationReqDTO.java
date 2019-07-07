@@ -1,4 +1,4 @@
-package com.damon.oauth.api.dto.req.operation;
+package com.damon.oauth.manager.dto.req.operation;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,16 +11,14 @@ import java.io.Serializable;
 
 
 /**
- * 用户登录请求
+ * 创建操作
  * @author Damon S.
  */
 @Data
 @ToString
 @ApiModel(value = "创建操作所需参数")
 public class CreateOperationReqDTO implements Serializable {
-
     private static final Long serialVersionUID = 1L;
-
 
     @ApiModelProperty(value = "操作编码", required = true)
     @NotNull(message = "请输入操作编码")

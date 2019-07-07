@@ -1,4 +1,4 @@
-package com.damon.oauth.api.web.facade;
+package com.damon.oauth.manager.web.facade;
 
 import com.damon.oauth.shared.constant.ApiConstants;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.damon.oauth.api.dto.req.tenant;
+package com.damon.oauth.manager.dto.req.tenant;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

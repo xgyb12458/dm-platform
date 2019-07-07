@@ -1,4 +1,4 @@
-package com.damon.oauth.api.dto.resp.resource;
+package com.damon.oauth.manager.dto.resp.resource;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

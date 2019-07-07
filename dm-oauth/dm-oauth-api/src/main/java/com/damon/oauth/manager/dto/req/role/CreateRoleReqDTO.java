@@ -1,4 +1,4 @@
-package com.damon.oauth.api.dto.req.role;
+package com.damon.oauth.manager.dto.req.role;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,9 +18,7 @@ import java.io.Serializable;
 @ToString
 @ApiModel(value = "创建角色所需参数")
 public class CreateRoleReqDTO implements Serializable {
-
     private static final Long serialVersionUID = 92217937484090L;
-
 
     @ApiModelProperty(value = "角色编码", required = true)
     @NotNull(message = "请输入角色编码")

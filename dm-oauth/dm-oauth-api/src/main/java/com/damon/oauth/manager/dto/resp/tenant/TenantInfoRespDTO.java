@@ -1,4 +1,4 @@
-package com.damon.oauth.api.dto.resp.role;
+package com.damon.oauth.manager.dto.resp.tenant;
 
 import lombok.Data;
 import lombok.ToString;
@@ -8,5 +8,5 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class RoleInfoRespDTO {
+public class TenantInfoRespDTO {
 }

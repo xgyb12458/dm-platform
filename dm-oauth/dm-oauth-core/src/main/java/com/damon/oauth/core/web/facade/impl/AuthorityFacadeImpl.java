@@ -1,6 +1,6 @@
 package com.damon.oauth.core.web.facade.impl;
 
-import com.damon.oauth.api.web.facade.AuthorityFacade;
+import com.damon.oauth.manager.web.facade.AuthorityFacade;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,7 +60,7 @@ public class AuthorityFacadeImpl implements AuthorityFacade {
 //
 //    @Override
 //    public ResponseWrapper<Boolean> createUser(
-//            CreateUserByNameReqDTO createUserReqDTO, Long tenantId) {
+//            CreateOpsUserReqDTO createUserReqDTO, Long tenantId) {
 //        return null;
 //    }
 //

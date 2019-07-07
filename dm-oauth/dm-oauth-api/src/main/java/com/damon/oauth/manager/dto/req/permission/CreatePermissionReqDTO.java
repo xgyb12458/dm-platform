@@ -1,4 +1,4 @@
-package com.damon.oauth.api.dto.req.permission;
+package com.damon.oauth.manager.dto.req.permission;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,7 +17,6 @@ import java.io.Serializable;
 @ToString
 @ApiModel(value = "创建权限所需参数")
 public class CreatePermissionReqDTO implements Serializable {
-
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "资源ID", required = true)
