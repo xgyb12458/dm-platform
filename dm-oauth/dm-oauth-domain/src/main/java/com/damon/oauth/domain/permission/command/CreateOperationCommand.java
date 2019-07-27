@@ -2,9 +2,13 @@ package com.damon.oauth.domain.permission.command;
 
 import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
+/**
+ * 创建操作域命令
+ * @author Damon S.
+ */
+@Value
 @Builder
 public class CreateOperationCommand {
     private final String code;

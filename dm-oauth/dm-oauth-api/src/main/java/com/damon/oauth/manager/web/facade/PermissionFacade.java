@@ -6,7 +6,6 @@ import com.damon.oauth.manager.dto.req.permission.CreatePermissionReqDTO;
 import com.damon.oauth.manager.dto.req.permission.UpdatePermissionReqDTO;
 import com.damon.oauth.manager.dto.req.resource.CreateResourceReqDTO;
 import com.damon.oauth.manager.dto.req.resource.UpdateResourceReqDTO;
-import com.damon.oauth.manager.dto.req.tenant.CreateTenantReqDTO;
 import com.damon.oauth.shared.constant.ApiConstants;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
@@ -45,6 +44,11 @@ public interface PermissionFacade {
             @RequestBody @Validated UpdateResourceReqDTO updateResourceReqDTO
     );
 
+    @DeleteMapping("/resources/{resourceId}")
+    ResponseWrapper<Boolean> removeResource(
+            @PathVariable("resourceId") Long resourceId
+    );
+
     @PostMapping("/permissions")
     ResponseWrapper<Long> createPermission(
             @RequestBody @Validated CreatePermissionReqDTO createPermissionReqDTO
@@ -53,5 +57,10 @@ public interface PermissionFacade {
     @PutMapping("/permissions")
     ResponseWrapper<Boolean> updatePermission(
             @RequestBody @Validated UpdatePermissionReqDTO updatePermissionReqDTO
+    );
+
+    @DeleteMapping("/permissions/{permissionId}")
+    ResponseWrapper<Boolean> removePermission(
+            @PathVariable("permissionId") Long permissionId
     );
 }

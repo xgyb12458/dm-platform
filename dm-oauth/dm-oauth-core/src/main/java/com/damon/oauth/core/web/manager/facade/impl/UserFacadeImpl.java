@@ -1,4 +1,4 @@
-package com.damon.oauth.core.web.facade.impl;
+package com.damon.oauth.core.web.manager.facade.impl;
 
 import com.damon.oauth.manager.dto.req.tenant.CreateTenantReqDTO;
 import com.damon.oauth.api.dto.req.user.CreateUserByNameReqDTO;
