@@ -59,5 +59,5 @@ swagger:
     request-timeout: 5000
     submit-methods: get,delete
 
-logging:
-  config: classpath:logger/log4j2-spring.xml
+#logging:
+#  config: classpath:logger/log4j2-spring.xml

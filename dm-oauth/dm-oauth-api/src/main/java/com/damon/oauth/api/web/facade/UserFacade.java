@@ -19,7 +19,7 @@ import javax.validation.Valid;
  * 用户权限管理
  * @author Damon S.
  */
-@RequestMapping(value = "/manager/oauth" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/oauth/manager" + ApiConstants.API_V1, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public interface UserFacade {
 
     /**
