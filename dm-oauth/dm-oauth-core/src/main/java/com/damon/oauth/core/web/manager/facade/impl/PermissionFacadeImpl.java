@@ -91,6 +91,7 @@ public class PermissionFacadeImpl implements PermissionFacade {
     }
 
     @Override
+    @ApiOperation(value = "获取指定操作域", notes = "获取指定操作域")
     public ResponseWrapper<OperationInfoRespDTO> findOperation(Long operationId) {
 
         return new ResponseWrapper<>();
@@ -145,7 +146,9 @@ public class PermissionFacadeImpl implements PermissionFacade {
         return new ResponseWrapper<>();
     }
 
+    @ArgsValid
     @Override
+    @ApiOperation(value = "查询资源域", notes = "查询资源域")
     public ResponseWrapper<Pagination<ResourceInfoRespDTO>> listResources(
             QueryResourceReqDTO queryResourceReqDTO) {
 
@@ -164,6 +167,7 @@ public class PermissionFacadeImpl implements PermissionFacade {
     }
 
     @Override
+    @ApiOperation(value = "获取指定资源域", notes = "获取指定资源域")
     public ResponseWrapper<ResourceInfoRespDTO> findResource(Long resourceId) {
 
         return new ResponseWrapper<>();
@@ -189,13 +193,17 @@ public class PermissionFacadeImpl implements PermissionFacade {
         }
     }
 
+    @ArgsValid
     @Override
+    @ApiOperation(value = "查询权限域", notes = "查询权限域")
     public ResponseWrapper<Pagination<PermissionInfoRespDTO>> listPermissions(
             QueryPermissionReqDTO queryPermissionReqDTO) {
         return new ResponseWrapper<>();
     }
 
+
     @Override
+    @ApiOperation(value = "获取指定权限域", notes = "获取指定权限域")
     public ResponseWrapper<PermissionInfoRespDTO> findPermission(Long permissionId) {
         return new ResponseWrapper<>();
     }
