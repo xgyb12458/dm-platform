@@ -1,13 +1,18 @@
 package com.damon.oauth.manager.web.facade;
 
 import com.damon.oauth.manager.dto.req.operation.CreateOperationReqDTO;
+import com.damon.oauth.manager.dto.req.operation.QueryOperationReqDTO;
 import com.damon.oauth.manager.dto.req.operation.UpdateOperationReqDTO;
 import com.damon.oauth.manager.dto.req.permission.CreatePermissionReqDTO;
-import com.damon.oauth.manager.dto.req.permission.UpdatePermissionReqDTO;
+import com.damon.oauth.manager.dto.req.permission.QueryPermissionReqDTO;
 import com.damon.oauth.manager.dto.req.resource.CreateResourceReqDTO;
+import com.damon.oauth.manager.dto.req.resource.QueryResourceReqDTO;
 import com.damon.oauth.manager.dto.req.resource.UpdateResourceReqDTO;
+import com.damon.oauth.manager.dto.resp.operation.OperationInfoRespDTO;
 import com.damon.oauth.manager.dto.resp.permission.PermissionInfoRespDTO;
+import com.damon.oauth.manager.dto.resp.resource.ResourceInfoRespDTO;
 import com.damon.oauth.shared.constant.ApiConstants;
+import com.damon.shared.common.Pagination;
 import com.damon.shared.wrapper.ResponseWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +35,16 @@ public interface PermissionFacade {
             @RequestBody @Validated UpdateOperationReqDTO updateTenantReqDTO
     );
 
+    @GetMapping("/operations")
+    ResponseWrapper<Pagination<OperationInfoRespDTO>> listOperations(
+            @RequestBody @Validated QueryOperationReqDTO queryOperationReqDTO
+    );
+
+    @GetMapping("/operations/{operationId}")
+    ResponseWrapper<OperationInfoRespDTO> findOperation(
+            @PathVariable("operationId") Long operationId
+    );
+
     @DeleteMapping("/operations/{operationId}")
     ResponseWrapper<Boolean> removeOperation(
             @PathVariable("operationId") Long operationId
@@ -45,8 +60,18 @@ public interface PermissionFacade {
             @RequestBody @Validated UpdateResourceReqDTO updateResourceReqDTO
     );
 
+    @GetMapping("/resources")
+    ResponseWrapper<Pagination<ResourceInfoRespDTO>> listResources(
+            @RequestBody @Validated QueryResourceReqDTO queryResourceReqDTO
+    );
+
     @DeleteMapping("/resources/{resourceId}")
     ResponseWrapper<Boolean> removeResource(
+            @PathVariable("resourceId") Long resourceId
+    );
+
+    @GetMapping("/resources/{resourceId}")
+    ResponseWrapper<ResourceInfoRespDTO> findResource(
             @PathVariable("resourceId") Long resourceId
     );
 
@@ -55,13 +80,13 @@ public interface PermissionFacade {
             @RequestBody @Validated CreatePermissionReqDTO createPermissionReqDTO
     );
 
-    @PutMapping("/permissions")
-    ResponseWrapper<Boolean> updatePermission(
-            @RequestBody @Validated UpdatePermissionReqDTO updatePermissionReqDTO
+    @GetMapping("/permissions")
+    ResponseWrapper<Pagination<PermissionInfoRespDTO>> listPermissions(
+            @RequestBody @Validated QueryPermissionReqDTO queryPermissionReqDTO
     );
 
     @GetMapping("/permissions/{permissionId}")
-    ResponseWrapper<PermissionInfoRespDTO> getPermission(
+    ResponseWrapper<PermissionInfoRespDTO> findPermission(
             @PathVariable("permissionId") Long permissionId
     );
 

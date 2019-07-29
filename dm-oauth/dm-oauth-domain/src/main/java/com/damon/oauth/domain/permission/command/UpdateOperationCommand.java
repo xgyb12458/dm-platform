@@ -4,13 +4,13 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * 创建权限域命令
- * @author Damon
+ * 更新操作域
+ * @author damon
  */
 @Value
 @Builder
-public final class CreatePermissionCommand {
-    private final Long resourceId;
+public class UpdateOperationCommand {
     private final Long operationId;
-    private final Long createdBy;
+    private final String name;
+    private final Long updatedBy;
 }

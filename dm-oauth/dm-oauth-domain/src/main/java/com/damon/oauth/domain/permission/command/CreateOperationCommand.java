@@ -14,5 +14,4 @@ public class CreateOperationCommand {
     private final String code;
     private final String name;
     private final Long createdBy;
-    private final TenantId tenantId;
 }

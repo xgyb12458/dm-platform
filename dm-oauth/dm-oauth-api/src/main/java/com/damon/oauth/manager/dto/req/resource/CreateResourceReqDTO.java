@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 
 /**
- * 用户登录请求
+ * 创建资源域
  * @author Damon S.
  */
 @Data

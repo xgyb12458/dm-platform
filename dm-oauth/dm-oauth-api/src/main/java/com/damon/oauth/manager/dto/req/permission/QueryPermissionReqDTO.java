@@ -10,13 +10,13 @@ import java.io.Serializable;
 
 
 /**
- * 更新权限域
+ * 查询权限域
  * @author Damon S.
  */
 @Data
 @ToString
 @ApiModel(value = "创建权限所需参数")
-public class UpdatePermissionReqDTO implements Serializable {
+public class QueryPermissionReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "资源ID", required = true)

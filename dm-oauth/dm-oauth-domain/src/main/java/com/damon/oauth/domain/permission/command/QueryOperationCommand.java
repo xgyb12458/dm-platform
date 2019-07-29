@@ -4,10 +4,10 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * 更新权限命令
- * @author Damon
+ * 查询操作域命令
+ * @author damon
  */
 @Value
 @Builder
-public class UpdatePermissionCommand {
+public class QueryOperationCommand {
 }

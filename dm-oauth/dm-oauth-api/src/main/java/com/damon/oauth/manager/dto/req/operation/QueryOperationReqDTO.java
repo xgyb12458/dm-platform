@@ -1,5 +1,6 @@
 package com.damon.oauth.manager.dto.req.operation;
 
+import com.damon.shared.dto.PageableReqDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,13 +12,13 @@ import java.io.Serializable;
 
 
 /**
- * 创建操作
+ * 查询操作域
  * @author Damon S.
  */
 @Data
 @ToString
 @ApiModel(value = "创建操作所需参数")
-public class UpdateOperationReqDTO implements Serializable {
+public class QueryOperationReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
 

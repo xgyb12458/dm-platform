@@ -1,5 +1,6 @@
 package com.damon.oauth.manager.dto.req.resource;
 
+import com.damon.shared.dto.PageableReqDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -10,12 +11,12 @@ import java.io.Serializable;
 
 
 /**
- * 更新资源域
+ * 查询资源域
  * @author Damon S.
  */
 @Data
 @ApiModel(value = "创建资源所需参数")
-public class UpdateResourceReqDTO implements Serializable {
+public class QueryResourceReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
 
