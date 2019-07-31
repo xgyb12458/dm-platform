@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
+ * 操作域值对象
  * @author Damon
  */
 @Data

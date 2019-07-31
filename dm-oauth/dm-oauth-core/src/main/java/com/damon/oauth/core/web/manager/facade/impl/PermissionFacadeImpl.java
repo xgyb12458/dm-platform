@@ -28,6 +28,7 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 权限管理后端接口
  * @author Damon S.
  */
 @Log4j2
