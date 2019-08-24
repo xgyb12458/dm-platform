@@ -1,6 +1,5 @@
 package com.damon.oauth.domain.permission.command;
 
-import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
 import lombok.Value;
 
