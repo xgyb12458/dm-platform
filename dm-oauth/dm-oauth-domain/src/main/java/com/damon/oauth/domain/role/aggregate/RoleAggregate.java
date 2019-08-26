@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
+ * 角色聚合
  * @author Damon
  */
 @ToString
@@ -25,6 +26,7 @@ public class RoleAggregate implements TenantAware<TenantId> {
     private RoleId roleId;
     private String code;
     private String name;
+    private String platform;
     private SwitchState state;
     private List<PermissionAggregate> permissions;
     private TenantId tenantId;

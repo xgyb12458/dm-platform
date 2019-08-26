@@ -20,6 +20,7 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -38,7 +39,6 @@ public class UserFacadeImpl implements UserFacade {
 
 
     @ArgsValid
-    @Override
     @ApiOperation(value = "用户注册", notes = "用户主动注册")
     public ResponseWrapper<Boolean> registerUser(CreateUserByNameReqDTO createUserByNameReqDTO) {
         CreateUserByNameCommand command = CreateUserByNameCommand.builder()
@@ -50,6 +50,11 @@ public class UserFacadeImpl implements UserFacade {
                 .build();
         UserId userId = commandGateway.sendAndWait(command);
         return new ResponseWrapper<>(Objects.nonNull(userId));
+    }
+
+    @Override
+    public ResponseWrapper<Boolean> updateUser(@Valid CreateUserByNameReqDTO createUserByNameReqDTO) {
+        return null;
     }
 
     @ArgsValid

@@ -6,7 +6,7 @@ import com.damon.shared.model.AbstractId;
 
 
 /***
- * 资源位规格ID
+ * 角色ID
  * @author Damon S.
  */
 public class RoleId extends AbstractId<RoleId, Long> {

@@ -19,6 +19,7 @@ public class RoleCreatedEvent {
     private final RoleId roleId;
     private final String code;
     private final String name;
+    private final String platform;
     private final String tenantId;
     private final String permsJson;
     private final Long createdBy;

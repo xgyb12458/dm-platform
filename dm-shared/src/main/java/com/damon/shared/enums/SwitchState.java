@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum SwitchState {
-    /**开启，关闭，不可用*/
+    /**1开启，2关闭，0不可用*/
     ON(1), OFF(2), NA(0);
 
     private final Integer value;

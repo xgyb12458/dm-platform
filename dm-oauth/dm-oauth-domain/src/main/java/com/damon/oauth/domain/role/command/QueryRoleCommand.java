@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
+ * 查询角色命令
  * @author Damon S.
  */
 @Getter
@@ -14,6 +15,7 @@ public class QueryRoleCommand {
     private final RoleId roleId;
     private final String code;
     private final String name;
+    private final String platform;
     private final SwitchState state;
     private final Integer pageSize;
     private final Integer pageIndex;

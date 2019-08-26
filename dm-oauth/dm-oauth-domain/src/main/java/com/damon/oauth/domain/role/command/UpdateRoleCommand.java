@@ -6,7 +6,7 @@ import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
- * 应用更新命令
+ * 角色更新命令
  * @author Damon S.
  */
 @Getter
@@ -15,6 +15,7 @@ public class UpdateRoleCommand {
     @TargetAggregateIdentifier
     private final RoleId roleId;
     private final String name;
+    private final String platform;
     private final String permsJson;
     private final Long updatedBy;
 }

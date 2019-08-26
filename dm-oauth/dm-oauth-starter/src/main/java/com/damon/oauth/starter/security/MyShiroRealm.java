@@ -48,14 +48,13 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    private PasswordService passwordService =
-            new DefaultPasswordService();
+    private PasswordService passwordService = new DefaultPasswordService();
 
     private final static String LOCKED = "LOCKED";
     /**用户登录是否被锁定 一小时 redisKey 前缀*/
-    private final static String SHIRO_USER_LOCK = "SHIRO_USER_LOCK:";
+    private final static String KEY_USER_LOCK = "USER_LOGIN_LOCK:";
     /**用户登录次数计数  redisKey 前缀*/
-    private final static String SHIRO_LOGIN_COUNT = "SHIRO_LOGIN_COUNT:";
+    private final static String KEY_LOGIN_COUNT = "USER_LOGIN_COUNT:";
 
     private final static Integer MAX_LOGIN_COUNT = 5;
 
@@ -65,7 +64,7 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken)
             throws AuthenticationException {
-        log.info("身份认证：" + this.getClass().getSimpleName() + ".doGetAuthenticationInfo()");
+        log.info(">>>>>>>>>>>>>>>>身份认证：" + this.getClass().getSimpleName() + ".doGetAuthenticationInfo()");
 
         // 获取用户输入的用户名和密码
         UsernamePasswordToken upToken = (UsernamePasswordToken)authToken;
@@ -74,14 +73,14 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         // 登录一次，计数一次
         ValueOperations<String, String> loginCounterCache = stringRedisTemplate.opsForValue();
-        loginCounterCache.increment(SHIRO_LOGIN_COUNT.concat(username), PURE_NUMBER_1);
+        loginCounterCache.increment(KEY_LOGIN_COUNT.concat(username), PURE_NUMBER_1);
 
         // 计数大于5时，设置用户被锁定一小时
-        if(Integer.parseInt(loginCounterCache.get(SHIRO_LOGIN_COUNT.concat(username))) >= MAX_LOGIN_COUNT) {
-            loginCounterCache.set(SHIRO_USER_LOCK.concat(username), LOCKED);
-            stringRedisTemplate.expire(SHIRO_USER_LOCK.concat(username), PURE_NUMBER_1, TimeUnit.HOURS);
+        if(Integer.parseInt(loginCounterCache.get(KEY_LOGIN_COUNT.concat(username))) >= MAX_LOGIN_COUNT) {
+            loginCounterCache.set(KEY_USER_LOCK.concat(username), LOCKED);
+            stringRedisTemplate.expire(KEY_USER_LOCK.concat(username), PURE_NUMBER_1, TimeUnit.HOURS);
         }
-        if (LOCKED.equals(loginCounterCache.get(SHIRO_USER_LOCK.concat(username)))){
+        if (LOCKED.equals(loginCounterCache.get(KEY_USER_LOCK.concat(username)))){
             throw new ExcessiveAttemptsException("密码输入错误次数大于5次，帐号已禁止登录，请1小时后再试！");
         }
 
@@ -92,22 +91,21 @@ public class MyShiroRealm extends AuthorizingRealm {
         passwordService.encryptPassword(password);
 
         // 从数据库获取对应密码的用户
-        List<User> users = userService.find(filter);
-        User loginUser = users.get(0);
+        List<UserDetail> users = userService.find(filter);
+        User loginedUser = users.get(0);
 
         if (ObjectUtils.isEmpty(users)) {
             throw new AccountException("用户名或密码不正确！");
-        } else if(UserState.FROZEN.equals(loginUser.getState())) {
+        } else if(UserState.FROZEN.equals(loginedUser.getState())) {
             throw new DisabledAccountException("账号已被锁定，请联系管理员！");
         } else {
-            //登录成功
-            loginUser.setLastLogin(LocalDateTime.from(Instant.now()));
-            loginUser.update();
+            loginedUser.setLastLogin(LocalDateTime.from(Instant.now()));
+            loginedUser.update();
             // 重置登录次数计数
-            loginCounterCache.set(SHIRO_LOGIN_COUNT.concat(username), "0");
+            loginCounterCache.set(KEY_LOGIN_COUNT.concat(username), "0");
         }
-        log.info("身份认证成功，登录用户：" + username);
-        return new SimpleAuthenticationInfo(loginUser, password, getName());
+        log.info(">>>>>>>>>>>>>>>>身份认证成功，登录用户：" + username);
+        return new SimpleAuthenticationInfo(loginedUser, password, getName());
     }
 
 
