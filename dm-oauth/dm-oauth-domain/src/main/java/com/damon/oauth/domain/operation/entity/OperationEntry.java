@@ -27,4 +27,6 @@ public final class OperationEntry extends TenantEntry {
 
     @Column private String name;
     @Column private String code;
+    @Column private String platform;
+    @Column private String state;
 }

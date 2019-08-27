@@ -1,6 +1,5 @@
 package com.damon.oauth.domain.resource.event;
 
-import com.damon.oauth.domain.resource.aggregate.ResourceId;
 import lombok.Builder;
 import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;

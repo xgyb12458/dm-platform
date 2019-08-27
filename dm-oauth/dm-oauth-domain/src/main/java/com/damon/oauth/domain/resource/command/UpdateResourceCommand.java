@@ -1,6 +1,5 @@
 package com.damon.oauth.domain.resource.command;
 
-import com.damon.oauth.domain.resource.aggregate.ResourceId;
 import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
@@ -15,9 +14,10 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Builder
 public class UpdateResourceCommand {
     @TargetAggregateIdentifier
-    private final ResourceId    resourceId;
+    private final Long          resourceId;
     private final String        code;
     private final String        name;
+    private final String        platform;
     private final Long          parentId;
     private final Long          updatedBy;
 }

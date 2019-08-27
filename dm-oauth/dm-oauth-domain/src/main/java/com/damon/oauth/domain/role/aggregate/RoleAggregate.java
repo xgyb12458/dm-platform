@@ -1,6 +1,6 @@
 package com.damon.oauth.domain.role.aggregate;
 
-import com.damon.oauth.domain.permission.aggregate.PermissionAggregate;
+import com.damon.oauth.domain.permission.aggregate.Permission;
 import com.damon.shared.enums.SwitchState;
 import com.damon.shared.tenant.TenantAware;
 import com.damon.shared.tenant.TenantId;
@@ -28,7 +28,7 @@ public class RoleAggregate implements TenantAware<TenantId> {
     private String name;
     private String platform;
     private SwitchState state;
-    private List<PermissionAggregate> permissions;
+    private List<Permission> permissions;
     private TenantId tenantId;
     private Long createdBy;
     private Long updatedBy;

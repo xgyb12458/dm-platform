@@ -15,20 +15,22 @@ import java.util.Objects;
  */
 @Data
 public class Operation implements ValueObject<Operation>, TenantAware<TenantId> {
-    private Long operationId;
-    private String code;
-    private String name;
-    private SwitchState state;
-    private TenantId tenantId;
-    private Long createdBy;
-    private Long updatedBy;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Long            operationId;
+    private String          code;
+    private String          name;
+    private String          platform;
+    private SwitchState     state;
+    private TenantId        tenantId;
+    private Long            createdBy;
+    private Long            updatedBy;
+    private LocalDateTime   createdAt;
+    private LocalDateTime   updatedAt;
 
     @Override
     public boolean sameAs(Operation o) {
         return Objects.equals(getCode(), o.getCode())
                 && Objects.equals(getName(), o.getName())
+                && Objects.equals(getPlatform(), o.getPlatform())
                 && Objects.equals(getTenantId(), o.getTenantId());
     }
 }

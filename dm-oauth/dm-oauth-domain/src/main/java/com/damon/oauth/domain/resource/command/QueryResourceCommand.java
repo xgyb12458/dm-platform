@@ -14,6 +14,7 @@ import lombok.Getter;
 public class QueryResourceCommand {
     private final String        code;
     private final String        name;
+    private final String        platform;
     private final Long          parentId;
     private final Long          createdBy;
     private final Long          updatedBy;

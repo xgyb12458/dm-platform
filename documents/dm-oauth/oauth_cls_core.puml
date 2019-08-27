@@ -25,11 +25,11 @@ class Organization {
  '    - createdBy: UserId
  '    - updatedBy: UserId
  }
-class Authentication {
+class AuthenticationProvider {
     + register(User u): Boolean
     + authenticate(Principal p): User
 }
-class Authorization {
+class AuthorizationProvider {
     + grant(RoleId rid, PermissionId pId): Boolean
     + grant(RoleId rid, Collection<PermissionId> pIds): Boolean
     + grant(UserId uid, RoleId rId): Boolean
@@ -42,7 +42,7 @@ class Authorization {
 class UserAggregate {
     - userId: UserId
     - name: String
-    - passwd: String
+    - password: String
     - state: SwitchState
     - tenantId: TenantId
     - rolesJson: Text
@@ -52,29 +52,31 @@ class UserAggregate {
 '    - updatedBy: UserId
     + inRole(RoleId id): Boolean
     + hasPermission(PermissionId id): Boolean
-    + getRoles(): List
-    + getPermissions(): List
+    + getRoles(): Collection
+    + getPermissions(): Collection
 }
 class RoleAggregate {
     - roleId: RoleId
     - code: String
     - name: String
+    - platform: String
     - state: SwitchState
     - tenantId: TenantId
     - permsJson: Text
-'    - createdAt: Long
-'    - updatedAt: Long
-'    - createdBy: UserId
-'    - updatedBy: UserId
-    + getUsers(): List
+'    - createdAt: Long 创建时间
+'    - updatedAt: Long 更新时间
+'    - createdBy: UserId 创建人
+'    - updatedBy: UserId 更新人
+    + getUsers(): Collection
     + hasPermission(PermissionId id): Boolean
-    + getPermissions(): List
+    + getPermissions(): Collection
 }
 class Permission {
-    - permissionId: PermissionId
-    - resourceId: ResourceId
-    - operationId: OperationId
+    - permissionId: Long
+    - resourceId: Long
+    - operationId: Long
     - state: SwitchState
+    - platform: String
     - tenantId: TenantId
 '    - createdAt: Long
 '    - updatedAt: Long
@@ -82,11 +84,12 @@ class Permission {
 '    - updatedBy: UserId
 }
 class Resource {
-    - resourceId: ResourceId
+    - resourceId: Long
     - code: String
     - name: String
+    - platform: String
     - state: SwitchState
-    - parentId: ResourceId
+    - parentId: Long
     - tenantId: TenantId
 '    - createdAt: Long
 '    - updatedAt: Long
@@ -94,9 +97,10 @@ class Resource {
 '    - updatedBy: UserId
 }
 class Operation {
-    - operationId: OperationId
+    - operationId: Long
     - code: String
     - name: String
+    - platform: String
     - state: SwitchState
     - tenantId: TenantId
 '    - createdAt: Long

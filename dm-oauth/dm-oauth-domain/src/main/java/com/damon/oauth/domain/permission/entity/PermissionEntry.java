@@ -31,5 +31,6 @@ public final class PermissionEntry extends TenantEntry {
     @Column(name = "operation_id")
     private Long    operationId;
 
+    @Column private String platform;
     @Column private String state;
 }
