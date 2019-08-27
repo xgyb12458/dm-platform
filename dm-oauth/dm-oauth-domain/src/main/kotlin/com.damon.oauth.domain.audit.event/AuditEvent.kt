@@ -1,4 +1,4 @@
-package com.damon.product.domain.brand.event
+package com.damon.oauth.domain.audit.event
 
 import org.springframework.context.ApplicationEvent
 
