@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.permission.command;
+package com.damon.oauth.domain.operation.command;
 
 import lombok.Builder;
 import lombok.Value;

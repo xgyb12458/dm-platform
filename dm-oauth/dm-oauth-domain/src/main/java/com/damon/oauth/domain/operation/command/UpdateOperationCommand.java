@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.permission.command;
+package com.damon.oauth.domain.operation.command;
 
 import lombok.Builder;
 import lombok.Value;
@@ -9,8 +9,8 @@ import lombok.Value;
  */
 @Value
 @Builder
-public class UpdateResourceCommand {
-    private final Long resourceId;
+public class UpdateOperationCommand {
+    private final Long operationId;
     private final String name;
     private final Long updatedBy;
 }

@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Value;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import java.time.LocalDateTime;
+
 /**
  * @author Damon S.
  * @version v1.0.1
@@ -13,8 +15,11 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Builder
 public class ResourceUpdatedEvent {
     @TargetAggregateIdentifier
-    private final ResourceId    resourceId;
-    private final String        code;
-    private final String        name;
-    private final Long          updatedBy;
+    private final Long      resourceId;
+//    private final String    code;
+    private final String    name;
+    private final String    platform;
+//    private final Long      parentId;
+    private final Long      updatedBy;
+    private final LocalDateTime updatedAt;
 }

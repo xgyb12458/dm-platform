@@ -3,6 +3,8 @@ package com.damon.oauth.domain.resource.command;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 /**
  * 查询资源信息
  * @author Damon S.
@@ -18,6 +20,6 @@ public class QueryResourceCommand {
     private final Long          parentId;
     private final Long          createdBy;
     private final Long          updatedBy;
-    private final Long          createdAt;
-    private final Long          updatedAt;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
 }

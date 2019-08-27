@@ -3,7 +3,7 @@ package com.damon.oauth.core.query.handler.operation;
 import com.damon.oauth.domain.operation.entity.OperationEntry;
 import com.damon.oauth.domain.operation.entity.OperationRepository;
 import com.damon.oauth.domain.operation.entity.QOperationEntry;
-import com.damon.oauth.domain.permission.command.CreateOperationCommand;
+import com.damon.oauth.domain.operation.command.CreateOperationCommand;
 import com.damon.shared.common.Constants;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;

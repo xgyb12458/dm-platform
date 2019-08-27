@@ -1,4 +1,4 @@
-package com.damon.oauth.domain.permission.command;
+package com.damon.oauth.domain.operation.command;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -9,7 +9,7 @@ import lombok.Value;
  */
 @Value
 @RequiredArgsConstructor
-public class RemoveResourceCommand {
-    private final Long resourceId;
+public class RemoveOperationCommand {
+    private final Long operationId;
     private final Long updatedBy;
 }

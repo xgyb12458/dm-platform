@@ -15,9 +15,9 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 public class UpdateResourceCommand {
     @TargetAggregateIdentifier
     private final Long          resourceId;
-    private final String        code;
+//    private final String        code;
     private final String        name;
     private final String        platform;
-    private final Long          parentId;
+//    private final Long          parentId;
     private final Long          updatedBy;
 }
