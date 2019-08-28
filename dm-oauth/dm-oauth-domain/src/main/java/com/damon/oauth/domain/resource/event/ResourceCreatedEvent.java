@@ -2,7 +2,6 @@ package com.damon.oauth.domain.resource.event;
 
 import lombok.Builder;
 import lombok.Value;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.time.LocalDateTime;
 
@@ -14,12 +13,13 @@ import java.time.LocalDateTime;
 @Value
 @Builder
 public class ResourceCreatedEvent {
-    @TargetAggregateIdentifier
-    private final Long      resourceId;
-    private final String    code;
-    private final String    name;
-    private final String    platform;
-    private final Long      parentId;
-    private final Long      createdBy;
+    private final Long          resourceId;
+    private final String        code;
+    private final String        name;
+    private final String        path;
+    private final Integer       sort;
+    private final String        platform;
+    private final Long          parentId;
+    private final Long          createdBy;
     private final LocalDateTime createdAt;
 }

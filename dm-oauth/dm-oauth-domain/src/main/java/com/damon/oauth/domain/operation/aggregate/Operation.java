@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 操作域值对象
+ * 操作域-值对象
  * @author Damon
  */
 @Data
@@ -28,7 +28,8 @@ public class Operation implements ValueObject<Operation>, TenantAware<TenantId> 
 
     @Override
     public boolean sameAs(Operation o) {
-        return Objects.equals(getCode(), o.getCode())
+        return Objects.equals(getOperationId(), o.getOperationId())
+                && Objects.equals(getCode(), o.getCode())
                 && Objects.equals(getName(), o.getName())
                 && Objects.equals(getPlatform(), o.getPlatform())
                 && Objects.equals(getTenantId(), o.getTenantId());

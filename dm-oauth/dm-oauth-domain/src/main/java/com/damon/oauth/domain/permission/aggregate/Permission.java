@@ -10,8 +10,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.axonframework.modelling.command.AggregateIdentifier;
-import org.axonframework.spring.stereotype.Aggregate;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -21,10 +19,8 @@ import java.util.Objects;
  */
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
-@Aggregate
 @NoArgsConstructor
 public class Permission implements ValueObject<Permission>, TenantAware<TenantId> {
-    @AggregateIdentifier
     private Long            permissionId;
     private Resource        resource;
     private Operation       operation;

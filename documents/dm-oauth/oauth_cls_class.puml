@@ -87,9 +87,11 @@ class Resource {
     - resourceId: Long
     - code: String
     - name: String
+    - url: String
+    - sort: Integer
     - platform: String
-    - state: SwitchState
     - parentId: Long
+    - state: SwitchState
     - tenantId: TenantId
 '    - createdAt: Long
 '    - updatedAt: Long

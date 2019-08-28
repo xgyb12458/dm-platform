@@ -9,10 +9,10 @@ import lombok.Value;
  */
 @Value
 @Builder
-public final class CreatePermissionCommand {
+public final class UpdatePermissionCommand {
     private final Long      permissionId;
     private final Long      resourceId;
     private final Long      operationId;
     private final String    platform;
-    private final Long      createdBy;
+    private final Long      updatedBy;
 }

@@ -1,17 +1,15 @@
 package com.damon.oauth.core.query.handler.operation;
 
+import com.damon.oauth.domain.operation.command.CreateOperationCommand;
 import com.damon.oauth.domain.operation.entity.OperationEntry;
 import com.damon.oauth.domain.operation.entity.OperationRepository;
 import com.damon.oauth.domain.operation.entity.QOperationEntry;
-import com.damon.oauth.domain.operation.command.CreateOperationCommand;
 import com.damon.shared.common.Constants;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
-
-import java.sql.Timestamp;
 
 /**
  * 操作域命令处理类
@@ -42,26 +40,26 @@ public class OperationQueryHandler {
 
         OperationEntry operationEntry = OperationEntry.builder()
                 .operationId(command.getOperationId())
-                .name(event.getName())
-                .code(event.getCode())
-                .logo(event.getLogo())
-                .sort(event.getSort())
-                .bigImage(event.getBigImage())
-                .display(event.getDisplay().name())
-                .removed(event.getRemoved().name())
-                .factoryState(event.getFactoryState().name())
-                .firstLetter(event.getFirstLetter())
-                .homepage(event.getHomepage())
-                .description(event.getDescription())
-                .createdBy(event.getCreatedBy())
-                .createdAt(new Timestamp(event.getCreatedAt().toEpochMilli()))
+//                .name(event.getName())
+//                .code(event.getCode())
+//                .logo(event.getLogo())
+//                .sort(event.getSort())
+//                .bigImage(event.getBigImage())
+//                .display(event.getDisplay().name())
+//                .removed(event.getRemoved().name())
+//                .factoryState(event.getFactoryState().name())
+//                .firstLetter(event.getFirstLetter())
+//                .homepage(event.getHomepage())
+//                .description(event.getDescription())
+//                .createdBy(event.getCreatedBy())
+//                .createdAt(new Timestamp(event.getCreatedAt().toEpochMilli()))
                 .build();
 
-        brandRepository.saveAndFlush(brandEntry);
-        log.info(Constants.PREFIX_PRODUCT + "========>>Brand aggregate[Id:{}, name:'{}'] created by User[Id:{}] at {} is successfully stored-[DB].",
-                event.getBrandId().getValue(), event.getName(), event.getCreatedBy(), event.getCreatedAt());
+//        brandRepository.saveAndFlush(brandEntry);
+//        log.info(Constants.PREFIX_PRODUCT + "========>>Brand aggregate[Id:{}, name:'{}'] created by User[Id:{}] at {} is successfully stored-[DB].",
+//                event.getBrandId().getValue(), event.getName(), event.getCreatedBy(), event.getCreatedAt());
 
-        return createdAt;
+        return 0L;
     }
 
 //    @SuppressWarnings("UnusedDeclaration")

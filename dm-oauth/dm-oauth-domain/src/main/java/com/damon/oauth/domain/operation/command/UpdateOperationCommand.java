@@ -10,7 +10,8 @@ import lombok.Value;
 @Value
 @Builder
 public class UpdateOperationCommand {
-    private final Long operationId;
-    private final String name;
-    private final Long updatedBy;
+    private final Long      operationId;
+    private final String    name;
+    private final String    platform;
+    private final Long      updatedBy;
 }

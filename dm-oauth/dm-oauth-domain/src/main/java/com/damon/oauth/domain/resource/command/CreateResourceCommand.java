@@ -2,8 +2,7 @@ package com.damon.oauth.domain.resource.command;
 
 import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
-import lombok.Getter;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import lombok.Value;
 
 /**
  * 创建资源命令
@@ -11,13 +10,14 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
  * @version v1.0.1
  * @date 2019年03月26日 09:04
  */
-@Getter
+@Value
 @Builder
 public class CreateResourceCommand {
-    @TargetAggregateIdentifier
     private final Long          resourceId;
     private final String        code;
     private final String        name;
+    private final String        path;
+    private final Integer       sort;
     private final String        platform;
     private final Long          parentId;
     private final TenantId      tenantId;
