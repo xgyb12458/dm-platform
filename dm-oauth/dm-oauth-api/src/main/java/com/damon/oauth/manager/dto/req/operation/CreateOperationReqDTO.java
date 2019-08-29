@@ -28,5 +28,7 @@ public class CreateOperationReqDTO implements Serializable {
     @NotNull(message = "操作域名称不能为空")
     @Pattern(regexp = "[\\u4e00-\\u9fa5]{1,10}", message = "操作域名称应为10个以内汉字")
     private String name;
+
+    private String platform;
 }
 

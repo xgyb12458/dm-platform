@@ -3,7 +3,6 @@ package com.damon.oauth.manager.dto.req.resource;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -15,7 +14,6 @@ import java.io.Serializable;
  * @author Damon S.
  */
 @Data
-@ToString
 @ApiModel(value = "创建资源所需参数")
 public class CreateResourceReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;

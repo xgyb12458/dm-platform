@@ -1,6 +1,5 @@
 package com.damon.oauth.domain.operation.command;
 
-import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
 import lombok.Value;
 
@@ -15,6 +14,6 @@ public class CreateOperationCommand {
     private final String    code;
     private final String    name;
     private final String    platform;
-    private final TenantId  tenantId;
+    private final Long      tenantId;
     private final Long      createdBy;
 }

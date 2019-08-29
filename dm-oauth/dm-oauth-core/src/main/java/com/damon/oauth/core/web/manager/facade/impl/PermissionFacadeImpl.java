@@ -55,6 +55,9 @@ public class PermissionFacadeImpl implements PermissionFacade {
         CreateOperationCommand command = CreateOperationCommand.builder()
                 .code(createOperationReqDTO.getCode())
                 .name(createOperationReqDTO.getName())
+                .operationId(9L)
+                .tenantId(0L)
+                .platform(createOperationReqDTO.getPlatform())
                 .createdBy(currentUserId)
                 .build();
         Long createdOperationId = commandGateway.sendAndWait(command);

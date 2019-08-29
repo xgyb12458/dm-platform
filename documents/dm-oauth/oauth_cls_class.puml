@@ -1,9 +1,10 @@
 @startuml 组织与权限
 
 class Tenant {
-    - tenantId: TenantId
+    - tenantId: Long
     - code: String
     - name: String
+    - description: String
     - state: SwitchState
 '    - createdAt: Long
 '    - updatedAt: Long
@@ -19,7 +20,7 @@ class Organization {
      - contact: String
      - state: SwitchState
      - ext: Text
-     - tenantId: TenantId
+     - tenantId: Long
  '    - createdAt: Long
  '    - updatedAt: Long
  '    - createdBy: UserId
@@ -44,7 +45,7 @@ class UserAggregate {
     - name: String
     - password: String
     - state: SwitchState
-    - tenantId: TenantId
+    - tenantId: Long
     - rolesJson: Text
 '    - createdAt: Long
 '    - updatedAt: Long
@@ -61,7 +62,7 @@ class RoleAggregate {
     - name: String
     - platform: String
     - state: SwitchState
-    - tenantId: TenantId
+    - tenantId: Long
     - permsJson: Text
 '    - createdAt: Long 创建时间
 '    - updatedAt: Long 更新时间
@@ -77,7 +78,7 @@ class Permission {
     - operationId: Long
     - state: SwitchState
     - platform: String
-    - tenantId: TenantId
+    - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
 '    - createdBy: UserId
@@ -87,12 +88,12 @@ class Resource {
     - resourceId: Long
     - code: String
     - name: String
-    - url: String
+    - path: String
     - sort: Integer
     - platform: String
     - parentId: Long
     - state: SwitchState
-    - tenantId: TenantId
+    - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
 '    - createdBy: UserId
@@ -104,7 +105,7 @@ class Operation {
     - name: String
     - platform: String
     - state: SwitchState
-    - tenantId: TenantId
+    - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
 '    - createdBy: UserId
