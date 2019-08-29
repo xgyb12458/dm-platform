@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 操作域复制类
- * @author Damon
+ * @author Damon S.
  */
 @Service
 public class OperationTranslator {
