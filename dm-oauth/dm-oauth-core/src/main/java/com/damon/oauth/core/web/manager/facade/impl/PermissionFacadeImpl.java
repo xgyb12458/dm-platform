@@ -1,10 +1,12 @@
 package com.damon.oauth.core.web.manager.facade.impl;
 
+import com.damon.oauth.core.query.handler.resource.ResourceTranslator;
 import com.damon.oauth.domain.operation.command.CreateOperationCommand;
 import com.damon.oauth.domain.operation.command.QueryOperationCommand;
 import com.damon.oauth.domain.operation.command.RemoveOperationCommand;
 import com.damon.oauth.domain.operation.command.UpdateOperationCommand;
-import com.damon.oauth.domain.permission.command.*;
+import com.damon.oauth.domain.permission.command.CreatePermissionCommand;
+import com.damon.oauth.domain.permission.command.RemovePermissionCommand;
 import com.damon.oauth.domain.resource.command.CreateResourceCommand;
 import com.damon.oauth.domain.resource.command.RemoveResourceCommand;
 import com.damon.oauth.domain.resource.command.UpdateResourceCommand;
@@ -42,6 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PermissionFacadeImpl implements PermissionFacade {
 
+    private final ResourceTranslator resourceTranslator;
 
     private final QueryGateway queryGateway;
     private final CommandGateway commandGateway;
@@ -122,12 +125,8 @@ public class PermissionFacadeImpl implements PermissionFacade {
     @Override
     @ApiOperation(value = "创建资源域", notes = "创建资源域")
     public ResponseWrapper<Long> createResource(CreateResourceReqDTO createResourceReqDTO) {
-        Long currentUserId = 0L;
-        CreateResourceCommand command = CreateResourceCommand.builder()
-                .code(createResourceReqDTO.getCode())
-                .name(createResourceReqDTO.getName())
-                .createdBy(currentUserId)
-                .build();
+        CreateResourceCommand command =
+                resourceTranslator.buildCreateCommand(createResourceReqDTO);
         Long createdResourceId = commandGateway.sendAndWait(command);
 
         if (0 < createdResourceId) {
@@ -142,13 +141,8 @@ public class PermissionFacadeImpl implements PermissionFacade {
     @Override
     @ApiOperation(value = "更新资源域", notes = "更新资源域")
     public ResponseWrapper<Boolean> updateResource(UpdateResourceReqDTO updateResourceReqDTO) {
-        Long currentUserId = 0L;
-        UpdateResourceCommand command = UpdateResourceCommand.builder()
-                .name(updateResourceReqDTO.getName())
-                .resourceId(updateResourceReqDTO.getResourceId())
-                .updatedBy(currentUserId)
-                .build();
-
+        UpdateResourceCommand command =
+                resourceTranslator.buildUpdateCommand(updateResourceReqDTO);
         commandGateway.sendAndWait(command);
         return new ResponseWrapper<>();
     }

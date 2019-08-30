@@ -22,15 +22,27 @@ public class CreateResourceReqDTO implements Serializable {
     private Long parentId;
 
     @ApiModelProperty(value = "资源编码", required = true)
-    @NotNull(message = "请输入资源编码")
+    @NotNull(message = "资源编码不能为空")
     @Pattern(regexp = "^\\w{1,15}$", message = "资源编码应为15个以内英文数字组合")
     private String code;
 
 
     @ApiModelProperty(value = "资源名称", required = true)
-    @NotNull(message = "请输入资源名称")
+    @NotNull(message = "资源名称不能为空")
     @Pattern(regexp = "[\\u4e00-\\u9fa5]{1,10}", message = "资源名称应为10个以内汉字")
     private String name;
 
+
+    @ApiModelProperty(value = "资源路径")
+    private String path;
+
+
+    @ApiModelProperty(value = "资源排序")
+    private Integer sort;
+
+
+    @ApiModelProperty(value = "所属平台", required = true)
+    @NotNull(message = "资源所属平台不能为空")
+    private String platform;
 }
 
