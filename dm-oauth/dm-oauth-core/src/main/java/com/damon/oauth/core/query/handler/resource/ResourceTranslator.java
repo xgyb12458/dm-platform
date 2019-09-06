@@ -11,12 +11,21 @@ import java.security.InvalidParameterException;
 import java.util.Optional;
 
 /**
- * @author Damon
+ * 资源域辅助工具类
+ * @author Damon S.
  */
 @Service
 public class ResourceTranslator {
 
+    /**
+     * 实例化一个新建资源命令对象，
+     * 1. 进行参数的合法性验证
+     * 2. 获取并设置创建用户
+     * @param createResourceReqDTO 入参
+     * @return 新建资源命令对象
+     */
     public CreateResourceCommand buildCreateCommand(CreateResourceReqDTO createResourceReqDTO) {
+        Optional.ofNullable(createResourceReqDTO).orElseThrow(InvalidParameterException::new);
         return CreateResourceCommand.builder()
                 .code(Optional.ofNullable(createResourceReqDTO.getCode()).orElseThrow(InvalidParameterException::new))
                 .name(Optional.ofNullable(createResourceReqDTO.getName()).orElseThrow(InvalidParameterException::new))
