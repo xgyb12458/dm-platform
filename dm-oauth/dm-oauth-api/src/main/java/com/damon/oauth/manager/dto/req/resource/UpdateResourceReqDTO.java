@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author Damon S.
  */
 @Data
-@ApiModel(value = "创建资源所需参数")
+@ApiModel(value = "更新资源所需参数")
 public class UpdateResourceReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 

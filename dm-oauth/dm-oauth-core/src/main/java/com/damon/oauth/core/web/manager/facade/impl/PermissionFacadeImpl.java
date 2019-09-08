@@ -8,6 +8,7 @@ import com.damon.oauth.domain.operation.command.UpdateOperationCommand;
 import com.damon.oauth.domain.permission.command.CreatePermissionCommand;
 import com.damon.oauth.domain.permission.command.RemovePermissionCommand;
 import com.damon.oauth.domain.resource.command.CreateResourceCommand;
+import com.damon.oauth.domain.resource.command.QueryResourceCommand;
 import com.damon.oauth.domain.resource.command.RemoveResourceCommand;
 import com.damon.oauth.domain.resource.command.UpdateResourceCommand;
 import com.damon.oauth.manager.dto.req.operation.CreateOperationReqDTO;
@@ -152,7 +153,10 @@ public class PermissionFacadeImpl implements PermissionFacade {
     @ApiOperation(value = "查询资源域", notes = "查询资源域")
     public ResponseWrapper<Pagination<ResourceInfoRespDTO>> listResources(
             QueryResourceReqDTO queryResourceReqDTO) {
+        QueryResourceCommand command =
+                resourceTranslator.buildQueryCommand(queryResourceReqDTO);
 
+        queryGateway.query(command, Pagination.class);
         return new ResponseWrapper<>();
     }
 

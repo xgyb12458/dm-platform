@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @author Damon S.
  */
 @Data
-@ApiModel(value = "创建资源所需参数")
+@ApiModel(value = "查询资源所需参数")
 public class QueryResourceReqDTO extends PageableReqDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
