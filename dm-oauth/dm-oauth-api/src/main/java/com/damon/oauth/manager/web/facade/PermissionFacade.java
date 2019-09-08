@@ -50,26 +50,51 @@ public interface PermissionFacade {
             @PathVariable("operationId") Long operationId
     );
 
+    /**
+     * 创建资源域
+     * @param createResourceReqDTO 入参
+     * @return 新建资源ID
+     */
     @PostMapping("/resources")
     ResponseWrapper<Long> createResource(
             @RequestBody @Validated CreateResourceReqDTO createResourceReqDTO
     );
 
+    /**
+     * 更新资源域
+     * @param updateResourceReqDTO 入参
+     * @return 更新是否成功
+     */
     @PutMapping("/resources")
     ResponseWrapper<Boolean> updateResource(
             @RequestBody @Validated UpdateResourceReqDTO updateResourceReqDTO
     );
 
+    /**
+     * 获取资源列表
+     * @param queryResourceReqDTO 入参
+     * @return 查询分页结果
+     */
     @GetMapping("/resources")
     ResponseWrapper<Pagination<ResourceInfoRespDTO>> listResources(
             @RequestBody @Validated QueryResourceReqDTO queryResourceReqDTO
     );
 
+    /**
+     * 删除指定Id的资源
+     * @param resourceId 资源ID
+     * @return 删除操作是否成功，true成功
+     */
     @DeleteMapping("/resources/{resourceId}")
     ResponseWrapper<Boolean> removeResource(
             @PathVariable("resourceId") Long resourceId
     );
 
+    /**
+     * 获取指定资源信息
+     * @param resourceId 资源ID
+     * @return 返回资源信息
+     */
     @GetMapping("/resources/{resourceId}")
     ResponseWrapper<ResourceInfoRespDTO> findResource(
             @PathVariable("resourceId") Long resourceId
