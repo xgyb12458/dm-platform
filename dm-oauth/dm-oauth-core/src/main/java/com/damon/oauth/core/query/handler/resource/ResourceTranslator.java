@@ -18,6 +18,7 @@ public class ResourceTranslator {
 
     public CreateResourceCommand buildCreateCommand(CreateResourceReqDTO createResourceReqDTO) {
         return CreateResourceCommand.builder()
+                .resourceId(0L)
                 .code(Optional.ofNullable(createResourceReqDTO.getCode()).orElseThrow(InvalidParameterException::new))
                 .name(Optional.ofNullable(createResourceReqDTO.getName()).orElseThrow(InvalidParameterException::new))
                 .path(Optional.ofNullable(createResourceReqDTO.getPath()).orElse(Constants.STR_SHARP))
