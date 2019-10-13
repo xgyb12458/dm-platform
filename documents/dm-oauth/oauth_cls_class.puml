@@ -31,11 +31,11 @@ class AuthenticationProvider {
     + authenticate(Principal p): User
 }
 class AuthorizationProvider {
-    + grant(RoleId rid, PermissionId pId): Boolean
-    + grant(RoleId rid, Collection<PermissionId> pIds): Boolean
+    + grant(RoleId rid, Long permissionId): Boolean
+    + grant(RoleId rid, Collection<Long> permissionIds): Boolean
     + grant(UserId uid, RoleId rId): Boolean
     + grant(UserId uid, Collection<RoleId> rIds): Boolean
-    + revoke(RoleId rid, PermissionId pId): Boolean
+    + revoke(RoleId rid, Long permissionId): Boolean
     + revoke(UserId uid, RoleId rId): Boolean
     + revokeAll(RoleId rId): Boolean
     + revokeAll(UserId uId): Boolean
@@ -52,7 +52,7 @@ class UserAggregate {
 '    - createdBy: UserId
 '    - updatedBy: UserId
     + inRole(RoleId id): Boolean
-    + hasPermission(PermissionId id): Boolean
+    + hasPermission(Long permissionId): Boolean
     + getRoles(): Collection
     + getPermissions(): Collection
 }
@@ -62,42 +62,50 @@ class RoleAggregate {
     - name: String
     - platform: String
     - state: SwitchState
+    - removed: Integer
     - tenantId: Long
     - permsJson: Text
 '    - createdAt: Long 创建时间
 '    - updatedAt: Long 更新时间
-'    - createdBy: UserId 创建人
-'    - updatedBy: UserId 更新人
+'    - removedAt: Long 删除删减
+'    - createdBy: Long 创建人
+'    - updatedBy: Long 更新人
+'    - removedBy: Long 删除人
     + getUsers(): Collection
-    + hasPermission(PermissionId id): Boolean
+    + hasPermission(Long permissionId): Boolean
     + getPermissions(): Collection
 }
 class Permission {
     - permissionId: Long
     - resourceId: Long
     - operationId: Long
-    - state: SwitchState
     - platform: String
+    - state: SwitchState
+    - removed: Integer
     - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
-'    - createdBy: UserId
-'    - updatedBy: UserId
+'    - removedAt: Long
+'    - createdBy: Long
+'    - updatedBy: Long
+'    - removedBy: Long
 }
 class Resource {
     - resourceId: Long
     - code: String
     - name: String
     - path: String
-    - sort: Integer
     - platform: String
     - parentId: Long
     - state: SwitchState
+    - removed: Integer
     - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
-'    - createdBy: UserId
-'    - updatedBy: UserId
+'    - removedAt: Long
+'    - createdBy: Long
+'    - updatedBy: Long
+'    - removedBy: Long
 }
 class Operation {
     - operationId: Long
@@ -105,11 +113,14 @@ class Operation {
     - name: String
     - platform: String
     - state: SwitchState
+    - removed: Integer
     - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
-'    - createdBy: UserId
-'    - updatedBy: UserId
+'    - removedAt: Long
+'    - createdBy: Long
+'    - updatedBy: Long
+'    - removedBy: Long
 }
 
 Organization --> Organization
