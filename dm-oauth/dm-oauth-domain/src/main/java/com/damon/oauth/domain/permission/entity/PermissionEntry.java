@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "oms_oauth_permission")
+@Table(name = "t_oauth_permission")
 public final class PermissionEntry extends TenantEntry {
 
     @Id
@@ -27,10 +27,12 @@ public final class PermissionEntry extends TenantEntry {
 
     @Column(name = "resource_id")
     private Long    resourceId;
-
-    @Column(name = "operation_id")
-    private Long    operationId;
-
     @Column private String platform;
     @Column private String state;
+
+    /**
+     * 该权限域对此资源域拥有的所有操作域列表
+     */
+    @Column(name = "op_list")
+    private String  opList  ;
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "oms_oauth_resource")
+@Table(name = "t_oauth_resource")
 public final class ResourceEntry extends TenantEntry {
 
     @Id
@@ -32,6 +32,12 @@ public final class ResourceEntry extends TenantEntry {
     @Column private String code;
     @Column private String path;
     @Column private Integer sort;
-    @Column private String platform;
-    @Column private String state;
+    @Column private Integer platform;
+    @Column private Integer state;
+
+    /**
+     * 本资源支持的所有操作
+     */
+    @Column(name = "op_list")
+    private String opList;
 }
