@@ -27,6 +27,15 @@ public final class OperationEntry extends TenantEntry {
 
     @Column private String code;
     @Column private String name;
-    @Column private String platform;
-    @Column private String state;
+    @Column private Integer sort;
+    @Column private Integer platform;
+    @Column private Integer state;
+
+    /**
+     * 该操作域与哪些资源域关联
+     * 1. 关联至最小一级资源域Id，多个资源域以逗号分隔。
+     * 2. 字符串【ALL】表示关联所有资源域
+     */
+    @Column(name = "res_list")
+    private String resList;
 }

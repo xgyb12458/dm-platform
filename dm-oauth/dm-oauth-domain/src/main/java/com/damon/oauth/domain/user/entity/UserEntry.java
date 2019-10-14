@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "oms_oauth_user")
+@Table(name = "t_oauth_user")
 public class UserEntry extends TenantEntry {
     @Id
     @NonNull

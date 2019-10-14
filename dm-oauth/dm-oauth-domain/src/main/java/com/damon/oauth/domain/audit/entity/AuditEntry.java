@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "oms_oauth_operate")
+@Table(name = "t_oauth_operate")
 public class AuditEntry extends TenantEntry {
 
     @Id
