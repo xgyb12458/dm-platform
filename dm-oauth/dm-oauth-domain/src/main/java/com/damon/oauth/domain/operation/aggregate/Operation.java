@@ -21,17 +21,35 @@ public class Operation implements ValueObject<Operation>, TenantAware<TenantId> 
     private String          platform;
     private SwitchState     state;
     private TenantId        tenantId;
+
     private Long            createdBy;
     private Long            updatedBy;
+    private Long            removedBy;
     private LocalDateTime   createdAt;
     private LocalDateTime   updatedAt;
+    private LocalDateTime   removedAt;
 
     @Override
-    public boolean sameAs(Operation o) {
-        return Objects.equals(getOperationId(), o.getOperationId())
-                && Objects.equals(getCode(), o.getCode())
-                && Objects.equals(getName(), o.getName())
-                && Objects.equals(getPlatform(), o.getPlatform())
-                && Objects.equals(getTenantId(), o.getTenantId());
+    public boolean equals(Object o) {
+        Operation op = null;
+        if (Objects.nonNull(o) && o instanceof Operation) {
+            op = (Operation) o;
+        }
+        return Objects.nonNull(op)
+                && Objects.equals(getCode(), op.getCode())
+                && Objects.equals(getName(), op.getName())
+                && Objects.equals(getPlatform(), op.getPlatform())
+                && Objects.equals(getTenantId(), op.getTenantId());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        // TODO: complete function
+        return new StringBuilder().append("").toString();
     }
 }

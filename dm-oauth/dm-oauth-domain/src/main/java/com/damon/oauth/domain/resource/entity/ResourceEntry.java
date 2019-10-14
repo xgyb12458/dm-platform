@@ -1,6 +1,7 @@
 package com.damon.oauth.domain.resource.entity;
 
 import com.damon.oauth.shared.entity.TenantEntry;
+import com.damon.shared.tenant.TenantId;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "oms_oauth_resource")
+@Table(name = "t_oauth_resource")
 public final class ResourceEntry extends TenantEntry {
 
     @Id
@@ -28,10 +29,9 @@ public final class ResourceEntry extends TenantEntry {
     @Column(name = "parent_id")
     private Long parentId;
 
-    @Column private String name;
     @Column private String code;
+    @Column private String name;
     @Column private String path;
-    @Column private Integer sort;
     @Column private String platform;
     @Column private String state;
 }

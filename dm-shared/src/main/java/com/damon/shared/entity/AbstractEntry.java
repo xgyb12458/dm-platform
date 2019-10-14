@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  * 数据库表映射基础类
@@ -35,11 +34,17 @@ public abstract class AbstractEntry implements Serializable {
     @Column(name = "updated_by")
     protected Long    updatedBy;
 
+    @Column(name = "removed_by")
+    protected Long    removedBy;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
-    protected Timestamp   createdAt;
+    protected Long   createdAt;
 
     @LastModifiedDate
     @Column(name = "updated_at")
-    protected Timestamp   updatedAt;
+    protected Long   updatedAt;
+
+    @Column(name = "removed_at")
+    protected Long    removedAt;
 }
