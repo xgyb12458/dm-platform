@@ -1,6 +1,7 @@
 package com.damon.oauth.domain.role.command;
 
 import com.damon.oauth.domain.role.aggregate.RoleId;
+import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,7 +16,7 @@ public class CreateRoleCommand {
     private final String code;
     private final String name;
     private final String platform;
-    private final String permsJson;
-    private final String tenantId;
+    private final String permissions;
+    private final TenantId tenantId;
     private final Long createdBy;
 }

@@ -40,7 +40,7 @@ public class UserEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(UserCreatedEvent event) {
-        log.trace(Constants.PREFIX_OAUTH + "========>>handling UserCreatedEvent persistence process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PMS + "========>>handling UserCreatedEvent persistence process, parameters：{}", event.toString());
 
         UserEntry userEntry = UserEntry.builder()
                 .userId(event.getUserId().getValue())
@@ -58,7 +58,7 @@ public class UserEventListener {
 //        userEntry.setCreatedAt(Timestamp.valueOf(event.getCreatedAt()));
 
         this.userRepository.saveAndFlush(userEntry);
-        log.info(Constants.PREFIX_OAUTH + "========>>User aggregate[Id:{}] created by User[Id:{}] at {} is successfully stored-[DB].",
+        log.info(Constants.PREFIX_PMS + "========>>User aggregate[Id:{}] created by User[Id:{}] at {} is successfully stored-[DB].",
                 event.getUserId().getValue(), event.getCreatedBy(), event.getCreatedAt());
     }
 
@@ -66,7 +66,7 @@ public class UserEventListener {
     @SuppressWarnings("UnusedDeclaration")
     @EventHandler
     private void on(UserUpdatedEvent event) {
-        log.trace(Constants.PREFIX_OAUTH + "========>>handling UserUpdatedEvent persistence process, parameters：{}", event.toString());
+        log.trace(Constants.PREFIX_PMS + "========>>handling UserUpdatedEvent persistence process, parameters：{}", event.toString());
 
         this.jpaQueryFactory.update(qUserEntry)
                 .set(qUserEntry.phone, event.getPhoneNo())
@@ -78,7 +78,7 @@ public class UserEventListener {
                 .where(qUserEntry.userId.eq(event.getUserId().getValue()))
                 .execute();
 
-        log.info(Constants.PREFIX_OAUTH + "========>>User aggregate[Id:{}] updated by User[Id:{}] at {} is successfully stored-[DB].",
+        log.info(Constants.PREFIX_PMS + "========>>User aggregate[Id:{}] updated by User[Id:{}] at {} is successfully stored-[DB].",
                 event.getUserId().getValue(), event.getUpdatedBy(), event.getUpdatedAt());
     }
 }

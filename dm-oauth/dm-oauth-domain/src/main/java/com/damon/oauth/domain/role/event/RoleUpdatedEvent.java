@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 应用更新事件
@@ -17,8 +17,7 @@ public class RoleUpdatedEvent {
     @TargetAggregateIdentifier
     private final RoleId roleId;
     private final String name;
-    private final String platform;
-    private final String permsJson;
+    private final String permissions;
     private final Long updatedBy;
-    private final Timestamp updatedAt;
+    private final LocalDateTime updatedAt;
 }

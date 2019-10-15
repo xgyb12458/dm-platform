@@ -1,11 +1,12 @@
 package com.damon.oauth.domain.role.event;
 
 import com.damon.oauth.domain.role.aggregate.RoleId;
+import com.damon.shared.tenant.TenantId;
 import lombok.Builder;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 /***
@@ -20,8 +21,8 @@ public class RoleCreatedEvent {
     private final String code;
     private final String name;
     private final String platform;
-    private final String tenantId;
-    private final String permsJson;
+    private final TenantId tenantId;
+    private final String permissions;
     private final Long createdBy;
-    private final Timestamp createdAt;
+    private final LocalDateTime createdAt;
 }

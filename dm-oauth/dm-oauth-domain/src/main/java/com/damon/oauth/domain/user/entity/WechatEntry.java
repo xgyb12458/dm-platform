@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "t_oauth_wechat")
+@Table(name = "t_pms_wechat")
 public class WechatEntry extends TenantEntry {
     @Id
     @NonNull

@@ -36,7 +36,7 @@ public class OperationQueryHandler {
     @SuppressWarnings("UnusedDeclaration")
     @QueryHandler
     private Long handle(CreateOperationCommand command) {
-        log.trace(Constants.PREFIX_OAUTH + "=======>handling CreateOperationCommand：{}", command);
+        log.trace(Constants.PREFIX_PMS + "=======>handling CreateOperationCommand：{}", command);
 
         OperationEntry operationEntry = OperationEntry.builder()
                 .operationId(command.getOperationId())

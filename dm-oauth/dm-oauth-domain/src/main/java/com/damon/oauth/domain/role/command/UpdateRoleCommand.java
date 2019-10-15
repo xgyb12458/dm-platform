@@ -15,7 +15,6 @@ public class UpdateRoleCommand {
     @TargetAggregateIdentifier
     private final RoleId roleId;
     private final String name;
-    private final String platform;
-    private final String permsJson;
+    private final String permissions;
     private final Long updatedBy;
 }
