@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 @Value
 @Builder
-public class Resource implements ValueObject<Resource>, TenantAware<TenantId> {
+public class Resource implements ValueObject, TenantAware<TenantId> {
     private Long            resourceId;
     private String          code;
     private String          name;
@@ -37,13 +37,14 @@ public class Resource implements ValueObject<Resource>, TenantAware<TenantId> {
     @Override
     public boolean equals(Object o) {
         Resource res = null;
-        if (Objects.nonNull(o) && o instanceof Resource) {
+        if (o instanceof Resource) {
             res = (Resource) o;
         }
         return Objects.nonNull(res)
                 && Objects.equals(getCode(), res.getCode())
                 && Objects.equals(getName(), res.getName())
                 && Objects.equals(getPath(), res.getPath())
+                && Objects.equals(getState(), res.getState())
                 && Objects.equals(getPlatform(), res.getPlatform())
                 && Objects.equals(getParentId(), res.getParentId())
                 && Objects.equals(getTenantId(), res.getTenantId());

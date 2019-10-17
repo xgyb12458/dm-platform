@@ -15,31 +15,39 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
+ * 许可域定义
  * @author Damon
  */
 @Getter
 @Setter(value = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class Permission implements ValueObject<Permission>, TenantAware<TenantId> {
+public class Permission implements ValueObject, TenantAware<TenantId> {
     private Long            permissionId;
     private Resource        resource;
     private Operation       operation;
     private String          platform;
     private SwitchState     state;
     private TenantId        tenantId;
+
     private Long            createdBy;
     private Long            updatedBy;
+    private Long            removedBy;
     private LocalDateTime   createdAt;
     private LocalDateTime   updatedAt;
+    private LocalDateTime   removedAt;
 
 
     @Override
-    public boolean sameAs(Permission o) {
-        return !Objects.isNull(o)
-                && Objects.equals(getResource().getResourceId(), o.getResource().getResourceId())
-                && Objects.equals(getOperation().getOperationId(), o.getOperation().getOperationId())
-                && Objects.equals(getState(), o.getState())
-                && Objects.equals(getPlatform(), o.getPlatform())
-                && Objects.equals(getTenantId(), o.getTenantId());
+    public boolean equals(Object o) {
+        Permission permission = null;
+        if (o instanceof Permission) {
+            permission = (Permission) o;
+        }
+        return Objects.nonNull(permission)
+                && Objects.equals(getResource(), permission.getResource())
+                && Objects.equals(getOperation(), permission.getOperation())
+                && Objects.equals(getPlatform(), permission.getPlatform())
+                && Objects.equals(getState(), permission.getState())
+                && Objects.equals(getTenantId(), permission.getTenantId());
     }
 }

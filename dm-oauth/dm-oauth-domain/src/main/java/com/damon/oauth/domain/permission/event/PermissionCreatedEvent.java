@@ -6,6 +6,7 @@ import lombok.Value;
 import java.time.LocalDateTime;
 
 /**
+ * 许可域创建成功事件
  * @author Damon S.
  * @version v1.0.1
  * @date 2019年04月19日 23:33

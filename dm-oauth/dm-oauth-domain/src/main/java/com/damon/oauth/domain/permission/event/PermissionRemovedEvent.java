@@ -6,7 +6,7 @@ import lombok.Value;
 import java.time.LocalDateTime;
 
 /**
- * 删除操作域
+ * 删除许可域
  * @author damon
  */
 @Value
