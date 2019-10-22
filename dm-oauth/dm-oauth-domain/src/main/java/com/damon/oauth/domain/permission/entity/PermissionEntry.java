@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * 许可域数据库模型
  * @author Damon
  */
 @Entity

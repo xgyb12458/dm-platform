@@ -5,6 +5,5 @@ import com.damon.shared.model.ValueObject;
 /***
  * @author Damon S.
  */
-public interface Specification<T extends Specification<T>> extends ValueObject<T> {
-
+public interface Specification<T extends Specification<T>> extends ValueObject {
 }

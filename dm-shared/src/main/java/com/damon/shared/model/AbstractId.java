@@ -8,7 +8,7 @@ import org.springframework.util.ObjectUtils;
  * @author Damon S.
  * @param <T> 值基础类型
  */
-public abstract class AbstractId<T extends AbstractId<T, V>, V> implements ValueObject<T> {
+public abstract class AbstractId<T extends AbstractId<T, V>, V> implements ValueObject {
 
     private final V identifier;
     private final int hashCode;
@@ -24,18 +24,16 @@ public abstract class AbstractId<T extends AbstractId<T, V>, V> implements Value
     }
 
     @Override
-    public boolean sameAs(T o) {
-        return this == o
-                || !ObjectUtils.isEmpty(o)
-                && getClass() == o.getClass()
-                && getValue() == o.getValue();
-    }
-
-    @Override
     public boolean equals(Object o) {
-        return sameAs((T)o);
+        AbstractId id = null;
+        if (o instanceof AbstractId) {
+            id = (AbstractId) o;
+        }
+        return this == id
+                || !ObjectUtils.isEmpty(id)
+                && getClass() == id.getClass()
+                && getValue() == id.getValue();
     }
-
 
     @Override
     public int hashCode() {

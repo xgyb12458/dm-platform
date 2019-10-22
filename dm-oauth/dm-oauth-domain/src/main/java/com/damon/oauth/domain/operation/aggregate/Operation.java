@@ -14,7 +14,7 @@ import java.util.Objects;
  * @author Damon
  */
 @Data
-public class Operation implements ValueObject<Operation>, TenantAware<TenantId> {
+public class Operation implements ValueObject, TenantAware<TenantId> {
     private Long            operationId;
     private String          code;
     private String          name;
@@ -32,12 +32,13 @@ public class Operation implements ValueObject<Operation>, TenantAware<TenantId> 
     @Override
     public boolean equals(Object o) {
         Operation op = null;
-        if (Objects.nonNull(o) && o instanceof Operation) {
+        if (o instanceof Operation) {
             op = (Operation) o;
         }
         return Objects.nonNull(op)
                 && Objects.equals(getCode(), op.getCode())
                 && Objects.equals(getName(), op.getName())
+                && Objects.equals(getState(), op.getState())
                 && Objects.equals(getPlatform(), op.getPlatform())
                 && Objects.equals(getTenantId(), op.getTenantId());
     }

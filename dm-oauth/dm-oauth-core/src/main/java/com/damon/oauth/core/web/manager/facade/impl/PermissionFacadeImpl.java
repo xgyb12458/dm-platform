@@ -57,11 +57,12 @@ public class PermissionFacadeImpl implements PermissionFacade {
     public ResponseWrapper<Long> createOperation(CreateOperationReqDTO createOperationReqDTO) {
         Long currentUserId = 0L;
         CreateOperationCommand command = CreateOperationCommand.builder()
+                .operationId(9L)
                 .code(createOperationReqDTO.getCode())
                 .name(createOperationReqDTO.getName())
-                .operationId(9L)
-                .tenantId(0L)
+                .sort(createOperationReqDTO.getSort())
                 .platform(createOperationReqDTO.getPlatform())
+                .tenantId(0L)
                 .createdBy(currentUserId)
                 .build();
         Long createdOperationId = commandGateway.sendAndWait(command);

@@ -13,7 +13,8 @@ public class CreateOperationCommand {
     private final Long      operationId;
     private final String    code;
     private final String    name;
-    private final String    platform;
+    private final Integer   sort;
+    private final Integer   platform;
     private final Long      tenantId;
     private final Long      createdBy;
 }

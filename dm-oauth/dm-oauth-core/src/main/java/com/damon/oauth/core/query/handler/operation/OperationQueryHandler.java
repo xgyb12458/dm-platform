@@ -5,6 +5,7 @@ import com.damon.oauth.domain.operation.entity.OperationEntry;
 import com.damon.oauth.domain.operation.entity.OperationRepository;
 import com.damon.oauth.domain.operation.entity.QOperationEntry;
 import com.damon.shared.common.Constants;
+import com.damon.shared.enums.SwitchState;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.common.jpa.EntityManagerProvider;
@@ -40,19 +41,15 @@ public class OperationQueryHandler {
 
         OperationEntry operationEntry = OperationEntry.builder()
                 .operationId(command.getOperationId())
-//                .name(event.getName())
-//                .code(event.getCode())
-//                .logo(event.getLogo())
-//                .sort(event.getSort())
-//                .bigImage(event.getBigImage())
-//                .display(event.getDisplay().name())
-//                .removed(event.getRemoved().name())
-//                .factoryState(event.getFactoryState().name())
-//                .firstLetter(event.getFirstLetter())
-//                .homepage(event.getHomepage())
-//                .description(event.getDescription())
-//                .createdBy(event.getCreatedBy())
-//                .createdAt(new Timestamp(event.getCreatedAt().toEpochMilli()))
+                .name(command.getName())
+                .code(command.getCode())
+                .platform(command.getPlatform())
+                .sort(command.getSort())
+                .state(SwitchState.ON.getValue())
+//                .removed(command.getRemoved().name())
+//                .description(command.getDescription())
+//                .createdBy(command.getCreatedBy())
+//                .createdAt(new Timestamp(command.getCreatedAt().toEpochMilli()))
                 .build();
 
 //        brandRepository.saveAndFlush(brandEntry);
