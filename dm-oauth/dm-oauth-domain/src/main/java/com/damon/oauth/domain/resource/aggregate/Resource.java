@@ -1,6 +1,7 @@
 package com.damon.oauth.domain.resource.aggregate;
 
 import com.damon.shared.enums.SwitchState;
+import com.damon.shared.enums.YesNoEnum;
 import com.damon.shared.model.ValueObject;
 import com.damon.shared.tenant.TenantAware;
 import com.damon.shared.tenant.TenantId;
@@ -21,8 +22,9 @@ public class Resource implements ValueObject<Resource>, TenantAware<TenantId> {
     private String          code;
     private String          name;
     private String          path;
-    private SwitchState     state;
     private String          platform;
+    private SwitchState     state;
+    private YesNoEnum       removed;
     private Long            parentId;
     private TenantId        tenantId;
 
@@ -37,7 +39,7 @@ public class Resource implements ValueObject<Resource>, TenantAware<TenantId> {
     @Override
     public boolean equals(Object o) {
         Resource res = null;
-        if (Objects.nonNull(o) && o instanceof Resource) {
+        if (o instanceof Resource) {
             res = (Resource) o;
         }
         return Objects.nonNull(res)

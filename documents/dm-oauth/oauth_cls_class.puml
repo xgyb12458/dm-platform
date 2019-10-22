@@ -11,11 +11,11 @@ class Tenant {
 '    - createdBy: UserId
 '    - updatedBy: UserId
 }
-class Organization {
-     - orgId: Long
+class UserGroup {
+     - groupId: Long
      - code: String
      - name: String
-     - type: OrgType
+     - type: GroupType
      - parentId: Long
      - contact: String
      - state: SwitchState
@@ -43,10 +43,9 @@ class AuthorizationProvider {
 class UserAggregate {
     - userId: UserId
     - name: String
-    - password: String
     - state: SwitchState
     - tenantId: Long
-    - rolesJson: Text
+    - roles: Text
 '    - createdAt: Long
 '    - updatedAt: Long
 '    - createdBy: UserId
@@ -92,8 +91,8 @@ class Permission {
 }
 class Resource {
     - resourceId: Long
-    - code: String
     - name: String
+    - code: String
     - path: String
     - platform: String
     - parentId: Long
@@ -109,11 +108,12 @@ class Resource {
 }
 class Operation {
     - operationId: Long
-    - code: String
     - name: String
+    - code: String
     - platform: String
     - state: SwitchState
     - removed: Integer
+    - resources: String
     - tenantId: Long
 '    - createdAt: Long
 '    - updatedAt: Long
@@ -123,8 +123,8 @@ class Operation {
 '    - removedBy: Long
 }
 
-Organization --> Organization
-UserAggregate "1"-->"*" Organization
+UserGroup --> UserGroup
+UserAggregate "1"-->"*" UserGroup
 UserAggregate "1"-->"*" RoleAggregate
 RoleAggregate "1"-->"*" Permission
 Permission *-->"1" Resource
