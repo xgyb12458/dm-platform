@@ -14,7 +14,7 @@ import javax.persistence.MappedSuperclass;
  */
 @Data
 @MappedSuperclass
-public class TenantEntry extends AbstractEntry {
+public abstract class TenantEntry extends AbstractEntry {
 
     @Column(name = "tenant_id", nullable = false)
     protected Long    tenantId;

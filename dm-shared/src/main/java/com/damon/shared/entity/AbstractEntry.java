@@ -28,14 +28,14 @@ public abstract class AbstractEntry implements Serializable {
 
     @CreatedBy
     @Column(name = "created_by", nullable = false, updatable = false)
-    protected Long    createdBy;
+    protected Long   createdBy;
 
     @LastModifiedBy
     @Column(name = "updated_by")
-    protected Long    updatedBy;
+    protected Long   updatedBy;
 
     @Column(name = "removed_by")
-    protected Long    removedBy;
+    protected Long   removedBy;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -45,6 +45,6 @@ public abstract class AbstractEntry implements Serializable {
     @Column(name = "updated_at")
     protected Long   updatedAt;
 
-    @Column(name = "removed_at")
-    protected Long    removedAt;
+    @Column(name = "removed_at", updatable = false)
+    protected Long   removedAt;
 }

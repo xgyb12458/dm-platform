@@ -12,7 +12,7 @@ import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
+import java.time.ZoneOffset;
 
 /**
  * 用户事件侦听
@@ -74,7 +74,7 @@ public class UserEventListener {
                 .set(qUserEntry.tenantId, event.getTenantId().getValue())
                 .set(qUserEntry.rolesJson, event.getRolesJson())
                 .set(qUserEntry.updatedBy, event.getUpdatedBy())
-                .set(qUserEntry.updatedAt, Timestamp.valueOf(event.getUpdatedAt()))
+                .set(qUserEntry.updatedAt, event.getUpdatedAt().toEpochSecond(ZoneOffset.ofHours(8)))
                 .where(qUserEntry.userId.eq(event.getUserId().getValue()))
                 .execute();
 
