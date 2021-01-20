@@ -44,7 +44,7 @@
         <swagger.version>2.9.2</swagger.version>
         <servlet.version>3.0.1</servlet.version>
         <lombok.version>1.18.2</lombok.version>
-        <jackson.version>2.9.7</jackson.version>
+        <jackson.version>2.12.1</jackson.version>
         <persistence.version>1.0.2.Final</persistence.version>
         <axonspring.version>4.0</axonspring.version>
         <grpcboot.version>2.3.2</grpcboot.version>
